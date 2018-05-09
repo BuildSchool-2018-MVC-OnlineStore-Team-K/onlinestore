@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BuildSchool.MVCSolution.OnlineStore.CustomerRepository
+namespace BuildSchool.MVCSolution.OnlineStore.Repository
 {
     public class SizeRepository
     {

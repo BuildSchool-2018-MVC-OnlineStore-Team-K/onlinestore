@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DiscountRepository.cs" />
     <Compile Include="MembersRepository.cs" />
     <Compile Include="SizeRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
