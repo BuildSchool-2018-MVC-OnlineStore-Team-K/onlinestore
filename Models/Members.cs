@@ -18,6 +18,6 @@ namespace BuildSchool.MVCSolution.OnlineStore.Models
         public string Account { get; set; }
         public string Password { get; set; }
         public string Black { get; set; }
-        public string Caerre { get; set; }
+        public string Career { get; set; }
     }
 }
