@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace BuildSchool.MVCSolution.OnlineStore.Models
 {
-    class Members
+    public class Members
     {
         public int MemberID { get; set; }
-        public string Name { get; set; }
+        public string MemberName { get; set; }
         public string Address { get; set; }
         public int Age { get; set; }
         public int CerditCard { get; set; }
@@ -18,6 +18,6 @@ namespace BuildSchool.MVCSolution.OnlineStore.Models
         public string Account { get; set; }
         public string Password { get; set; }
         public string Black { get; set; }
-        public string Career { get; set; }
+        public string Caerre { get; set; }
     }
 }
