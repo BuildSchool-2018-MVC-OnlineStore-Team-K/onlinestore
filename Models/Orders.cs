@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace BuildSchool.MVCSolution.OnlineStore.Models
 {
-    //jfdklsjfksjkfjskjfksdjfksjfkl
     public class Orders
     {
         public int OrderID { get; set; }
