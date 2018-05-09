@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace BuildSchool.MVCSolution.OnlineStore.Models
 {
+    //jfdklsjfksjkfjskjfksdjfksjfkl
     public class Orders
     {
         public int OrderID { get; set; }
@@ -16,6 +17,5 @@ namespace BuildSchool.MVCSolution.OnlineStore.Models
         public DateTime Time { get; set; }
         public string ShipPlace { get; set; }
         public string Payway { get; set; }
-
     }
 }
