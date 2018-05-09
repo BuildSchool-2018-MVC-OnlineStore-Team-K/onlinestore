@@ -14,7 +14,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public void Create(Sizes model)
         {
             SqlConnection connection = new SqlConnection(
-                "data source=.; database=northwind; integrated security=true");
+                "data source = 192.168.40.36,1433 ; database = E-Commerce; user id = smallhandsomehandsome; password = 123");
             var sql = "INSERT INTO Customers VALUES (@SizeID, @Size)";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -31,7 +31,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public void Update(Sizes model)
         {
             SqlConnection connection = new SqlConnection(
-                "data source=.; database=northwind; integrated security=true");
+                 "data source = 192.168.40.36,1433 ; database = E-Commerce; user id = smallhandsomehandsome; password = 123");
             var sql = "UPDATE Customers SET Size=@Size WHERE SizeID = @SizeID";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -47,7 +47,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public void Delete(Sizes model)
         {
             SqlConnection connection = new SqlConnection(
-                "data source=.; database=northwind; integrated security=true");
+                "data source = 192.168.40.36,1433 ; database = E-Commerce; user id = smallhandsomehandsome; password = 123");
             var sql = "DELETE FROM Sizes WHERE SizeID = @SizeID";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -62,7 +62,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public Sizes FindById(string SizeID)
         {
             SqlConnection connection = new SqlConnection(
-                "data source=.; database=northwind; integrated security=true");
+                "data source = 192.168.40.36,1433 ; database = E-Commerce; user id = smallhandsomehandsome; password = 123");
             var sql = "SELECT * FROM Sizes WHERE SizeID = @SizeID";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -88,8 +88,8 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public IEnumerable<Sizes> GetAll() //()內不用給直 因為傳整個表格
         {
-            SqlConnection connection = new SqlConnection("Server=.;Database=mytest;Trusted_Connection=True;");
-
+            SqlConnection connection = new SqlConnection(
+                "data source = 192.168.40.36,1433 ; database = E-Commerce; user id = smallhandsomehandsome; password = 123");
             var sql = "SELECT * FROM  Sizes";
             SqlCommand command = new SqlCommand(sql, connection);
 
