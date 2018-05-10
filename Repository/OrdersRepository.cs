@@ -85,17 +85,37 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
             var reader = command.ExecuteReader();
             var list = new List<Orders>();
-            var orders = new Orders();
+            //var orders = new Orders();
+            var properties = typeof(Orders).GetProperties();
+            Orders orders = null;
             while (reader.Read())
             {
-                orders.MemberID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("MemberID")));
-                orders.OrderDetailID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("OrderDetailID")));
-                orders.OrderID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("OrderID")));
-                orders.Pay = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("Pay")));
-                orders.Payway = reader.GetValue(reader.GetOrdinal("Payway")).ToString();
-                orders.ShipPlace = reader.GetValue(reader.GetOrdinal("ShipPlace")).ToString();
-                orders.Time = Convert.ToDateTime(reader.GetValue(reader.GetOrdinal("Time")));
-                orders.Cart = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("Cart")));
+
+                for (var i = 0; i < reader.FieldCount; i++)
+                {
+                    var fieldName = reader.GetName(i);
+                    var property = properties.FirstOrDefault(p => p.Name == fieldName);
+
+                    if (property == null)
+                        continue;
+
+                    if (!reader.IsDBNull(i))
+                    {
+                        var item = reader.GetValue(i);
+
+                        property.SetValue(orders, item);
+                    }
+                       
+                }
+                
+                //orders.MemberID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("MemberID")));
+                //orders.OrderDetailID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("OrderDetailID")));
+                //orders.OrderID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("OrderID")));
+                //orders.Pay = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("Pay")));
+                //orders.Payway = reader.GetValue(reader.GetOrdinal("Payway")).ToString();
+                //orders.ShipPlace = reader.GetValue(reader.GetOrdinal("ShipPlace")).ToString();
+                //orders.Time = Convert.ToDateTime(reader.GetValue(reader.GetOrdinal("Time")));
+                //orders.Cart = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("Cart")));
 
                 list.Add(orders);
             }
