@@ -129,3 +129,5 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 //GetOrdinal:使用欄位來抓值(ExecuteReader)
 
 //單元測試：新增專案
+//using陳述式，用來防止忘記關資料庫，用來宣告多個物件
+//IDisaposable
