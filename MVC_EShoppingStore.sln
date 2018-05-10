@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "CustomerRepository\Repository.csproj", "{9C52B350-B2DB-4525-96C2-F51F7E3B56BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemberRepositoryTests", "CustomerRepositoryTests\MemberRepositoryTests.csproj", "{8AA3BAC5-37FE-447E-A23E-61ADB0806870}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryTests", "CustomerRepositoryTests\RepositoryTests.csproj", "{8AA3BAC5-37FE-447E-A23E-61ADB0806870}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
