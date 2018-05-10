@@ -102,8 +102,8 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             var sizes = new Size();
             while (reader.Read())
             {
-                sizes.SizeID = int.Parse(reader.GetValue(reader.GetOrdinal("sizeID")).ToString());
-                sizes._Size = reader.GetValue(reader.GetOrdinal("size")).ToString();
+                sizes.SizeID = int.Parse(reader.GetValue(reader.GetOrdinal("SizeID")).ToString());
+                sizes._Size = reader.GetValue(reader.GetOrdinal("Size")).ToString();
                 list.Add(sizes);
             }
             reader.Close();
