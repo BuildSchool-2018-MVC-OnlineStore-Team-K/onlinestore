@@ -9,102 +9,106 @@ using System.Threading.Tasks;
 
 namespace BuildSchool.MVCSolution.OnlineStore.Repository
 {
-    public class SizeRepository
+    public class PSRepository
     {
-        public void Create(Size model)
+        public void Create(PS model)
         {
             SqlConnection connection = new SqlConnection(
                 "data source = 192.168.40.36,1433 ; database = E-Commerce; user id = smallhandsomehandsome; password = 123");
-            var sql = "INSERT INTO Size VALUES (@SizeID, @Size)";
+            var sql = "INSERT INTO PS VALUES (@SizeID, @ProductID, @Quantity)";
 
             SqlCommand command = new SqlCommand(sql, connection);
 
             command.Parameters.AddWithValue("@SizeID", model.SizeID);
-            command.Parameters.AddWithValue("@Size", model._Size);
-            
+            command.Parameters.AddWithValue("@ProductID", model.ProductID);
+            command.Parameters.AddWithValue("@Quantity", model.Quantity);
+
 
             connection.Open();
             command.ExecuteNonQuery();
             connection.Close();
         }
 
-        public void Update(Size model)
+        public void Update(PS model)
         {
             SqlConnection connection = new SqlConnection(
                  "data source = 192.168.40.36,1433 ; database = E-Commerce; user id = smallhandsomehandsome; password = 123");
-            var sql = "UPDATE Size SET Size=@Size WHERE SizeID = @SizeID";
+            var sql = "UPDATE PS SET Quantity= @Quantity WHERE SizeID = @SizeID AND ProductID = @ProductID ";
 
             SqlCommand command = new SqlCommand(sql, connection);
 
             command.Parameters.AddWithValue("@SizeID", model.SizeID);
-            command.Parameters.AddWithValue("@Size", model._Size);
+            command.Parameters.AddWithValue("@ProductID", model.ProductID);
+            command.Parameters.AddWithValue("@Quantity", model.Quantity);
 
             connection.Open();
             command.ExecuteNonQuery();
             connection.Close();
         }
 
-        public void Delete(Size model)
+        public void Delete(PS model)
         {
             SqlConnection connection = new SqlConnection(
                 "data source = 192.168.40.36,1433 ; database = E-Commerce; user id = smallhandsomehandsome; password = 123");
-            var sql = "DELETE FROM Size WHERE SizeID = @SizeID";
+            var sql = "DELETE FROM PS WHERE SizeID = @SizeID AND ProductID = @ProductID";
 
             SqlCommand command = new SqlCommand(sql, connection);
 
             command.Parameters.AddWithValue("@SizeID", model.SizeID);
+            command.Parameters.AddWithValue("@ProductID", model.ProductID);
 
             connection.Open();
             command.ExecuteNonQuery();
             connection.Close();
         }
 
-        public Size FindById(string SizeID)
+        public PS FindById(string SizeID, string ProductID)
         {
             SqlConnection connection = new SqlConnection(
                 "data source = 192.168.40.36,1433 ; database = E-Commerce; user id = smallhandsomehandsome; password = 123");
-            var sql = "SELECT * FROM Size WHERE SizeID = @SizeID";
+            var sql = "SELECT * FROM PS WHERE SizeID = @SizeID AND ProductID = @ProductID";
 
             SqlCommand command = new SqlCommand(sql, connection);
 
             command.Parameters.AddWithValue("@SizeID", SizeID);
+            command.Parameters.AddWithValue("@ProductID", ProductID);
 
             connection.Open();
 
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            var size = new Size();
+            var ps = new PS();
 
             while (reader.Read())
             {
-                size.SizeID = int.Parse(reader.GetValue(reader.GetOrdinal("SizeID")).ToString());
-                size._Size = reader.GetValue(reader.GetOrdinal("Size")).ToString();
-                
+                ps.SizeID = int.Parse(reader.GetValue(reader.GetOrdinal("SizeID")).ToString());
+                ps.ProductID = int.Parse(reader.GetValue(reader.GetOrdinal("ProductID")).ToString());
+                ps.Quantity = int.Parse(reader.GetValue(reader.GetOrdinal("Quantity")).ToString());
+
             }
 
             reader.Close();
 
-            return size;
+            return ps;
         }
 
-        public IEnumerable<Size> GetAll() //()內不用給直 因為傳整個表格
+        public IEnumerable<PS> GetAll() //()內不用給直 因為傳整個表格
         {
             SqlConnection connection = new SqlConnection(
                 "data source = 192.168.40.36,1433 ; database = E-Commerce; user id = smallhandsomehandsome; password = 123");
             var sql = "SELECT * FROM  Size";
             SqlCommand command = new SqlCommand(sql, connection);
 
-           // command.Parameters.AddWithValue("@sizeID", model.SizeID);
-
             connection.Open();
 
-            var reader =  command.ExecuteReader();
-            var list = new List<Size>();
-            var size = new Size();
+            var reader = command.ExecuteReader();
+            var list = new List<PS>();
+            var ps = new PS();
             while (reader.Read())
             {
-                size.SizeID = int.Parse(reader.GetValue(reader.GetOrdinal("sizeID")).ToString());
-                size._Size = reader.GetValue(reader.GetOrdinal("size")).ToString();
-                list.Add(size);
+                ps.SizeID = int.Parse(reader.GetValue(reader.GetOrdinal("SizeID")).ToString());
+                ps.ProductID = int.Parse(reader.GetValue(reader.GetOrdinal("ProductID")).ToString());
+                ps.Quantity = int.Parse(reader.GetValue(reader.GetOrdinal("Quantity")).ToString());
+                list.Add(ps);
             }
             reader.Close();
             connection.Close();
