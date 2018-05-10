@@ -1,4 +1,5 @@
 ﻿using BuildSchool.MVCSolution.OnlineStore.Models;
+using BuildSchool.MVCSolution.OnlineStore.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -64,37 +65,6 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             connection.Close();
         }
 
-        public Products FindById(int ProductID)
-        {
-            SqlConnection connection = new SqlConnection(
-                "Server=192.168.40.36,1433;Database=E-Commerce;User ID =smallhandsomehandsome ; Password =123;");
-            var sql = "SELECT * FROM Products WHERE ProductID = @productid";
-
-            SqlCommand command = new SqlCommand(sql, connection);
-
-            command.Parameters.AddWithValue("@productid", ProductID);
-
-            connection.Open();
-
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            //var properties = typeof(Products).GetProperties();
-            Products product = new Products();
-
-            while (reader.Read())
-            {
-
-                product.ProductID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("ProductID")));
-                product.Category = reader.GetValue(reader.GetOrdinal("Category")).ToString();
-                product.ProductName = reader.GetValue(reader.GetOrdinal("ProductName")).ToString();
-                product.UnitPrice = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("UnitPrice")));
-                product.ShelfTime = Convert.ToDateTime(reader.GetValue(reader.GetOrdinal("ShelfTime")));
-            }
-
-            reader.Close();
-
-            return product;
-        }
-
         public IEnumerable<Products> GetAll()
         {
             SqlConnection connection = new SqlConnection(
@@ -104,38 +74,40 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             SqlCommand command = new SqlCommand(sql, connection);
             connection.Open();
 
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            var reader = command.ExecuteReader();
             var list = new List<Products>();
-            var properties = typeof(Products).GetProperties();
-            Products products = null;
+            //var properties = typeof(Products).GetProperties();
+            Products products = new Products();
 
             while (reader.Read())
             {
-                products = new Products();
-                for (var i = 0; i < reader.FieldCount; i++)
-                {
-                    var fieldName = reader.GetName(i);
-                    var property = properties.FirstOrDefault(
-                        p => p.Name == fieldName);
+                products = DbReaderModelBinder<Products>.Bind(reader);
+                list.Add(products);
+                //products = new Products();
+                //for (var i = 0; i < reader.FieldCount; i++)
+                //{
+                //    var fieldName = reader.GetName(i);
+                //    var property = properties.FirstOrDefault(
+                //        p => p.Name == fieldName);
 
-                    if (property == null)
-                        continue;
+                //    if (property == null)
+                //        continue;
 
-                    if (!reader.IsDBNull(i))
-                        property.SetValue(products,
-                            reader.GetValue(i));
-                    //var product = new Products();
-                    //product.ProductID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("ProductID")));  //用欄位名稱取得位址
-                    //product.Category = reader.GetValue(reader.GetOrdinal("Category")).ToString();
-                    //product.ProductName = reader.GetValue(reader.GetOrdinal("ProductName")).ToString();
-                    //product.UnitPrice = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("UnitPrice")));
-                    //product.ShelfTime = Convert.ToDateTime(reader.GetValue(reader.GetOrdinal("ShelfTime")));
-                    //products.Add(product);
-                }
+                //    if (!reader.IsDBNull(i))
+                //        property.SetValue(products,
+                //            reader.GetValue(i));
+                //    //var product = new Products();
+                //    //product.ProductID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("ProductID")));  //用欄位名稱取得位址
+                //    //product.Category = reader.GetValue(reader.GetOrdinal("Category")).ToString();
+                //    //product.ProductName = reader.GetValue(reader.GetOrdinal("ProductName")).ToString();
+                //    //product.UnitPrice = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("UnitPrice")));
+                //    //product.ShelfTime = Convert.ToDateTime(reader.GetValue(reader.GetOrdinal("ShelfTime")));
+                //    //products.Add(product);
+                //}
             }
-            list.Add(products);
+            
             reader.Close();
-
+            connection.Close();
             return list;
 
         }        
