@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="OrderDetailRepositoryTests.cs" />
     <Compile Include="OrdersRepositoryTests.cs" />
+    <Compile Include="ProductsRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SizeRepositoryTests.cs" />
   </ItemGroup>
