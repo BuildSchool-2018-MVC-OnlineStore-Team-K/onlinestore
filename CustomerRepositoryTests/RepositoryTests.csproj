@@ -63,9 +63,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CustomerRepository\CustomerRepository.csproj">
+    <ProjectReference Include="..\CustomerRepository\Repository.csproj">
       <Project>{9C52B350-B2DB-4525-96C2-F51F7E3B56BA}</Project>
-      <Name>CustomerRepository</Name>
+      <Name>Repository</Name>
     </ProjectReference>
     <ProjectReference Include="..\Models\Models.csproj">
       <Project>{56D5E1BB-46AA-42D8-8E75-096955EEC0B8}</Project>

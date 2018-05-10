@@ -7,8 +7,8 @@
     <ProjectGuid>{9C52B350-B2DB-4525-96C2-F51F7E3B56BA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BuildSchool.MVCSolution.OnlineStore.CustomerRepository</RootNamespace>
-    <AssemblyName>CustomerRepository</AssemblyName>
+    <RootNamespace>BuildSchool.MVCSolution.OnlineStore.Repository</RootNamespace>
+    <AssemblyName>BuildSchool.MVCSolution.OnlineStore.Repository</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DiscountRepository.cs" />
+    <Compile Include="MembersRepository.cs" />
     <Compile Include="SizeRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
