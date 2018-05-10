@@ -1,20 +1,18 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using BuildSchool.MVCSolution.OnlineStore.CustomerRepository;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using BuildSchool.MVCSolution.OnlineStore.Models;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace BuildSchool.MVCSolution.OnlineStore.CustomerRepository.Tests
+namespace BuildSchool.MVCSolution.OnlineStore.SizeRepositoryTest
 {
-    [TestClass()]
+    [TestClass]
     public class SizeRepositoryTests
     {
-        [TestMethod()]
-        public void GetAllTest()
+        [TestMethod]
+        public void GetAll()
         {
-            var repository = new BuildSchool.MVCSolution.OnlineStore.CustomerRepository.SizeRepository();
+            var repository = new BuildSchool.MVCSolution.OnlineStore.SizeRepository.SizeRepository();
             var list = repository.GetAll();
             Assert.IsTrue(list.Count() > 0);
         }
