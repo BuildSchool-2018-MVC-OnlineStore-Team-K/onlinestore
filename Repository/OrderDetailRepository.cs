@@ -83,23 +83,17 @@ namespace BuildSchool.MVCSolution.OnlineStore.OrderDetailRepository
             var properties = typeof(OrderDetail).GetProperties();
             while (reader.Read())
             {
-                //for(var i=0; i < reader.FieldCount; i++)
-                //{
-                //    var fieldName = reader.GetName(i);
-                //    var property = properties.FirstOrDefault(x => x.Name == fieldName);
-                //    if (property == null)
-                //        continue;
-                //    if (!reader.IsDBNull(i))
-                //        property.SetValue(orderDetail, reader.GetValue(i));
-                //}
-                //list.Add(orderDetail);
-
-                orderDetail.OrderID = int.Parse(reader.GetValue(reader.GetOrdinal("OrderID")).ToString());
-                orderDetail.ProductID = int.Parse(reader.GetValue(reader.GetOrdinal("ProductID")).ToString());
-                orderDetail.UnitPrice = int.Parse(reader.GetValue(reader.GetOrdinal("UnitPrice")).ToString());
-                orderDetail.Quantity = int.Parse(reader.GetValue(reader.GetOrdinal("Quantity")).ToString());
-                orderDetail.Discount = float.Parse(reader.GetValue(reader.GetOrdinal("Discount")).ToString());
+                for (var i = 0; i < reader.FieldCount; i++)
+                {
+                    var fieldName = reader.GetName(i);
+                    var property = properties.FirstOrDefault(x => x.Name == fieldName);
+                    if (property == null)
+                        continue;
+                    if (!reader.IsDBNull(i))
+                        property.SetValue(orderDetail, reader.GetValue(i));
+                }
                 list.Add(orderDetail);
+                
             }
             reader.Close();
             connection.Close();
