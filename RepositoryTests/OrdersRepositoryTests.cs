@@ -12,11 +12,12 @@ namespace BuildSchool.MVCSolution.OnlineStore.OrdersRepositoryTests
     public class OrdersRepositoryTests
     {
         [TestMethod()]
-        public void GetAllTest()
+        public void GetAllTest_Repository_new()
         {
             var repository = new BuildSchool.MVCSolution.OnlineStore.Repository.OrdersRepository();
-            var result = repository.GetAll();
-            Assert.IsTrue(result.Count() > 0);
+            var orders = repository.GetAll();
+            Assert.IsTrue(orders.Count() > 0);
         }
     }
 }
+
