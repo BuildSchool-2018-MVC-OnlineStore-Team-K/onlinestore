@@ -33,7 +33,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         {
             SqlConnection connection = new SqlConnection(
                 "Server=192.168.40.36,1433;Database=E-Commerce;User ID =smallhandsomehandsome ; Password =123;");
-            var sql = "UPDATE Products SET Category=@category, Name=@productname, UnitPrice=@unitprice WHERE ProductID = @productid";
+            var sql = "UPDATE Products SET Category=@category, ProductName=@productname, UnitPrice=@unitprice WHERE ProductID = @productid";
 
             SqlCommand command = new SqlCommand(sql, connection);
 
@@ -81,7 +81,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             {
                 product.ProductID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("ProductID")));
                 product.Category = reader.GetValue(reader.GetOrdinal("Category")).ToString();
-                product.ProductName = reader.GetValue(reader.GetOrdinal("Name")).ToString();
+                product.ProductName = reader.GetValue(reader.GetOrdinal("ProductName")).ToString();
                 product.UnitPrice = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("UnitPrice")));                
             }
 
@@ -107,7 +107,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
                 var product = new Products();
                 product.ProductID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("ProductID")));  //用欄位名稱取得位址
                 product.Category = reader.GetValue(reader.GetOrdinal("Category")).ToString();
-                product.ProductName = reader.GetValue(reader.GetOrdinal("Name")).ToString();
+                product.ProductName = reader.GetValue(reader.GetOrdinal("ProductName")).ToString();
                 product.UnitPrice = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("UnitPrice")));
                 products.Add(product);
             }
