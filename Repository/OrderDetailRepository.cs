@@ -86,7 +86,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.OrderDetailRepository
                 orderDetail.ProductID = int.Parse(reader.GetValue(reader.GetOrdinal("ProductID")).ToString());
                 orderDetail.UnitPrice =  int.Parse(reader.GetValue(reader.GetOrdinal("UnitPrice")).ToString());
                 orderDetail.Quantity = int.Parse(reader.GetValue(reader.GetOrdinal("Quantity")).ToString());
-                orderDetail.Discount = int.Parse(reader.GetValue(reader.GetOrdinal("Discount")).ToString());
+                orderDetail.Discount = float.Parse(reader.GetValue(reader.GetOrdinal("Discount")).ToString());
                 list.Add(orderDetail);
             }
             reader.Close();

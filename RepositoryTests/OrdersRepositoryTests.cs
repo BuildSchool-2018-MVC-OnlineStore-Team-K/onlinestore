@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BuildSchool.MVCSolution.OnlineStore.Repository.Tests
+namespace BuildSchool.MVCSolution.OnlineStore.OrdersRepositoryTests
 {
     [TestClass()]
     public class OrdersRepositoryTests

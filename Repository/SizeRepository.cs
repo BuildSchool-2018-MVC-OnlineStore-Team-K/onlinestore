@@ -15,7 +15,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         {
             SqlConnection connection = new SqlConnection(
                 "data source = 192.168.40.36,1433 ; database = E-Commerce; user id = smallhandsomehandsome; password = 123");
-            var sql = "INSERT INTO Size VALUES (@SizeID, @Size)";
+            var sql = "INSERT INTO Customers VALUES (@SizeID, @Size)";
 
             SqlCommand command = new SqlCommand(sql, connection);
 
@@ -32,7 +32,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         {
             SqlConnection connection = new SqlConnection(
                  "data source = 192.168.40.36,1433 ; database = E-Commerce; user id = smallhandsomehandsome; password = 123");
-            var sql = "UPDATE Size SET Size=@Size WHERE SizeID = @SizeID";
+            var sql = "UPDATE Customers SET Size=@Size WHERE SizeID = @SizeID";
 
             SqlCommand command = new SqlCommand(sql, connection);
 
@@ -48,7 +48,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         {
             SqlConnection connection = new SqlConnection(
                 "data source = 192.168.40.36,1433 ; database = E-Commerce; user id = smallhandsomehandsome; password = 123");
-            var sql = "DELETE FROM Size WHERE SizeID = @SizeID";
+            var sql = "DELETE FROM Sizes WHERE SizeID = @SizeID";
 
             SqlCommand command = new SqlCommand(sql, connection);
 
@@ -63,7 +63,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         {
             SqlConnection connection = new SqlConnection(
                 "data source = 192.168.40.36,1433 ; database = E-Commerce; user id = smallhandsomehandsome; password = 123");
-            var sql = "SELECT * FROM Size WHERE SizeID = @SizeID";
+            var sql = "SELECT * FROM Sizes WHERE SizeID = @SizeID";
 
             SqlCommand command = new SqlCommand(sql, connection);
 
@@ -99,12 +99,12 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
             var reader =  command.ExecuteReader();
             var list = new List<Size>();
-            var size = new Size();
+            var sizes = new Size();
             while (reader.Read())
             {
-                size.SizeID = int.Parse(reader.GetValue(reader.GetOrdinal("sizeID")).ToString());
-                size._Size = reader.GetValue(reader.GetOrdinal("size")).ToString();
-                list.Add(size);
+                sizes.SizeID = int.Parse(reader.GetValue(reader.GetOrdinal("SizeID")).ToString());
+                sizes._Size = reader.GetValue(reader.GetOrdinal("Size")).ToString();
+                list.Add(sizes);
             }
             reader.Close();
             connection.Close();

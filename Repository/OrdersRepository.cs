@@ -74,7 +74,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public IEnumerable<Orders> GetAll() //()內不用給直 因為傳整個表格
         {
             //SqlConnection connection = new SqlConnection("Server=.;Database=E-Commerce;Trusted_Connection=True;");
-            SqlConnection connection = new SqlConnection("Server=192.168.40.36,1433;Database=E-Commerce;User ID =smallhandsomehandsome ; Password =123;Trusted_Connection=True;");
+            SqlConnection connection = new SqlConnection("Server=192.168.40.36,1433;Database=E-Commerce;User ID =smallhandsomehandsome ; Password =123;");
 
             var sql = "SELECT * FROM  Orders";
             SqlCommand command = new SqlCommand(sql, connection);
