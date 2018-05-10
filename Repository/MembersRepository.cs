@@ -50,7 +50,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public void Update(Members model)
         {
             SqlConnection connection = new SqlConnection(
-               "data source = 192.168.40.36,1433 ; database = E-Commerce; user id = smallhandsomehandsome; password = 123");
+               "Server= 192.168.40.36,1433 ; database = E-Commerce; user id = smallhandsomehandsome; password = 123");
             var sql = "INSERT INTO Members VALUES " +
                  "(@MemberID, " +
                  "@Name," +
@@ -86,7 +86,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public void Delete(Members model)
         {
             SqlConnection connection = new SqlConnection(
-               "data source = 192.168.40.36,1433 ; database = E-Commerce; user id = smallhandsomehandsome; password = 123");
+               "Server = 192.168.40.36,1433 ; database = E-Commerce; user id = smallhandsomehandsome; password = 123");
             var sql = "INSERT INTO Members VALUES " +
                  "(@MemberID, " +
                  "@Name," +
@@ -112,7 +112,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public Members FindById(string MemberID)
         {
             SqlConnection connection = new SqlConnection(
-                "data source = 192.168.40.36,1433 ; database = E-Commerce; user id = smallhandsomehandsome; password = 123");
+                "Server = 192.168.40.36,1433 ; database = E-Commerce; user id = smallhandsomehandsome; password = 123");
             var sql = "SELECT * FROM Members WHERE MemberID = @MemberID";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -147,7 +147,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public IEnumerable<Members> GetAll()
         {
             SqlConnection connection = new SqlConnection(
-                "data source = 192.168.40.36,1433 ; database = E-Commerce; user id = smallhandsomehandsome; password = 123");
+                "Server = 192.168.40.36,1433 ; database = E-Commerce; user id = smallhandsomehandsome; password = 123");
             var sql = "INSERT INTO Members VALUES " +
                  "(@MemberID, " +
                  "@Name," +
