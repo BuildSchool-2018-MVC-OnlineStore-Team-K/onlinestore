@@ -104,12 +104,12 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
             while (reader.Read())
             {
-                Member.MemberID = reader.GetValue(reader.GetOrdinal("MemberID")).ToString();
+                Member.MemberID = int.Parse(reader.GetValue(reader.GetOrdinal("MemberID")).ToString());
                 Member.MemberName = reader.GetValue(reader.GetOrdinal("MemberName")).ToString();
                 Member.Address = reader.GetValue(reader.GetOrdinal("Address")).ToString();
-                Member.Age = reader.GetValue(reader.GetOrdinal("Age")).ToString();
-                Member.CerditCard = reader.GetValue(reader.GetOrdinal("CerditCard")).ToString();
-                Member.Phone = reader.GetValue(reader.GetOrdinal("Phone"));
+                Member.Age = int.Parse(reader.GetValue(reader.GetOrdinal("Age")).ToString());
+                Member.CerditCard = int.Parse(reader.GetValue(reader.GetOrdinal("CerditCard")).ToString());
+                Member.Phone = int.Parse(reader.GetValue(reader.GetOrdinal("Phone")).ToString());
                 Member.Email = reader.GetValue(reader.GetOrdinal("Email")).ToString();
                 Member.Account = reader.GetValue(reader.GetOrdinal("Account")).ToString();
                 Member.Password = reader.GetValue(reader.GetOrdinal("Password")).ToString();
@@ -137,12 +137,12 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             while (reader.Read())
             {
                 var Member = new Members();
-                Member.MemberID = reader.GetValue(reader.GetOrdinal("MemberID")).ToString();
-                Member.Name = reader.GetValue(reader.GetOrdinal("Name")).ToString();
+                Member.MemberID = int.Parse(reader.GetValue(reader.GetOrdinal("MemberID")).ToString());
+                Member.MemberName = reader.GetValue(reader.GetOrdinal("Name")).ToString();
                 Member.Address = reader.GetValue(reader.GetOrdinal("Address")).ToString();
-                Member.Age = reader.GetValue(reader.GetOrdinal("Age")).ToString();
-                Member.CerditCard = reader.GetValue(reader.GetOrdinal("CerditCard")).ToString();
-                Member.Phone = reader.GetValue(reader.GetOrdinal("Phone")).ToString();
+                Member.Age = int.Parse(reader.GetValue(reader.GetOrdinal("Age")).ToString());
+                Member.CerditCard = int.Parse(reader.GetValue(reader.GetOrdinal("CerditCard")).ToString());
+                Member.Phone = int.Parse(reader.GetValue(reader.GetOrdinal("Phone")).ToString());
                 Member.Email = reader.GetValue(reader.GetOrdinal("Email")).ToString();
                 Member.Account = reader.GetValue(reader.GetOrdinal("Account")).ToString();
                 Member.Password = reader.GetValue(reader.GetOrdinal("Password")).ToString();
