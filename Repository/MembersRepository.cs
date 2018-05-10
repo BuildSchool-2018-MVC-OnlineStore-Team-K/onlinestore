@@ -87,15 +87,15 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             connection.Close();
         }
 
-        public Members FindById(string customerId)
+        public Members FindById(string MemberID)
         {
             SqlConnection connection = new SqlConnection(
                 "data source=.; database=northwind; integrated security=true");
-            var sql = "SELECT * FROM Customers WHERE CustomerID = @id";
+            var sql = "SELECT * FROM Members WHERE MemberID = @MemberID";
 
             SqlCommand command = new SqlCommand(sql, connection);
 
-            command.Parameters.AddWithValue("@id", customerId);
+            command.Parameters.AddWithValue("@MemberID", MemberID);
 
             connection.Open();
 
