@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BuildSchool.MVCSolution.OnlineStore.Utilities;
 
 
 namespace BuildSchool.MVCSolution.OnlineStore.OrderDetailRepository
@@ -80,14 +81,12 @@ namespace BuildSchool.MVCSolution.OnlineStore.OrderDetailRepository
             var reader = command.ExecuteReader();
             var list = new List<OrderDetail>();
             var orderDetail = new OrderDetail();
+            
             while (reader.Read())
             {
-                orderDetail.OrderID = int.Parse(reader.GetValue(reader.GetOrdinal("OrderID")).ToString());
-                orderDetail.ProductID = int.Parse(reader.GetValue(reader.GetOrdinal("ProductID")).ToString());
-                orderDetail.UnitPrice =  int.Parse(reader.GetValue(reader.GetOrdinal("UnitPrice")).ToString());
-                orderDetail.Quantity = int.Parse(reader.GetValue(reader.GetOrdinal("Quantity")).ToString());
-                orderDetail.Discount = Convert.ToDecimal(reader.GetValue(reader.GetOrdinal("Discount")));
+                orderDetail = DbReaderModelBinder<OrderDetail>.Bind(reader);
                 list.Add(orderDetail);
+                
             }
             reader.Close();
             connection.Close();

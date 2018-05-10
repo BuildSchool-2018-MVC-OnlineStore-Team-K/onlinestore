@@ -10,8 +10,8 @@ namespace BuildSchool.MVCSolution.OnlineStore.Models
     {
         public int DiscountID { get; set; }
         public int ProductID { get; set; }
-        public float Discount { get; set; }
-        public int StartTime { get; set; }
-        public int EndTime { get; set; }
+        public double Discount { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
     }
 }

@@ -80,11 +80,11 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
             while (reader.Read())
             {
-                discount.DiscountID = (int)(reader.GetValue(reader.GetOrdinal("DiscountID")));
-                discount.ProductID = (int)(reader.GetValue(reader.GetOrdinal("ProductID")));
-                discount.Discount = (int)(reader.GetValue(reader.GetOrdinal("Discount")));
-                discount.StartTime = (int)(reader.GetValue(reader.GetOrdinal("StartTime")));
-                discount.EndTime = (int)(reader.GetValue(reader.GetOrdinal("EndTime")));
+                discount.DiscountID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("DiscountID")));
+                discount.ProductID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("ProductID")));
+                discount.Discount = Convert.ToDouble(reader.GetValue(reader.GetOrdinal("Discount")));
+                discount.StartTime = Convert.ToDateTime(reader.GetValue(reader.GetOrdinal("StartTime")));
+                discount.EndTime = Convert.ToDateTime(reader.GetValue(reader.GetOrdinal("EndTime")));
             }
 
             reader.Close();
@@ -107,18 +107,17 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             while (reader.Read())
             {
                 var discount = new Discounts();
-                discount.DiscountID = (int)(reader.GetValue(reader.GetOrdinal("DiscountID")));
-                discount.ProductID = (int)(reader.GetValue(reader.GetOrdinal("ProductID")));
-                discount.Discount = (int)(reader.GetValue(reader.GetOrdinal("Discount")));
-                discount.StartTime = (int)(reader.GetValue(reader.GetOrdinal("StartTime")));
-                discount.EndTime = (int)(reader.GetValue(reader.GetOrdinal("EndTime")));
+                discount.DiscountID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("DiscountID")));
+                discount.ProductID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("ProductID")));
+                discount.Discount = Convert.ToDouble(reader.GetValue(reader.GetOrdinal("Discount")));
+                discount.StartTime = Convert.ToDateTime(reader.GetValue(reader.GetOrdinal("StartTime")));
+                discount.EndTime = Convert.ToDateTime(reader.GetValue(reader.GetOrdinal("EndTime")));
                 discounts.Add(discount);
             }
 
             reader.Close();
 
             return discounts;
-
         }
     }
 }
