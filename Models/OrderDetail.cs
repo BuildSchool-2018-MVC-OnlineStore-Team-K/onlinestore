@@ -12,6 +12,6 @@ namespace BuildSchool.MVCSolution.OnlineStore.Models
         public int ProductID { get; set; }
         public int UnitPrice { get; set; }
         public int Quantity { get; set; }
-        public int Discount { get; set; }
+        public float Discount { get; set; }
     }
 }
