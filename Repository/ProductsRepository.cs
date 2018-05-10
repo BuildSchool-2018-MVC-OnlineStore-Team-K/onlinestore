@@ -14,7 +14,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public void Create(Products model)
         {
             SqlConnection connection = new SqlConnection(
-                "Server=192.168.40.36,1433;Database=E-Commerce;User ID =smallhandsomehandsome ; Password =123;Trusted_Connection=True;");
+                "Server=192.168.40.36,1433;Database=E-Commerce;User ID =smallhandsomehandsome ; Password =123;");
             var sql = "INSERT INTO Products VALUES (@productid, @category, @productname, @unitprice)";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -32,7 +32,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public void Update(Products model)
         {
             SqlConnection connection = new SqlConnection(
-                "Server=192.168.40.36,1433;Database=E-Commerce;User ID =smallhandsomehandsome ; Password =123;Trusted_Connection=True;");
+                "Server=192.168.40.36,1433;Database=E-Commerce;User ID =smallhandsomehandsome ; Password =123;");
             var sql = "UPDATE Products SET Category=@category, Name=@productname, UnitPrice=@unitprice WHERE ProductID = @productid";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -50,8 +50,8 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public void Delete(Products model)
         {
             SqlConnection connection = new SqlConnection(
-                "Server=192.168.40.36,1433;Database=E-Commerce;User ID =smallhandsomehandsome ; Password =123;Trusted_Connection=True;");
-            var sql = "DELETE FROM Customers WHERE ProductID = @productid";
+                "Server=192.168.40.36,1433;Database=E-Commerce;User ID =smallhandsomehandsome ; Password =123;");
+            var sql = "DELETE FROM Products WHERE ProductID = @productid";
 
             SqlCommand command = new SqlCommand(sql, connection);
 
@@ -65,8 +65,8 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public Products FindById(int ProductID)
         {
             SqlConnection connection = new SqlConnection(
-                "Server=192.168.40.36,1433;Database=E-Commerce;User ID =smallhandsomehandsome ; Password =123;Trusted_Connection=True;");
-            var sql = "SELECT * FROM Customers WHERE ProductID = @productid";
+                "Server=192.168.40.36,1433;Database=E-Commerce;User ID =smallhandsomehandsome ; Password =123;");
+            var sql = "SELECT * FROM Products WHERE ProductID = @productid";
 
             SqlCommand command = new SqlCommand(sql, connection);
 
