@@ -6,17 +6,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BuildSchool.MVCSolution.OnlineStore.SizeRepositoryTests
+namespace BuildSchool.MVCSolution.OnlineStore.Repository.Tests
 {
     [TestClass()]
-    public class SizeRepositoryTests
+    public class OrdersRepositoryTests
     {
         [TestMethod()]
         public void GetAllTest()
         {
-            var repository = new BuildSchool.MVCSolution.OnlineStore.Repository.SizeRepository();
-            var list = repository.GetAll();
-            Assert.IsTrue(list.Count() > 0);
+            var repository = new BuildSchool.MVCSolution.OnlineStore.Repository.OrdersRepository();
+            var result = repository.GetAll();
+            Assert.IsTrue(result.Count() > 0);
         }
     }
 }

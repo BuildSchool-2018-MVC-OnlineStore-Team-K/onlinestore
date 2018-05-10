@@ -43,6 +43,7 @@
     <Compile Include="DiscountRepository.cs" />
     <Compile Include="MembersRepository.cs" />
     <Compile Include="OrderDetailRepository.cs" />
+    <Compile Include="OrdersRepository.cs" />
     <Compile Include="SizeRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

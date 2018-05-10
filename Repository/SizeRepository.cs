@@ -11,7 +11,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 {
     public class SizeRepository
     {
-        public void Create(Sizes model)
+        public void Create(Size model)
         {
             SqlConnection connection = new SqlConnection(
                 "data source = 192.168.40.36,1433 ; database = E-Commerce; user id = smallhandsomehandsome; password = 123");
@@ -20,7 +20,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             SqlCommand command = new SqlCommand(sql, connection);
 
             command.Parameters.AddWithValue("@SizeID", model.SizeID);
-            command.Parameters.AddWithValue("@Size", model.Size);
+            command.Parameters.AddWithValue("@Size", model._Size);
             
 
             connection.Open();
@@ -28,7 +28,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             connection.Close();
         }
 
-        public void Update(Sizes model)
+        public void Update(Size model)
         {
             SqlConnection connection = new SqlConnection(
                  "data source = 192.168.40.36,1433 ; database = E-Commerce; user id = smallhandsomehandsome; password = 123");
@@ -37,14 +37,14 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             SqlCommand command = new SqlCommand(sql, connection);
 
             command.Parameters.AddWithValue("@SizeID", model.SizeID);
-            command.Parameters.AddWithValue("@Size", model.Size);
+            command.Parameters.AddWithValue("@Size", model._Size);
 
             connection.Open();
             command.ExecuteNonQuery();
             connection.Close();
         }
 
-        public void Delete(Sizes model)
+        public void Delete(Size model)
         {
             SqlConnection connection = new SqlConnection(
                 "data source = 192.168.40.36,1433 ; database = E-Commerce; user id = smallhandsomehandsome; password = 123");
@@ -59,7 +59,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             connection.Close();
         }
 
-        public Sizes FindById(string SizeID)
+        public Size FindById(string SizeID)
         {
             SqlConnection connection = new SqlConnection(
                 "data source = 192.168.40.36,1433 ; database = E-Commerce; user id = smallhandsomehandsome; password = 123");
@@ -72,12 +72,12 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             connection.Open();
 
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            var size = new Sizes();
+            var size = new Size();
 
             while (reader.Read())
             {
                 size.SizeID = int.Parse(reader.GetValue(reader.GetOrdinal("SizeID")).ToString());
-                size.Size = reader.GetValue(reader.GetOrdinal("Size")).ToString();
+                size._Size = reader.GetValue(reader.GetOrdinal("Size")).ToString();
                 
             }
 
@@ -86,11 +86,11 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             return size;
         }
 
-        public IEnumerable<Sizes> GetAll() //()內不用給直 因為傳整個表格
+        public IEnumerable<Size> GetAll() //()內不用給直 因為傳整個表格
         {
             SqlConnection connection = new SqlConnection(
                 "data source = 192.168.40.36,1433 ; database = E-Commerce; user id = smallhandsomehandsome; password = 123");
-            var sql = "SELECT * FROM  Sizes";
+            var sql = "SELECT * FROM  Size";
             SqlCommand command = new SqlCommand(sql, connection);
 
            // command.Parameters.AddWithValue("@sizeID", model.SizeID);
@@ -98,12 +98,12 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             connection.Open();
 
             var reader =  command.ExecuteReader();
-            var list = new List<Sizes>();
-            var sizes = new Sizes();
+            var list = new List<Size>();
+            var sizes = new Size();
             while (reader.Read())
             {
                 sizes.SizeID = int.Parse(reader.GetValue(reader.GetOrdinal("sizeID")).ToString());
-                sizes.Size = reader.GetValue(reader.GetOrdinal("size")).ToString();
+                sizes._Size = reader.GetValue(reader.GetOrdinal("size")).ToString();
                 list.Add(sizes);
             }
             reader.Close();

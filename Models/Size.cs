@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace BuildSchool.MVCSolution.OnlineStore.Models
 {
-    public class Sizes
+    public class Size
     {
         public int SizeID { get; set; }
-        public string Size { get; set; }
+        public string _Size { get; set; }
     }
 }
