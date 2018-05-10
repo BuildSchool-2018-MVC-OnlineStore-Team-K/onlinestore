@@ -136,6 +136,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
             while (reader.Read())
             {
+
                 var Member = new Members();
                 Member.MemberID = int.Parse(reader.GetValue(reader.GetOrdinal("MemberID")).ToString());
                 Member.MemberName = reader.GetValue(reader.GetOrdinal("Name")).ToString();
