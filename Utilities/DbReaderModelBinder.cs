@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Utilities
+namespace BuildSchool.MVCSolution.OnlineStore.Utilities
 
 //給予每一個類別使用 寫成Tmodel 泛型類別  , 給他where限制 : 他議定要是類別 
 //可以用無參數的方式產生執行個體 用new出來 , 框住一定要符合條件才可以使用此泛型工具

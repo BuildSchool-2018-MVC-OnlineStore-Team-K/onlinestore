@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Utilities;
+using BuildSchool.MVCSolution.OnlineStore.Utilities;
 
 namespace BuildSchool.MVCSolution.OnlineStore.Repository
 {

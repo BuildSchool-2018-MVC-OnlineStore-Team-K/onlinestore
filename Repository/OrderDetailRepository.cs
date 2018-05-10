@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BuildSchool.MVCSolution.OnlineStore.Utilities;
 
 
 namespace BuildSchool.MVCSolution.OnlineStore.OrderDetailRepository
@@ -80,18 +81,10 @@ namespace BuildSchool.MVCSolution.OnlineStore.OrderDetailRepository
             var reader = command.ExecuteReader();
             var list = new List<OrderDetail>();
             var orderDetail = new OrderDetail();
-            var properties = typeof(OrderDetail).GetProperties();
+            
             while (reader.Read())
             {
-                for (var i = 0; i < reader.FieldCount; i++)
-                {
-                    var fieldName = reader.GetName(i);
-                    var property = properties.FirstOrDefault(x => x.Name == fieldName);
-                    if (property == null)
-                        continue;
-                    if (!reader.IsDBNull(i))
-                        property.SetValue(orderDetail, reader.GetValue(i));
-                }
+                orderDetail = DbReaderModelBinder<OrderDetail>.Bind(reader);
                 list.Add(orderDetail);
                 
             }
