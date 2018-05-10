@@ -11,7 +11,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.MembersRepositoryTests
     public class MembersRepositoryTest
     {
         [TestMethod()]
-        public void GetAllTest()
+        public void MemberGetAllTest()
         {
             var repository = new BuildSchool.MVCSolution.OnlineStore.Repository.MembersRepository();
             var result = repository.GetAll();

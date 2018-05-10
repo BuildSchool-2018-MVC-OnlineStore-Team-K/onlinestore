@@ -18,28 +18,28 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
                 "(@MemberID, " +
                 "@Name," +
                 " @Address," +
-                " @Age, " +
-                "@CerditCard, " +
+                "@Birthday" +
+                "@CreditCard, " +
                 "@Phone," +
                 " @Email, " +
                 "@Account, " +
                 "@Password, " +
-                "@Black, " +
-                "@Caerre)";
+                "@Block, " +
+                "@Career)";
 
             SqlCommand command = new SqlCommand(sql, connection);
 
             command.Parameters.AddWithValue("@MemberID", model.MemberID);
             command.Parameters.AddWithValue("@MemberName", model.MemberName);
             command.Parameters.AddWithValue("@Address", model.Address);
-            command.Parameters.AddWithValue("@Age", model.Age);
-            command.Parameters.AddWithValue("@CreditCard", model.CerditCard);
+            command.Parameters.AddWithValue("@Birthday", model.Birthday);
+            command.Parameters.AddWithValue("@CreditCard", model.CreditCard);
             command.Parameters.AddWithValue("@Phone", model.Phone);
             command.Parameters.AddWithValue("@Email", model.Email);
             command.Parameters.AddWithValue("@Account", model.Account);
             command.Parameters.AddWithValue("@Password", model.Password);
-            command.Parameters.AddWithValue("@Black", model.Black);
-            command.Parameters.AddWithValue("@Career", model.Caerre);
+            command.Parameters.AddWithValue("@Block", model.Block);
+            command.Parameters.AddWithValue("@Career", model.Career);
 
             connection.Open();
             command.ExecuteNonQuery();
@@ -53,28 +53,28 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             var sql = "UPDATE OrderDetail SET(MemberID=@MemberID, " +
                  "Name=@Name," +
                  "Address=@Address," +
-                 " Age=@Age, " +
-                 "CerditCard=@CerditCard, " +
+                 "Birthday = @Birthday" +
+                 "CreditCard=@CreditCard, " +
                  "Phone=@Phone," +
                  " Email=@Email, " +
                  "Account=@Account, " +
                  "Password=@Password, " +
-                 "Black=@Black, " +
-                 "Caerre=@Caerre)";
+                 "Block=@Block, " +
+                 "Career=@Career)";
 
             SqlCommand command = new SqlCommand(sql, connection);
 
             command.Parameters.AddWithValue("@MemberID", model.MemberID);
             command.Parameters.AddWithValue("@MemberName", model.MemberName);
             command.Parameters.AddWithValue("@Address", model.Address);
-            command.Parameters.AddWithValue("@Age", model.Age);
-            command.Parameters.AddWithValue("@CreditCard", model.CerditCard);
+            command.Parameters.AddWithValue("@Birthday", model.Birthday);
+            command.Parameters.AddWithValue("@CreditCard", model.CreditCard);
             command.Parameters.AddWithValue("@Phone", model.Phone);
             command.Parameters.AddWithValue("@Email", model.Email);
             command.Parameters.AddWithValue("@Account", model.Account);
             command.Parameters.AddWithValue("@Password", model.Password);
-            command.Parameters.AddWithValue("@Black", model.Black);
-            command.Parameters.AddWithValue("@Career", model.Caerre);
+            command.Parameters.AddWithValue("@Block", model.Block);
+            command.Parameters.AddWithValue("@Career", model.Career);
 
             connection.Open();
             command.ExecuteNonQuery();
@@ -117,14 +117,14 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
                 Member.MemberID = int.Parse(reader.GetValue(reader.GetOrdinal("MemberID")).ToString());
                 Member.MemberName = reader.GetValue(reader.GetOrdinal("MemberName")).ToString();
                 Member.Address = reader.GetValue(reader.GetOrdinal("Address")).ToString();
-                Member.Age = int.Parse(reader.GetValue(reader.GetOrdinal("Age")).ToString());
-                Member.CerditCard = int.Parse(reader.GetValue(reader.GetOrdinal("CerditCard")).ToString());
+                Member.Birthday = Convert.ToDateTime(reader.GetValue(reader.GetOrdinal("Birthday")));
+                Member.CreditCard = int.Parse(reader.GetValue(reader.GetOrdinal("CreditCard")).ToString());
                 Member.Phone = int.Parse(reader.GetValue(reader.GetOrdinal("Phone")).ToString());
                 Member.Email = reader.GetValue(reader.GetOrdinal("Email")).ToString();
                 Member.Account = reader.GetValue(reader.GetOrdinal("Account")).ToString();
                 Member.Password = reader.GetValue(reader.GetOrdinal("Password")).ToString();
-                Member.Black = reader.GetValue(reader.GetOrdinal("Black")).ToString();
-                Member.Caerre = reader.GetValue(reader.GetOrdinal("Caerre")).ToString();
+                Member.Block = reader.GetValue(reader.GetOrdinal("Block")).ToString();
+                Member.Career = reader.GetValue(reader.GetOrdinal("Career")).ToString();
             }
 
             reader.Close();
@@ -149,17 +149,17 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             while (reader.Read())
             {
 
-                mreader.MemberID = int.Parse(reader.GetValue(reader.GetOrdinal("MemberID")).ToString());
+                mreader.MemberID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("MemberID")));
                 mreader.MemberName = reader.GetValue(reader.GetOrdinal("Name")).ToString();
                 mreader.Address = reader.GetValue(reader.GetOrdinal("Address")).ToString();
-                mreader.Age = int.Parse(reader.GetValue(reader.GetOrdinal("Age")).ToString());
-                mreader.CerditCard = int.Parse(reader.GetValue(reader.GetOrdinal("CerditCard")).ToString());
-                mreader.Phone = int.Parse(reader.GetValue(reader.GetOrdinal("Phone")).ToString());
+                mreader.Birthday = Convert.ToDateTime(reader.GetValue(reader.GetOrdinal("Birthday")));
+                mreader.CreditCard = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("CreditCard")));
+                mreader.Phone = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("Phone")));
                 mreader.Email = reader.GetValue(reader.GetOrdinal("Email")).ToString();
                 mreader.Account = reader.GetValue(reader.GetOrdinal("Account")).ToString();
                 mreader.Password = reader.GetValue(reader.GetOrdinal("Password")).ToString();
-                mreader.Black = reader.GetValue(reader.GetOrdinal("Black")).ToString();
-                mreader.Caerre = reader.GetValue(reader.GetOrdinal("Caerre")).ToString();
+                mreader.Block = reader.GetValue(reader.GetOrdinal("Block")).ToString();
+                mreader.Career = reader.GetValue(reader.GetOrdinal("Career")).ToString();
                 list.Add(mreader);
             }
 
