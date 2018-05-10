@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BuildSchool.MVCSolution.OnlineStore.Utilities;
 
 namespace BuildSchool.MVCSolution.OnlineStore.Repository
 {
@@ -79,49 +80,21 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             var sql = "SELECT * FROM  Orders";
             SqlCommand command = new SqlCommand(sql, connection);
 
-            // command.Parameters.AddWithValue("@sizeID", model.SizeID);
-
             connection.Open();
 
-            var reader = command.ExecuteReader();
+            //var reader = command.ExecuteReader();
             var list = new List<Orders>();
-            //var orders = new Orders();
-            var properties = typeof(Orders).GetProperties();
-            Orders orders = null;
+            var orders = new Orders();
+            //var properties = typeof(Orders).GetProperties();
+            var reader = command.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+            //Orders orders = null;
             while (reader.Read())
             {
-
-                for (var i = 0; i < reader.FieldCount; i++)
-                {
-                    var fieldName = reader.GetName(i);
-                    var property = properties.FirstOrDefault(p => p.Name == fieldName);
-
-                    if (property == null)
-                        continue;
-
-                    if (!reader.IsDBNull(i))
-                    {
-                        var item = reader.GetValue(i);
-
-                        property.SetValue(orders, item);
-                    }
-                       
-                }
-                
-                //orders.MemberID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("MemberID")));
-                //orders.OrderDetailID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("OrderDetailID")));
-                //orders.OrderID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("OrderID")));
-                //orders.Pay = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("Pay")));
-                //orders.Payway = reader.GetValue(reader.GetOrdinal("Payway")).ToString();
-                //orders.ShipPlace = reader.GetValue(reader.GetOrdinal("ShipPlace")).ToString();
-                //orders.Time = Convert.ToDateTime(reader.GetValue(reader.GetOrdinal("Time")));
-                //orders.Cart = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("Cart")));
-
+                orders = DbReaderModelBinder<Orders>.Bind(reader);
                 list.Add(orders);
             }
             reader.Close();
             connection.Close();
-
             return list;
         }
 
