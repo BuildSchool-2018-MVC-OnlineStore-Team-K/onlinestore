@@ -17,7 +17,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Models
         public string Email { get; set; }
         public string Account { get; set; }
         public string Password { get; set; }
-        public string Black { get; set; }
+        public string Block { get; set; }
         public string Caerre { get; set; }
     }
 }

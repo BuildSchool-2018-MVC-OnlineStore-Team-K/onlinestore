@@ -24,7 +24,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
                 " @Email, " +
                 "@Account, " +
                 "@Password, " +
-                "@Black, " +
+                "@Block, " +
                 "@Caerre)";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -38,7 +38,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             command.Parameters.AddWithValue("@Email", model.Email);
             command.Parameters.AddWithValue("@Account", model.Account);
             command.Parameters.AddWithValue("@Password", model.Password);
-            command.Parameters.AddWithValue("@Black", model.Black);
+            command.Parameters.AddWithValue("@Block", model.Block);
             command.Parameters.AddWithValue("@Career", model.Caerre);
 
             connection.Open();
@@ -59,7 +59,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
                  " Email=@Email, " +
                  "Account=@Account, " +
                  "Password=@Password, " +
-                 "Black=@Black, " +
+                 "Block=@Block, " +
                  "Caerre=@Caerre)";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -73,7 +73,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             command.Parameters.AddWithValue("@Email", model.Email);
             command.Parameters.AddWithValue("@Account", model.Account);
             command.Parameters.AddWithValue("@Password", model.Password);
-            command.Parameters.AddWithValue("@Black", model.Black);
+            command.Parameters.AddWithValue("@Block", model.Block);
             command.Parameters.AddWithValue("@Career", model.Caerre);
 
             connection.Open();
@@ -123,7 +123,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
                 Member.Email = reader.GetValue(reader.GetOrdinal("Email")).ToString();
                 Member.Account = reader.GetValue(reader.GetOrdinal("Account")).ToString();
                 Member.Password = reader.GetValue(reader.GetOrdinal("Password")).ToString();
-                Member.Black = reader.GetValue(reader.GetOrdinal("Black")).ToString();
+                Member.Block = reader.GetValue(reader.GetOrdinal("Block")).ToString();
                 Member.Caerre = reader.GetValue(reader.GetOrdinal("Caerre")).ToString();
             }
 
@@ -152,13 +152,13 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
                 mreader.MemberID = int.Parse(reader.GetValue(reader.GetOrdinal("MemberID")).ToString());
                 mreader.MemberName = reader.GetValue(reader.GetOrdinal("Name")).ToString();
                 mreader.Address = reader.GetValue(reader.GetOrdinal("Address")).ToString();
-                mreader.Age = int.Parse(reader.GetValue(reader.GetOrdinal("Age")).ToString());
+                mreader.Age = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("Age")));
                 mreader.CerditCard = int.Parse(reader.GetValue(reader.GetOrdinal("CerditCard")).ToString());
                 mreader.Phone = int.Parse(reader.GetValue(reader.GetOrdinal("Phone")).ToString());
                 mreader.Email = reader.GetValue(reader.GetOrdinal("Email")).ToString();
                 mreader.Account = reader.GetValue(reader.GetOrdinal("Account")).ToString();
                 mreader.Password = reader.GetValue(reader.GetOrdinal("Password")).ToString();
-                mreader.Black = reader.GetValue(reader.GetOrdinal("Black")).ToString();
+                mreader.Block = reader.GetValue(reader.GetOrdinal("Block")).ToString();
                 mreader.Caerre = reader.GetValue(reader.GetOrdinal("Caerre")).ToString();
                 list.Add(mreader);
             }
