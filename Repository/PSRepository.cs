@@ -95,7 +95,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         {
             SqlConnection connection = new SqlConnection(
                 "data source = 192.168.40.36,1433 ; database = E-Commerce; user id = smallhandsomehandsome; password = 123");
-            var sql = "SELECT * FROM  Size";
+            var sql = "SELECT * FROM  PS";
             SqlCommand command = new SqlCommand(sql, connection);
 
             connection.Open();
