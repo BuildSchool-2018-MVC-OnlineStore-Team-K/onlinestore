@@ -14,7 +14,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public void Create(Products model)
         {
             SqlConnection connection = new SqlConnection(
-                "data source = buildschool.database.windows.net ; database = bs-team2; user id = bsteam2; password = @bsTp22B#");
+              "data source = 192.168.40.36,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
             var sql = "INSERT INTO Products VALUES (@productid, @category, @productname, @unitprice)";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -32,7 +32,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public void Update(Products model)
         {
             SqlConnection connection = new SqlConnection(
-                 "data source = buildschool.database.windows.net ; database = bs-team2; user id = bsteam2; password = @bsTp22B#");
+               "data source = 192.168.40.36,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
             var sql = "UPDATE Products SET Category=@category, ProductName=@productname, UnitPrice=@unitprice WHERE ProductID = @productid";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -50,7 +50,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public void Delete(Products model)
         {
             SqlConnection connection = new SqlConnection(
-                "data source = buildschool.database.windows.net ; database = bs-team2; user id = bsteam2; password = @bsTp22B#");
+              "data source = 192.168.40.36,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
             var sql = "DELETE FROM Products WHERE ProductID = @productid";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -65,7 +65,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public Products FindById(int ProductID)
         {
             SqlConnection connection = new SqlConnection(
-                "data source = buildschool.database.windows.net ; database = bs-team2; user id = bsteam2; password = @bsTp22B#");
+              "data source = 192.168.40.36,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
             var sql = "SELECT * FROM Products WHERE ProductID = @productid";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -93,7 +93,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public IEnumerable<Products> GetAll()
         {
             SqlConnection connection = new SqlConnection(
-                 "data source = buildschool.database.windows.net ; database = bs-team2; user id = bsteam2; password = @bsTp22B#");
+               "data source = 192.168.40.36,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
             var sql = "SELECT * FROM Products";
 
             SqlCommand command = new SqlCommand(sql, connection);

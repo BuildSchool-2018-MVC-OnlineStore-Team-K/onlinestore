@@ -15,7 +15,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public void Create(Discounts model)
         {
             SqlConnection connection = new SqlConnection(
-                "data source = buildschool.database.windows.net ; database = bs-team2; user id = bsteam2; password = @bsTp22B#");
+                "data source = 192.168.40.36,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
             var sql = "INSERT INTO Discounts VALUES (@did, @pid, @discount, @start, @end";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -34,7 +34,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public void Update(Discounts model)
         {
             SqlConnection connection = new SqlConnection(
-                 "data source = buildschool.database.windows.net ; database = bs-team2; user id = bsteam2; password = @bsTp22B#");
+               "data source = 192.168.40.36,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
             var sql = "UPDATE Discounts SET Discount = @discount, StartTime = @start, EndTime = @end WHERE DiscountID = @did";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -53,7 +53,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public void Delete(Discounts model)
         {
             SqlConnection connection = new SqlConnection(
-                 "data source = buildschool.database.windows.net ; database = bs-team2; user id = bsteam2; password = @bsTp22B#");
+               "data source = 192.168.40.36,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
             var sql = "DELETE FROM Discounts WHERE DiscountID = @id";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -68,7 +68,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public Discounts FindById(string discountId)
         {
             SqlConnection connection = new SqlConnection(
-                "data source = buildschool.database.windows.net ; database = bs-team2; user id = bsteam2; password = @bsTp22B#");
+                "data source = 192.168.40.36,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
             var sql = "SELECT * FROM Discounts WHERE DiscountID = @did";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -96,7 +96,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public IEnumerable<Discounts> GetAll()
         {
             SqlConnection connection = new SqlConnection(
-                 "data source = buildschool.database.windows.net ; database = bs-team2; user id = bsteam2; password = @bsTp22B#");
+               "data source = 192.168.40.36,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
             var sql = "SELECT * FROM Discounts";
 
             SqlCommand command = new SqlCommand(sql, connection);
