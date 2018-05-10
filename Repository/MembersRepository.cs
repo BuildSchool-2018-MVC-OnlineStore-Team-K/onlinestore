@@ -13,8 +13,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
     {
         public void Create(Members model)
         {
-            SqlConnection connection = new SqlConnection(
-                "data source = 192.168.40.36,1433 ; database = E-Commerce; user id = smallhandsomehandsome; password = 123");
+            SqlConnection connection = new SqlConnection("Server=192.168.40.36,1433;Database=E-Commerce;Trusted_Connection=True; User ID = littlehandsomehandsome ; Password = 123;");
             var sql = "INSERT INTO Members VALUES " +
                 "(@MemberID, " +
                 "@Name," +
@@ -51,18 +50,17 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         {
             SqlConnection connection = new SqlConnection(
                "Server= 192.168.40.36,1433 ; database = E-Commerce; user id = smallhandsomehandsome; password = 123");
-            var sql = "INSERT INTO Members VALUES " +
-                 "(@MemberID, " +
-                 "@Name," +
-                 " @Address," +
-                 " @Age, " +
-                 "@CerditCard, " +
-                 "@Phone," +
-                 " @Email, " +
-                 "@Account, " +
-                 "@Password, " +
-                 "@Black, " +
-                 "@Caerre)";
+            var sql = "UPDATE OrderDetail SET(MemberID=@MemberID, " +
+                 "Name=@Name," +
+                 "Address=@Address," +
+                 " Age=@Age, " +
+                 "CerditCard=@CerditCard, " +
+                 "Phone=@Phone," +
+                 " Email=@Email, " +
+                 "Account=@Account, " +
+                 "Password=@Password, " +
+                 "Black=@Black, " +
+                 "Caerre=@Caerre)";
 
             SqlCommand command = new SqlCommand(sql, connection);
 
@@ -87,18 +85,8 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         {
             SqlConnection connection = new SqlConnection(
                "Server = 192.168.40.36,1433 ; database = E-Commerce; user id = smallhandsomehandsome; password = 123");
-            var sql = "INSERT INTO Members VALUES " +
-                 "(@MemberID, " +
-                 "@Name," +
-                 " @Address," +
-                 " @Age, " +
-                 "@CerditCard, " +
-                 "@Phone," +
-                 " @Email, " +
-                 "@Account, " +
-                 "@Password, " +
-                 "@Black, " +
-                 "@Caerre)";
+            var sql = "Delete FROM OrderDetail WHERE MemberID=@MemberID";
+
 
             SqlCommand command = new SqlCommand(sql, connection);
 
@@ -147,47 +135,37 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public IEnumerable<Members> GetAll()
         {
             SqlConnection connection = new SqlConnection(
-                "Server = 192.168.40.36,1433 ; database = E-Commerce; user id = smallhandsomehandsome; password = 123");
-            var sql = "INSERT INTO Members VALUES " +
-                 "(@MemberID, " +
-                 "@Name," +
-                 " @Address," +
-                 " @Age, " +
-                 "@CerditCard, " +
-                 "@Phone," +
-                 " @Email, " +
-                 "@Account, " +
-                 "@Password, " +
-                 "@Black, " +
-                 "@Caerre)";
+                "data source = 192.168.40.36,1433 ; database = E-Commerce; user id = smallhandsomehandsome; password = 123");
+            var sql = "SELECT * FROM Members";
 
             SqlCommand command = new SqlCommand(sql, connection);
             connection.Open();
 
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            var member = new List<Members>();
 
+
+            var list = new List<Members>();
+            var mreader = new Members();
             while (reader.Read())
             {
 
-                var Member = new Members();
-                Member.MemberID = int.Parse(reader.GetValue(reader.GetOrdinal("MemberID")).ToString());
-                Member.MemberName = reader.GetValue(reader.GetOrdinal("Name")).ToString();
-                Member.Address = reader.GetValue(reader.GetOrdinal("Address")).ToString();
-                Member.Age = int.Parse(reader.GetValue(reader.GetOrdinal("Age")).ToString());
-                Member.CerditCard = int.Parse(reader.GetValue(reader.GetOrdinal("CerditCard")).ToString());
-                Member.Phone = int.Parse(reader.GetValue(reader.GetOrdinal("Phone")).ToString());
-                Member.Email = reader.GetValue(reader.GetOrdinal("Email")).ToString();
-                Member.Account = reader.GetValue(reader.GetOrdinal("Account")).ToString();
-                Member.Password = reader.GetValue(reader.GetOrdinal("Password")).ToString();
-                Member.Black = reader.GetValue(reader.GetOrdinal("Black")).ToString();
-                Member.Caerre = reader.GetValue(reader.GetOrdinal("Caerre")).ToString();
-                member.Add(Member);
+                mreader.MemberID = int.Parse(reader.GetValue(reader.GetOrdinal("MemberID")).ToString());
+                mreader.MemberName = reader.GetValue(reader.GetOrdinal("Name")).ToString();
+                mreader.Address = reader.GetValue(reader.GetOrdinal("Address")).ToString();
+                mreader.Age = int.Parse(reader.GetValue(reader.GetOrdinal("Age")).ToString());
+                mreader.CerditCard = int.Parse(reader.GetValue(reader.GetOrdinal("CerditCard")).ToString());
+                mreader.Phone = int.Parse(reader.GetValue(reader.GetOrdinal("Phone")).ToString());
+                mreader.Email = reader.GetValue(reader.GetOrdinal("Email")).ToString();
+                mreader.Account = reader.GetValue(reader.GetOrdinal("Account")).ToString();
+                mreader.Password = reader.GetValue(reader.GetOrdinal("Password")).ToString();
+                mreader.Black = reader.GetValue(reader.GetOrdinal("Black")).ToString();
+                mreader.Caerre = reader.GetValue(reader.GetOrdinal("Caerre")).ToString();
+                list.Add(mreader);
             }
 
             reader.Close();
 
-            return member;
+            return list;
 
         }
     }
