@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 using BuildSchool.MVCSolution.OnlineStore.Models;
+using BuildSchool.MVCSolution.OnlineStore.Utilities;
 
 namespace BuildSchool.MVCSolution.OnlineStore.Repository
 {
@@ -102,22 +103,18 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             connection.Open();
 
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            var discounts = new List<Discounts>();
+            var list = new List<Discounts>();
 
             while (reader.Read())
             {
                 var discount = new Discounts();
-                discount.DiscountID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("DiscountID")));
-                discount.ProductID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("ProductID")));
-                discount.Discount = Convert.ToDouble(reader.GetValue(reader.GetOrdinal("Discount")));
-                discount.StartTime = Convert.ToDateTime(reader.GetValue(reader.GetOrdinal("StartTime")));
-                discount.EndTime = Convert.ToDateTime(reader.GetValue(reader.GetOrdinal("EndTime")));
-                discounts.Add(discount);
+                discount = DbReaderModelBinder<Discounts>.Bind(reader);
+                list.Add(discount);
             }
 
             reader.Close();
 
-            return discounts;
+            return list;
         }
     }
 }
