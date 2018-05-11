@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 using BuildSchool.MVCSolution.OnlineStore.Models;
+using BuildSchool.MVCSolution.OnlineStore.Utilities;
 
 namespace BuildSchool.MVCSolution.OnlineStore.Repository
 {
@@ -18,12 +19,12 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             var sql = "INSERT INTO Discounts VALUES (@did, @pid, @discount, @start, @end";
 
             SqlCommand command = new SqlCommand(sql, connection);
-
-            command.Parameters.AddWithValue("@did", model.DiscountID);
-            command.Parameters.AddWithValue("@pid", model.ProductID);
-            command.Parameters.AddWithValue("@discount", model.Discount);
-            command.Parameters.AddWithValue("@start", model.StartTime);
-            command.Parameters.AddWithValue("@end", model.EndTime);
+            command = AddWithAllDiscountValue(model);
+            //command.Parameters.AddWithValue("@did", model.DiscountID);
+            //command.Parameters.AddWithValue("@pid", model.ProductID);
+            //command.Parameters.AddWithValue("@discount", model.Discount);
+            //command.Parameters.AddWithValue("@start", model.StartTime);
+            //command.Parameters.AddWithValue("@end", model.EndTime);
 
             connection.Open();
             command.ExecuteReader();
@@ -34,19 +35,31 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         {
             SqlConnection connection = new SqlConnection(
                "data source = 192.168.40.36,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
-            var sql = "UPDATE Discounts SET Discount = @discount, StartTime = @start, EndTime = @end WHERE DiscountID = @did";
+            var sql = "UPDATE Discounts SET Discount = @discount, StartTime = @start, EndTime = @end WHERE DiscountID = @did AND ProductID = @pid";
 
             SqlCommand command = new SqlCommand(sql, connection);
 
-            command.Parameters.AddWithValue("@did", model.DiscountID);
+            command = AddWithAllDiscountValue(model);
+            //command.Parameters.AddWithValue("@did", model.DiscountID);
             //command.Parameters.AddWithValue("@pid", model.ProductID);
-            command.Parameters.AddWithValue("@discount", model.Discount);
-            command.Parameters.AddWithValue("@start", model.StartTime);
-            command.Parameters.AddWithValue("@end", model.EndTime);
+            //command.Parameters.AddWithValue("@discount", model.Discount);
+            //command.Parameters.AddWithValue("@start", model.StartTime);
+            //command.Parameters.AddWithValue("@end", model.EndTime);
 
             connection.Open();
             command.ExecuteReader();
             connection.Close();
+        }
+
+        public SqlCommand AddWithAllDiscountValue(Discounts model)
+        {
+            SqlCommand command = new SqlCommand();
+            command.Parameters.AddWithValue("@did", model.DiscountID);
+            command.Parameters.AddWithValue("@pid", model.ProductID);
+            command.Parameters.AddWithValue("@discount", model.Discount);
+            command.Parameters.AddWithValue("@start", model.StartTime);
+            command.Parameters.AddWithValue("@end", model.EndTime);
+            return command;
         }
 
         public void Delete(Discounts model)
@@ -102,22 +115,18 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             connection.Open();
 
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            var discounts = new List<Discounts>();
+            var list = new List<Discounts>();
 
             while (reader.Read())
             {
                 var discount = new Discounts();
-                discount.DiscountID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("DiscountID")));
-                discount.ProductID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("ProductID")));
-                discount.Discount = Convert.ToDouble(reader.GetValue(reader.GetOrdinal("Discount")));
-                discount.StartTime = Convert.ToDateTime(reader.GetValue(reader.GetOrdinal("StartTime")));
-                discount.EndTime = Convert.ToDateTime(reader.GetValue(reader.GetOrdinal("EndTime")));
-                discounts.Add(discount);
+                discount = DbReaderModelBinder<Discounts>.Bind(reader);
+                list.Add(discount);
             }
 
             reader.Close();
 
-            return discounts;
+            return list;
         }
     }
 }

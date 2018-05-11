@@ -16,5 +16,6 @@ namespace BuildSchool.MVCSolution.OnlineStore.Models
         public DateTime Time { get; set; }
         public string ShipPlace { get; set; }
         public string Payway { get; set; }
+        public float Total { get; set; }
     }
 }
