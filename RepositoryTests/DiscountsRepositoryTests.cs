@@ -11,9 +11,17 @@ namespace BuildSchool.MVCSolution.OnlineStore.DicountsRepositoryTests
     public class DiscountsRepositoryTests
     {
         [TestMethod]
-        public void DiscountsGetAll()
+        public void DiscountsGetAllTest()
         {
             var repository = new BuildSchool.MVCSolution.OnlineStore.Repository.DiscountRepository();
+            var list = repository.GetAll();
+            Assert.IsTrue(list.Count() > 0);
+        }
+
+        [TestMethod]
+        public void DiscountsUpdateTest()
+        {
+            var repository = new DiscountRepository();
             var list = repository.GetAll();
             Assert.IsTrue(list.Count() > 0);
         }

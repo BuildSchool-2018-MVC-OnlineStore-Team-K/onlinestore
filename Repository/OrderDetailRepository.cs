@@ -14,7 +14,8 @@ namespace BuildSchool.MVCSolution.OnlineStore.OrderDetailRepository
     {
         public void Create(OrderDetail model)
         {
-            SqlConnection connection = new SqlConnection("Server=192.168.40.36,1433;Database=E-Commerce;Trusted_Connection=True; User ID = littlehandsomehandsome ; Password = 123;");
+            SqlConnection connection = new SqlConnection(
+              "data source = 192.168.40.36,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
 
             var sql = "INSERT INTO OrderDetail Values(@OrderID , @ProductID, @UnitPrice, @Quantity , @Discount)";
             SqlCommand command = new SqlCommand(sql, connection);
@@ -35,7 +36,8 @@ namespace BuildSchool.MVCSolution.OnlineStore.OrderDetailRepository
 
         public void Update(OrderDetail model)
         {
-            SqlConnection connection = new SqlConnection("Server=192.168.40.36,1433;Database=E-Commerce;Trusted_Connection=True; User ID = littlehandsomehandsome ; Password=123;");
+            SqlConnection connection = new SqlConnection(
+              "data source = 192.168.40.36,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
 
             var sql = "UPDATE OrderDetail SET(OrderID=@OrderID,ProductID=@ProductID,UnitPrice=@UnitPrice,Quantity=@Quantity,Discount=@Discount)";
             SqlCommand command = new SqlCommand(sql, connection);
@@ -55,7 +57,8 @@ namespace BuildSchool.MVCSolution.OnlineStore.OrderDetailRepository
         public void Delete(OrderDetail model)
         {
 
-            SqlConnection connection = new SqlConnection("Server=192.168.40.36,1433;Database=E-Commerce;Trusted_Connection=True; User ID =smallhandsomehandsome; Password = 123;");
+            SqlConnection connection = new SqlConnection(
+              "data source = 192.168.40.36,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
 
             var sql = "Delete FROM OrderDetail WHERE OrderID=@OrderID AND ProductID=@ProductID";
             SqlCommand command = new SqlCommand(sql, connection);
@@ -71,7 +74,8 @@ namespace BuildSchool.MVCSolution.OnlineStore.OrderDetailRepository
 
         public IEnumerable<OrderDetail> GetAll() //()內不用給直 因為傳整個表格
         {
-            SqlConnection connection = new SqlConnection("Server=192.168.40.36,1433;Database=E-Commerce;  User ID=smallhandsomehandsome ; Password=123;");
+            SqlConnection connection = new SqlConnection(
+               "data source = 192.168.40.36,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
 
             var sql = "SELECT * FROM  OrderDetail";
             SqlCommand command = new SqlCommand(sql, connection);
