@@ -105,7 +105,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.OrderDetailRepository
 
             var sql = "SELECT SUM(Quantity) FROM OrderDetail WHERE ProductID = @ProductID GROUP BY ProductID";
             SqlCommand command = new SqlCommand(sql, connection);
-
+            command.Parameters.AddWithValue("@ProductID", ProductID);
             connection.Open();
             var reader = command.ExecuteReader();
             int result = 0;
@@ -113,7 +113,8 @@ namespace BuildSchool.MVCSolution.OnlineStore.OrderDetailRepository
             {
                 result = Convert.ToInt16(reader.GetValue(0));
             }
-
+            reader.Close();
+            connection.Close();
             return result;
         }
 
