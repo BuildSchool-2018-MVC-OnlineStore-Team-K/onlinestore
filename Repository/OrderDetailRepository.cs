@@ -98,5 +98,24 @@ namespace BuildSchool.MVCSolution.OnlineStore.OrderDetailRepository
             return list;
         }
 
+        public int GetTotalQuantiyByProductID(int ProductID)
+        {
+            SqlConnection connection = new SqlConnection(
+                "data source = 192.168.40.36,1433; database = E-Commerce; user id = smallhandsomehandsome; password = 123");
+
+            var sql = "SELECT SUM(Quantity) FROM OrderDetail WHERE ProductID = @ProductID GROUP BY ProductID";
+            SqlCommand command = new SqlCommand(sql, connection);
+
+            connection.Open();
+            var reader = command.ExecuteReader();
+            int result = 0;
+            while(reader.Read())
+            {
+                result = Convert.ToInt16(reader.GetValue(0));
+            }
+
+            return result;
+        }
+
     }
 }
