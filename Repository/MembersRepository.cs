@@ -170,7 +170,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             return list;
 
         }
-       
+
         public Boolean AccountLogin(string Account, string Password)
         {
             SqlConnection connection = new SqlConnection(
@@ -203,6 +203,24 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             return YN;
             //return Convert.ToInt32(list);
         }
-       
+        public void MPI(int MemberID)
+        {
+            SqlConnection connection = new SqlConnection(
+               "data source = 192.168.0.105,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
+            var sql = "SELECT MemberID FROM Members WHERE @MemberID=MemberID";
+            SqlCommand command = new SqlCommand(sql, connection);
+            connection.Open();
+            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            var list = new List<Members>();
+            var mreader = new Members();
+            while (reader.Read())
+            {
+                mreader.MemberID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("MemberID")));
+                list.Add(mreader);
+            }
+            reader.Close();
+            connection.Close();
+            
+        }
     }
 }
