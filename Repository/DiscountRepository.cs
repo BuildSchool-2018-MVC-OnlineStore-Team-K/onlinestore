@@ -12,6 +12,10 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 {
     public class DiscountRepository
     {
+        /// <summary>
+        /// Create Discounts
+        /// </summary>
+        /// <param name="model"></param>
         public void Create(Discounts model)
         {
             SqlConnection connection = new SqlConnection(
@@ -31,6 +35,10 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             connection.Close();
         }
 
+        /// <summary>
+        /// Update Discount
+        /// </summary>
+        /// <param name="model"></param>
         public void Update(Discounts model)
         {
             SqlConnection connection = new SqlConnection(
@@ -51,6 +59,11 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             connection.Close();
         }
 
+        /// <summary>
+        /// Add All Discount Column Into Command
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         public SqlCommand AddWithAllDiscountValue(Discounts model)
         {
             SqlCommand command = new SqlCommand();
@@ -62,6 +75,10 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             return command;
         }
 
+        /// <summary>
+        /// Delete Discount 
+        /// </summary>
+        /// <param name="model"></param>
         public void Delete(Discounts model)
         {
             SqlConnection connection = new SqlConnection(
@@ -77,6 +94,11 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             connection.Close();
         }
 
+        /// <summary>
+        /// Find Discount
+        /// </summary>
+        /// <param name="discountId"></param>
+        /// <returns></returns>
         public Discounts FindById(string discountId)
         {
             SqlConnection connection = new SqlConnection(
@@ -101,10 +123,14 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             }
 
             reader.Close();
-
+            connection.Close();
             return discount;
         }
 
+        /// <summary>
+        /// Get All Discount
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<Discounts> GetAll()
         {
             SqlConnection connection = new SqlConnection(
@@ -125,8 +151,31 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             }
 
             reader.Close();
-
+            connection.Close();
             return list;
+        }
+
+
+        public IEnumerable<Discounts> OrderByDiscount(double Discounts)
+        {
+            SqlConnection connection = new SqlConnection(
+              "data source = 192.168.0.105,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
+            var sql = "SELECT * FROM Orders Where OrderID = @OrderID";
+            var list = new List<Discounts>();
+            SqlCommand command = new SqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@OrderID", OrderID);
+            connection.Open();
+            var orders = new Orders();
+            var reader = command.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+            while (reader.Read())
+            {
+                orders = DbReaderModelBinder<Orders>.Bind(reader);
+                list.Add(orders);
+            }
+            reader.Close();
+            connection.Close();
+
+            return list; //?
         }
     }
 }
