@@ -1,4 +1,5 @@
 ﻿using BuildSchool.MVCSolution.OnlineStore.Models;
+using BuildSchool.MVCSolution.OnlineStore.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -169,5 +170,39 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             return list;
 
         }
+       
+        public Boolean AccountLogin(string Account, string Password)
+        {
+            SqlConnection connection = new SqlConnection(
+               "data source = 192.168.0.105,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
+            var sql = "SELECT Account,Password FROM Members WHERE @Account=Account,@Password=Password ";
+            SqlCommand command = new SqlCommand(sql, connection);
+
+            connection.Open();
+            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            var list = new List<Members>();
+            var mreader = new Members();
+            Boolean YN;
+            if (!reader.Read())
+            {
+                YN = false;
+            }
+            else
+            {
+                YN = true;
+            }
+            //while (reader.Read())
+            //{
+            //    mreader.Account = reader.GetValue(reader.GetOrdinal("Account")).ToString();
+            //    mreader.Password = reader.GetValue(reader.GetOrdinal("Password")).ToString();
+            //     list.Add(mreader);
+            //command.Parameters.AddWithValue("@Account", Account);
+            // command.Parameters.AddWithValue("@Password", Password);
+            //}
+            reader.Close();
+            return YN;
+            //return Convert.ToInt32(list);
+        }
+       
     }
 }
