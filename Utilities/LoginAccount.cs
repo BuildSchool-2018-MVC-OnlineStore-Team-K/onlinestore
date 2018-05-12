@@ -12,9 +12,9 @@ namespace BuildSchool.MVCSolution.OnlineStore.Utilities
         public int Acc, Pass;
         public LoginAccount(int Acc, int Pass)
         {
-            var repository = new BuildSchool.MVCSolution.OnlineStore.Repository.MembersRepository();
-            this.Acc = repository.Account();
-            this.Pass = repository.Password();
+            //var repository = new BuildSchool.MVCSolution.OnlineStore.Repository.MembersRepository();
+            //this.Acc = repository.Account();
+            //this.Pass = repository.Password();
 
         }
     }

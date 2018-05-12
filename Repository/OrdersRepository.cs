@@ -139,5 +139,11 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         }
 
 
+        public void GetCartContent(int CartID , int MemberID)
+        {
+
+        }
+
+
     }
 }
