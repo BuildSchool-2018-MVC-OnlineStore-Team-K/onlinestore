@@ -203,7 +203,9 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             return YN;
             //return Convert.ToInt32(list);
         }
-        public void MPI(int MemberID)
+
+        //不要亂命名r
+        public void UpdateMemberInformation(int MemberID)
         {
             SqlConnection connection = new SqlConnection(
                "data source = 192.168.0.105,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
@@ -222,5 +224,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             connection.Close();
             
         }
+
+
     }
 }
