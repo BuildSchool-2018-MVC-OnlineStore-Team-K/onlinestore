@@ -118,5 +118,25 @@ namespace BuildSchool.MVCSolution.OnlineStore.OrderDetailRepository
             return result;
         }
 
+        public decimal GetTotalPriceByOrderID(int OrderID)
+        {
+            SqlConnection connection = new SqlConnection(
+                "data source = 192.168.0.105,1433; database = E-Commerce; user id = smallhandsomehandsome; password = 123");
+
+            var sql = "SELECT SUM(UnityPrice * Quantity * (1-Discount)) FROM OrderDetail WHERE OrderID = @OrderID GROUP BY OrderID";
+            SqlCommand command = new SqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@OrderID", OrderID);
+            connection.Open();
+            var reader = command.ExecuteReader();
+            decimal result = 0;
+            while(reader.Read())
+            {
+                result = Convert.ToDecimal(reader.GetValue(0));
+            }
+            reader.Close();
+            connection.Close();
+            return result;
+        }
+
     }
 }
