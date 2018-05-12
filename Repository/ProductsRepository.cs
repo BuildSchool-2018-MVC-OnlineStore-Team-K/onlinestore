@@ -16,7 +16,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         {
             SqlConnection connection = new SqlConnection(
                 "Server=192.168.0.105,1433;Database=E-Commerce;User ID =smallhandsomehandsome ; Password =123;");
-            var sql = "INSERT INTO Products VALUES (@productid, @category, @productname, @unitprice,@shelfTime)";
+            var sql = "INSERT INTO Products VALUES (@productid, @category, @productname, @unitprice,@shelftime)";
 
             SqlCommand command = new SqlCommand(sql, connection);
 
@@ -24,7 +24,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             command.Parameters.AddWithValue("@category", model.Category);
             command.Parameters.AddWithValue("@productname", model.ProductName);
             command.Parameters.AddWithValue("@unitprice", model.UnitPrice);
-            command.Parameters.AddWithValue("@shelfTime", model.ShelfTime);
+            command.Parameters.AddWithValue("@shelftime", model.ShelfTime);
 
             connection.Open();
             command.ExecuteNonQuery();
@@ -35,7 +35,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         {
             SqlConnection connection = new SqlConnection(
                 "Server=192.168.0.105,1433;Database=E-Commerce;User ID =smallhandsomehandsome ; Password =123;");
-            var sql = "UPDATE Products SET Category=@category, ProductName=@productname, UnitPrice=@unitprice, ShelfTime=@shelfTime WHERE ProductID = @productid";
+            var sql = "UPDATE Products SET Category=@category, ProductName=@productname, UnitPrice=@unitprice, ShelfTime=@shelftime WHERE ProductID = @productid";
 
             SqlCommand command = new SqlCommand(sql, connection);
 
@@ -43,7 +43,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             command.Parameters.AddWithValue("@category", model.Category);
             command.Parameters.AddWithValue("@productname", model.ProductName);
             command.Parameters.AddWithValue("@unitprice", model.UnitPrice);
-            command.Parameters.AddWithValue("@shelfTime", model.ShelfTime);
+            command.Parameters.AddWithValue("@shelftime", model.ShelfTime);
 
             connection.Open();
             command.ExecuteNonQuery();
@@ -110,6 +110,103 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             connection.Close();
             return list;
 
-        }        
+        } 
+        
+        public IEnumerable<Products> OrderByUnitprice()  //價格排序:低->高
+        {
+            SqlConnection connection = new SqlConnection(
+                "Server=192.168.0.105,1433;Database=E-Commerce;User ID =smallhandsomehandsome; Password =123;");
+            var sql = "SELECT ProductID, ProductName, UnitPrice FROM Products GROUPBY ProductID, ProductName ORDERBY UnitPrice";
+
+            SqlCommand command = new SqlCommand(sql, connection);
+            connection.Open();
+
+            var reader = command.ExecuteReader();
+            var list = new List<Products>();
+            Products products = new Products();
+
+            while (reader.Read())
+            {
+                products = DbReaderModelBinder<Products>.Bind(reader);
+                list.Add(products);                
+            }
+
+            reader.Close();
+            connection.Close();
+            return list;
+        }
+
+        public IEnumerable<Products> OrderByUnitpriceDESC()  //價格排序:高->低
+        {
+            SqlConnection connection = new SqlConnection(
+                "Server=192.168.0.105,1433;Database=E-Commerce;User ID =smallhandsomehandsome; Password =123;");
+            var sql = "SELECT ProductID, ProductName, UnitPrice FROM Products GROUPBY ProductID, ProductName ORDERBY UnitPrice DESC";
+
+            SqlCommand command = new SqlCommand(sql, connection);
+            connection.Open();
+
+            var reader = command.ExecuteReader();
+            var list = new List<Products>();
+            //var properties = typeof(Products).GetProperties();
+            Products products = new Products();
+
+            while (reader.Read())
+            {
+                products = DbReaderModelBinder<Products>.Bind(reader);
+                list.Add(products);
+            }
+
+            reader.Close();
+            connection.Close();
+            return list;
+        }
+
+        public IEnumerable<Products> OrderByShelfTimeDESC()  //上架時間排序(前十)
+        {
+            SqlConnection connection = new SqlConnection(
+                "Server=192.168.0.105,1433;Database=E-Commerce;User ID =smallhandsomehandsome; Password =123;");
+            var sql = "SELECT TOP10 ProductID, ProductName, ShelfTime FROM Products GROUPBY ProductID, ProductName ORDERBY ShelfTime DESC";
+
+            SqlCommand command = new SqlCommand(sql, connection);
+            connection.Open();
+
+            var reader = command.ExecuteReader();
+            var list = new List<Products>();
+            Products products = new Products();
+
+            while (reader.Read())
+            {
+                products = DbReaderModelBinder<Products>.Bind(reader);
+                list.Add(products);
+            }
+
+            reader.Close();
+            connection.Close();
+            return list;
+        }
+
+        public string GetProductName(int ProductID)  //查詢訂單、折扣排名(傳入產品ID，傳回產品名稱)
+        {
+            SqlConnection connection = new SqlConnection(
+                "Server=192.168.0.105,1433;Database=E-Commerce;User ID =smallhandsomehandsome; Password =123;");
+            var sql = "SELECT ProductName FROM Products WHERE ProductID=@productid GROUPBY ProductName";
+
+            SqlCommand command = new SqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@productid", ProductID);
+            connection.Open();
+
+            var reader = command.ExecuteReader();
+            string result = "";
+            //Products products = new Products();
+
+            while (reader.Read())
+            {
+                result=reader.GetValue(0).ToString();                
+            }
+
+            reader.Close();
+            connection.Close();
+            return result;
+        }
     }
 }
