@@ -60,7 +60,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         }
 
 
-        public IEnumerable<Orders> GetByOrderID(int OrderID)
+        public IEnumerable<Orders> GetByOrderID(int OrderID) //ok
         {
             SqlConnection connection = new SqlConnection(
               "data source = 192.168.0.105,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
@@ -99,23 +99,18 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         }
 
-        public IEnumerable<Orders> GetAll() //()內不用給直 因為傳整個表格
+        public IEnumerable<Orders> GetAll() //ok
+                                       //()內不用給直 因為傳整個表格  
         {
-            //SqlConnection connection = new SqlConnection("Server=.;Database=E-Commerce;Trusted_Connection=True;");
             SqlConnection connection = new SqlConnection(
                "data source = 192.168.0.105,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
-
             var sql = "SELECT * FROM  Orders";
             SqlCommand command = new SqlCommand(sql, connection);
-
-            connection.Open();
-
-            //var reader = command.ExecuteReader();
             var list = new List<Orders>();
             var orders = new Orders();
-            //var properties = typeof(Orders).GetProperties();
+            connection.Open();
             var reader = command.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
-            //Orders orders = null;
+            
             while (reader.Read())
             {
                 orders = DbReaderModelBinder<Orders>.Bind(reader);
@@ -125,6 +120,24 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             connection.Close();
             return list;
         }
+
+
+        public int UpdateCartToOrders(int MemberID , int OrderID) // ok
+        {
+            SqlConnection connection = new SqlConnection(
+               "data source = 192.168.0.105,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
+            var sql = "Update Orders SET cart = 1 where MemberID = @MemberID and OrderID = @OrderID";
+            SqlCommand command = new SqlCommand(sql, connection);
+
+            command.Parameters.AddWithValue("@MemberID", MemberID);
+            command.Parameters.AddWithValue("OrderID", OrderID);
+
+            connection.Open();
+            var q = command.ExecuteNonQuery();
+            connection.Close();
+            return q;
+        }
+
 
     }
 }
