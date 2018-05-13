@@ -17,14 +17,14 @@ namespace BuildSchool.MVCSolution.OnlineStore.OrderDetailRepository.Tests
             var result = repository.GetTotalQuantiyByProductID(1);
             Assert.AreEqual(result, 2);
         }
-    }
-}
 
-namespace BuildSchool.MVCSolution.OnlineStore.OrderDetailRepositoryTest
-{
-    [TestClass]
-    public class OrderDetailRepositoryTests
-    {
+        [TestMethod()]
+        public void GetTotalPriceByOrderIDTest()
+        {
+            var repository = new BuildSchool.MVCSolution.OnlineStore.OrderDetailRepository.OrderDetailRepository();
+            var result = repository.GetTotalPriceByOrderID(1);
+            Assert.IsTrue(result > 0);
+        }
         [TestMethod]
         public void GetAll()
         {

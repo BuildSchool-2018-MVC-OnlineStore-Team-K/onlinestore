@@ -139,9 +139,59 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         }
 
 
-        public void GetCartContent(int CartID , int MemberID)
+        public int GetCartOrderID(int MemberID)
         {
-
+            SqlConnection connection = new SqlConnection(
+               "data source = 192.168.0.105,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
+            var sql = "SELECT OrderID FROM Orders  WHERE MemberID = @MemberID and Cart = 0";
+            SqlCommand command = new SqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@MemberID", MemberID);
+            var orders = new Orders();
+            connection.Open();
+            //查詢是否有購物車存在 cart=0
+            var reader = command.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+            while (reader.Read())
+            {
+                orders = DbReaderModelBinder<Orders>.Bind(reader);
+            }
+            reader.Close();
+            
+            //如果有購物車存在,回傳OrderID
+            if (orders.OrderID >0)
+            {
+                connection.Close();
+                return orders.OrderID;
+            }
+            //如果沒有購物車存在 新增一筆
+            else
+            {
+                //var now = DateTime.Now.ToString("MM-dd-yyyy");
+                var sql2 = "INSERT INTO Orders( MemberID , Cart ) Values(@MemberID ,  @Cart)";
+                SqlCommand command2 = new SqlCommand(sql2, connection);
+                connection.Open();
+                command2.Parameters.AddWithValue("@MemberID", MemberID);
+                //command.Parameters.AddWithValue("@Time", now);
+                command2.Parameters.AddWithValue("@Cart", 0);
+                var q = command2.ExecuteNonQuery();
+                //檢查是否有成功新增購物車 , 如果有 回傳OrderID
+                if(q>0)
+                {
+                    var reader2 = command.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+                    while (reader2.Read())
+                    {
+                        orders = DbReaderModelBinder<Orders>.Bind(reader2);
+                    }
+                    reader2.Close();
+                    connection.Close();
+                    return orders.OrderID;
+                }
+                else
+                {
+                    connection.Close();
+                    throw new Exception("新增購物車失敗,請聯絡客服.");
+                }
+            }
+            
         }
 
 

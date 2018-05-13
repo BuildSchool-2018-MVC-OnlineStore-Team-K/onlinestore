@@ -30,6 +30,16 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository.Tests
             var orders = repository.UpdateCartToOrders(OrderID, MemberID);
             Assert.IsTrue(orders.Equals(1));
         }
+
+        [TestMethod()]
+        public void OrdersRepository_GetCartOrderID()
+        {
+            var repository = new BuildSchool.MVCSolution.OnlineStore.Repository.OrdersRepository();
+            var MemberID = 1;
+            var orders = repository.GetCartOrderID(MemberID);
+            Assert.IsTrue(orders >0);
+
+        }
     }
 }
 
