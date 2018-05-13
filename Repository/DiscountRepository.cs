@@ -182,6 +182,30 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             connection.Close();
             return list;
         }
+
+        public IEnumerable<Discounts> OrderByDiscountDESC()
+        {
+            //找到所有產品，並用折扣排序
+            SqlConnection connection = new SqlConnection(
+              "data source = 192.168.0.105,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
+            var sql = "SELECT p.ProductID, p.Category, p.Name, p.UnitPrice FROM Products p INNER JOIN Discounts d ON d.ProductID = p.ProductID WHERE d.ProductID = p.ProductID ORDER BY d.Discount DESC";
+            SqlCommand command = new SqlCommand(sql, connection);
+            connection.Open();
+
+            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            var list = new List<Discounts>();
+
+            while (reader.Read())
+            {
+                var discount = new Discounts();
+                discount = DbReaderModelBinder<Discounts>.Bind(reader);
+                list.Add(discount);
+            }
+
+            reader.Close();
+            connection.Close();
+            return list;
+        }
     }
 }
 //data source, database, user id, password
