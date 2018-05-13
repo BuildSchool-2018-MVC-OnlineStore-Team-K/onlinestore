@@ -155,27 +155,32 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             return list;
         }
 
-
-        public IEnumerable<Discounts> OrderByDiscount(double Discounts)
+        /// <summary>
+        /// Find All Product Then Order By Discount
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<Discounts> OrderByDiscount()
         {
+            //找到所有產品，並用折扣排序
             SqlConnection connection = new SqlConnection(
               "data source = 192.168.0.105,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
-            var sql = "SELECT * FROM Orders Where OrderID = @OrderID";
-            var list = new List<Discounts>();
+            var sql = "SELECT p.ProductID, p.Category, p.Name, p.UnitPrice FROM Products p INNER JOIN Discounts d ON d.ProductID = p.ProductID WHERE d.ProductID = p.ProductID ORDER BY d.Discount";
             SqlCommand command = new SqlCommand(sql, connection);
-            command.Parameters.AddWithValue("@OrderID", OrderID);
             connection.Open();
-            var orders = new Orders();
-            var reader = command.ExecuteReader(System.Data.CommandBehavior.CloseConnection);
+
+            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            var list = new List<Discounts>();
+
             while (reader.Read())
             {
-                orders = DbReaderModelBinder<Orders>.Bind(reader);
-                list.Add(orders);
+                var discount = new Discounts();
+                discount = DbReaderModelBinder<Discounts>.Bind(reader);
+                list.Add(discount);
             }
+
             reader.Close();
             connection.Close();
-
-            return list; //?
+            return list;
         }
     }
 }
