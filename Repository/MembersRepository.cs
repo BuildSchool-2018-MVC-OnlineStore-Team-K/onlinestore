@@ -134,41 +134,44 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             return Member;
         }
 
-        public IEnumerable<Members> GetAll()
+        public IEnumerable<Members> All
         {
-            SqlConnection connection = new SqlConnection(
-              "data source = 192.168.0.105,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
-            var sql = "SELECT * FROM Members";
-
-            SqlCommand command = new SqlCommand(sql, connection);
-            connection.Open();
-
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-
-
-            var list = new List<Members>();
-            var mreader = new Members();
-            while (reader.Read())
+            get
             {
+                SqlConnection connection = new SqlConnection(
+                  "data source = 192.168.0.105,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
+                var sql = "SELECT * FROM Members";
 
-                mreader.MemberID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("MemberID")));
-                mreader.MemberName = reader.GetValue(reader.GetOrdinal("Name")).ToString();
-                mreader.Address = reader.GetValue(reader.GetOrdinal("Address")).ToString();
-                mreader.Birthday = Convert.ToDateTime(reader.GetValue(reader.GetOrdinal("Birthday")));
-                mreader.CreditCard = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("CreditCard")));
-                mreader.Phone = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("Phone")));
-                mreader.Email = reader.GetValue(reader.GetOrdinal("Email")).ToString();
-                mreader.Account = reader.GetValue(reader.GetOrdinal("Account")).ToString();
-                mreader.Password = reader.GetValue(reader.GetOrdinal("Password")).ToString();
-                mreader.Block = reader.GetValue(reader.GetOrdinal("Block")).ToString();
-                mreader.Career = reader.GetValue(reader.GetOrdinal("Career")).ToString();
-                list.Add(mreader);
+                SqlCommand command = new SqlCommand(sql, connection);
+                connection.Open();
+
+                var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+
+
+                var list = new List<Members>();
+                var mreader = new Members();
+                while (reader.Read())
+                {
+
+                    mreader.MemberID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("MemberID")));
+                    mreader.MemberName = reader.GetValue(reader.GetOrdinal("Name")).ToString();
+                    mreader.Address = reader.GetValue(reader.GetOrdinal("Address")).ToString();
+                    mreader.Birthday = Convert.ToDateTime(reader.GetValue(reader.GetOrdinal("Birthday")));
+                    mreader.CreditCard = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("CreditCard")));
+                    mreader.Phone = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("Phone")));
+                    mreader.Email = reader.GetValue(reader.GetOrdinal("Email")).ToString();
+                    mreader.Account = reader.GetValue(reader.GetOrdinal("Account")).ToString();
+                    mreader.Password = reader.GetValue(reader.GetOrdinal("Password")).ToString();
+                    mreader.Block = reader.GetValue(reader.GetOrdinal("Block")).ToString();
+                    mreader.Career = reader.GetValue(reader.GetOrdinal("Career")).ToString();
+                    list.Add(mreader);
+                }
+
+                reader.Close();
+
+                return list;
+
             }
-
-            reader.Close();
-
-            return list;
-
         }
 
         public Boolean AccountLogin(string Account, string Password)
@@ -181,7 +184,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             connection.Open();
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
             var list = new List<Members>();
-            var mreader = new Members();
+            //var mreader = new Members();
             Boolean YN;
             if (!reader.Read())
             {
@@ -222,9 +225,64 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             }
             reader.Close();
             connection.Close();
-            
+
+        }
+        public void UpdateAccountAndPassword(Members model)
+        {
+            SqlConnection connection = new SqlConnection(
+               "data source = 192.168.0.105,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
+            var sql = "UPDATE Members SET(MemberID=@MemberID, " +
+                 "Name=@Name," +
+                 "Address=@Address," +
+                 "Birthday = @Birthday" +
+                 "CreditCard=@CreditCard, " +
+                 "Phone=@Phone," +
+                 " Email=@Email, " +
+                 "Account=@Account, " +
+                 "Password=@Password)";
+            SqlCommand command = new SqlCommand(sql, connection);
+            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            var list = new List<Members>();
+            var mreader = new Members();
+            while (reader.Read())
+            {
+
+                mreader.MemberID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("MemberID")));
+                mreader.MemberName = reader.GetValue(reader.GetOrdinal("Name")).ToString();
+                mreader.Address = reader.GetValue(reader.GetOrdinal("Address")).ToString();
+                mreader.Birthday = Convert.ToDateTime(reader.GetValue(reader.GetOrdinal("Birthday")));
+                mreader.CreditCard = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("CreditCard")));
+                mreader.Phone = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("Phone")));
+                mreader.Email = reader.GetValue(reader.GetOrdinal("Email")).ToString();
+                mreader.Account = reader.GetValue(reader.GetOrdinal("Account")).ToString();
+                mreader.Password = reader.GetValue(reader.GetOrdinal("Password")).ToString();
+
+                list.Add(mreader);
+            }
+            reader.Close();
+            connection.Close();
+        }
+      
+        public IEnumerable <Members> GetAll() //NEWPassword
+        {
+            SqlConnection connection = new SqlConnection(
+              "data source = 192.168.0.105,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
+            var sql = "SELECT Password FROM  Members  WHERE MemberID=@MemberID,@Password=Password"";
+            SqlCommand command = new SqlCommand(sql, connection);
+            connection.Open();
+            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            var list = new List<Members>();
+            var mreader = new Members();
+                while (reader.Read())
+            {
+                mreader.Password = reader.GetValue(reader.GetOrdinal("Password")).ToString();
+                list.Add(mreader);
+            }
+            reader.Close();
+            connection.Close();
+
+            return list;
         }
 
-
     }
-}
+    }

@@ -14,7 +14,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.MembersRepositoryTests
         public void MemberGetAllTest()
         {
             var repository = new BuildSchool.MVCSolution.OnlineStore.Repository.MembersRepository();
-            var result = repository.GetAll();
+            var result = repository.All;
             Assert.IsTrue(result.Count() > 0);
         }
     }
