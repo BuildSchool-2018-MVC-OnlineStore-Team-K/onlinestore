@@ -13,6 +13,7 @@ namespace BuildSchool.PasswordValidationTool.Implementation.HashingProvider
         {
             var provider = new SHA512HashingProvider();
             return provider.ComputeHash(data);
+
         }
     }
 }
