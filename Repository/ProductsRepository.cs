@@ -116,7 +116,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         {
             SqlConnection connection = new SqlConnection(
                 "Server=192.168.0.105,1433;Database=E-Commerce;User ID =smallhandsomehandsome; Password =123;");
-            var sql = "SELECT ProductID, ProductName, UnitPrice FROM Products GROUPBY ProductID, ProductName ORDERBY UnitPrice";
+            var sql = "SELECT ProductID, ProductName, UnitPrice FROM Products GROUP BY ProductID, ProductName ORDER BY UnitPrice";
 
             SqlCommand command = new SqlCommand(sql, connection);
             connection.Open();
@@ -140,7 +140,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         {
             SqlConnection connection = new SqlConnection(
                 "Server=192.168.0.105,1433;Database=E-Commerce;User ID =smallhandsomehandsome; Password =123;");
-            var sql = "SELECT ProductID, ProductName, UnitPrice FROM Products GROUPBY ProductID, ProductName ORDERBY UnitPrice DESC";
+            var sql = "SELECT ProductID, ProductName, UnitPrice FROM Products GROUP BY ProductID, ProductName, UnitPrice ORDER BY UnitPrice DESC";
 
             SqlCommand command = new SqlCommand(sql, connection);
             connection.Open();
@@ -165,7 +165,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         {
             SqlConnection connection = new SqlConnection(
                 "Server=192.168.0.105,1433;Database=E-Commerce;User ID =smallhandsomehandsome; Password =123;");
-            var sql = "SELECT TOP10 ProductID, ProductName, ShelfTime FROM Products GROUPBY ProductID, ProductName ORDERBY ShelfTime DESC";
+            var sql = "SELECT TOP 10 ProductID, ProductName, ShelfTime FROM Products GROUP BY ProductID, ProductName, ShelfTime ORDER BY ShelfTime DESC";
 
             SqlCommand command = new SqlCommand(sql, connection);
             connection.Open();
@@ -189,7 +189,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         {
             SqlConnection connection = new SqlConnection(
                 "Server=192.168.0.105,1433;Database=E-Commerce;User ID =smallhandsomehandsome; Password =123;");
-            var sql = "SELECT ProductName FROM Products WHERE ProductID=@productid GROUPBY ProductName";
+            var sql = "SELECT ProductName FROM Products WHERE ProductID=@productid";
 
             SqlCommand command = new SqlCommand(sql, connection);
             command.Parameters.AddWithValue("@productid", ProductID);

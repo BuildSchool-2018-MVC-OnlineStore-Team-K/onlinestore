@@ -18,5 +18,13 @@ namespace BuildSchool.MVCSolution.OnlineStore.ProductsRepositoryTests
             var list = repository.GetAll();
             Assert.IsTrue(list.Count() > 0);
         }
+
+        [TestMethod()]
+        public void GetProductNameTest()
+        {
+            var repository = new ProductsRepository();
+            var list = repository.GetProductName(2);
+            Assert.Equals("短褲",list);
+        }
     }
 }
