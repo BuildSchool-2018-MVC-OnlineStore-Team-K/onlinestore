@@ -7,6 +7,7 @@ using System.Data;
 using System.Data.SqlClient;
 using BuildSchool.MVCSolution.OnlineStore.Models;
 using BuildSchool.MVCSolution.OnlineStore.Utilities;
+using Dapper;
 
 namespace BuildSchool.MVCSolution.OnlineStore.Repository
 {
@@ -166,6 +167,18 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             reader.Close();
             connection.Close();
             return list;
+        }
+
+        /// <summary>
+        /// DapperDiscountGetAll
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<Discounts> _GetAll()
+        {
+            SqlConnection connection = new SqlConnection(
+                "data source = 192.168.40.36,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
+            var result = connection.Query<Discounts>("SELECT * FROM Discounts");
+            return result;
         }
 
         /// <summary>
