@@ -22,6 +22,19 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
                 "data source = 192.168.0.105,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
             var sql = "INSERT INTO Discounts VALUES (@did, @pid, @discount, @start, @end";
 
+            connection.Open();
+            var transaction = connection.BeginTransaction(/*default:readuncommited*/); 
+
+            //excute commands
+            try
+            {
+                transaction.Commit();
+            }
+            catch (SqlException e)
+            {
+                transaction.Rollback();
+            }
+
             SqlCommand command = new SqlCommand(sql, connection);
             command = AddWithAllDiscountValue(model);
             //command.Parameters.AddWithValue("@did", model.DiscountID);
