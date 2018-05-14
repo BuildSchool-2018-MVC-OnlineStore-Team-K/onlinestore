@@ -20,11 +20,35 @@ namespace BuildSchool.MVCSolution.OnlineStore.ProductsRepositoryTests
         }
 
         [TestMethod()]
+        public void OrderByUnitpriceTest()
+        {
+            var repository = new ProductsRepository();
+            var list = repository.OrderByUnitprice();
+            Assert.IsTrue(list.Count()>0);
+        }
+
+        [TestMethod()]
+        public void OrderByUnitpriceDESCTest()
+        {
+            var repository = new ProductsRepository();
+            var list = repository.OrderByUnitpriceDESC();
+            Assert.IsTrue(list.Count() > 0);
+        }
+
+        [TestMethod()]
+        public void OrderByShelfTimeDESCTest()
+        {
+            var repository = new ProductsRepository();
+            var list = repository.OrderByShelfTimeDESC();
+            Assert.IsTrue(list.Count() > 0);
+        }
+
+        [TestMethod()]
         public void GetProductNameTest()
         {
             var repository = new ProductsRepository();
-            var list = repository.GetProductName(2);
-            Assert.Equals("短褲",list);
+            var result = repository.GetProductName(2);
+            Assert.AreEqual(result, "短袖牛仔褲");
         }
     }
 }
