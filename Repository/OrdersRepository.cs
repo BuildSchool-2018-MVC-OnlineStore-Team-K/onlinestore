@@ -138,7 +138,6 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
                "data source = 192.168.40.36,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
             var sql = "Update Orders SET cart = 1 where MemberID = @MemberID and OrderID = @OrderID";
             SqlCommand command = new SqlCommand(sql, connection);
-
             command.Parameters.AddWithValue("@MemberID", MemberID);
             command.Parameters.AddWithValue("OrderID", OrderID);
 

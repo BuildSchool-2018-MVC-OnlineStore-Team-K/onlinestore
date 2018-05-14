@@ -227,6 +227,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             connection.Close();
 
         }
+
         public void UpdateAccountAndPassword(Members model)
         {
             SqlConnection connection = new SqlConnection(
