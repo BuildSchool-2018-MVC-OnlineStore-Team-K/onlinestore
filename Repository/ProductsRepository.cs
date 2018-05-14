@@ -105,7 +105,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public IEnumerable<Products> GetAll()
         {
             SqlConnection connection = new SqlConnection(
-                "Server=.;Database=E-Commerce;integrated security=true");
+                "Server=192.168.40.36,1433;Database=E-Commerce;User ID =smallhandsomehandsome; Password =123;");
             var sql = "SELECT * FROM Products";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -201,7 +201,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public IEnumerable<Products> OrderByShelfTimeDESC()  //上架時間排序(前十)
         {
             SqlConnection connection = new SqlConnection(
-                "Server=.;Database=E-Commerce;integrated security=true");
+                "Server=192.168.40.36,1433;Database=E-Commerce;User ID =smallhandsomehandsome; Password =123;");
             var sql = "SELECT TOP 10 ProductID, ProductName, ShelfTime FROM Products GROUP BY ProductID, ProductName, ShelfTime ORDER BY ShelfTime DESC";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -225,7 +225,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public string GetProductName(int ProductID)  //查詢訂單、折扣排名(傳入產品ID，傳回產品名稱)
         {
             SqlConnection connection = new SqlConnection(
-                "Server=.;Database=E-Commerce;integrated security=true");
+                "Server=192.168.40.36,1433;Database=E-Commerce;User ID =smallhandsomehandsome; Password =123;");
             var sql = "SELECT ProductName FROM Products WHERE ProductID=@productid";
 
             SqlCommand command = new SqlCommand(sql, connection);
