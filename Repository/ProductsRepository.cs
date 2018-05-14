@@ -15,7 +15,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public void Create(Products model)
         {
             SqlConnection connection = new SqlConnection(
-                "Server=192.168.0.105,1433;Database=E-Commerce;User ID =smallhandsomehandsome ; Password =123;");
+                "Server=192.168.40.36,1433;Database=E-Commerce;User ID =smallhandsomehandsome ; Password =123;");
             var sql = "INSERT INTO Products VALUES (@productid, @category, @productname, @unitprice,@shelftime)";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -34,7 +34,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public void Update(Products model)
         {
             SqlConnection connection = new SqlConnection(
-                "Server=192.168.0.105,1433;Database=E-Commerce;User ID =smallhandsomehandsome ; Password =123;");
+                "Server=192.168.40.36,1433;Database=E-Commerce;User ID =smallhandsomehandsome ; Password =123;");
             var sql = "UPDATE Products SET Category=@category, ProductName=@productname, UnitPrice=@unitprice, ShelfTime=@shelftime WHERE ProductID = @productid";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -53,7 +53,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public void Delete(Products model)
         {
             SqlConnection connection = new SqlConnection(
-                "Server=192.168.0.105,1433;Database=E-Commerce;User ID =smallhandsomehandsome ; Password =123;");
+                "Server=192.168.40.36,1433;Database=E-Commerce;User ID =smallhandsomehandsome ; Password =123;");
             var sql = "DELETE FROM Products WHERE ProductID = @productid";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -68,7 +68,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public IEnumerable<Products> GetAll()
         {
             SqlConnection connection = new SqlConnection(
-                "Server=192.168.0.105,1433;Database=E-Commerce;User ID =smallhandsomehandsome; Password =123;");
+                "Server=192.168.40.36,1433;Database=E-Commerce;User ID =smallhandsomehandsome; Password =123;");
             var sql = "SELECT * FROM Products";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -115,7 +115,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public IEnumerable<Products> OrderByUnitprice()  //價格排序:低->高
         {
             SqlConnection connection = new SqlConnection(
-                "Server=192.168.0.105,1433;Database=E-Commerce;User ID =smallhandsomehandsome; Password =123;");
+                "Server=192.168.40.36,1433;Database=E-Commerce;User ID =smallhandsomehandsome; Password =123;");
             var sql = "SELECT ProductID, ProductName, UnitPrice FROM Products GROUPBY ProductID, ProductName ORDERBY UnitPrice";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -139,7 +139,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public IEnumerable<Products> OrderByUnitpriceDESC()  //價格排序:高->低
         {
             SqlConnection connection = new SqlConnection(
-                "Server=192.168.0.105,1433;Database=E-Commerce;User ID =smallhandsomehandsome; Password =123;");
+                "Server=192.168.40.36,1433;Database=E-Commerce;User ID =smallhandsomehandsome; Password =123;");
             var sql = "SELECT ProductID, ProductName, UnitPrice FROM Products GROUPBY ProductID, ProductName ORDERBY UnitPrice DESC";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -164,7 +164,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public IEnumerable<Products> OrderByShelfTimeDESC()  //上架時間排序(前十)
         {
             SqlConnection connection = new SqlConnection(
-                "Server=192.168.0.105,1433;Database=E-Commerce;User ID =smallhandsomehandsome; Password =123;");
+                "Server=192.168.40.36,1433;Database=E-Commerce;User ID =smallhandsomehandsome; Password =123;");
             var sql = "SELECT TOP10 ProductID, ProductName, ShelfTime FROM Products GROUPBY ProductID, ProductName ORDERBY ShelfTime DESC";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -188,7 +188,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public string GetProductName(int ProductID)  //查詢訂單、折扣排名(傳入產品ID，傳回產品名稱)
         {
             SqlConnection connection = new SqlConnection(
-                "Server=192.168.0.105,1433;Database=E-Commerce;User ID =smallhandsomehandsome; Password =123;");
+                "Server=192.168.40.36,1433;Database=E-Commerce;User ID =smallhandsomehandsome; Password =123;");
             var sql = "SELECT ProductName FROM Products WHERE ProductID=@productid GROUPBY ProductName";
 
             SqlCommand command = new SqlCommand(sql, connection);
