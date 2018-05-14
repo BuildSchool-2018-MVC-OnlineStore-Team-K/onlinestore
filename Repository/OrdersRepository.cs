@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BuildSchool.MVCSolution.OnlineStore.Utilities;
+using Dapper;
 
 namespace BuildSchool.MVCSolution.OnlineStore.Repository
 {
@@ -15,7 +16,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public void Create(Orders model)
         {
             SqlConnection connection = new SqlConnection(
-              "data source = 192.168.0.105,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
+              "data source = 192.168.40.36,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
 
             var sql = "INSERT INTO Orders Values(@MemberID , @OrderDetailID  , @OrderID , @Pay , @Payway , @ShipPlace , @Time , @Cart)";
             SqlCommand command = new SqlCommand(sql, connection);
@@ -40,7 +41,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public void Update(Orders model)
         {
             SqlConnection connection = new SqlConnection(
-              "data source = 192.168.0.105,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
+              "data source = 192.168.40.36,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
 
             var sql = "UPDATE Orders SET( MemberID = @MemberID  , OrderDetailID = @OrderDetailID  , OrderID = @OrderID , Pay = @Pay , Payway = @Payway , ShipPlace = @ShipPlace , Time = @Time , Cart = @Cart )";
             SqlCommand command = new SqlCommand(sql, connection);
@@ -63,7 +64,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public IEnumerable<Orders> GetByOrderID(int OrderID) //ok
         {
             SqlConnection connection = new SqlConnection(
-              "data source = 192.168.0.105,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
+              "data source = 192.168.40.36,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
             var sql = "SELECT * FROM Orders Where OrderID = @OrderID";
             var list = new List<Orders>();
             SqlCommand command = new SqlCommand(sql, connection);
@@ -88,7 +89,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         {
 
             SqlConnection connection = new SqlConnection(
-              "data source = 192.168.0.105,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
+              "data source = 192.168.40.36,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
 
             var sql = "DELETE FROM Orders where OrderID = 1";
             SqlCommand command = new SqlCommand(sql, connection);
@@ -103,7 +104,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
                                        //()內不用給直 因為傳整個表格  
         {
             SqlConnection connection = new SqlConnection(
-               "data source = 192.168.0.105,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
+               "data source = 192.168.40.36,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
             var sql = "SELECT * FROM  Orders";
             SqlCommand command = new SqlCommand(sql, connection);
             var list = new List<Orders>();
@@ -122,10 +123,19 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         }
 
 
+        public IEnumerable<Orders> _GetAll()
+        {
+            SqlConnection connection = new SqlConnection(
+              "data source = 192.168.40.36,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
+            var result =  connection.Query<Orders>("Select * FROM Orders");
+            return result;
+        }
+
+
         public int UpdateCartToOrders(int MemberID , int OrderID) // ok
         {
             SqlConnection connection = new SqlConnection(
-               "data source = 192.168.0.105,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
+               "data source = 192.168.40.36,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
             var sql = "Update Orders SET cart = 1 where MemberID = @MemberID and OrderID = @OrderID";
             SqlCommand command = new SqlCommand(sql, connection);
 
@@ -142,7 +152,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public int GetCartOrderID(int MemberID)
         {
             SqlConnection connection = new SqlConnection(
-               "data source = 192.168.0.105,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
+               "data source = 192.168.40.36,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
             var sql = "SELECT OrderID FROM Orders  WHERE MemberID = @MemberID and Cart = 0";
             SqlCommand command = new SqlCommand(sql, connection);
             command.Parameters.AddWithValue("@MemberID", MemberID);

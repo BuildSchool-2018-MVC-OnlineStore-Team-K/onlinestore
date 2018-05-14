@@ -19,7 +19,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public void Create(Discounts model)
         {
             SqlConnection connection = new SqlConnection(
-                "data source = 192.168.0.105,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
+                "data source = 192.168.40.36,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
             var sql = "INSERT INTO Discounts VALUES (@did, @pid, @discount, @start, @end";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -42,7 +42,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public void Update(Discounts model)
         {
             SqlConnection connection = new SqlConnection(
-               "data source = 192.168.0.105,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
+               "data source = 192.168.40.36,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
             var sql = "UPDATE Discounts SET Discount = @discount, StartTime = @start, EndTime = @end WHERE DiscountID = @did AND ProductID = @pid";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -82,7 +82,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public void Delete(Discounts model)
         {
             SqlConnection connection = new SqlConnection(
-               "data source = 192.168.0.105,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
+               "data source = 192.168.40.36,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
             var sql = "DELETE FROM Discounts WHERE DiscountID = @id";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -102,7 +102,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public Discounts FindById(string discountId)
         {
             SqlConnection connection = new SqlConnection(
-                "data source = 192.168.0.105,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
+                "data source = 192.168.40.36,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
             var sql = "SELECT * FROM Discounts WHERE DiscountID = @did";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -134,7 +134,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public IEnumerable<Discounts> GetAll()
         {
             SqlConnection connection = new SqlConnection(
-               "data source = 192.168.0.105,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
+               "data source = 192.168.40.36,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
             var sql = "SELECT * FROM Discounts";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -163,8 +163,8 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         {
             //找到所有產品，並用折扣排序
             SqlConnection connection = new SqlConnection(
-              "data source = 192.168.0.105,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
-            var sql = "SELECT p.ProductID, p.Category, p.Name, p.UnitPrice FROM Products p INNER JOIN Discounts d ON d.ProductID = p.ProductID WHERE d.ProductID = p.ProductID ORDER BY d.Discount";
+              "data source = 192.168.40.36,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
+            var sql = "SELECT p.ProductID, p.Category, p.ProductName, p.UnitPrice FROM Products p INNER JOIN Discounts d ON d.ProductID = p.ProductID WHERE d.ProductID = p.ProductID ORDER BY d.Discount";
             SqlCommand command = new SqlCommand(sql, connection);
             connection.Open();
 
@@ -187,7 +187,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         {
             //找到所有產品，並用折扣排序
             SqlConnection connection = new SqlConnection(
-              "data source = 192.168.0.105,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
+              "data source = 192.168.40.36,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
             var sql = "SELECT p.ProductID, p.Category, p.Name, p.UnitPrice FROM Products p INNER JOIN Discounts d ON d.ProductID = p.ProductID WHERE d.ProductID = p.ProductID ORDER BY d.Discount DESC";
             SqlCommand command = new SqlCommand(sql, connection);
             connection.Open();
