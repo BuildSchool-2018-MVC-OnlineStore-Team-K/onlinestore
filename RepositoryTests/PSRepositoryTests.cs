@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using BuildSchool.MVCSolution.OnlineStore.Models;
 using System.Linq;
 
-namespace BuildSchool.MVCSolution.OnlineStore.PSRepositoryTests
+namespace BuildSchool.MVCSolution.OnlineStore.PSRepositoryTests 
 {
     [TestClass]
     public class PSRepositoryTests
