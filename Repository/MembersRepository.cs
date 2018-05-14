@@ -15,7 +15,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public void Create(Members model)
         {
             SqlConnection connection = new SqlConnection(
-              "data source = 192.168.0.105,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
+              "data source = 192.168.40.36,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
             var sql = "INSERT INTO Members VALUES " +
                 "(@MemberID, " +
                 "@Name," +
@@ -51,7 +51,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public void Update(Members model)
         {
             SqlConnection connection = new SqlConnection(
-               "data source = 192.168.0.105,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
+               "data source = 192.168.40.36,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
             var sql = "UPDATE OrderDetail SET(MemberID=@MemberID, " +
                  "Name=@Name," +
                  "Address=@Address," +
@@ -86,7 +86,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public void Delete(Members model)
         {
             SqlConnection connection = new SqlConnection(
-               "data source = 192.168.0.105,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
+               "data source = 192.168.40.36,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
             var sql = "Delete FROM OrderDetail WHERE MemberID=@MemberID";
 
 
@@ -102,7 +102,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public Members FindById(string MemberID)
         {
             SqlConnection connection = new SqlConnection(
-               "data source = 192.168.0.105,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
+               "data source = 192.168.40.36,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
             var sql = "SELECT * FROM Members WHERE MemberID = @MemberID";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -139,7 +139,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             get
             {
                 SqlConnection connection = new SqlConnection(
-                  "data source = 192.168.0.105,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
+                  "data source = 192.168.40.36,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
                 var sql = "SELECT * FROM Members";
 
                 SqlCommand command = new SqlCommand(sql, connection);
@@ -177,7 +177,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public Boolean AccountLogin(string Account, string Password)
         {
             SqlConnection connection = new SqlConnection(
-               "data source = 192.168.0.105,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
+               "data source = 192.168.40.36,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
             var sql = "SELECT Account,Password FROM Members WHERE @Account=Account,@Password=Password ";
             SqlCommand command = new SqlCommand(sql, connection);
 
@@ -211,7 +211,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public void UpdateMemberInformation(int MemberID)
         {
             SqlConnection connection = new SqlConnection(
-               "data source = 192.168.0.105,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
+               "data source = 192.168.40.36,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
             var sql = "SELECT MemberID FROM Members WHERE @MemberID=MemberID";
             SqlCommand command = new SqlCommand(sql, connection);
             connection.Open();
@@ -227,10 +227,11 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             connection.Close();
 
         }
+
         public void UpdateAccountAndPassword(Members model)
         {
             SqlConnection connection = new SqlConnection(
-               "data source = 192.168.0.105,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
+               "data source = 192.168.40.36,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
             var sql = "UPDATE Members SET(MemberID=@MemberID, " +
                  "Name=@Name," +
                  "Address=@Address," +
@@ -266,7 +267,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public IEnumerable <Members> GetAll() //NEWPassword
         {
             SqlConnection connection = new SqlConnection(
-              "data source = 192.168.0.105,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
+              "data source = 192.168.40.36,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
             var sql = "SELECT Password FROM  Members  WHERE MemberID=@MemberID,@Password=Password";
             SqlCommand command = new SqlCommand(sql, connection);
             connection.Open();
