@@ -37,8 +37,17 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository.Tests
             var repository = new BuildSchool.MVCSolution.OnlineStore.Repository.OrdersRepository();
             var MemberID = 1;
             var orders = repository.GetCartOrderID(MemberID);
-            Assert.IsTrue(orders >0);
+            Assert.IsTrue(orders > 0);
 
+        }
+
+        [TestMethod()]
+        public void _GetAllTest()
+        {
+            var repository = new BuildSchool.MVCSolution.OnlineStore.Repository.OrdersRepository();
+
+            var orders = repository._GetAll();
+            Assert.IsTrue(orders.Count() > 0);
         }
     }
 }
