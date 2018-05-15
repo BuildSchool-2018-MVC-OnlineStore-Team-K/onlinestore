@@ -48,7 +48,6 @@
   <ItemGroup>
     <Compile Include="IHashingProvider.cs" />
     <Compile Include="IPasswordRule.cs" />
-    <Compile Include="IPasswordValidationService.cs" />
     <Compile Include="ISaltStrategy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
