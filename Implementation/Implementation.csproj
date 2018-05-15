@@ -51,6 +51,7 @@
     <Compile Include="HashingProvider\SHA256HashingProvider.cs" />
     <Compile Include="HashingProvider\SHA384HashingProvider.cs" />
     <Compile Include="HashingProvider\SHA512HashingProvider.cs" />
+    <Compile Include="IPasswordValidationService.cs" />
     <Compile Include="PasswordRules\HighComplexityPasswordRule.cs" />
     <Compile Include="PasswordRules\LowComplexityPasswordRule.cs" />
     <Compile Include="PasswordRules\MediumComplexityPasswordRule.cs" />

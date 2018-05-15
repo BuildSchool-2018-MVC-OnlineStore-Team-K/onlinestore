@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Security.Cryptography;
 
 namespace BuildSchool.PasswordValidationTool.Implementation.HashingProvider
 {
@@ -11,7 +12,7 @@ namespace BuildSchool.PasswordValidationTool.Implementation.HashingProvider
     {
         public byte[] ComputeHash(byte[] data)
         {
-            var provider = new SHA512HashingProvider();
+            var provider = new SHA512CryptoServiceProvider();
             return provider.ComputeHash(data);
 
         }

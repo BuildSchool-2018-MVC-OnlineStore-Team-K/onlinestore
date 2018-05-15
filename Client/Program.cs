@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,19 +16,20 @@ namespace BuildSchoolPassword.ValidationToolClient.Client
     {
         static void Main(string[] args)
         {
-            //redister dependency
-            var container = new SimpleInjector.Container();
+            //register dependency
+            var container = new Container();
+                               //  這個介面     ,      由誰實作
             container.Register<IHashingProvider, SHA512HashingProvider>();
             container.Register<IPasswordRule, MediumComplexityPasswordRule>();
             container.Register<ISaltStrategy, DefaultSaltStrategy>();
-            container.Register<IPasswordValidationService, PasswordValidationService>();
 
-            //resolve object and get instance
-            //var service = new PasswordValidationService(
-            //    new SHA512HashingProvider(), 
-            //    new DefaultSaltStrategy(), 
-            //    new MediumComplexityPasswordRule());
-            var service = container.GetInstance<IPasswordValidationService>();
+
+
+            var service = new PasswordValidationService(
+                container.GetInstance<IHashingProvider>(),
+                container.GetInstance<ISaltStrategy>(),
+                container.GetInstance<IPasswordRule>());
+
             //var pwd = service.GeneratePassword();
             var userInputPwd = "x3n84tNe";
             var storedPwd = "x3n84tNe";
