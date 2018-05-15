@@ -42,7 +42,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository.Tests
         }
 
         [TestMethod()]
-        public void _GetAllTest()
+        public void OrdersRepository_GetAllTest_Dapper()
         {
             var repository = new BuildSchool.MVCSolution.OnlineStore.Repository.OrdersRepository();
 
