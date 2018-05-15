@@ -22,13 +22,14 @@ namespace BuildSchoolPassword.ValidationToolClient.Client
             container.Register<IHashingProvider, SHA512HashingProvider>();
             container.Register<IPasswordRule, MediumComplexityPasswordRule>();
             container.Register<ISaltStrategy, DefaultSaltStrategy>();
-            //container.Register<IPasswordValidationService>();
+            container.Register<IPasswordValidationService>();
 
 
-            var service = new PasswordValidationService(
-                container.GetInstance<IHashingProvider>(),
-                container.GetInstance<ISaltStrategy>(),
-                container.GetInstance<IPasswordRule>());
+            //var service = new PasswordValidationService(
+            //    container.GetInstance<IHashingProvider>(),
+            //    container.GetInstance<ISaltStrategy>(),
+            //    container.GetInstance<IPasswordRule>());
+            var service =container.GetInstance<IPasswordValidationService>();
 
             //var pwd = service.GeneratePassword();
             var userInputPwd = "x3n84tNe";
