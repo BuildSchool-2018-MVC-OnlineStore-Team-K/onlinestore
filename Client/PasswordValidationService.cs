@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BuildSchool.PasswordValidationTool.Abstracts;
 
-namespace Client
+namespace BuildSchool.PasswordValidationTool.Client
 {
     public class PasswordValidationService : IPasswordValidationService
     {
