@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BuildSchool.PasswordValidationTool.Abstracts;
+using BuildSchool.PasswordValidationTool.Client;
 using BuildSchool.PasswordValidationTool.Implementation.HashingProvider;
 using BuildSchool.PasswordValidationTool.Implementation.PasswordRules;
 using BuildSchool.PasswordValidationTool.Implementation.SaltStrategy;
-using Client;
 using SimpleInjector;
 
 namespace BuildSchoolPassword.ValidationToolClient.Client
@@ -22,13 +22,11 @@ namespace BuildSchoolPassword.ValidationToolClient.Client
             container.Register<IHashingProvider, SHA512HashingProvider>();
             container.Register<IPasswordRule, MediumComplexityPasswordRule>();
             container.Register<ISaltStrategy, DefaultSaltStrategy>();
+            container.Register<IPasswordValidationService, PasswordValidationService>();
 
-
-
-            var service = new PasswordValidationService(
-                container.GetInstance<IHashingProvider>(),
-                container.GetInstance<ISaltStrategy>(),
-                container.GetInstance<IPasswordRule>());
+            // resolve object and get instance.
+            var service =
+                container.GetInstance<IPasswordValidationService>();
 
             //var pwd = service.GeneratePassword();
             var userInputPwd = "x3n84tNe";

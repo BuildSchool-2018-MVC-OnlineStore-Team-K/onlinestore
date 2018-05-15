@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using BuildSchool.PasswordValidationTool.Abstracts;
 
-namespace Client
+namespace BuildSchool.PasswordValidationTool.Client
 {
-    public class PasswordValidationService
+    public class PasswordValidationService : IPasswordValidationService
     {
         private IHashingProvider _hashingProvider;
         private ISaltStrategy _saltStrategy;

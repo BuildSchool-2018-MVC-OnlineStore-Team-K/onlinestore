@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{CC6409EB-8C4A-4C21-B3FC-539201411DBC}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Client</RootNamespace>
-    <AssemblyName>Client</AssemblyName>
+    <RootNamespace>BuildSchool.PasswordValidationTool.Client</RootNamespace>
+    <AssemblyName>BuildSchool.PasswordValidationTool.Client</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IPasswordValidationService.cs" />
+    <Compile Include="PasswordValidationService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -59,7 +61,7 @@
       <Name>Abstracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\Implementation\Implementation.csproj">
-      <Project>{36C00DE1-1106-40E8-A4C1-083A9482FDD9}</Project>
+      <Project>{36c00de1-1106-40e8-a4c1-083a9482fdd9}</Project>
       <Name>Implementation</Name>
     </ProjectReference>
   </ItemGroup>
