@@ -22,7 +22,7 @@ namespace BuildSchoolPassword.ValidationToolClient.Client
             container.Register<IHashingProvider, SHA512HashingProvider>();
             container.Register<IPasswordRule, MediumComplexityPasswordRule>();
             container.Register<ISaltStrategy, DefaultSaltStrategy>();
-
+            //container.Register<IPasswordValidationService>();
 
 
             var service = new PasswordValidationService(
