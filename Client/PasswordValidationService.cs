@@ -20,7 +20,7 @@ namespace BuildSchool.PasswordValidationTool.Client
             _passwordRule = passwordRule;
         }
 
-        public bool ValidatePassword(byte[] pwd,byte[] pwdCheck,byte[] salt)
+        public bool ValidatePassword(byte[] pwd, byte[] pwdCheck, byte[] salt)
         {
             var formattedPwd = _saltStrategy.Format(pwd, salt);
             var hashedPwd = _hashingProvider.ComputeHash(formattedPwd);  //先加過料再作Hash
@@ -28,7 +28,7 @@ namespace BuildSchool.PasswordValidationTool.Client
             if (pwd.Length != hashedPwd.Length)  //如果兩個長度不一樣(輸入/設定)
                 return false;
 
-            for(var i = 0; i < pwd.Length; i++)
+            for (var i = 0; i < pwd.Length; i++)
             {
                 if (pwd[i] != hashedPwd[i])
                 {
