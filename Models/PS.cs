@@ -11,5 +11,6 @@ namespace BuildSchool.MVCSolution.OnlineStore.Models
         public int SizeID { get; set; }
         public int ProductID { get; set; }
         public int Quantity { get; set; }
+        public string Size { get; set; }
     }
 }
