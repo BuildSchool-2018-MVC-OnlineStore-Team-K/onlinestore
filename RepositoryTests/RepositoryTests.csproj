@@ -72,7 +72,7 @@
     <Compile Include="OrdersRepositoryTests.cs" />
     <Compile Include="ProductsRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PSRepositoryTests.cs" />
+    <Compile Include="StockColorRepositoryTests.cs" />
     <Compile Include="SizeRepositoryTests.cs" />
   </ItemGroup>
   <ItemGroup>

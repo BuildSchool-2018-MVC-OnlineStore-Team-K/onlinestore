@@ -13,9 +13,9 @@ namespace BuildSchool.MVCSolution.OnlineStore.SizeRepositoryTests
         [TestMethod]
         public void GetAll()
         {
-            //var repository = new BuildSchool.MVCSolution.OnlineStore.Repository.SizeRepository();
-            //var list = repository.GetAll();
-            //Assert.IsTrue(list.Count() > 0);
+            var repository = new BuildSchool.MVCSolution.OnlineStore.Repository.SizeRepository();
+            var list = repository.GetAll();
+            Assert.IsTrue(list.Count() > 0);
         }
     }
 }
