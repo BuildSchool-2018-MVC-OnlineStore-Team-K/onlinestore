@@ -22,7 +22,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             //    var exec = connection.Execute("INSERT INTO Products VALUES (@productid, @category, @productname, @unitprice,@shelftime)");
             //}            
             SqlConnection connection = new SqlConnection(connect);
-            var sql = "INSERT INTO Products VALUES (@productid, @category, @productname, @unitprice,@shelftime)";
+            var sql = "INSERT INTO Products VALUES (@productid, @category, @productname, @unitprice,@shelftime,@picture)";
             SqlCommand command = new SqlCommand(sql, connection);
 
             command.Parameters.AddWithValue("@productid", model.ProductID);
@@ -30,6 +30,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             command.Parameters.AddWithValue("@productname", model.ProductName);
             command.Parameters.AddWithValue("@unitprice", model.UnitPrice);
             command.Parameters.AddWithValue("@shelftime", model.ShelfTime);
+            command.Parameters.AddWithValue("@picture", model.Picture);
 
             connection.Open();
             command.ExecuteNonQuery();
@@ -43,7 +44,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             //    var exec = connection.Execute("UPDATE Products SET Category=@category, ProductName=@productname, UnitPrice=@unitprice, ShelfTime=@shelftime WHERE ProductID = @productid");
             //}
             SqlConnection connection = new SqlConnection(connect);
-            var sql = "UPDATE Products SET Category=@category, ProductName=@productname, UnitPrice=@unitprice, ShelfTime=@shelftime WHERE ProductID = @productid";
+            var sql = "UPDATE Products SET Category=@category, ProductName=@productname, UnitPrice=@unitprice, ShelfTime=@shelftime,Picture=@picture WHERE ProductID = @productid";
             SqlCommand command = new SqlCommand(sql, connection);
 
             command.Parameters.AddWithValue("@productid", model.ProductID);
@@ -51,6 +52,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             command.Parameters.AddWithValue("@productname", model.ProductName);
             command.Parameters.AddWithValue("@unitprice", model.UnitPrice);
             command.Parameters.AddWithValue("@shelftime", model.ShelfTime);
+            command.Parameters.AddWithValue("@picture", model.Picture);
 
             connection.Open();
             command.ExecuteNonQuery();
@@ -168,8 +170,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public IEnumerable<Products> _GetAll()
         {
-            SqlConnection connection = new SqlConnection(
-                "Server=192.168.40.38,1433;Database=E-Commerce;User ID =smallhandsomehandsome; Password =123;");
+            SqlConnection connection = new SqlConnection(connect);
             var sql = "SELECT * FROM Products";
 
             SqlCommand command = new SqlCommand(sql, connection);

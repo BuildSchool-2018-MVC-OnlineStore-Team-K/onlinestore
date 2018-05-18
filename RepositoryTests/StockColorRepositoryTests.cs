@@ -22,8 +22,8 @@ namespace BuildSchool.MVCSolution.OnlineStore.PSRepositoryTests
         public void GetSizeColorStock()
         {
             var repository = new StockColorRepository();
-            var result = repository.GetSizeColorStock(4);
-            Assert.AreEqual(3, result);
+            var result = repository.GetSizeColorStock(5);
+            Assert.AreEqual(5, result);
         }
     }
 }

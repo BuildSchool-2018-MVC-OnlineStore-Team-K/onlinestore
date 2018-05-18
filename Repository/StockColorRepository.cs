@@ -19,10 +19,10 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             var sql = "INSERT INTO StockColor VALUES (@colorid, @sizeid,@color,@stock)";
             SqlCommand command = new SqlCommand(sql, connection);
 
-            command.Parameters.AddWithValue("@productid", model.ColorID);
-            command.Parameters.AddWithValue("@category", model.SizeID);
-            command.Parameters.AddWithValue("@productname", model.Color);
-            command.Parameters.AddWithValue("@unitprice", model.Stock);
+            command.Parameters.AddWithValue("@colorid", model.ColorID);
+            command.Parameters.AddWithValue("@sizeid", model.SizeID);
+            command.Parameters.AddWithValue("@color", model.Color);
+            command.Parameters.AddWithValue("@stock", model.Stock);
 
             connection.Open();
             command.ExecuteNonQuery();
@@ -35,10 +35,10 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             var sql = "UPDATE StockColor SET ColorID = @colorid, SizeID=@sizeid, Color=@color,Stock=@stock";
             SqlCommand command = new SqlCommand(sql, connection);
 
-            command.Parameters.AddWithValue("@productid", model.ColorID);
-            command.Parameters.AddWithValue("@category", model.SizeID);
-            command.Parameters.AddWithValue("@productname", model.Color);
-            command.Parameters.AddWithValue("@unitprice", model.Stock);
+            command.Parameters.AddWithValue("@colorid", model.ColorID);
+            command.Parameters.AddWithValue("@sizeid", model.SizeID);
+            command.Parameters.AddWithValue("@color", model.Color);
+            command.Parameters.AddWithValue("@stock", model.Stock);
 
             connection.Open();
             command.ExecuteNonQuery();
@@ -48,11 +48,11 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public void Delete(StockColor model)
         {
             SqlConnection connection = new SqlConnection(connect);
-            var sql = "Delete FROM Products WHERE StockColorID=@stockColorID";
+            var sql = "Delete FROM Products WHERE ColorID = @colorid";
 
             SqlCommand command = new SqlCommand(sql, connection);
 
-            command.Parameters.AddWithValue("@stockColorID", model.ColorID);
+            command.Parameters.AddWithValue("@colorid", model.ColorID);
 
             connection.Open();
             command.ExecuteNonQuery();
