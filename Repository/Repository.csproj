@@ -51,8 +51,9 @@
     <Compile Include="OrderDetailRepository.cs" />
     <Compile Include="OrdersRepository.cs" />
     <Compile Include="ProductsRepository.cs" />
-    <Compile Include="PSRepository.cs" />
+    <Compile Include="SizeRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StockColorRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Models\Models.csproj">

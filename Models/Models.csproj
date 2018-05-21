@@ -55,7 +55,8 @@
     <Compile Include="Orders.cs" />
     <Compile Include="Products.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PS.cs" />
+    <Compile Include="Size.cs" />
+    <Compile Include="StockColor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

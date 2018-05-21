@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace BuildSchool.MVCSolution.OnlineStore.Models
 {
-    public class PS
+    public class StockColor
     {
+        public int ColorID { get; set; }
         public int SizeID { get; set; }
-        public int ProductID { get; set; }
-        public int Quantity { get; set; }
-        public string Size { get; set; }
+        public string Color { get; set; }
+        public int Stock { get; set; }
     }
 }

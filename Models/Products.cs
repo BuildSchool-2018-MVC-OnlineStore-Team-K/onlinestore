@@ -13,5 +13,6 @@ namespace BuildSchool.MVCSolution.OnlineStore.Models
         public string Category { get; set; }
         public int UnitPrice { get; set; }
         public DateTime ShelfTime { get; set; }
+        public string Picture { get; set; }
     }
 }

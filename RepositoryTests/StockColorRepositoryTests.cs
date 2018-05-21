@@ -8,14 +8,22 @@ using System.Linq;
 namespace BuildSchool.MVCSolution.OnlineStore.PSRepositoryTests 
 {
     [TestClass]
-    public class PSRepositoryTests
+    public class StockColorRepositoryTests
     {
         [TestMethod]
         public void GetAll()
         {
-            var repository = new BuildSchool.MVCSolution.OnlineStore.Repository.PSRepository();
+            var repository = new StockColorRepository();
             var list = repository.GetAll();
             Assert.IsTrue(list.Count() > 0);
+        }
+
+        [TestMethod]
+        public void GetSizeColorStock()
+        {
+            var repository = new StockColorRepository();
+            var result = repository.GetSizeColorStock(5);
+            Assert.AreEqual(5, result);
         }
     }
 }

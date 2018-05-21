@@ -10,20 +10,20 @@ using System.Threading.Tasks;
 
 namespace BuildSchool.MVCSolution.OnlineStore.Repository
 {
-    public class PSRepository
+    public class SizeRepository
     {
-        public void Create(PS model)
+        private string connect = "Server=192.168.40.36,1433;Database=E-Commerce;User ID =smallhandsomehandsome ; Password =123;";
+        public void Create(Size model)
         {
-            SqlConnection connection = new SqlConnection(
-               "data source = 192.168.40.38,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
+            SqlConnection connection = new SqlConnection(connect);
 
-            var sql = "INSERT INTO PS VALUES (@SizeID, @ProductID, @Quantity)";
+            var sql = "INSERT INTO Size VALUES (@SizeID, @ProductID, @SizeType)";
 
             SqlCommand command = new SqlCommand(sql, connection);
 
             command.Parameters.AddWithValue("@SizeID", model.SizeID);
             command.Parameters.AddWithValue("@ProductID", model.ProductID);
-            command.Parameters.AddWithValue("@Quantity", model.Quantity);
+            command.Parameters.AddWithValue("@SizeType", model.SizeType);
 
 
             connection.Open();
@@ -31,30 +31,28 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             connection.Close();
         }
 
-        public void Update(PS model)
+        public void Update(Size model)
         {
-            SqlConnection connection = new SqlConnection(
-               "data source = 192.168.40.38,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
+            SqlConnection connection = new SqlConnection(connect);
 
-            var sql = "UPDATE PS SET Quantity= @Quantity WHERE SizeID = @SizeID AND ProductID = @ProductID ";
+            var sql = "UPDATE Size SET SizeType= @SizeType WHERE SizeID = @SizeID AND ProductID = @ProductID ";
 
             SqlCommand command = new SqlCommand(sql, connection);
 
             command.Parameters.AddWithValue("@SizeID", model.SizeID);
             command.Parameters.AddWithValue("@ProductID", model.ProductID);
-            command.Parameters.AddWithValue("@Quantity", model.Quantity);
+            command.Parameters.AddWithValue("@SizeType", model.SizeType);
 
             connection.Open();
             command.ExecuteNonQuery();
             connection.Close();
         }
 
-        public void Delete(PS model)
+        public void Delete(Size model)
         {
-            SqlConnection connection = new SqlConnection(
-              "data source = 192.168.40.38,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
+            SqlConnection connection = new SqlConnection(connect);
 
-            var sql = "DELETE FROM PS WHERE SizeID = @SizeID AND ProductID = @ProductID";
+            var sql = "DELETE FROM Size WHERE SizeID = @SizeID AND ProductID = @ProductID";
 
             SqlCommand command = new SqlCommand(sql, connection);
 
@@ -66,12 +64,11 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             connection.Close();
         }
 
-        public PS FindById(string SizeID, string ProductID)
+        public Size FindById(string SizeID, string ProductID)
         {
-            SqlConnection connection = new SqlConnection(
-                 "data source = 192.168.40.38,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
+            SqlConnection connection = new SqlConnection(connect);
 
-            var sql = "SELECT * FROM PS WHERE SizeID = @SizeID AND ProductID = @ProductID";
+            var sql = "SELECT * FROM Size WHERE SizeID = @SizeID AND ProductID = @ProductID";
 
             SqlCommand command = new SqlCommand(sql, connection);
 
@@ -81,13 +78,13 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             connection.Open();
 
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            var ps = new PS();
+            var ps = new Size();
 
             while (reader.Read())
             {
                 ps.SizeID = int.Parse(reader.GetValue(reader.GetOrdinal("SizeID")).ToString());
                 ps.ProductID = int.Parse(reader.GetValue(reader.GetOrdinal("ProductID")).ToString());
-                ps.Quantity = int.Parse(reader.GetValue(reader.GetOrdinal("Quantity")).ToString());
+                ps.SizeType = reader.GetValue(reader.GetOrdinal("SizeType")).ToString();
 
             }
 
@@ -96,24 +93,23 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             return ps;
         }
 
-        public IEnumerable<PS> GetAll() //()內不用給直 因為傳整個表格
+        public IEnumerable<Size> GetAll() //()內不用給直 因為傳整個表格
         {
-            SqlConnection connection = new SqlConnection(
-              "data source = 192.168.40.38,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
+            SqlConnection connection = new SqlConnection(connect);
 
-            var sql = "SELECT * FROM  PS";
+            var sql = "SELECT * FROM  Size";
             SqlCommand command = new SqlCommand(sql, connection);
 
             connection.Open();
 
             var reader = command.ExecuteReader();
-            var list = new List<PS>();
-            var ps = new PS();
+            var list = new List<Size>();
+            var ps = new Size();
             while (reader.Read())
             {
                 ps.SizeID = int.Parse(reader.GetValue(reader.GetOrdinal("SizeID")).ToString());
                 ps.ProductID = int.Parse(reader.GetValue(reader.GetOrdinal("ProductID")).ToString());
-                ps.Quantity = int.Parse(reader.GetValue(reader.GetOrdinal("Quantity")).ToString());
+                ps.SizeType = reader.GetValue(reader.GetOrdinal("SizeType")).ToString();
                 list.Add(ps);
             }
             reader.Close();
@@ -123,11 +119,10 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         }
 
         //擴充套件Dapper
-        public IEnumerable<PS> PS_GetAllDapper()
+        public IEnumerable<Size> PS_GetAllDapper()
         {
-            SqlConnection connection = new SqlConnection(
-                "data source = 192.168.40.38,1433 ; database = E-Commerce ; user id = smallhandsomehandsome; password = 123");
-            var result = connection.Query<PS>("SELECT * FROM PS");
+            SqlConnection connection = new SqlConnection(connect);
+            var result = connection.Query<Size>("SELECT * FROM Size");
             return result;
         }
     }
