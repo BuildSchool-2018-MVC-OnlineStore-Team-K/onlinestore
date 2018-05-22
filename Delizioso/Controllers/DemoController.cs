@@ -1,11 +1,11 @@
-﻿using Deliozo.NorthWindModels;
+﻿//using Deliozo.NorthWindModels;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using WebApplication1.Models;
+//using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
@@ -16,18 +16,18 @@ namespace WebApplication1.Controllers
         [Route("test")]
         public ActionResult modeltest()
         {
-            var db = new NorthWind();
-            var query = db.Customers;
+           // var db = new NorthWind();
+           // var query = db.Customers;
             
 
-            return View(query);
+            return View();
         }
 
         public ActionResult DiaplayCustomerCount()
         {
-            var db = new NorthWind();
-            var count = db.Customers.Count();
-            return View(count);
+           // var db = new NorthWind();
+           // var count = db.Customers.Count();
+            return View();
         }
 
 
@@ -97,7 +97,7 @@ namespace WebApplication1.Controllers
 
             return View();
         }
-
+        /*
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CreateCustomer(Customer model)
@@ -107,7 +107,7 @@ namespace WebApplication1.Controllers
 
             return View();
         }
-
+        */
         public ActionResult CreateOrder()
         {
             return View();
