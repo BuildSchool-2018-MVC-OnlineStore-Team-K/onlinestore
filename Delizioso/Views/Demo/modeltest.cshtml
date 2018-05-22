@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Deliozo.NorthWindModels.Customers>
+@{
+    ViewBag.Title = "modeltest";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>modeltest</h2>
+@{ Html.RenderAction("DiaplayCustomerCount");}
+@{ Html.RenderPartial("DiaplayCustomerCount", -1);}
+<table class="table">
+    <thead>
+        <tr>
+            <td>Customer ID</td>
+            <td>Company Name</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var customer in Model)
+        {
+            <tr>
+                <td>@customer.CustomerID</td>
+                <td>@customer.CompanyName</td>
+                <td>@customer.Address</td>
+                <td>@customer.Fax</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
