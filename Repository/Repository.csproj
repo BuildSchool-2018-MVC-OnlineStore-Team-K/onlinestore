@@ -64,6 +64,10 @@
       <Project>{61f6739c-290c-4d82-bf9f-979565e74fcd}</Project>
       <Name>Utilities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ViewModels\ViewModels.csproj">
+      <Project>{0f648a53-edbb-4b09-8395-52a1015dba95}</Project>
+      <Name>ViewModels</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

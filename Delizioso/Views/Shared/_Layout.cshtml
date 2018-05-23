@@ -12,8 +12,6 @@
           crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <title>@ViewBag.Title - Delizioso </title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
 </head>
 
 <body>
@@ -144,17 +142,77 @@
     </div>
     <br>
 
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-4">
+                您的購物車
+            </div>
+            <div class="col-2">
 
-    <!-- Rendor Body start-->
-    <div class="container-fluid body-content">
-        @RenderBody()
-    </div>
-    <!-- Rendor Body end-->
+            </div>
+            <div class="col-2">
 
+            </div>
+            <div class="col-2">
 
-    <br>
-    <br>
-    <br>
+            </div>
+            <div class="col-2">
+
+            </div>
+        </div>
+        <hr style: "color:black">
+        <div class="row">
+            <div class="col-4">
+                <center>商品</center>
+            </div>
+            <div class="col-2">
+                <center> 價格</center>
+            </div>
+            <div class="col-2">
+                <center> 數量</center>
+            </div>
+            <div class="col-2">
+                <center> 合計</center>
+            </div>
+            <div class="col-2">
+
+            </div>
+        </div>
+        <br>
+
+        <!-- Rendor Body start-->
+        <div class="container body-content">
+            @RenderBody()
+        </div>
+        <!-- Rendor Body end-->
+
+        <hr style: "color:black">
+        <br>
+        <div class="row">
+            <div class="col-4">
+                <button class="responsiveBasket_discountEntryButton" id="繼續購物" type="submit">
+                    繼續購物
+                </button>
+            </div>
+            <div class="col-4">
+                <div class="responsiveBasket_discountInputGroup">
+                    <input class="responsiveBasket_discountEntryInput" name="discountCode" id="discountcode" type="text" placeholder="輸入優惠代碼">
+                    <button class="responsiveBasket_discountEntryButton" id="add-discount-code" type="submit">
+                        輸入優惠代碼
+                    </button>
+                </div>
+            </div>
+            <div class="col-4">
+                <center>
+                    <button class="responsiveBasket_discountEntryButton " id="商品結帳" type="submit">
+                        商品結帳
+                    </button>
+                </center>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
     </div>
     <div class="container-fluid">
         <div class="row">
@@ -322,4 +380,3 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
-
