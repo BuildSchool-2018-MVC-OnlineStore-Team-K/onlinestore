@@ -12,7 +12,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.OrderDetailRepository
 {
     public class OrderDetailRepository
     {
-        private string connect = "Server=192.168.40.36,1433;Database=E-Commerce;User ID =smallhandsomehandsome ; Password =123;";
+        private string connect = "Server=192.168.40.35,1433;Database=E-Commerce;User ID =smallhandsomehandsome ; Password =123;";
         public void Create(OrderDetail model)
         {
             SqlConnection connection = new SqlConnection(connect);

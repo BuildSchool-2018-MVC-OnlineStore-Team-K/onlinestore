@@ -10,11 +10,11 @@ using System.Web.Mvc;
 
 namespace WebApplication1.Controllers
 {
-    [RoutePrefix("")]
+    [RoutePrefix("orders")]
     public class DemoController : Controller
     {
 
-        [Route("")]
+        [Route("model")]
         public ActionResult modeltest()
         {
 
