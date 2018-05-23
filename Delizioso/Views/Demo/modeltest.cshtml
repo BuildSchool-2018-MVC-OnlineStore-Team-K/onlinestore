@@ -3,26 +3,549 @@
     ViewBag.Title = "modeltest";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<title>Delizioso-購物</title>
 <h2>modeltest</h2>
+<!DOCTYPE html>
+<html>
+<body>
+    <!-- Side Navigation -->
+    <nav class="w3-sidebar w3-black w3-animate-right w3-xxlarge" style="display:none;padding-top:150px;right:0;z-index:2" id="mySidebar">
+        <div class="w3-bar-block w3-center">
+            <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
+            <h3 class="w3-wide">
+                <img src="https://upload.cc/i1/2018/05/17/ZAjghF.jpg" style="height:100px; width:300px;" class="img-fluid" alt="Responsive image">
+            </h3>
+        </div>
+        <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
+            <button class="w3-btn w3-xlarge " onclick="document.getElementById('登入').style.display='block'" style="font-weight:900;">登入</button>
+            <button class="w3-btn w3-xlarge " onclick="document.getElementById('註冊').style.display='block'" style="font-weight:900;">註冊</button>
 
-<table class="table">
-    <thead>
-        <tr>
-            <td>Customer ID</td>
-            <td>Company Name</td>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var orders in Model)
-        {
-            <tr>
-                <td>@orders.OrderID</td>
-                <td>@orders.MemberID</td>
-                <td>@orders.Pay</td>
-                <td>@orders.Time</td>
-            </tr>
+            <div class="w3-button w3-block w3-white w3-left-align">
+                <a href="綜合板.html" class="w3-bar-item w3-button">首頁</a>
+                <a href="#" class="w3-bar-item w3-button">會員中心X</a>
+                <a href="購物車.html" class="w3-bar-item w3-button">購物車</a>
+                <a href="訂單明細與紀錄.html" class="w3-bar-item w3-button">訂單明細/紀錄</a>
+                <a href="#" class="w3-bar-item w3-button">客戶服務X</a>
+            </div>
+        </div>
+    </nav>
+
+    <!--登入視窗-->
+    <div id="登入" class="w3-modal">
+        <div class="w3-modal-content w3-card-4 w3-animate-top">
+            <header class="w3-container w3-theme-l1">
+                <span onclick="document.getElementById('登入').style.display='none'" class="w3-button w3-display-topright">×</span>
+                <h3>會員登入</h3>
+            </header>
+            <div class="w3-padding">
+                <form action="">
+                    帳號:
+                    <br>
+                    <input type="text" name="userid">
+                    <br> 密碼:
+                    <br>
+                    <input type="password" name="psw">
+                    <a herf="#">忘記密碼</a>
+                    <br>
+                    <br>
+                    <input type="submit">
+                </form>
+            </div>
+            <footer class="w3-container w3-theme-l1">
+                <p>
+                    祝您購物愉快
+                    <i class="fa fa-smile-o"></i>
+                </p>
+            </footer>
+        </div>
+    </div>
+
+    <!--註冊視窗-->
+    <div id="註冊" class="w3-modal">
+        <div class="w3-modal-content w3-card-4 w3-animate-top">
+            <header class="w3-container w3-theme-l1">
+                <span onclick="document.getElementById('註冊').style.display='none'" class="w3-button w3-display-topright">×</span>
+                <h3>會員註冊</h3>
+            </header>
+            <div class="w3-padding">
+                <form action="/action_page.php" target="_blank">
+                    <p>
+                        <input class="w3-input w3-padding-16" type="text" placeholder="帳號" required name="帳號">
+                    </p>
+                    <p>
+                        <input class="w3-input w3-padding-16" type="text" placeholder="密碼" required name="密碼">
+                    </p>
+                    <p>
+                        <input class="w3-input w3-padding-16" type="text" placeholder="姓名" required name="姓名">
+                    </p>
+                    <p>
+                        <input class="w3-input w3-padding-16" type="text" placeholder="電話" required name="電話">
+                    </p>
+                    <p>
+                        <input class="w3-input w3-padding-16" type="email" placeholder="信箱" required name="信箱">
+                    </p>
+
+                    <p>
+                        <input class="w3-input w3-padding-16" type="date" placeholder="生日" required name="生日">
+                    </p>
+                    <p>
+                        <button class="w3-button w3-light-grey w3-padding-large" type="submit">
+                            <i class="fa fa-paper-plane"></i>確定
+                        </button>
+                    </p>
+                </form>
+                <!-- End Contact Section -->
+            </div>
+        </div>
+        <footer class="w3-container w3-theme-l1">
+            <p>
+                祝您購物愉快
+                <i class="fa fa-smile-o"></i>
+            </p>
+        </footer>
+    </div>
+
+    <!-- Header -->
+    <header class="w3-container w3-theme w3-padding" id="myHeader">
+        <i onclick="w3_open()" class="fa fa-bars w3-xlarge w3-button w3-theme"></i>
+        <h1 class="w3-xxxlarge w3-animate-bottom">
+            <img src="https://upload.cc/i1/2018/05/17/ZAjghF.jpg" style="height:100px; width:300px;" class="img-fluid" alt="Responsive image">
+        </h1>
+    </header>
+
+    <!-- Modal -->
+    <div id="id01" class="w3-modal">
+        <div class="w3-modal-content w3-card-4 w3-animate-top">
+            <header class="w3-container w3-theme-l1">
+                <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">×</span>
+                <h3>DÉLICIEUX</h3>
+                <h5>關於我們</h5>
+            </header>
+            <div class="w3-padding">
+                <h3>重新認識 什麼是「購物」。</h3>
+                <p>Eu exercitation aute anim consequat magna aute incididunt adipisicing et anim nostrud.</p>
+            </div>
+            <footer class="w3-container w3-theme-l1">
+                <p>
+                    祝您購物愉快
+                    <i class="fa fa-smile-o"></i>
+                </p>
+            </footer>
+        </div>
+    </div>
+    <br>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-4">
+                您的購物車
+            </div>
+            <div class="col-2">
+
+            </div>
+            <div class="col-2">
+
+            </div>
+            <div class="col-2">
+
+            </div>
+            <div class="col-2">
+
+            </div>
+        </div>
+        <hr style: "color:black">
+        <div class="row">
+            <div class="col-4">
+                商品
+            </div>
+            <div class="col-2">
+                <center> 價格</center>
+            </div>
+            <div class="col-2">
+                <center> 數量</center>
+            </div>
+            <div class="col-2">
+                <center> 合計</center>
+            </div>
+            <div class="col-2">
+
+            </div>
+        </div>
+        <br>
+        <div class="row">
+
+            <div class="col-4">
+                <img src="https://s9.postimg.cc/fd3rfy0jj/jeans3.jpg" width="100" height="100" style="float: left; margin: 5px">
+                <P> ProductName- ShopNAme-XL-Red</P>
+                <P>尚有庫存-24小時內出貨</P>
+            </div>
+            <div class="col-2">
+                <center> NT$1370</center>
+            </div>
+            <div class="col-2">
+                <center>
+                    <button class="shopee-button-outline">
+                        -
+                    </button>
+                    <input class="shopee-button-outline shopee-button-outline-mid" type="text" value="1" style="width:80px">
+                    <button class="shopee-button-outline-mid">
+                        +
+                    </button>
+                </center>
+            </div>
+            <div class="col-2">
+                <center> NT$1370</center>
+            </div>
+            <div class="col-2">
+                <a class="responsiveBasket_removeItem" rel="nofollow" href="my.basket?page=basket&amp;section=checkout&amp;counter=1&amp;trash=11540798"
+                   aria-label="移除商品">
+                    <svg class="responsiveBasket_cross auto-basketaction-trash" width="20" height="20" viewBox="-3 -4 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8.414 7l5.293-5.293c.391-.391.391-1.023 0-1.414s-1.023-.391-1.414 0l-5.293 5.293-5.293-5.293c-.391-.391-1.023-.391-1.414 0s-.391 1.023 0 1.414l5.293 5.293-5.293 5.293c-.391.391-.391 1.023 0 1.414.195.195.451.293.707.293.256 0 .512-.098.707-.293l5.293-5.293 5.293 5.293c.195.195.451.293.707.293.256 0 .512-.098.707-.293.391-.391.391-1.023 0-1.414l-5.293-5.293"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <hr style: "color:black">
+        <div class="row">
+
+            <div class="col-4">
+                <img src="https://s9.postimg.cc/fd3rfy0jj/jeans3.jpg" width="100" height="100" style="float: left; margin: 5px">
+                <P> ProductName- ShopNAme-XL-Red</P>
+                <P>尚有庫存-24小時內出貨</P>
+            </div>
+            <div class="col-2">
+                <center> NT$1370</center>
+            </div>
+            <div class="col-2">
+                <center>
+                    <button class="shopee-button-outline">
+                        -
+                    </button>
+                    <input class="shopee-button-outline shopee-button-outline-mid" type="text" value="1" style="width:80px">
+                    <button class="shopee-button-outline-mid">
+                        +
+                    </button>
+                </center>
+            </div>
+            <div class="col-2">
+                <center> NT$1370</center>
+            </div>
+            <div class="col-2">
+                <a class="responsiveBasket_removeItem" rel="nofollow" href="my.basket?page=basket&amp;section=checkout&amp;counter=1&amp;trash=11540798"
+                   aria-label="移除商品">
+                    <svg class="responsiveBasket_cross auto-basketaction-trash" width="20" height="20" viewBox="-3 -4 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8.414 7l5.293-5.293c.391-.391.391-1.023 0-1.414s-1.023-.391-1.414 0l-5.293 5.293-5.293-5.293c-.391-.391-1.023-.391-1.414 0s-.391 1.023 0 1.414l5.293 5.293-5.293 5.293c-.391.391-.391 1.023 0 1.414.195.195.451.293.707.293.256 0 .512-.098.707-.293l5.293-5.293 5.293 5.293c.195.195.451.293.707.293.256 0 .512-.098.707-.293.391-.391.391-1.023 0-1.414l-5.293-5.293"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <hr style: "color:black">
+        <div class="row">
+
+            <div class="col-4">
+                <img src="https://s9.postimg.cc/fd3rfy0jj/jeans3.jpg" width="100" height="100" style="float: left; margin: 5px">
+                <P> ProductName- ShopNAme-XL-Red</P>
+                <P>尚有庫存-24小時內出貨</P>
+            </div>
+            <div class="col-2">
+                <center> NT$1370</center>
+            </div>
+            <div class="col-2">
+                <center>
+                    <button class="shopee-button-outline">
+                        -
+                    </button>
+                    <input class="shopee-button-outline shopee-button-outline-mid" type="text" value="1" style="width:80px">
+                    <button class="shopee-button-outline-mid">
+                        +
+                    </button>
+                </center>
+            </div>
+            <div class="col-2">
+                <center> NT$1370</center>
+            </div>
+            <div class="col-2">
+                <a class="responsiveBasket_removeItem" rel="nofollow" href="my.basket?page=basket&amp;section=checkout&amp;counter=1&amp;trash=11540798"
+                   aria-label="移除商品">
+                    <svg class="responsiveBasket_cross auto-basketaction-trash" width="20" height="20" viewBox="-3 -4 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8.414 7l5.293-5.293c.391-.391.391-1.023 0-1.414s-1.023-.391-1.414 0l-5.293 5.293-5.293-5.293c-.391-.391-1.023-.391-1.414 0s-.391 1.023 0 1.414l5.293 5.293-5.293 5.293c-.391.391-.391 1.023 0 1.414.195.195.451.293.707.293.256 0 .512-.098.707-.293l5.293-5.293 5.293 5.293c.195.195.451.293.707.293.256 0 .512-.098.707-.293.391-.391.391-1.023 0-1.414l-5.293-5.293"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <hr style: "color:black">
+        <div class="row">
+            <div class="col-8">
+
+            </div>
+            <div class="col-4">
+                <p> 購物車合計: NT$3620</p>
+            </div>
+        </div>
+
+        <hr style: "color:black">
+        <br>
+        <div class="row">
+            <div class="col-4">
+                <button class="responsiveBasket_discountEntryButton" id="繼續購物" type="submit">
+                    繼續購物
+                </button>
+            </div>
+            <div class="col-4">
+                <div class="responsiveBasket_discountInputGroup">
+                    <input class="responsiveBasket_discountEntryInput" name="discountCode" id="discountcode" type="text" placeholder="輸入優惠代碼">
+                    <button class="responsiveBasket_discountEntryButton" id="add-discount-code" type="submit">
+                        輸入優惠代碼
+                    </button>
+                </div>
+            </div>
+            <div class="col-4">
+                <center>
+                    <button class="responsiveBasket_discountEntryButton " id="商品結帳" type="submit">
+                        商品結帳
+                    </button>
+                </center>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-3">
+                </div>
+                <div class="col-6">
+                    <center>
+                        <p>
+                            <h2>購買這個產品的買家也購買了:</h2>
+                        </p>
+                    </center>
+                </div>
+                <div class="col-3">
+                </div>
+            </div>
+
+            <div class="row text-center">
+                <div class="col-3">
+                    <img src="https://s9.postimg.cc/fd3rfy0jj/jeans3.jpg" width="170" height="180">
+
+                    <p>
+                        ProductName- ShopNAme-XL-Red
+                    </p>
+
+                    <p>
+                        <h3> $19.99</h3>
+                    </p>
+                    <button class="w3-button w3-black" style="widows:150px">
+                        購買
+                        <i class="fa fa-shopping-cart"></i>
+                    </button>
+                </div>
+                <div class="col-3">
+                    <img src="https://s9.postimg.cc/fd3rfy0jj/jeans3.jpg" width="170" height="180">
+                    <p>
+                        ProductName- ShopNAme-XL-Red
+                    </p>
+                    <p>
+                        <h3> $19.99</h3>
+                    </p>
+                    <button class="w3-button w3-black" style="widows:150px">
+                        購買
+                        <i class="fa fa-shopping-cart"></i>
+                    </button>
+                </div>
+                <div class="col-3">
+                    <img src="https://s9.postimg.cc/fd3rfy0jj/jeans3.jpg" width="170" height="180">
+                    <p>
+                        ProductName- ShopNAme-XL-Red
+                    </p>
+                    <p>
+                        <h3> $19.99</h3>
+                    </p>
+                    <button class="w3-button w3-black" style="widows:150px">
+                        購買
+                        <i class="fa fa-shopping-cart"></i>
+                    </button>
+                </div>
+
+                <div class="col-3 ">
+                    <img src="https://s9.postimg.cc/fd3rfy0jj/jeans3.jpg" width="170" height="180">
+                    <p>
+                        ProductName- ShopNAme-XL-Red
+                    </p>
+                    <p>
+                        <h3> $19.99</h3>
+                    </p>
+                    <button class="w3-button w3-black" style="widows:150px">
+                        購買
+                        <i class="fa fa-shopping-cart"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-3">
+            </div>
+            <div class="col-6">
+                <center>
+                    <p>常見問題||條款和條件||運費＆配送資訊||隱私政策</p>
+                </center>
+            </div>
+            <div class="col-3">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3">
+            </div>
+            <div class="col-6">
+                <center>
+                    <p> © 2018 | - The Hut.com Ltd</p>
+                </center>
+            </div>
+            <div class="col-3">
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+    <!-- Pagination -->
+    <div class="w3-center w3-padding-32">
+        <div class="w3-bar">
+            <a href="#" class="w3-bar-item w3-button w3-hover-theme">«</a>
+            <a href="#" class="w3-bar-item w3-button w3-theme w3-hover-theme">1</a>
+            <a href="#" class="w3-bar-item w3-button w3-hover-theme">2</a>
+            <a href="#" class="w3-bar-item w3-button w3-hover-theme">3</a>
+            <a href="#" class="w3-bar-item w3-button w3-hover-theme">4</a>
+            <a href="#" class="w3-bar-item w3-button w3-hover-theme">5</a>
+            <a href="#" class="w3-bar-item w3-button w3-hover-theme">»</a>
+        </div>
+    </div>
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="w3-container w3-theme-dark w3-padding-16">
+        <h3>DÉLICIEUX</h3>
+        <p>
+            TEL:
+            <a href="" style="text-decoration:none;" target="_blank">0988-7766554</a>
+        </p>
+        <p>
+            MAIL:
+            <a href="" style="text-decoration:none;" target="_blank">DÉLICIEUX@gmail.com</a>
+        </p>
+        <div style="position:relative;bottom:55px;" class="w3-tooltip w3-right">
+            <span class="w3-text w3-theme-light w3-padding">Go To Top</span>
+            <a class="w3-text-white" href="#myHeader">
+                <span class="w3-xlarge">
+                    <i class="fa fa-chevron-circle-up"></i>
+                </span>
+            </a>
+        </div>
+        <p>
+            國家和地區| 新加坡| 印尼| 台灣| 泰國| 馬來西亞| 越南| 菲律賓
+        </p>
+    </footer>
+
+    <!-- Script for Sidebar, Tabs, Accordions, Progress bars and slideshows -->
+    <script>
+        // Side navigation
+        function w3_open() {
+            var x = document.getElementById("mySidebar");
+            x.style.width = "100%";
+            x.style.fontSize = "40px";
+            x.style.paddingTop = "10%";
+            x.style.display = "block";
         }
-    </tbody>
-</table>
+
+        function w3_close() {
+            document.getElementById("mySidebar").style.display = "none";
+        }
+
+        // Tabs
+        function openCity(evt, cityName) {
+            var i;
+            var x = document.getElementsByClassName("city");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            var activebtn = document.getElementsByClassName("testbtn");
+            for (i = 0; i < x.length; i++) {
+                activebtn[i].className = activebtn[i].className.replace(" w3-dark-grey", "");
+            }
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " w3-dark-grey";
+        }
+
+        var mybtn = document.getElementsByClassName("testbtn")[0];
+        mybtn.click();
+
+        // Accordions
+        function myAccFunc(id) {
+            var x = document.getElementById(id);
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+            } else {
+                x.className = x.className.replace(" w3-show", "");
+            }
+        }
+
+        // Slideshows
+        var slideIndex = 1;
+
+        function plusDivs(n) {
+            slideIndex = slideIndex + n;
+            showDivs(slideIndex);
+        }
+
+        function showDivs(n) {
+            var x = document.getElementsByClassName("mySlides");
+            if (n > x.length) {
+                slideIndex = 1
+            }
+            if (n < 1) {
+                slideIndex = x.length
+            };
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            x[slideIndex - 1].style.display = "block";
+        }
+
+        showDivs(1);
+
+        // Progress Bars
+        function move() {
+            var elem = document.getElementById("myBar");
+            var width = 5;
+            var id = setInterval(frame, 10);
+
+            function frame() {
+                if (width == 100) {
+                    clearInterval(id);
+                } else {
+                    width++;
+                    elem.style.width = width + '%';
+                    elem.innerHTML = width * 1 + '%';
+                }
+            }
+        }
+    </script>
+
+</body>
+
+</html>
 

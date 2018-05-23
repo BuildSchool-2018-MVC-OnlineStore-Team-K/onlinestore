@@ -14,7 +14,7 @@ namespace WebApplication1.Controllers
     public class DemoController : Controller
     {
 
-        [Route("model")]
+        [Route("CartModel")]
         public ActionResult modeltest()
         {
 
