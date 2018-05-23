@@ -21,7 +21,12 @@ namespace WebApplication1.Controllers
 
             var CartService1 = new CartService();
             var query = CartService1.GetCartProducts(1 , 6);
-
+            decimal TotalPrice = 0;
+            foreach(var item in query)
+            {
+                TotalPrice += item.Total;
+            }
+            ViewBag.Total = TotalPrice;
             return View(query);
         }
 

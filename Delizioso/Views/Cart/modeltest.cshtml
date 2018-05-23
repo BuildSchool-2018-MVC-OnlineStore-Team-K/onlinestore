@@ -3,46 +3,8 @@
     ViewBag.Title = "modeltest";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<!DOCTYPE html>
-<html>
-<body>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-4">
-                您的購物車
-            </div>
-            <div class="col-2">
 
-            </div>
-            <div class="col-2">
-
-            </div>
-            <div class="col-2">
-
-            </div>
-            <div class="col-2">
-
-            </div>
-        </div>
-        <hr style: "color:black">
-        <div class="row">
-            <div class="col-4">
-                商品
-            </div>
-            <div class="col-2">
-                <center> 價格</center>
-            </div>
-            <div class="col-2">
-                <center> 數量</center>
-            </div>
-            <div class="col-2">
-                <center> 合計</center>
-            </div>
-            <div class="col-2">
-
-            </div>
-        </div>
-        <br>
+    
         @foreach (var item in @Model)
         {
             <div class="row">
@@ -78,124 +40,13 @@
                     </a>
                 </div>
             </div>
-         }
-
-
-
-
+        }
 
         <div class="row">
             <div class="col-8">
 
             </div>
             <div class="col-4">
-                <p> 購物車合計: NT$3620</p>
+                <p> 購物車合計: NT$@ViewBag.Total</p>
             </div>
         </div>
-
-        <hr style: "color:black">
-        <br>
-        <div class="row">
-            <div class="col-4">
-                <button class="responsiveBasket_discountEntryButton" id="繼續購物" type="submit">
-                    繼續購物
-                </button>
-            </div>
-            <div class="col-4">
-                <div class="responsiveBasket_discountInputGroup">
-                    <input class="responsiveBasket_discountEntryInput" name="discountCode" id="discountcode" type="text" placeholder="輸入優惠代碼">
-                    <button class="responsiveBasket_discountEntryButton" id="add-discount-code" type="submit">
-                        輸入優惠代碼
-                    </button>
-                </div>
-            </div>
-            <div class="col-4">
-                <center>
-                    <button class="responsiveBasket_discountEntryButton " id="商品結帳" type="submit">
-                        商品結帳
-                    </button>
-                </center>
-            </div>
-        </div>
-        <br>
-        <br>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-3">
-                </div>
-                <div class="col-6">
-                    <center>
-                        <p>
-                            <h2>購買這個產品的買家也購買了:</h2>
-                        </p>
-                    </center>
-                </div>
-                <div class="col-3">
-                </div>
-            </div>
-
-            <div class="row text-center">
-                <div class="col-3">
-                    <img src="https://s9.postimg.cc/fd3rfy0jj/jeans3.jpg" width="170" height="180">
-
-                    <p>
-                        ProductName- ShopNAme-XL-Red
-                    </p>
-
-                    <p>
-                        <h3> $19.99</h3>
-                    </p>
-                    <button class="w3-button w3-black" style="widows:150px">
-                        購買
-                        <i class="fa fa-shopping-cart"></i>
-                    </button>
-                </div>
-                <div class="col-3">
-                    <img src="https://s9.postimg.cc/fd3rfy0jj/jeans3.jpg" width="170" height="180">
-                    <p>
-                        ProductName- ShopNAme-XL-Red
-                    </p>
-                    <p>
-                        <h3> $19.99</h3>
-                    </p>
-                    <button class="w3-button w3-black" style="widows:150px">
-                        購買
-                        <i class="fa fa-shopping-cart"></i>
-                    </button>
-                </div>
-                <div class="col-3">
-                    <img src="https://s9.postimg.cc/fd3rfy0jj/jeans3.jpg" width="170" height="180">
-                    <p>
-                        ProductName- ShopNAme-XL-Red
-                    </p>
-                    <p>
-                        <h3> $19.99</h3>
-                    </p>
-                    <button class="w3-button w3-black" style="widows:150px">
-                        購買
-                        <i class="fa fa-shopping-cart"></i>
-                    </button>
-                </div>
-
-                <div class="col-3 ">
-                    <img src="https://s9.postimg.cc/fd3rfy0jj/jeans3.jpg" width="170" height="180">
-                    <p>
-                        ProductName- ShopNAme-XL-Red
-                    </p>
-                    <p>
-                        <h3> $19.99</h3>
-                    </p>
-                    <button class="w3-button w3-black" style="widows:150px">
-                        購買
-                        <i class="fa fa-shopping-cart"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-
-</body>
-
-</html>
-
