@@ -158,6 +158,9 @@
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\FacebookAuthenticationController.cs" />
     <Compile Include="Controllers\GoogleAuthenticationController.cs" />
+    <Compile Include="Controllers\IntroductionController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderDetailsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -197,15 +200,16 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\FacebookAuthentication\Index.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Cart\modeltest.cshtml" />
+    <Content Include="Views\OrderDetails\OrderDetails.cshtml" />
+    <Content Include="Views\Introduction\Introduction.cshtml" />
+    <Content Include="Views\Home\Home.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Images\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Authentication\" />
   </ItemGroup>
