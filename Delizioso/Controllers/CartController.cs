@@ -11,7 +11,7 @@ using System.Web.Mvc;
 namespace WebApplication1.Controllers
 {
     [RoutePrefix("orders")]
-    public class DemoController : Controller
+    public class CartController : Controller
     {
 
         [Route("CartModel")]

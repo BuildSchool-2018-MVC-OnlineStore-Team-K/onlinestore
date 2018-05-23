@@ -155,7 +155,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\DemoController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\FacebookAuthenticationController.cs" />
     <Compile Include="Controllers\GoogleAuthenticationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -202,12 +202,8 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\FacebookAuthentication\Index.cshtml" />
-    <Content Include="Views\Demo\CreateCustomer.cshtml" />
-    <Content Include="Views\Demo\CreateOrder.cshtml" />
-    <Content Include="Views\Demo\customerscount.cshtml" />
-    <Content Include="Views\Demo\DiaplayCustomerCount.cshtml" />
-    <Content Include="Views\Demo\Index.cshtml" />
-    <Content Include="Views\Demo\modeltest.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Cart\modeltest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
