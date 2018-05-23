@@ -7,12 +7,13 @@ using System.Text;
 using System.Threading.Tasks;
 using BuildSchool.MVCSolution.OnlineStore.Utilities;
 using Dapper;
+using ViewModels;
 
 namespace BuildSchool.MVCSolution.OnlineStore.Repository
 {
     public class OrdersRepository
     {
-        private string connect = "Server=192.168.40.35,1433;Database=E-Commerce;User ID =smallhandsomehandsome ; Password =123;";
+        private string connect = "Server=192.168.40.35,1433;Database=E-Commerce;User ID =smallhandsomehandsome; Password =123;";
         public void Create(Orders model)
         {
             SqlConnection connection = new SqlConnection(connect);
@@ -193,6 +194,20 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             }
             
         }
+
+
+        public IEnumerable<CartViewModel> GetCartProductsInformation(int MemberID , int OrderID)
+        {
+            SqlConnection connection = new SqlConnection(connect);
+            //取得該會員得購物車 詳細資訊 購買了ooxx的oo尺寸oo個oo顏色ooxx
+
+            return  connection.Query<CartViewModel>("SELECT p.ProductName, od.UnitPrice , Quantity , sc.Color , sz.SizeType FROM Orders  o INNER JOIN OrderDetail od ON o.OrderID = od.OrderID INNER JOIN Products p ON p.ProductID = od.ProductID INNER JOIN Size sz ON p.ProductID = sz.ProductID INNER JOIN StockColor sc ON sc.ColorID = sz.SizeID WHERE MemberID = @MemberID and o.OrderID = @OrderID and Cart = 1 Group By p.ProductName, Quantity , sc.Color , sz.SizeType, od.UnitPrice", new {
+                OrderID ,
+                MemberID
+            });
+
+        }
+
 
 
     }
