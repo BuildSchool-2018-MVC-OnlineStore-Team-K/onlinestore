@@ -203,12 +203,12 @@
     <Content Include="Views\FacebookAuthentication\Index.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Cart\modeltest.cshtml" />
+    <Content Include="Views\HomePage\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Authentication\" />
-    <Folder Include="Views\HomePage\" />
     <Folder Include="Views\Home\" />
     <Folder Include="Views\OrderDetails\" />
   </ItemGroup>
