@@ -158,7 +158,6 @@
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\FacebookAuthenticationController.cs" />
     <Compile Include="Controllers\GoogleAuthenticationController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
