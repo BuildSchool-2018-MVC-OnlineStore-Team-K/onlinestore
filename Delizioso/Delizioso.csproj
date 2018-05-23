@@ -155,10 +155,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\DemoController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\FacebookAuthenticationController.cs" />
     <Compile Include="Controllers\GoogleAuthenticationController.cs" />
+    <Compile Include="Controllers\IntroductionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderDetailsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -198,19 +200,16 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\FacebookAuthentication\Index.cshtml" />
-    <Content Include="Views\Demo\CreateCustomer.cshtml" />
-    <Content Include="Views\Demo\CreateOrder.cshtml" />
-    <Content Include="Views\Demo\customerscount.cshtml" />
-    <Content Include="Views\Demo\DiaplayCustomerCount.cshtml" />
-    <Content Include="Views\Demo\Index.cshtml" />
-    <Content Include="Views\Demo\modeltest.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Cart\modeltest.cshtml" />
+    <Content Include="Views\OrderDetails\OrderDetails.cshtml" />
+    <Content Include="Views\Introduction\Introduction.cshtml" />
+    <Content Include="Views\Home\Home.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Images\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Authentication\" />
   </ItemGroup>
@@ -235,6 +234,14 @@
     <ProjectReference Include="..\Repository\Repository.csproj">
       <Project>{9C52B350-B2DB-4525-96C2-F51F7E3B56BA}</Project>
       <Name>Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Service\Service.csproj">
+      <Project>{da304e26-0b84-448b-95de-f41faca0008a}</Project>
+      <Name>Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ViewModels\ViewModels.csproj">
+      <Project>{0f648a53-edbb-4b09-8395-52a1015dba95}</Project>
+      <Name>ViewModels</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
