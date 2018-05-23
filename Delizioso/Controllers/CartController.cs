@@ -1,6 +1,7 @@
 ﻿//using Deliozo.NorthWindModels;
 using BuildSchool.MVCSolution.OnlineStore.Repository;
 using Newtonsoft.Json;
+using Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,9 +19,9 @@ namespace WebApplication1.Controllers
         public ActionResult modeltest()
         {
 
-            var db = new OrdersRepository();
-            var query =  db.GetAll();
-            
+            var CartService1 = new CartService();
+            var query = CartService1.GetCartProducts(1 , 6);
+
             return View(query);
         }
 

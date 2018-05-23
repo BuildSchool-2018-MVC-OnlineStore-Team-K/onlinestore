@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BuildSchool.MVCSolution.OnlineStore.Models.Orders>
+﻿@model IEnumerable<ViewModels.CartViewModel>
 @{
     ViewBag.Title = "modeltest";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -47,44 +47,47 @@
             </div>
         </div>
         <br>
-        <div class="row">
+        @foreach (var item in @Model)
+        {
+            <div class="row">
 
-            <div class="col-4">
-                <img src="https://s9.postimg.cc/fd3rfy0jj/jeans3.jpg" width="100" height="100" style="float: left; margin: 5px">
-                <P> ProductName- ShopNAme-XL-Red</P>
-                <P>尚有庫存-24小時內出貨</P>
+                <div class="col-4">
+                    <img src="https://s9.postimg.cc/fd3rfy0jj/jeans3.jpg" width="100" height="100" style="float: left; margin: 5px">
+                    <P> @item.ProductName</P>
+                    <P>尚有庫存-24小時內出貨</P>
+                </div>
+                <div class="col-2">
+                    <center> NT$@item.UnitPrice</center>
+                </div>
+                <div class="col-2">
+                    <center>
+                        <button class="shopee-button-outline">
+                            -
+                        </button>
+                        <input class="shopee-button-outline shopee-button-outline-mid" type="text" value=@item.Quantity.ToString() style="width:80px">
+                        <button class="shopee-button-outline-mid">
+                            +
+                        </button>
+                    </center>
+                </div>
+                <div class="col-2">
+                    <center> NT$@item.Total</center>
+                </div>
+                <div class="col-2">
+                    <a class="responsiveBasket_removeItem" rel="nofollow" href="my.basket?page=basket&amp;section=checkout&amp;counter=1&amp;trash=11540798"
+                       aria-label="移除商品">
+                        <svg class="responsiveBasket_cross auto-basketaction-trash" width="20" height="20" viewBox="-3 -4 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8.414 7l5.293-5.293c.391-.391.391-1.023 0-1.414s-1.023-.391-1.414 0l-5.293 5.293-5.293-5.293c-.391-.391-1.023-.391-1.414 0s-.391 1.023 0 1.414l5.293 5.293-5.293 5.293c-.391.391-.391 1.023 0 1.414.195.195.451.293.707.293.256 0 .512-.098.707-.293l5.293-5.293 5.293 5.293c.195.195.451.293.707.293.256 0 .512-.098.707-.293.391-.391.391-1.023 0-1.414l-5.293-5.293"></path>
+                        </svg>
+                    </a>
+                </div>
             </div>
-            <div class="col-2">
-                <center> NT$1370</center>
-            </div>
-            <div class="col-2">
-                <center>
-                    <button class="shopee-button-outline">
-                        -
-                    </button>
-                    <input class="shopee-button-outline shopee-button-outline-mid" type="text" value="1" style="width:80px">
-                    <button class="shopee-button-outline-mid">
-                        +
-                    </button>
-                </center>
-            </div>
-            <div class="col-2">
-                <center> NT$1370</center>
-            </div>
-            <div class="col-2">
-                <a class="responsiveBasket_removeItem" rel="nofollow" href="my.basket?page=basket&amp;section=checkout&amp;counter=1&amp;trash=11540798"
-                   aria-label="移除商品">
-                    <svg class="responsiveBasket_cross auto-basketaction-trash" width="20" height="20" viewBox="-3 -4 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M8.414 7l5.293-5.293c.391-.391.391-1.023 0-1.414s-1.023-.391-1.414 0l-5.293 5.293-5.293-5.293c-.391-.391-1.023-.391-1.414 0s-.391 1.023 0 1.414l5.293 5.293-5.293 5.293c-.391.391-.391 1.023 0 1.414.195.195.451.293.707.293.256 0 .512-.098.707-.293l5.293-5.293 5.293 5.293c.195.195.451.293.707.293.256 0 .512-.098.707-.293.391-.391.391-1.023 0-1.414l-5.293-5.293"></path>
-                    </svg>
-                </a>
-            </div>
-        </div>
-        <hr style: "color:black">
-        
+         }
 
 
-        
+
+
+
         <div class="row">
             <div class="col-8">
 
