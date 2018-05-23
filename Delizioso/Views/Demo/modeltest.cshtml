@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Deliozo.NorthWindModels.Customers>
+﻿@model IEnumerable<BuildSchool.MVCSolution.OnlineStore.Models.Orders>
 @{
     ViewBag.Title = "modeltest";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -15,13 +15,13 @@
         </tr>
     </thead>
     <tbody>
-        @foreach(var customer in Model)
+        @foreach (var orders in Model)
         {
             <tr>
-                <td>@customer.CustomerID</td>
-                <td>@customer.CompanyName</td>
-                <td>@customer.Address</td>
-                <td>@customer.Fax</td>
+                <td>@orders.OrderID</td>
+                <td>@orders.MemberID</td>
+                <td>@orders.Pay</td>
+                <td>@orders.Time</td>
             </tr>
         }
     </tbody>

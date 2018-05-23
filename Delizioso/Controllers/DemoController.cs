@@ -1,4 +1,5 @@
 ﻿//using Deliozo.NorthWindModels;
+using BuildSchool.MVCSolution.OnlineStore.Repository;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -13,14 +14,14 @@ namespace WebApplication1.Controllers
     public class DemoController : Controller
     {
 
-        [Route("test")]
+        [Route("")]
         public ActionResult modeltest()
         {
-           // var db = new NorthWind();
-           // var query = db.Customers;
-            
 
-            return View();
+            var db = new OrdersRepository();
+            var query =  db.GetAll();
+            
+            return View(query);
         }
 
         public ActionResult DiaplayCustomerCount()
