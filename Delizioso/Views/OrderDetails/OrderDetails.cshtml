@@ -1,7 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "modeltest";
-    Layout = "~/Views/Shared/_LayoutOrderDetails.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <head>
@@ -16,6 +16,7 @@
             /*內文的CSS定義*/
             display: none;
             width: 100%;
+            height: 400px;
             padding: 10px 0px;
             background: #efefef;
             border-bottom: 1px #aaa dotted;
@@ -75,155 +76,373 @@
                         NT$28.99
                     </div>
                 </div>
-            <p class="Question">明細</p>
-            <div class="Answer">
-                <div class="w3-third">
-                    <div class="w3-card w3-container" style="min-height:250px">
-                        <br>
-                        <div class="container">
-                            <div class="row">
-                                <img src="https://s9.postimg.cc/fd3rfy0jj/jeans3.jpg" width="150" height="180">
-                                <div class="col-7">
-                                    <br>
-                                    <p>
-                                        ProductName- ShopNAme-XL-Red- $19.99
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="container">
-                            <div class="row">
-                                <img src="https://s9.postimg.cc/fd3rfy0jj/jeans3.jpg" width="150" height="180">
-                                <div class="col-7">
-                                    <br>
-                                    <p>
-                                        ProductName- ShopNAme-XL-Red- $19.99
-                                    </p>
-                                </div>
-                            </div>
-                            <br>
-                        </div>
-                        <br>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="QandA">
-            <p class="Question">
-                <div class="row">
-                    <div class="col-2">
-                        2018/12/14
-                    </div>
-                    <div class="col-2">
-                        000000000
-                    </div>
-                    <div class="col-2">
-                        超商取貨
-                    </div>
-                    <div class="col-2">
-                        已出貨
-                    </div>
-                    <div class="col-2">
-                        2018/12/18
-                    </div>
-                    <div class="col-2">
-                        NT$28.99
-                    </div>
-                </div>
-            <p class="Question">明細</p>
-            <div class="Answer">
-                <div class="w3-third">
-                    <div class="w3-card w3-container" style="min-height:250px">
-                        <br>
-                        <div class="container">
-                            <div class="row">
-                                <img src="https://s9.postimg.cc/fd3rfy0jj/jeans3.jpg" width="150" height="180">
-                                <div class="col-7">
-                                    <br>
-                                    <p>
-                                        ProductName- ShopNAme-XL-Red- $19.99
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="container">
-                            <div class="row">
-                                <img src="https://s9.postimg.cc/fd3rfy0jj/jeans3.jpg" width="150" height="180">
-                                <div class="col-7">
-                                    <br>
-                                    <p>
-                                        ProductName- ShopNAme-XL-Red- $19.99
-                                    </p>
-                                </div>
-                            </div>
-                            <br>
-                        </div>
-                        <br>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="QandA">
-            <p class="Question">
-                <div class="row">
-                    <div class="col-2">
-                        2018/12/14
-                    </div>
-                    <div class="col-2">
-                        000000000
-                    </div>
-                    <div class="col-2">
-                        超商取貨
-                    </div>
-                    <div class="col-2">
-                        已出貨
-                    </div>
-                    <div class="col-2">
-                        2018/12/18
-                    </div>
-                    <div class="col-2">
-                        NT$28.99
-                    </div>
-                </div>
-            <p class="Question">明細</p>
-            <div class="Answer">
-                <div class="w3-third">
-                    <div class="w3-card w3-container" style="min-height:250px">
-                        <br>
-                        <div class="container">
-                            <div class="row">
-                                <img src="https://s9.postimg.cc/fd3rfy0jj/jeans3.jpg" width="150" height="180">
-                                <div class="col-7">
-                                    <br>
-                                    <p>
-                                        ProductName- ShopNAme-XL-Red- $19.99
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="container">
-                            <div class="row">
-                                <img src="https://s9.postimg.cc/fd3rfy0jj/jeans3.jpg" width="150" height="180">
-                                <div class="col-7">
-                                    <br>
-                                    <p>
-                                        ProductName- ShopNAme-XL-Red- $19.99
-                                    </p>
-                                </div>
-                            </div>
-                            <br>
-                        </div>
-                        <br>
-                    </div>
-                </div>
-            </div>
-            </p>
-        </div>
-    </div>
 
+            <p class="Question">查看明細</p>
+            <div class="Answer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12 text-left">
+                            <div class="row">
+                                <div class="col-2">
+                                    商品編號
+                                </div>
+                                <div class="col-5">
+                                    商品名稱
+                                </div>
+                                <div class="col-1">
+                                    顏色
+                                </div>
+                                <div class="col-1">
+                                    尺吋
+                                </div>
+                                <div class="col-1">
+                                    數量
+                                </div>
+                                <div class="col-1">
+                                    單價
+                                </div>
+                                <div class="col-1">
+                                    小計
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-2">
+                                    1815011
+                                </div>
+                                <div class="col-5">
+                                    雷絲細肩帶內搭小可愛
+                                </div>
+                                <div class="col-1">
+                                    黑
+                                </div>
+                                <div class="col-1">
+                                    M
+                                </div>
+                                <div class="col-1">
+                                    1
+                                </div>
+                                <div class="col-1">
+                                    630
+                                </div>
+                                <div class="col-1">
+                                    630
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-2">
+                                    1815011
+                                </div>
+                                <div class="col-5">
+                                    雷絲細肩帶內搭小可愛
+                                </div>
+                                <div class="col-1">
+                                    黑
+                                </div>
+                                <div class="col-1">
+                                    M
+                                </div>
+                                <div class="col-1">
+                                    1
+                                </div>
+                                <div class="col-1">
+                                    630
+                                </div>
+                                <div class="col-1">
+                                    630
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-2">
+                                    1815011
+                                </div>
+                                <div class="col-5">
+                                    雷絲細肩帶內搭小可愛
+                                </div>
+                                <div class="col-1">
+                                    黑
+                                </div>
+                                <div class="col-1">
+                                    M
+                                </div>
+                                <div class="col-1">
+                                    1
+                                </div>
+                                <div class="col-1">
+                                    630
+                                </div>
+                                <div class="col-1">
+                                    630
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @* --------------------------------- *@
+        <div id="QandA">
+            <p class="Question">
+                <div class="row">
+                    <div class="col-2">
+                        2018/12/14
+                    </div>
+                    <div class="col-2">
+                        000000000
+                    </div>
+                    <div class="col-2">
+                        超商取貨
+                    </div>
+                    <div class="col-2">
+                        已出貨
+                    </div>
+                    <div class="col-2">
+                        2018/12/18
+                    </div>
+                    <div class="col-2">
+                        NT$28.99
+                    </div>
+                </div>
+
+            <p class="Question">查看明細</p>
+            <div class="Answer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12 text-left">
+                            <div class="row">
+                                <div class="col-2">
+                                    商品編號
+                                </div>
+                                <div class="col-5">
+                                    商品名稱
+                                </div>
+                                <div class="col-1">
+                                    顏色
+                                </div>
+                                <div class="col-1">
+                                    尺吋
+                                </div>
+                                <div class="col-1">
+                                    數量
+                                </div>
+                                <div class="col-1">
+                                    單價
+                                </div>
+                                <div class="col-1">
+                                    小計
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-2">
+                                    1815011
+                                </div>
+                                <div class="col-5">
+                                    雷絲細肩帶內搭小可愛
+                                </div>
+                                <div class="col-1">
+                                    黑
+                                </div>
+                                <div class="col-1">
+                                    M
+                                </div>
+                                <div class="col-1">
+                                    1
+                                </div>
+                                <div class="col-1">
+                                    630
+                                </div>
+                                <div class="col-1">
+                                    630
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-2">
+                                    1815011
+                                </div>
+                                <div class="col-5">
+                                    雷絲細肩帶內搭小可愛
+                                </div>
+                                <div class="col-1">
+                                    黑
+                                </div>
+                                <div class="col-1">
+                                    M
+                                </div>
+                                <div class="col-1">
+                                    1
+                                </div>
+                                <div class="col-1">
+                                    630
+                                </div>
+                                <div class="col-1">
+                                    630
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-2">
+                                    1815011
+                                </div>
+                                <div class="col-5">
+                                    雷絲細肩帶內搭小可愛
+                                </div>
+                                <div class="col-1">
+                                    黑
+                                </div>
+                                <div class="col-1">
+                                    M
+                                </div>
+                                <div class="col-1">
+                                    1
+                                </div>
+                                <div class="col-1">
+                                    630
+                                </div>
+                                <div class="col-1">
+                                    630
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @* --------------------------------- *@
+        <div id="QandA">
+            <p class="Question">
+                <div class="row">
+                    <div class="col-2">
+                        2018/12/14
+                    </div>
+                    <div class="col-2">
+                        000000000
+                    </div>
+                    <div class="col-2">
+                        超商取貨
+                    </div>
+                    <div class="col-2">
+                        已出貨
+                    </div>
+                    <div class="col-2">
+                        2018/12/18
+                    </div>
+                    <div class="col-2">
+                        NT$28.99
+                    </div>
+                </div>
+
+            <p class="Question">查看明細</p>
+            <div class="Answer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12 text-left">
+                            <div class="row">
+                                <div class="col-2">
+                                    商品編號
+                                </div>
+                                <div class="col-5">
+                                    商品名稱
+                                </div>
+                                <div class="col-1">
+                                    顏色
+                                </div>
+                                <div class="col-1">
+                                    尺吋
+                                </div>
+                                <div class="col-1">
+                                    數量
+                                </div>
+                                <div class="col-1">
+                                    單價
+                                </div>
+                                <div class="col-1">
+                                    小計
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-2">
+                                    1815011
+                                </div>
+                                <div class="col-5">
+                                    雷絲細肩帶內搭小可愛
+                                </div>
+                                <div class="col-1">
+                                    黑
+                                </div>
+                                <div class="col-1">
+                                    M
+                                </div>
+                                <div class="col-1">
+                                    1
+                                </div>
+                                <div class="col-1">
+                                    630
+                                </div>
+                                <div class="col-1">
+                                    630
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-2">
+                                    1815011
+                                </div>
+                                <div class="col-5">
+                                    雷絲細肩帶內搭小可愛
+                                </div>
+                                <div class="col-1">
+                                    黑
+                                </div>
+                                <div class="col-1">
+                                    M
+                                </div>
+                                <div class="col-1">
+                                    1
+                                </div>
+                                <div class="col-1">
+                                    630
+                                </div>
+                                <div class="col-1">
+                                    630
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-2">
+                                    1815011
+                                </div>
+                                <div class="col-5">
+                                    雷絲細肩帶內搭小可愛
+                                </div>
+                                <div class="col-1">
+                                    黑
+                                </div>
+                                <div class="col-1">
+                                    M
+                                </div>
+                                <div class="col-1">
+                                    1
+                                </div>
+                                <div class="col-1">
+                                    630
+                                </div>
+                                <div class="col-1">
+                                    630
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 
     <script type="text/javascript">
