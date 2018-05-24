@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ViewModels
 {
-    public class OrderDetailViewModel
+    public class OrdersViewModel
     {
         public DateTime Time { get; set; }
         public int OrderId { get; set; }

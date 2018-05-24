@@ -16,14 +16,18 @@ namespace WebApplication1.Controllers
         public ActionResult OrderDetails()
         {
             var service = new OrderDetailService();
-            var result = service.GetMemberOrderDetail(1);
+            var orders = service.GetMemberOrders(1);
             decimal total = 0;
-            foreach(var item in result)
+            foreach(var item in orders)
             {
+                var s = item.OrderId.ToString();
                 total += Convert.ToDecimal(item.UnitPrice * item.Quantity * (1 - item.Discount));
+                ViewData[s] = service.GetOrdersOrderDetails(item.OrderId);
             }
-            ViewBag.Total = total;
-            return View(result);
+            ViewBag.TotalAll = total;
+            ViewBag.orders = orders;
+            
+            return View();
         }
     }
 }

@@ -134,14 +134,22 @@ namespace BuildSchool.MVCSolution.OnlineStore.OrderDetailRepository
             return result;
         }
 
-        public IEnumerable<OrderDetailViewModel> GetMemberOrderDetail(int MemberID)
+        public IEnumerable<OrdersViewModel> GetMemberOrderDetail(int MemberID)
         {
             SqlConnection connection = new SqlConnection(connect);
-            return connection.Query<OrderDetailViewModel>("SELECT o.Time,o.OrderID,o.Payway,od.UnitPrice,od.Quantity,od.Discount FROM Members m INNER JOIN Orders o ON o.MemberID = m.MemberID INNER JOIN OrderDetail od ON od.OrderID = o.OrderID INNER JOIN Products p ON p.ProductID = od.ProductID WHERE m.MemberID = @MemberID AND o.Cart = 0", new
+            return connection.Query<OrdersViewModel>("SELECT o.Time,o.OrderID,o.Payway,od.UnitPrice,od.Quantity,od.Discount FROM Members m INNER JOIN Orders o ON o.MemberID = m.MemberID INNER JOIN OrderDetail od ON od.OrderID = o.OrderID INNER JOIN Products p ON p.ProductID = od.ProductID WHERE m.MemberID = @MemberID AND o.Cart = 0", new
             {
                 MemberID
             });
         }
 
+        public IEnumerable<OrderDetailsViewModel> GetOrdersOrderDetails(int OrderID)
+        {
+            SqlConnection connection = new SqlConnection(connect);
+            return connection.Query<OrderDetailsViewModel>("SELECT p.ProductID,p.ProductName,sc.Color,s.SizeType,od.Quantity,od.UnitPrice FROM OrderDetail od INNER JOIN Products p ON p.ProductID = od.ProductID INNER JOIN Size s ON s.ProductID = p.ProductID INNER JOIN StockColor sc ON sc.SizeID = s.SizeID WHERE od.OrderID = @OrderID", new
+            {
+                OrderID
+            });
+        }
     }
 }
