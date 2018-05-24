@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BuildSchool.MVCSolution.OnlineStore.Repository;
 
 namespace WebApplication1.Controllers
 {
@@ -12,7 +13,7 @@ namespace WebApplication1.Controllers
         [Route("")]
         // GET: Home
         public ActionResult Home()
-        {
+        {          
             return View();
         }
     }
