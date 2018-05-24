@@ -145,7 +145,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         {
             using (SqlConnection connection = new SqlConnection(connect))
             {
-                var result = connection.Query<Products>("SELECT TOP 8 ProductID, ProductName, Picture FROM Products GROUP BY ProductID, ProductName, Picture,ShelfTime ORDER BY ShelfTime DESC");
+                var result = connection.Query<Products>("SELECT TOP 8 ProductName, UnitPrice, Picture FROM Products GROUP BY ProductName, UnitPrice, Picture,ShelfTime ORDER BY ShelfTime DESC");
                 return result;
             }
         }
