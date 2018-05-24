@@ -38,11 +38,6 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
             SqlCommand command = new SqlCommand(sql, connection);
             command = AddWithAllDiscountValue(model);
-            //command.Parameters.AddWithValue("@did", model.DiscountID);
-            //command.Parameters.AddWithValue("@pid", model.ProductID);
-            //command.Parameters.AddWithValue("@discount", model.Discount);
-            //command.Parameters.AddWithValue("@start", model.StartTime);
-            //command.Parameters.AddWithValue("@end", model.EndTime);
 
             connection.Open();
             command.ExecuteReader();

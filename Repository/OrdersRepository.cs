@@ -18,11 +18,10 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         {
             SqlConnection connection = new SqlConnection(connect);
 
-            var sql = "INSERT INTO Orders Values(@MemberID , @OrderDetailID  , @OrderID , @Pay , @Payway , @ShipPlace , @Time , @Cart)";
+            var sql = "INSERT INTO Orders Values(@MemberID , @OrderID , @Pay , @Payway , @ShipPlace , @Time , @Cart)";
             SqlCommand command = new SqlCommand(sql, connection);
 
             command.Parameters.AddWithValue("@MemberID", model.MemberID);
-            command.Parameters.AddWithValue("@OrderDetailID", model.OrderDetailID);
             command.Parameters.AddWithValue("@OrderID", model.OrderID);
             command.Parameters.AddWithValue("@Pay", model.Pay);
             command.Parameters.AddWithValue("@Payway", model.Payway);
@@ -33,7 +32,6 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             connection.Open();
             command.ExecuteNonQuery();
             connection.Close();
-
         }
 
 
@@ -46,7 +44,6 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             SqlCommand command = new SqlCommand(sql, connection);
 
             command.Parameters.AddWithValue("@MemberID", model.MemberID);
-            command.Parameters.AddWithValue("@OrderDetailID", model.OrderDetailID);
             command.Parameters.AddWithValue("@OrderID", model.OrderID);
             command.Parameters.AddWithValue("@Pay", model.Pay);
             command.Parameters.AddWithValue("@Payway", model.Payway);
@@ -87,8 +84,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         {
 
             SqlConnection connection = new SqlConnection(connect);
-
-            var sql = "DELETE FROM Orders where OrderID = 1";
+            var sql = "DELETE FROM Orders where OrderID = @OrderID";
             SqlCommand command = new SqlCommand(sql, connection);
 
             connection.Open();

@@ -12,12 +12,12 @@ namespace BuildSchool.MVCSolution.OnlineStore.Models
         public string MemberName { get; set; }
         public string Address { get; set; }
         public DateTime Birthday { get; set; }
-        public int CreditCard { get; set; }
+        public int? CreditCard { get; set; }
         public int Phone { get; set; }
         public string Email { get; set; }
         public string Account { get; set; }
         public string Password { get; set; }
-        public string Block { get; set; }
+        public int Block { get; set; }
         public string Career { get; set; }
     }
 }

@@ -20,7 +20,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
                 "(@MemberID, " +
                 "@Name," +
                 " @Address," +
-                "@Birthday" +
+                "@Birthday," +
                 "@CreditCard, " +
                 "@Phone," +
                 " @Email, " +
@@ -32,7 +32,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             SqlCommand command = new SqlCommand(sql, connection);
 
             command.Parameters.AddWithValue("@MemberID", model.MemberID);
-            command.Parameters.AddWithValue("@MemberName", model.MemberName);
+            command.Parameters.AddWithValue("@Name", model.MemberName);
             command.Parameters.AddWithValue("@Address", model.Address);
             command.Parameters.AddWithValue("@Birthday", model.Birthday);
             command.Parameters.AddWithValue("@CreditCard", model.CreditCard);
@@ -54,10 +54,10 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             var sql = "UPDATE OrderDetail SET(MemberID=@MemberID, " +
                  "Name=@Name," +
                  "Address=@Address," +
-                 "Birthday = @Birthday" +
+                 "Birthday = @Birthday," +
                  "CreditCard=@CreditCard, " +
                  "Phone=@Phone," +
-                 " Email=@Email, " +
+                 "Email=@Email, " +
                  "Account=@Account, " +
                  "Password=@Password, " +
                  "Block=@Block, " +
@@ -66,7 +66,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             SqlCommand command = new SqlCommand(sql, connection);
 
             command.Parameters.AddWithValue("@MemberID", model.MemberID);
-            command.Parameters.AddWithValue("@MemberName", model.MemberName);
+            command.Parameters.AddWithValue("@Name", model.MemberName);
             command.Parameters.AddWithValue("@Address", model.Address);
             command.Parameters.AddWithValue("@Birthday", model.Birthday);
             command.Parameters.AddWithValue("@CreditCard", model.CreditCard);
@@ -122,7 +122,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
                 Member.Email = reader.GetValue(reader.GetOrdinal("Email")).ToString();
                 Member.Account = reader.GetValue(reader.GetOrdinal("Account")).ToString();
                 Member.Password = reader.GetValue(reader.GetOrdinal("Password")).ToString();
-                Member.Block = reader.GetValue(reader.GetOrdinal("Block")).ToString();
+                Member.Block = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("Block")));
                 Member.Career = reader.GetValue(reader.GetOrdinal("Career")).ToString();
             }
 
@@ -158,7 +158,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
                     mreader.Email = reader.GetValue(reader.GetOrdinal("Email")).ToString();
                     mreader.Account = reader.GetValue(reader.GetOrdinal("Account")).ToString();
                     mreader.Password = reader.GetValue(reader.GetOrdinal("Password")).ToString();
-                    mreader.Block = reader.GetValue(reader.GetOrdinal("Block")).ToString();
+                    mreader.Block = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("Block")));
                     mreader.Career = reader.GetValue(reader.GetOrdinal("Career")).ToString();
                     list.Add(mreader);
                 }
@@ -228,7 +228,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             var sql = "UPDATE Members SET(MemberID=@MemberID, " +
                  "Name=@Name," +
                  "Address=@Address," +
-                 "Birthday = @Birthday" +
+                 "Birthday = @Birthday," +
                  "CreditCard=@CreditCard, " +
                  "Phone=@Phone," +
                  " Email=@Email, " +
