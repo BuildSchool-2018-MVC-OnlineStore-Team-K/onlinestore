@@ -10,10 +10,16 @@ namespace Service
 {
     public class OrderDetailService
     {
-        public IEnumerable<OrderDetailViewModel> GetMemberOrderDetail(int MemberID)
+        public IEnumerable<OrdersViewModel> GetMemberOrders(int MemberID)
         {
             var repository = new OrderDetailRepository();
             return repository.GetMemberOrderDetail(MemberID);
+        }
+
+        public IEnumerable<OrderDetailsViewModel> GetOrdersOrderDetails(int OrderID)
+        {
+            var repository = new OrderDetailRepository();
+            return repository.GetOrdersOrderDetails(OrderID);
         }
     }
 }
