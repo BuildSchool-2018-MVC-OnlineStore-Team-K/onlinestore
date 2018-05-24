@@ -11,6 +11,6 @@ namespace BuildSchool.MVCSolution.OnlineStore.Models
         public int ColorID { get; set; }
         public int SizeID { get; set; }
         public string Color { get; set; }
-        public int Stock { get; set; }
+        public int? Stock { get; set; }
     }
 }
