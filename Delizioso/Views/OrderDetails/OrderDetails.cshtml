@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ViewModels.OrderDetailViewModel>
+﻿@model IEnumerable<ViewModels.OrdersViewModel>
 @{
     ViewBag.Title = "modeltest";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -54,7 +54,7 @@
             </div>
         </div>
 
-        @foreach (var item in Model)
+        @foreach (var item in ViewBag.orders)
     {
         <div id="QandA">
             <p class="Question">
@@ -75,7 +75,7 @@
                         2018/12/18
                     </div>
                     <div class="col-2">
-                        NT$@ViewBag.Total
+                        NT$@ViewBag.TotalAll
                     </div>
                 </div>
 
@@ -108,77 +108,33 @@
                                 </div>
                             </div>
                             <hr />
-                            <div class="row">
-                                <div class="col-2">
-                                    1815011
+                            @foreach (var i in ViewData[item.OrderId.ToString()])
+                            {
+                                <div class="row">
+                                    <div class="col-2">
+                                        @i.ProductId
+                                    </div>
+                                    <div class="col-5">
+                                        @i.ProductName
+                                    </div>
+                                    <div class="col-1">
+                                        @i.Color
+                                    </div>
+                                    <div class="col-1">
+                                        @i.Size
+                                    </div>
+                                    <div class="col-1">
+                                        @i.Quantity
+                                    </div>
+                                    <div class="col-1">
+                                        @i.UnitPrice
+                                    </div>
+                                    <div class="col-1">
+                                        630
+                                    </div>
                                 </div>
-                                <div class="col-5">
-                                    雷絲細肩帶內搭小可愛
-                                </div>
-                                <div class="col-1">
-                                    黑
-                                </div>
-                                <div class="col-1">
-                                    M
-                                </div>
-                                <div class="col-1">
-                                    1
-                                </div>
-                                <div class="col-1">
-                                    630
-                                </div>
-                                <div class="col-1">
-                                    630
-                                </div>
-                            </div>
-                            <hr />
-                            <div class="row">
-                                <div class="col-2">
-                                    1815011
-                                </div>
-                                <div class="col-5">
-                                    雷絲細肩帶內搭小可愛
-                                </div>
-                                <div class="col-1">
-                                    黑
-                                </div>
-                                <div class="col-1">
-                                    M
-                                </div>
-                                <div class="col-1">
-                                    1
-                                </div>
-                                <div class="col-1">
-                                    630
-                                </div>
-                                <div class="col-1">
-                                    630
-                                </div>
-                            </div>
-                            <hr />
-                            <div class="row">
-                                <div class="col-2">
-                                    1815011
-                                </div>
-                                <div class="col-5">
-                                    雷絲細肩帶內搭小可愛
-                                </div>
-                                <div class="col-1">
-                                    黑
-                                </div>
-                                <div class="col-1">
-                                    M
-                                </div>
-                                <div class="col-1">
-                                    1
-                                </div>
-                                <div class="col-1">
-                                    630
-                                </div>
-                                <div class="col-1">
-                                    630
-                                </div>
-                            </div>
+                                <hr />
+                             }
                         </div>
                     </div>
                 </div>
