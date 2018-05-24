@@ -137,7 +137,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.OrderDetailRepository
         public IEnumerable<OrdersViewModel> GetMemberOrderDetail(int MemberID)
         {
             SqlConnection connection = new SqlConnection(connect);
-            return connection.Query<OrdersViewModel>("SELECT o.Time,o.OrderID,o.Payway,od.UnitPrice,od.Quantity,od.Discount FROM Members m INNER JOIN Orders o ON o.MemberID = m.MemberID INNER JOIN OrderDetail od ON od.OrderID = o.OrderID INNER JOIN Products p ON p.ProductID = od.ProductID WHERE m.MemberID = @MemberID AND o.Cart = 0", new
+            return connection.Query<OrdersViewModel>("SELECT o.Time,o.OrderID,o.Payway,od.UnitPrice,od.Quantity,od.Discount ,p.ProductID FROM Members m INNER JOIN Orders o ON o.MemberID = m.MemberID INNER JOIN OrderDetail od ON od.OrderID = o.OrderID INNER JOIN Products p ON p.ProductID = od.ProductID WHERE m.MemberID = 1 AND o.Cart = 0", new
             {
                 MemberID
             });
