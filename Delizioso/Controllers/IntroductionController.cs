@@ -13,7 +13,6 @@ namespace WebApplication1.Controllers
         // GET: Introduction
         public ActionResult Introduction()
         {
-            var link = RedirectToAction("Home", "HomeController");
             return View();
         }
 
