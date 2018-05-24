@@ -13,7 +13,8 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 {
     public class ProductsRepository
     {
-        private string connect = "Server=192.168.40.36,1433;Database=E-Commerce;User ID =smallhandsomehandsome ; Password =123;";
+        //private string connect = "Server=192.168.40.36,1433;Database=E-Commerce;User ID =smallhandsomehandsome ; Password =123;";
+        private string connect = "Server=.;Database=E-Commerce;Integrated Security=true;";
         //
         public void Create(Products model)
         {
