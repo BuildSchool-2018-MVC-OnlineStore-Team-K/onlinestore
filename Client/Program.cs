@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using BuildSchool.PasswordValidationTool.Abstracts;
@@ -29,19 +30,28 @@ namespace BuildSchoolPassword.ValidationToolClient.Client
                 container.GetInstance<IPasswordValidationService>();
 
             //var pwd = service.GeneratePassword();
-            var userInputPwd = "x3n84tNe";
-            var storedPwd = "x3n84tNe";
-            var salt = "abcde";
+            var userInputPwd = "6qn84tNe";
+            var storedPwd = "6qn84tNe";
+            
 
-            //emulate stored password
+            var randomGenerator = new RNGCryptoServiceProvider();
+            //16位元的加料
+            var salt = new byte[16];
+            //讓salt更隨機
+            randomGenerator.GetBytes(salt);
+
+            //emulate stored password 
+            //資料庫的密碼轉為byte
             byte[] storedPwdData = Encoding.UTF8.GetBytes(storedPwd);
-            byte[] saltData = Encoding.UTF8.GetBytes(salt);
-            byte[] storedPwdHashed = service.HashPassword(storedPwdData, saltData);
+            //將byte的資料庫的密碼雜湊
+            byte[] storedPwdHashed = service.HashPassword(storedPwdData, salt);
 
             //valid user input
+            //將user輸入ㄉ密碼轉為byte
             byte[] userPwdData = Encoding.UTF8.GetBytes(userInputPwd);
 
-            if (service.ValidatePassword(storedPwdHashed, userPwdData, saltData))
+            //呼叫 ValidatePassword       傳入資料庫的密碼, 使用者輸入的, 加料
+            if (service.ValidatePassword(storedPwdHashed, userPwdData, salt))
             {
                 Console.WriteLine("Correct");
             }
