@@ -18,32 +18,6 @@ namespace WebApplication1.Controllers
         [Route("CartModel")]
         public ActionResult modeltest()
         {
-
-            var CartService1 = new CartService();
-            var query = CartService1.GetCartProducts(1 , 6);
-            decimal TotalPrice = 0;
-            foreach(var item in query)
-            {
-                TotalPrice += item.Total;
-            }
-            ViewBag.Total = TotalPrice;
-            return View(query);
-        }
-
-        public ActionResult DiaplayCustomerCount()
-        {
-           // var db = new NorthWind();
-           // var count = db.Customers.Count();
-            return View();
-        }
-
-
-
-
-        [Route("")]
-        // GET: Demo
-        public ActionResult Index()
-        {
             var obj = new SampleObject
             {
                 Name = "david",
@@ -88,9 +62,36 @@ namespace WebApplication1.Controllers
 
 
 
-            return View(obj);
+            return PartialView(obj);
         }
 
+        public ActionResult DiaplayCustomerCount()
+        {
+           // var db = new NorthWind();
+           // var count = db.Customers.Count();
+            return View();
+        }
+
+
+
+
+        [Route("")]
+        // GET: Demo
+        public ActionResult Index()
+        {
+
+            var CartService1 = new CartService();
+            var query = CartService1.GetCartProducts(1, 6);
+            decimal TotalPrice = 0;
+            foreach (var item in query)
+            {
+                TotalPrice += item.Total;
+            }
+            ViewBag.Total = TotalPrice;
+            return PartialView(query);
+            
+        }
+        
 
         public class SampleObject
         {
