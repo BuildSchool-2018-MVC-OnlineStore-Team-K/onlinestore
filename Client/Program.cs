@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using BuildSchool.PasswordValidationTool.Abstracts;
@@ -29,19 +30,21 @@ namespace BuildSchoolPassword.ValidationToolClient.Client
                 container.GetInstance<IPasswordValidationService>();
 
             //var pwd = service.GeneratePassword();
-            var userInputPwd = "x3n84tNe";
-            var storedPwd = "x3n84tNe";
-            var salt = "abcde";
+            var userInputPwd = "x2n84tNe";
+            var storedPwd = "x2n84tNe";
+
+            var randomGenerator = new RNGCryptoServiceProvider();
+            var salt = new byte[16];
+            randomGenerator.GetBytes(salt);
 
             //emulate stored password
             byte[] storedPwdData = Encoding.UTF8.GetBytes(storedPwd);
-            byte[] saltData = Encoding.UTF8.GetBytes(salt);
-            byte[] storedPwdHashed = service.HashPassword(storedPwdData, saltData);
+            byte[] storedPwdHashed = service.HashPassword(storedPwdData, salt);
 
             //valid user input
             byte[] userPwdData = Encoding.UTF8.GetBytes(userInputPwd);
 
-            if (service.ValidatePassword(storedPwdHashed, userPwdData, saltData))
+            if (service.ValidatePassword(storedPwdHashed, userPwdData, salt))
             {
                 Console.WriteLine("Correct");
             }
