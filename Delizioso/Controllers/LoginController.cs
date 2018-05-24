@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BuildSchool.MVCSolution.OnlineStore.Models;
+using BuildSchool.MVCSolution.OnlineStore.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,7 +17,7 @@ namespace WebApplication1.Controllers
         [Route("")]
         public ActionResult Index()
         {
-            ViewBag.Test = "testStringwerjewr";
+            
             var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
             if(cookie == null)
             {
@@ -37,10 +39,12 @@ namespace WebApplication1.Controllers
         }
 
 
+
         [Route("")]
         [HttpPost]
         public ActionResult Index(LoginModel loginModel)
         {
+            //從資料庫找到該帳密
             if(loginModel.Username == "admin" && loginModel.Password =="adminpwd")
             {
                 FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1,"admin",DateTime.Now, DateTime.Now.AddMinutes(30) ,false ,"abcdefg");

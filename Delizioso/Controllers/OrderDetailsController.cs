@@ -1,4 +1,5 @@
 ﻿using BuildSchool.MVCSolution.OnlineStore.Repository;
+using Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,15 @@ namespace WebApplication1.Controllers
         // GET: OrderDetails
         public ActionResult OrderDetails()
         {
-            return View();
+            var service = new OrderDetailService();
+            var result = service.GetMemberOrderDetail(1);
+            decimal total = 0;
+            foreach(var item in result)
+            {
+                total += Convert.ToDecimal(item.UnitPrice * item.Quantity * (1 - item.Discount));
+            }
+            ViewBag.Total = total;
+            return View(result);
         }
     }
 }
