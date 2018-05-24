@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using BuildSchool.MVCSolution.OnlineStore.Repository;
 
 namespace WebApplication1.Controllers
 {
-    [RoutePrefix("Home")]
-    public class HomeController : Controller
+    [RoutePrefix("Disclaimer")]
+    public class DisclaimerController : Controller
     {
         [Route("")]
-        // GET: Home
-        public ActionResult Home()
-        {          
+        // GET: Disclaimer
+        public ActionResult Disclaimer()
+        {
             return View();
         }
     }

@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using BuildSchool.MVCSolution.OnlineStore.Repository;
 
 namespace WebApplication1.Controllers
 {
-    [RoutePrefix("Home")]
-    public class HomeController : Controller
+    [RoutePrefix("MemberCentre")]
+    public class MemberCentreController : Controller
     {
         [Route("")]
-        // GET: Home
-        public ActionResult Home()
-        {          
+        // GET: MemberCentre
+        public ActionResult MemberCentre()
+        {
             return View();
         }
     }
