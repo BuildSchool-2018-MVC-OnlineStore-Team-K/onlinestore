@@ -36,6 +36,14 @@ namespace BuildSchool.MVCSolution.OnlineStore.ProductsRepositoryTests
         }
 
         [TestMethod()]
+        public void GetTop8Product()
+        {
+            var repository = new ProductsRepository();
+            var list = repository.GetTop8Product();
+            Assert.IsTrue(list.Count() > 0);
+        }
+
+        [TestMethod()]
         public void OrderByShelfTimeDESCTest()
         {
             var repository = new ProductsRepository();

@@ -13,8 +13,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 {
     public class ProductsRepository
     {
-        //private string connect = "Server=192.168.40.36,1433;Database=E-Commerce;User ID =smallhandsomehandsome ; Password =123;";
-        private string connect = "Server=.;Database=E-Commerce;Integrated Security=true;";
+        private string connect = "Server=192.168.40.35,1433;Database=E-Commerce;User ID =smallhandsomehandsome ; Password =123;";
         //
         public void Create(Products model)
         {
@@ -137,11 +136,19 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         {
             using (SqlConnection connection = new SqlConnection(connect))
             {
-                var result = connection.Query<Products>("SELECT TOP 10 ProductID, ProductName, ShelfTime FROM Products GROUP BY ProductID, ProductName, ShelfTime ORDER BY ShelfTime DESC");
+                var result = connection.Query<Products>("SELECT TOP 8 ProductID, ProductName, ShelfTime FROM Products GROUP BY ProductID, ProductName, ShelfTime ORDER BY ShelfTime DESC");
                 return result;
             }           
         }
 
+        public IEnumerable<Products> GetTop8Product()  //上架時間排序(前十)
+        {
+            using (SqlConnection connection = new SqlConnection(connect))
+            {
+                var result = connection.Query<Products>("SELECT TOP 8 ProductName, UnitPrice, Picture FROM Products GROUP BY ProductName, UnitPrice, Picture,ShelfTime ORDER BY ShelfTime DESC");
+                return result;
+            }
+        }
 
         public string GetProductName(int ProductID)  //查詢訂單、折扣排名(傳入產品ID，傳回產品名稱)
         {
