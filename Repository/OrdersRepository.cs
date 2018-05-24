@@ -17,7 +17,6 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public void Create(Orders model)
         {
             SqlConnection connection = new SqlConnection(connect);
-
             var sql = "INSERT INTO Orders Values(@MemberID , @OrderID , @Pay , @Payway , @ShipPlace , @Time , @Cart)";
             SqlCommand command = new SqlCommand(sql, connection);
 
