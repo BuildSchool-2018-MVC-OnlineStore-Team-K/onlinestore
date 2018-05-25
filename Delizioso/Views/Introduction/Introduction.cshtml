@@ -1,4 +1,4 @@
-﻿
+﻿@using System.Configuration
 @{
     Layout = null;
 }
@@ -50,6 +50,15 @@
             </footer>
         </div>
     </div>
+
+    @if (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("SQLAZURECONNSTR_ProductionDb")))
+    {
+        <h2>@Environment.GetEnvironmentVariable("SQLAZURECONNSTR_ProductionDb")</h2>
+    }
+    else
+    {
+        <h2>@ConfigurationManager.ConnectionStrings["cloud"].ConnectionString</h2>
+    }
 
     <!-- Footer -->
     <footer class="w3-container w3-theme-dark w3-padding-16">

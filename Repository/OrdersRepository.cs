@@ -8,17 +8,21 @@ using System.Threading.Tasks;
 using BuildSchool.MVCSolution.OnlineStore.Utilities;
 using Dapper;
 using ViewModels;
+using System.Configuration;
 
 namespace BuildSchool.MVCSolution.OnlineStore.Repository
 {
     public class OrdersRepository
     {
+        //private string connect = ConfigurationManager.ConnectionStrings["db"].ToString();
         private string connect = "Server=192.168.40.35,1433;Database=E-Commerce;User ID =smallhandsomehandsome; Password =123;";
         public void Create(Orders model)
         {
             SqlConnection connection = new SqlConnection(connect);
             var sql = "INSERT INTO Orders Values(@MemberID , @OrderID , @Pay , @Payway , @ShipPlace , @Time , @Cart)";
             SqlCommand command = new SqlCommand(sql, connection);
+            
+           
 
             command.Parameters.AddWithValue("@MemberID", model.MemberID);
             command.Parameters.AddWithValue("@OrderID", model.OrderID);
