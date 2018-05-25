@@ -79,9 +79,12 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         
         public IEnumerable<Products> FindById(int ProductID)
         {
+            var query = "SELECT * FROM Products Where ProductID = @ProductID";
+            var Parameters = new DynamicParameters();
+            Parameters.Add("ProductID", ProductID);
             using (SqlConnection connection = new SqlConnection(connect))
             {
-                var result = connection.Query<Products>("SELECT * FROM Products Where ProductID = @productid");
+                var result = connection.Query<Products>(query, Parameters);
                 return result;
             }
             //"SELECT * FROM Products WHERE ProductID = @productid";
