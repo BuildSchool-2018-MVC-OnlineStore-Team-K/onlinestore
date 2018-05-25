@@ -1,5 +1,6 @@
 ﻿using BuildSchool.MVCSolution.OnlineStore.Models;
 using BuildSchool.MVCSolution.OnlineStore.Utilities;
+using Dapper;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -7,12 +8,14 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ViewModels;
 
 namespace BuildSchool.MVCSolution.OnlineStore.Repository
 {
     public class MembersRepository
     {
-        private string connect = "Server=192.168.40.36,1433;Database=E-Commerce;User ID =smallhandsomehandsome ; Password =123;";
+        private string connect = "Server=192.168.40.35,1433;Database=E-Commerce;User ID =smallhandsomehandsome ; Password =123;";
+
         public void Create(Members model)
         {
             SqlConnection connection = new SqlConnection(connect);
@@ -275,6 +278,54 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             connection.Close();
 
             return list;
+        }
+
+        public bool CheckAccountIsNotExist(string Account)
+        {
+            SqlConnection connection = new SqlConnection(connect);
+            var result = connection.Query<Members>("SELECT account From Members where Account = @Account ", new
+            {
+                Account
+            });
+            if(result.Count()==0 )
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
+        }
+
+        
+
+        public bool CreateAccount(RegisterModel member)
+        {
+            SqlConnection connection = new SqlConnection(connect);
+            connection.Execute("INSERT INTO Members([Name], [Address],Birthday,Phone,Email,Account,[Password],Career,[Block]) Values(@Name , @Address , @Birthday ,@Phone , @Email , @Account , @Password , @Career ,0)",
+                new {
+                    member.Name,
+                    member.Address,
+                    member.Birthday,
+                    member.Phone,
+                    member.Email,
+                    member.Account,
+                    member.Password,
+                    member.Career
+                });
+            var result = connection.Query<RegisterModel>("SELECT * FROM Members Where Account = @Account and Name = @Name", new {
+                member.Account,
+                member.Name
+            });
+            if(result.Count() >0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
     }

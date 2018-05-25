@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="DiscountsRepositoryTests.cs" />
     <Compile Include="MembersRepositoryTest.cs" />
+    <Compile Include="MembersRepositoryTests.cs" />
     <Compile Include="OrderDetailRepositoryTests.cs" />
     <Compile Include="OrdersRepositoryTests.cs" />
     <Compile Include="ProductsRepositoryTests.cs" />
