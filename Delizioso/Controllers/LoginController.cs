@@ -38,8 +38,6 @@ namespace WebApplication1.Controllers
             return View();
         }
 
-
-
         [Route("")]
         [HttpPost]
         public ActionResult Index(LoginModel loginModel)
