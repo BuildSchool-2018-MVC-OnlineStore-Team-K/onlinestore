@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>會員註冊</h2>
+<!--註冊視窗-->
+
+    <div class="w3-modal-content w3-card-4 w3-animate-top">
+        <header class="w3-container w3-theme-l1">
+            <span onclick="document.getElementById('註冊').style.display='none'" class="w3-button w3-display-topright">×</span>
+            <h3>會員註冊</h3>
+        </header>
+        <div class="w3-padding">
+            <form action="/action_page.php" target="_blank">
+                <p>
+                    <input class="w3-input w3-padding-16" type="text" placeholder="帳號" required name="帳號">
+                </p>
+                <p>
+                    <input class="w3-input w3-padding-16" type="text" placeholder="密碼" required name="密碼">
+                </p>
+                <p>
+                    <input class="w3-input w3-padding-16" type="text" placeholder="姓名" required name="姓名">
+                </p>
+                <p>
+                    <input class="w3-input w3-padding-16" type="text" placeholder="電話" required name="電話">
+                </p>
+                <p>
+                    <input class="w3-input w3-padding-16" type="email" placeholder="信箱" required name="信箱">
+                </p>
+
+                <p>
+                    <input class="w3-input w3-padding-16" type="date" placeholder="生日" required name="生日">
+                </p>
+                <p>
+                    <button class="w3-button w3-light-grey w3-padding-large" type="submit">
+                        <i class="fa fa-paper-plane"></i>確定
+                    </button>
+                </p>
+            </form>
+            <!-- End Contact Section -->
+        </div>
+    </div>
+    <footer class="w3-container w3-theme-l1">
+        <p>
+            祝您購物愉快
+            <i class="fa fa-smile-o"></i>
+        </p>
+    </footer>

@@ -217,12 +217,12 @@
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\MemberCentre\MemberCentre.cshtml" />
     <Content Include="Views\Disclaimer\Disclaimer.cshtml" />
+    <Content Include="Views\Register\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\" />
     <Folder Include="Views\Authentication\" />
-    <Folder Include="Views\Register\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

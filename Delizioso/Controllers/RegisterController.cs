@@ -20,5 +20,11 @@ namespace WebApplication1.Controllers
 
             return View();
         }
+
+        [Route("")]
+        public ActionResult Index()
+        {
+            return PartialView();
+        }
     }
 }
