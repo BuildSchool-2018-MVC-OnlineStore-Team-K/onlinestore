@@ -108,16 +108,25 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             //connection.Close();
         }
 
+        /// <summary>
+        /// Get all products and show on ProductsPage
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<Products> GetAll()
         {
+            var query = "SELECT p.ProductID, (SELECT Category FROM Products WHERE ProductID = p.ProductID) AS Category,(SELECT ProductName FROM Products WHERE ProductID = p.ProductID) AS ProductName, (SELECT UnitPrice FROM Products WHERE ProductID = p.ProductID) AS UnitPrice,(SELECT ShelfTime FROM Products WHERE ProductID = p.ProductID) AS ShelfTime,(SELECT TOP 1 Discount FROM Discounts WHERE ProductID = p.ProductID AND EndTime >= GETDATE() ORDER BY StartTime DESC) AS Discount FROM Products p LEFT JOIN Discounts d ON d.ProductID = p.ProductID GROUP BY p.ProductID";
             using (SqlConnection connection = new SqlConnection(connect))
             {
-                var result = connection.Query<Products>("SELECT * FROM Products");
+                var result = connection.Query<Products>(query);
                 return result;
             }            
         }
-       
-        public IEnumerable<Products> OrderByUnitprice()  //價格排序:低->高
+
+        /// <summary>
+        /// 價格排序:低->高
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<Products> OrderByUnitprice()
         {
             using (SqlConnection connection = new SqlConnection(connect))
             {
@@ -225,5 +234,19 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         }
 
+        /// <summary>
+        /// 搜尋產品功能
+        /// </summary>
+        /// <param name="name"></param>
+        public IEnumerable<Products> SearchProductsByName(string name)
+        {
+            var query = "SELECT p.ProductID, (SELECT Category FROM Products WHERE ProductID = p.ProductID) AS Category,(SELECT ProductName FROM Products WHERE ProductID = p.ProductID AND ProductName LIKE '%@ProductName%') AS ProductName, (SELECT UnitPrice FROM Products WHERE ProductID = p.ProductID) AS UnitPrice,(SELECT ShelfTime FROM Products WHERE ProductID = p.ProductID) AS ShelfTime,(SELECT TOP 1 Discount FROM Discounts WHERE ProductID = p.ProductID AND EndTime >= GETDATE() ORDER BY StartTime DESC) AS Discount FROM Products p LEFT JOIN Discounts d ON d.ProductID = p.ProductID GROUP BY p.ProductID";
+            var parameters = new DynamicParameters();
+            parameters.Add("@ProductName", name);
+            using(SqlConnection connection = new SqlConnection(connect))
+            {
+                return connection.Query<Products>(query, parameters);
+            }
+        }
     }
 }
