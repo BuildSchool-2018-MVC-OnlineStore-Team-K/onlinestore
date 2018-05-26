@@ -13,7 +13,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.ProductsRepositoryTests
     {
         ProductsRepository repo = new ProductsRepository();
         [TestMethod()]
-        public void GetAllTest()
+        public void ProductGetAll()
         {
             var list = repo.GetAll();
             Assert.IsTrue(list.Count() > 0);
