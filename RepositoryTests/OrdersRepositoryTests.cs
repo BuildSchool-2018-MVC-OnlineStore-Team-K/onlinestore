@@ -61,8 +61,8 @@ namespace BuildSchool.MVCSolution.OnlineStore.OrdersRepositoryTests
         [TestMethod()]
         public void OrdersRepository_GetAll()
         {
-            
-            //string connect = ConfigurationManager.ConnectionStrings["db"].ToString();
+
+           
             var repository = new BuildSchool.MVCSolution.OnlineStore.Repository.OrdersRepository();
             var orders = repository.GetAll();
             Assert.IsTrue(orders.Count() > 0);

@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="DiscountRepository.cs" />
     <Compile Include="MembersRepository.cs" />
+    <Compile Include="MyConnectionString.cs" />
     <Compile Include="OrderDetailRepository.cs" />
     <Compile Include="OrdersRepository.cs" />
     <Compile Include="ProductsRepository.cs" />
