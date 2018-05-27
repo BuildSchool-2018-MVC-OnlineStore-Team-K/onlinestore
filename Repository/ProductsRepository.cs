@@ -13,15 +13,14 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 {
     public class ProductsRepository
     {
-        private string connect = "Server=192.168.40.35,1433;Database=E-Commerce;User ID =smallhandsomehandsome ; Password =123;";
-        //
+        MyConnectionString source = new MyConnectionString();
         public void Create(Products model)
         {
-            //using (SqlConnection connection = new SqlConnection(connect))
+            //using (SqlConnection connection = new SqlConnection(source.connect))
             //{
             //    var exec = connection.Execute("INSERT INTO Products VALUES (@productid, @category, @productname, @unitprice,@shelftime)");
             //}            
-            SqlConnection connection = new SqlConnection(connect);
+            SqlConnection connection = new SqlConnection(source.connect);
             var sql = "INSERT INTO Products VALUES (@productid, @category, @productname, @unitprice,@shelftime,@picture)";
             SqlCommand command = new SqlCommand(sql, connection);
 
@@ -39,11 +38,11 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public void Update(Products model)
         {
-            //using (SqlConnection connection = new SqlConnection(connect))
+            //using (SqlConnection connection = new SqlConnection(source.connect))
             //{
             //    var exec = connection.Execute("UPDATE Products SET Category=@category, ProductName=@productname, UnitPrice=@unitprice, ShelfTime=@shelftime WHERE ProductID = @productid");
             //}
-            SqlConnection connection = new SqlConnection(connect);
+            SqlConnection connection = new SqlConnection(source.connect);
             var sql = "UPDATE Products SET Category=@category, ProductName=@productname, UnitPrice=@unitprice, ShelfTime=@shelftime,Picture=@picture WHERE ProductID = @productid";
             SqlCommand command = new SqlCommand(sql, connection);
 
@@ -61,11 +60,11 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public void Delete(Products model)
         {
-            //using (SqlConnection connection = new SqlConnection(connect))
+            //using (SqlConnection connection = new SqlConnection(source.connect))
             //{
             //    var exec = connection.Execute("DELETE FROM Products WHERE ProductID = @productid");
             //}  
-            SqlConnection connection = new SqlConnection(connect);
+            SqlConnection connection = new SqlConnection(source.connect);
             var sql = "Delete FROM Products WHERE ProductID=@productID";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -79,9 +78,12 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         
         public IEnumerable<Products> FindById(int ProductID)
         {
-            using (SqlConnection connection = new SqlConnection(connect))
+            var query = "SELECT * FROM Products Where ProductID = @ProductID";
+            var Parameters = new DynamicParameters();
+            Parameters.Add("ProductID", ProductID);
+            using (SqlConnection connection = new SqlConnection(source.connect))
             {
-                var result = connection.Query<Products>("SELECT * FROM Products Where ProductID = @productid");
+                var result = connection.Query<Products>(query, Parameters);
                 return result;
             }
             //"SELECT * FROM Products WHERE ProductID = @productid";
@@ -105,18 +107,27 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             //connection.Close();
         }
 
+        /// <summary>
+        /// Get all products and show on ProductsPage
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<Products> GetAll()
         {
-            using (SqlConnection connection = new SqlConnection(connect))
+            var query = "SELECT p.ProductID, (SELECT Category FROM Products WHERE ProductID = p.ProductID) AS Category,(SELECT ProductName FROM Products WHERE ProductID = p.ProductID) AS ProductName, (SELECT UnitPrice FROM Products WHERE ProductID = p.ProductID) AS UnitPrice,(SELECT ShelfTime FROM Products WHERE ProductID = p.ProductID) AS ShelfTime,(SELECT TOP 1 Discount FROM Discounts WHERE ProductID = p.ProductID AND EndTime >= GETDATE() ORDER BY StartTime DESC) AS Discount FROM Products p LEFT JOIN Discounts d ON d.ProductID = p.ProductID GROUP BY p.ProductID";
+            using (SqlConnection connection = new SqlConnection(source.connect))
             {
-                var result = connection.Query<Products>("SELECT * FROM Products");
+                var result = connection.Query<Products>(query);
                 return result;
             }            
         }
-       
-        public IEnumerable<Products> OrderByUnitprice()  //價格排序:低->高
+
+        /// <summary>
+        /// 價格排序:低->高
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<Products> OrderByUnitprice()
         {
-            using (SqlConnection connection = new SqlConnection(connect))
+            using (SqlConnection connection = new SqlConnection(source.connect))
             {
                 var result = connection.Query<Products>("SELECT ProductID, ProductName, UnitPrice FROM Products GROUP BY ProductID, ProductName, UnitPrice ORDER BY UnitPrice");
                 return result;
@@ -125,7 +136,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public IEnumerable<Products> OrderByUnitpriceDESC()  //價格排序:高->低
         {
-            using (SqlConnection connection = new SqlConnection(connect))
+            using (SqlConnection connection = new SqlConnection(source.connect))
             {
                 var result = connection.Query<Products>("SELECT ProductID, ProductName, UnitPrice FROM Products GROUP BY ProductID, ProductName, UnitPrice ORDER BY UnitPrice DESC");
                 return result;
@@ -134,7 +145,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public IEnumerable<Products> OrderByShelfTimeDESC()  //上架時間排序(前十)
         {
-            using (SqlConnection connection = new SqlConnection(connect))
+            using (SqlConnection connection = new SqlConnection(source.connect))
             {
                 var result = connection.Query<Products>("SELECT TOP 8 ProductID, ProductName, ShelfTime FROM Products GROUP BY ProductID, ProductName, ShelfTime ORDER BY ShelfTime DESC");
                 return result;
@@ -143,7 +154,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public IEnumerable<Products> GetTop8Product()  //上架時間排序(前十)
         {
-            using (SqlConnection connection = new SqlConnection(connect))
+            using (SqlConnection connection = new SqlConnection(source.connect))
             {
                 var result = connection.Query<Products>("SELECT TOP 8 ProductName, UnitPrice, Picture FROM Products GROUP BY ProductName, UnitPrice, Picture,ShelfTime ORDER BY ShelfTime DESC");
                 return result;
@@ -152,10 +163,10 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public string GetProductName(int ProductID)  //查詢訂單、折扣排名(傳入產品ID，傳回產品名稱)
         {
-            //using (SqlConnection connection = new SqlConnection(connect))
+            //using (SqlConnection connection = new SqlConnection(source.connect))
             //{ 
             //    var result = connection.Query<Products>("SELECT ProductName FROM Products WHERE ProductID=@productid Group By ColorID").ToString();
-            SqlConnection connection = new SqlConnection(connect);
+            SqlConnection connection = new SqlConnection(source.connect);
             var sql = "SELECT ProductName FROM Products WHERE ProductID=@productid";
             SqlCommand command = new SqlCommand(sql, connection);
             command.Parameters.AddWithValue("@productid", ProductID);
@@ -178,7 +189,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public IEnumerable<Products> _GetAll()
         {
-            SqlConnection connection = new SqlConnection(connect);
+            SqlConnection connection = new SqlConnection(source.connect);
             var sql = "SELECT * FROM Products";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -222,5 +233,19 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         }
 
+        /// <summary>
+        /// 搜尋產品功能
+        /// </summary>
+        /// <param name="name"></param>
+        public IEnumerable<Products> SearchProductsByName(string name)
+        {
+            var query = "SELECT p.ProductID, (SELECT Category FROM Products WHERE ProductID = p.ProductID) AS Category,(SELECT ProductName FROM Products WHERE ProductID = p.ProductID AND ProductName LIKE '%@ProductName%') AS ProductName, (SELECT UnitPrice FROM Products WHERE ProductID = p.ProductID) AS UnitPrice,(SELECT ShelfTime FROM Products WHERE ProductID = p.ProductID) AS ShelfTime,(SELECT TOP 1 Discount FROM Discounts WHERE ProductID = p.ProductID AND EndTime >= GETDATE() ORDER BY StartTime DESC) AS Discount FROM Products p LEFT JOIN Discounts d ON d.ProductID = p.ProductID GROUP BY p.ProductID";
+            var parameters = new DynamicParameters();
+            parameters.Add("@ProductName", name);
+            using(SqlConnection connection = new SqlConnection(source.connect))
+            {
+                return connection.Query<Products>(query, parameters);
+            }
+        }
     }
 }

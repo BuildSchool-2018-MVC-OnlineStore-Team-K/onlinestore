@@ -11,52 +11,54 @@ namespace BuildSchool.MVCSolution.OnlineStore.ProductsRepositoryTests
     [TestClass()]
     public class ProductsRepositoryTests
     {
+        ProductsRepository repo = new ProductsRepository();
         [TestMethod()]
-        public void GetAllTest()
+        public void ProductGetAll()
         {
-            var repository = new ProductsRepository();
-            var list = repository.GetAll();
+            var list = repo.GetAll();
             Assert.IsTrue(list.Count() > 0);
         }
 
         [TestMethod()]
         public void OrderByUnitpriceTest()
         {
-            var repository = new ProductsRepository();
-            var list = repository.OrderByUnitprice();
-            Assert.IsTrue(list.Count()>0);
+            var list = repo.OrderByUnitprice();
+            Assert.IsTrue(list.Count() > 0);
         }
 
         [TestMethod()]
         public void OrderByUnitpriceDESCTest()
         {
-            var repository = new ProductsRepository();
-            var list = repository.OrderByUnitpriceDESC();
+            var list = repo.OrderByUnitpriceDESC();
             Assert.IsTrue(list.Count() > 0);
         }
 
         [TestMethod()]
         public void GetTop8Product()
         {
-            var repository = new ProductsRepository();
-            var list = repository.GetTop8Product();
+            var list = repo.GetTop8Product();
             Assert.IsTrue(list.Count() > 0);
         }
 
         [TestMethod()]
         public void OrderByShelfTimeDESCTest()
         {
-            var repository = new ProductsRepository();
-            var list = repository.OrderByShelfTimeDESC();
+            var list = repo.OrderByShelfTimeDESC();
             Assert.IsTrue(list.Count() > 0);
         }
 
         [TestMethod()]
         public void GetProductNameTest()
         {
-            var repository = new ProductsRepository();
-            var result = repository.GetProductName(2);
+            var result = repo.GetProductName(2);
             Assert.AreEqual(result, "短袖牛仔褲");
+        }
+
+        [TestMethod()]
+        public void ProductFindById()
+        {
+            var result = repo.FindById(1);
+            Assert.IsTrue(result.Count() == 1);
         }
     }
 }

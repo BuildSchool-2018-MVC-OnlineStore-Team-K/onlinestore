@@ -44,6 +44,7 @@
     <Compile Include="OrderDetailsViewModel.cs" />
     <Compile Include="OrdersViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegisterModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
