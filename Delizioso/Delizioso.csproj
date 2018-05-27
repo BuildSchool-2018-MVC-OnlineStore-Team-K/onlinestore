@@ -207,7 +207,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\FacebookAuthentication\Index.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Cart\modeltest.cshtml" />
     <Content Include="Views\OrderDetails\OrderDetails.cshtml" />
@@ -217,6 +216,7 @@
     <Content Include="Views\MemberCentre\MemberCentre.cshtml" />
     <Content Include="Views\Disclaimer\Disclaimer.cshtml" />
     <Content Include="Views\Register\Index.cshtml" />
+    <Content Include="Views\GoogleAuthentication\Google.cshtml" />
     <Content Include="Views\FacebookAuthentication\Facebook.cshtml" />
   </ItemGroup>
   <ItemGroup>

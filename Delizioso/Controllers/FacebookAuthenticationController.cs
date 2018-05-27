@@ -28,6 +28,8 @@ namespace WebApplication1.Controllers
         [Route("facebook")]
         public ActionResult Facebook()
         {
+
+
             var code = Request.QueryString["code"];
             var tokenEndpoint = "https://graph.facebook.com/v3.0/oauth/access_token";
             
@@ -36,6 +38,8 @@ namespace WebApplication1.Controllers
             "&client_secret=" + ConfigurationManager.AppSettings["facebook:secret"] +
             "&code=" + code;
 
+
+
             var client = new WebClient();
             client.Encoding = Encoding.UTF8;
             client.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
@@ -43,12 +47,18 @@ namespace WebApplication1.Controllers
             var response = client.UploadString(tokenEndpoint, payload);
 
             var o = JObject.Parse(response);
+            var accessToken = o.Property("access_token").Value.ToString();
+
+
+            var profile = client.DownloadString("http://graph.facebook.com/me?access_token=" + accessToken);
+
+            ViewBag.FB = (profile);
             
-
-            ViewBag.FBresponse(o);
-
 
             return View();
         }
+
+
+
     }
 }

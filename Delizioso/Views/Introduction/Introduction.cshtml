@@ -53,11 +53,11 @@
 
     @if (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("SQLAZURECONNSTR_cloud")))
     {
-        <h2>@Environment.GetEnvironmentVariable("SQLAZURECONNSTR_cloud")</h2>
+        //<h2>@Environment.GetEnvironmentVariable("SQLAZURECONNSTR_cloud")</h2>
     }
     else
     {
-        <h2>@ConfigurationManager.ConnectionStrings["db"].ConnectionString</h2>
+       // <h2>@ConfigurationManager.ConnectionStrings["db"].ConnectionString</h2>
     }
 
     <!-- Footer -->

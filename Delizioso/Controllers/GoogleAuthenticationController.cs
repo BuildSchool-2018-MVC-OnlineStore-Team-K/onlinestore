@@ -18,7 +18,7 @@ namespace WebApplication1.Controllers
         {
             var redirectURL = "https://accounts.google.com/o/oauth2/v2/auth?" +
                 "client_id=" + ConfigurationManager.AppSettings["google:key"] +
-                "&redirect_uri=" + HttpUtility.UrlEncode("http://localhost:57040/auth/google") +
+                "&redirect_uri=" + HttpUtility.UrlEncode("https://delizioso.azurewebsites.net/auth/google") +
                 "&scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile" +
                 "&response_type=code";
             return Redirect(redirectURL);
@@ -34,7 +34,7 @@ namespace WebApplication1.Controllers
                 $"code={code}" +
                 $"&client_id={ConfigurationManager.AppSettings["google:key"]}" +
                 $"&client_secret={ConfigurationManager.AppSettings["google:secret"]}" +
-                $"&redirect_uri={HttpUtility.UrlEncode("http://localhost:57040/auth/google")}" +
+                $"&redirect_uri={HttpUtility.UrlEncode("https://delizioso.azurewebsites.net/auth/google")}" +
                 $"&grant_type=authorization_code";
 
             var client = new WebClient();
@@ -48,6 +48,8 @@ namespace WebApplication1.Controllers
             
 
             var profile = client.DownloadString("https://www.googleapis.com/plus/v1/people/me?access_token=" + accessToken);
+
+            ViewBag.Google = (profile);
             return View();
         }
 
