@@ -48,6 +48,8 @@ namespace WebApplication1.Controllers
             
 
             var profile = client.DownloadString("https://www.googleapis.com/plus/v1/people/me?access_token=" + accessToken);
+            //var testprofile = client.DownloadString("https://graph.facebook.com/me?access_token=EAAIwc7rqUMsBAN7JmYgcIpbkPaux0qv2jwXQOBGxFQYMAZBTZC6KBgfUZB2Ufqh16Ao2wbs2tRoF80D5Lc6EWQIsRVZA7UycMzDQapDbPFV5RhN6Cx9o7avwVaKDGV8G7apu3nNIYz47OK5BNfQZB9psxTu2AFRsxORgmU34hKIcdMGesX75U");
+
 
             ViewBag.Google = (profile);
             return View();
