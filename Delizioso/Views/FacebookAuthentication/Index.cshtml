@@ -6,120 +6,69 @@
 
 <h2>Index</h2>
 
-
+<div id="fb-root"></div>
 <script>
-    window.fbAsyncInit = function () {
-        FB.init({
-            appId: '616223568711883',
-            xfbml: true,
-            version: 'v3.0'
-        });
-        FB.AppEvents.logPageView();
-    };
-
     (function (d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) { return; }
-        js = d.createElement(s); js.id = id;
-        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = 'https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v3.0&appId=616223568711883&autoLogAppEvents=1';
         fjs.parentNode.insertBefore(js, fjs);
+        console.log("d", d);
+        console.log("s", s);
+        console.log("s", s);
+        console.log("id", id);
+        console.log("js", js);
+        console.log("js.id", js.id);
     }(document, 'script', 'facebook-jssdk'));
+
+
+
+    var requestUri = new Windows.Foundation.Uri(
+        "https://www.facebook.com/v3.0/dialog/oauth?"+
+        "client_id={616223568711883}"+
+        "&redirect_uri=https://delizioso.azurewebsites.net/facebookauth)");
+
+        Windows.Security.Authentication.Web.WebAuthenticationBroker.authenticateAsync(
+            options,
+            requestUri)
+            .done(function (result) {
+                // Handle the response from the Login Dialog
+                console.log("result", result);
+                console.log("requestUri", requestUri);
+            }
+        );
+
+
 </script>
 
 
+<!--登入按鈕-->
+<div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
 
 
-<script>
-    // This is called with the results from from FB.getLoginStatus().
-    function statusChangeCallback(response) {
-        console.log('statusChangeCallback');
-        console.log(response);
-        // The response object is returned with a status field that lets the
-        // app know the current login status of the person.
-        // Full docs on the response object can be found in the documentation
-        // for FB.getLoginStatus().
-        if (response.status === 'connected') {
-            // Logged into your app and Facebook.
-            testAPI();
-        } else {
-            // The person is not logged into your app or we are unable to tell.
-            document.getElementById('status').innerHTML = 'Please log ' +
-                'into this app.';
-        }
-    }
 
-    // This function is called when someone finishes with the Login
-    // Button.  See the onlogin handler attached to it in the sample
-    // code below.
-    function checkLoginState() {
-        FB.getLoginStatus(function (response) {
-            statusChangeCallback(response);
-        });
-    }
 
-    window.fbAsyncInit = function () {
-        FB.init({
-            appId: '616223568711883',
-            xfbml: true,
-            version: 'v3.0'
-        });
-        FB.AppEvents.logPageView();
-    };
-
-        // Now that we've initialized the JavaScript SDK, we call
-        // FB.getLoginStatus().  This function gets the state of the
-        // person visiting this page and can return one of three states to
-        // the callback you provide.  They can be:
-        //
-        // 1. Logged into your app ('connected')
-        // 2. Logged into Facebook, but not your app ('not_authorized')
-        // 3. Not logged into Facebook and can't tell if they are logged into
-        //    your app or not.
-        //
-        // These three cases are handled in the callback function.
-
-        FB.getLoginStatus(function (response) {
-            statusChangeCallback(response);
-        });
-
-    };
-
-    // Load the SDK asynchronously
-    (function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) { return; }
-        js = d.createElement(s); js.id = id;
-        js.src = "https://connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-
-    // Here we run a very simple test of the Graph API after login is
-    // successful.  See statusChangeCallback() for when this call is made.
-    function testAPI() {
-        console.log('Welcome!  Fetching your information.... ');
-        FB.api('/me', function (response) {
-            console.log('Successful login for: ' + response.name);
-            document.getElementById('status').innerHTML =
-                'Thanks for logging in, ' + response.name + '!';
-        });
-    }
-</script>
 
 <!--
-  Below we include the Login Button social plugin. This button uses
-  the JavaScript SDK to present a graphical Login button that triggers
-  the FB.login() function when clicked.
+https://www.facebook.com/v3.0/dialog/oauth?
+    app_id=616223568711883
+    &auth_type=
+    &channel_url=https%3A%2F%2Fstaticxx.facebook.com%2Fconnect%2Fxd_arbiter%2Fr%2FRQ7NiRXMcYA.js%3Fversion%3D42%23cb%3Df3b2b796db61d74%26domain%3Ddelizioso.azurewebsites.net%26origin%3Dhttps%253A%252F%252Fdelizioso.azurewebsites.net%252Ff2915878d6bac68%26relation%3Dopener
+    &client_id=616223568711883
+    &display=popup
+    &domain=delizioso.azurewebsites.net
+    &e2e=%7B%7D
+    &locale=zh_TW
+    &logger_id=6a47578f-8007-7a65-5e77-22dfc7607d14
+    &origin=1
+    &redirect_uri=https%3A%2F%2Fstaticxx.facebook.com%2Fconnect%2Fxd_arbiter%2Fr%2FRQ7NiRXMcYA.js%3Fversion%3D42%23cb%3Df2e9579e916ac8%26domain%3Ddelizioso.azurewebsites.net%26origin%3Dhttps%253A%252F%252Fdelizioso.azurewebsites.net%252Ff2915878d6bac68%26relation%3Dopener%26frame%3Dfa774a79f95f5c
+    &ref=LoginButton
+    &response_type=none%2Ctoken%2Csigned_request
+    &scope=
+    &sdk=joey
+    &seen_revocable_perms_nux=false
+    &version=v3.0
+
 -->
-
-<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-</fb:login-button>
-
-
-
-
-<div class="fb-like"
-     data-share="true"
-     data-width="450"
-     data-show-faces="true">
-</div>
-

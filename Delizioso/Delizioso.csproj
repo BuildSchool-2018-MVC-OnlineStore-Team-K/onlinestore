@@ -217,6 +217,7 @@
     <Content Include="Views\MemberCentre\MemberCentre.cshtml" />
     <Content Include="Views\Disclaimer\Disclaimer.cshtml" />
     <Content Include="Views\Register\Index.cshtml" />
+    <Content Include="Views\FacebookAuthentication\Facebook.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
