@@ -156,6 +156,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\Container.cs" />
+    <Compile Include="Controllers\ContainerManager.cs" />
     <Compile Include="Controllers\DisclaimerController.cs" />
     <Compile Include="Controllers\FacebookAuthenticationController.cs" />
     <Compile Include="Controllers\GoogleAuthenticationController.cs" />

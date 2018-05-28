@@ -47,10 +47,11 @@ namespace WebApplication1.Controllers
 
 
             var profile = client.DownloadString("https://graph.facebook.com/me?access_token=" + accessToken);
-            
 
+            var Info = JObject.Parse(profile);
+            var id = Info.Property("id").Value.ToString();
 
-            ViewBag.Facebook = (profile);
+            ViewBag.Facebook = (id);
 
             return View();
         }
