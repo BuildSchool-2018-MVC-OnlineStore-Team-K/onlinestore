@@ -164,6 +164,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MemberCentreController.cs" />
     <Compile Include="Controllers\OrderDetailsController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -218,6 +219,7 @@
     <Content Include="Views\Register\Index.cshtml" />
     <Content Include="Views\GoogleAuthentication\Google.cshtml" />
     <Content Include="Views\FacebookAuthentication\Facebook.cshtml" />
+    <Content Include="Views\Products\SimpleProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
