@@ -1,0 +1,191 @@
+﻿@model IEnumerable<ViewModels.ProductsViewModel>
+@{
+    ViewBag.Title = "SimpleProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Delizioso-購物</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <style>
+        .productpic {
+            width: 90%;
+            margin-left: 20px;
+        }
+
+        .fas.fa-star {
+            color: yellow;
+        }
+
+        .trans {
+            margin-left: 48px;
+            font-size: 13px;
+        }
+
+        .dis {
+            font-size: 20px;
+        }
+
+        .col-md {
+            margin-left: 40px;
+        }
+    </style>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+          crossorigin="anonymous">
+</head>
+
+<body style="font-family:微軟正黑體;">
+    @foreach (var item in ViewBag.result)
+    {
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-md-5">
+                    <img class="productpic" src="https://s9.postimg.cc/fd3rfy0jj/jeans3.jpg">
+                </div>
+                <div class="col-md-6">
+                    <h2>@item.ProductName </h2>
+                    <hr>
+                    <h5>產品類別:@item.Category</h5>
+                    <p>
+                        建議售價&nbsp;
+                        <span style="font-size: 30px;color: rgb(253, 32, 32); font-weight: bold;"><span style="font-size: 18px">$</span>@item.UnitPrice</span>元
+                    </p>
+                    <div class="row">
+                        <div class="col">
+                            <p style="font-size: 14px">
+                                <span style="font-weight: bold;">付款方式</span>
+                                <img src="http://img.pcstore.com.tw/web_img/icon_visa.gif">
+                                <img src="http://img.pcstore.com.tw/web_img/icon_ms.gif">
+                                <img src="http://img.pcstore.com.tw/web_img/icon_jcb.gif">
+                                <img src="http://img.pcstore.com.tw/web_img/icon_ae.gif">
+                                <img src="http://img.pcstore.com.tw/web_img/icon_atm.gif">
+                                <img src="http://img.pcstore.com.tw/web_img/cup.gif">
+                                <br />
+                                <img src="http://img.pcstore.com.tw/web_img/search_icon_payment_711.gif" style="margin-left: 60px">
+                                <img src="http://img.pcstore.com.tw/web_img/search_icon_payment_fa.gif">&nbsp;超商付款
+                                <br />
+                                <img src="http://img.pcstore.com.tw/web_img/search_icon_payment_711.gif" style="margin-left: 60px">
+                                <img src="http://img.pcstore.com.tw/web_img/search_icon_payment_fa.gif">&nbsp;取貨付款
+                                <br />
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p style="font-size: 14px">
+                                <span style="font-weight: bold;">運&nbsp;&nbsp;&nbsp;費</span>
+                                <br />
+                                <span class="trans">單店購物車滿 480 元(含)以上免運費，未滿者自付運費</span>
+                                <br />
+                                <span class="trans">宅配 70 元</span>
+                                <br />
+                                <span class="trans">郵局 65 元***</span>
+                                <br />
+                                <span class="trans">商品如需寄送至台灣本島以外，請先行與店家聯繫運費金額</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="Size">Size:</label>
+                            <select id="Size" name="Size">
+                                <option value="xs">XS</option>
+                                <option value="s">S</option>
+                                <option value="m">M</option>
+                                <option value="l">L</option>
+                                <option value="xl">XL</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="Color">Color:</label>
+                            <select id="Color" name="Color">
+                                <option value="Red">Red</option>
+                                <option value="Bule">Bule</option>
+                                <option value="Black">Black</option>
+                                <option value="Yellow">Yellow</option>
+                            </select>
+                        </div>
+                        <div class="col-md-5">
+                            <button id="minus" class="shopee-button-outline">-</button>
+                            <input id="quantity" class="shopee-button-outline shopee-button-outline-mid" type="text" style="width: 60px">
+                            <button id="plus" class="shopee-button-outline-mid">+</button>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-2">
+                            <button id="addcar" type="button" class="btn btn-secondary">加入購物車</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <br />
+    <br />
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h5 style="color:gray">你可能會喜歡</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md">
+                <img src="http://via.placeholder.com/150x150">
+                <h6>商品名稱</h6>
+            </div>
+            <div class="col-md">
+                <img src="http://via.placeholder.com/150x150">
+                <h6>商品名稱</h6>
+            </div>
+            <div class="col-md">
+                <img src="http://via.placeholder.com/150x150">
+                <h6>商品名稱</h6>
+            </div>
+            <div class="col-md">
+                <img src="http://via.placeholder.com/150x150">
+                <h6>商品名稱</h6>
+            </div>
+            <div class="col-md">
+                <img src="http://via.placeholder.com/150x150">
+                <h6>商品名稱</h6>
+            </div>
+        </div>
+    </div>
+    <script>
+        var a = 1;
+        $("#quantity").val(a);
+        $(function () {
+
+            $("#minus").click(function () {
+                if (a > 1) {
+                    a -= 1;
+                    $("#quantity").val(a);
+                } else {
+                    $("#quantity").val(0);
+                }
+            })
+            $("#plus").click(function () {
+                a += 1;
+                $("#quantity").val(a);
+            })
+        })
+        $(function () {
+            $("#addcar").click(function () {
+
+            })
+        })
+    </script>
+</body>
+
+</html>
+

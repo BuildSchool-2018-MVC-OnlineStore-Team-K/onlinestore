@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using Service;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -45,15 +46,29 @@ namespace WebApplication1.Controllers
             var o = JObject.Parse(response);
             var accessToken = o.Property("access_token").Value.ToString();
 
+            ViewBag.accessToken = (accessToken);
 
             var profile = client.DownloadString("https://graph.facebook.com/me?access_token=" + accessToken);
 
             var Info = JObject.Parse(profile);
             var id = Info.Property("id").Value.ToString();
-
+            
             ViewBag.Facebook = (id);
 
-            return View();
+
+            /*
+            //檢查是否已經用fb註冊過
+            var service = new CheckMember();
+            if (service.CheckFbRegistered(id)) //true是註冊過
+            {
+                //給予cookie 已登入的狀態
+
+                var url = "~/Home";
+                return Redirect(url);
+            }
+            */
+
+                return View();
         }
 
 
