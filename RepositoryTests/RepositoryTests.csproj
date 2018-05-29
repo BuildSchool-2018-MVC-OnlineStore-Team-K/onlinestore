@@ -89,6 +89,10 @@
       <Project>{56D5E1BB-46AA-42D8-8E75-096955EEC0B8}</Project>
       <Name>Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ViewModels\ViewModels.csproj">
+      <Project>{0F648A53-EDBB-4B09-8395-52A1015DBA95}</Project>
+      <Name>ViewModels</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

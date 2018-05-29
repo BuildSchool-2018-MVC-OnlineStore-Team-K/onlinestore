@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ViewModels;
 
 namespace BuildSchool.MVCSolution.OnlineStore.Repository
 {
@@ -152,12 +153,23 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             }           
         }
 
-        public IEnumerable<Products> GetTop8Product()  //上架時間排序(前十)
+        public IEnumerable<Products> GetTop8Product()  //上架時間排序(前八)
         {
             using (SqlConnection connection = new SqlConnection(source.connect))
             {
                 var result = connection.Query<Products>("SELECT TOP 8 ProductName, UnitPrice, Picture FROM Products GROUP BY ProductName, UnitPrice, Picture,ShelfTime ORDER BY ShelfTime DESC");
                 return result;
+            }
+        }
+
+        public IEnumerable<ProductsViewModel> GetProductDetail(int ProductID)  //產品頁面需要(詳細資料)
+        {            
+            var query = "SELECT p.ProductID,p.ProductName,p.Category,s.SizeType,cs.Color,cs.Stock FROM Products p INNER JOIN Size s ON p.ProductID = s.ProductID INNER JOIN ColorStock cs ON s.SizeID = cs.SizeID Where ProductID = @ProductID";
+            var parameters = new DynamicParameters();
+            parameters.Add("@productid", ProductID);
+            using (SqlConnection connection = new SqlConnection(source.connect))
+            {
+                return connection.Query<ProductsViewModel>(query, parameters);
             }
         }
 
