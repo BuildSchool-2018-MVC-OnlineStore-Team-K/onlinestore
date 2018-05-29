@@ -75,7 +75,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             command.ExecuteNonQuery();
             connection.Close();
         }
-        
+
         public IEnumerable<Products> FindById(int ProductID)
         {
             var query = "SELECT * FROM Products Where ProductID = @ProductID";
@@ -118,7 +118,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             {
                 var result = connection.Query<Products>(query);
                 return result;
-            }            
+            }
         }
 
         /// <summary>
@@ -131,7 +131,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             {
                 var result = connection.Query<Products>("SELECT ProductID, ProductName, UnitPrice FROM Products GROUP BY ProductID, ProductName, UnitPrice ORDER BY UnitPrice");
                 return result;
-            }            
+            }
         }
 
         public IEnumerable<Products> OrderByUnitpriceDESC()  //價格排序:高->低
@@ -140,7 +140,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             {
                 var result = connection.Query<Products>("SELECT ProductID, ProductName, UnitPrice FROM Products GROUP BY ProductID, ProductName, UnitPrice ORDER BY UnitPrice DESC");
                 return result;
-            }           
+            }
         }
 
         public IEnumerable<Products> OrderByShelfTimeDESC()  //上架時間排序(前十)
@@ -149,7 +149,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             {
                 var result = connection.Query<Products>("SELECT TOP 8 ProductID, ProductName, ShelfTime FROM Products GROUP BY ProductID, ProductName, ShelfTime ORDER BY ShelfTime DESC");
                 return result;
-            }           
+            }
         }
 
         public IEnumerable<Products> GetTop8Product()  //上架時間排序(前十)
@@ -161,6 +161,11 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             }
         }
 
+        /// <summary>
+        /// 查詢訂單、折扣排名(傳入產品ID，傳回產品名稱)
+        /// </summary>
+        /// <param name="ProductID"></param>
+        /// <returns></returns>
         public string GetProductName(int ProductID)  //查詢訂單、折扣排名(傳入產品ID，傳回產品名稱)
         {
             //using (SqlConnection connection = new SqlConnection(source.connect))
@@ -185,7 +190,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             connection.Close();
             return result;
             //}
-        }       
+        }
 
         public IEnumerable<Products> _GetAll()
         {
@@ -242,7 +247,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             var query = "SELECT p.ProductID, (SELECT Category FROM Products WHERE ProductID = p.ProductID) AS Category,(SELECT ProductName FROM Products WHERE ProductID = p.ProductID AND ProductName LIKE '%@ProductName%') AS ProductName, (SELECT UnitPrice FROM Products WHERE ProductID = p.ProductID) AS UnitPrice,(SELECT ShelfTime FROM Products WHERE ProductID = p.ProductID) AS ShelfTime,(SELECT TOP 1 Discount FROM Discounts WHERE ProductID = p.ProductID AND EndTime >= GETDATE() ORDER BY StartTime DESC) AS Discount FROM Products p LEFT JOIN Discounts d ON d.ProductID = p.ProductID GROUP BY p.ProductID";
             var parameters = new DynamicParameters();
             parameters.Add("@ProductName", name);
-            using(SqlConnection connection = new SqlConnection(source.connect))
+            using (SqlConnection connection = new SqlConnection(source.connect))
             {
                 return connection.Query<Products>(query, parameters);
             }
