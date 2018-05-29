@@ -11,27 +11,26 @@ namespace Service
 {
     public class CheckMember
     {
-        public bool CheckAccountRegister(string Account)
+        public bool CheckAccountExist(string Account)
         {
             var repository = new MembersRepository();
             
-
-            if (Account.Length <8 || Account.Length>16)
+            if(repository.CheckAccountIsExist(Account))
             {
-                return false;
-            }
-            
-            if(!repository.CheckAccountIsNotExist(Account))
-            {
-                return false;
+                return true;
             }
 
-            return true;
+            return false;
         }
 
-        public bool CheckPasswordRegister(string Password)
+        public bool CheckAccountAndPasswordRegister(string Account,string Password)
         {
-            if(Password.Length<6 || Password.Length > 16)
+            if (Account.Length < 8 || Account.Length > 16)
+            {
+                return false;
+            }
+
+            if (Password.Length<6 || Password.Length > 16)
             {
                 return false;
             }
@@ -60,6 +59,17 @@ namespace Service
             }
         }
 
+        public bool CheckFbRegistered(string id)
+        {
+            var repository = new MembersRepository();
+            var result = repository.CheckFbIdExist(id);
+            return result;//true = 註冊過 = 有撈到
+        }
 
+        public string GetAccountName(string Account,string Password)
+        {
+            var repository = new MembersRepository();
+            return repository.AccountLogin(Account, Password);
+        }
     }
 }

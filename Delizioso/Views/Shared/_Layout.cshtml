@@ -24,10 +24,8 @@
             </h3>
         </div>
         <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
-
-            <button class="w3-btn w3-xlarge " onclick="location.href='@Url.Content("~/Login")'" style="font-weight:900;">登入</button>
-            <button class="w3-btn w3-xlarge " onclick="location.href='@Url.Content("~/register")'" style="font-weight:900;">註冊</button>
-
+            @Html.Partial("~/Views/Login/Status.cshtml")
+            
             <div class="w3-button w3-block w3-white w3-left-align">
                 <a onclick="location.href='@Url.Content("~/Home")'" class="w3-bar-item w3-button">首頁</a>
                 <a onclick="location.href='@Url.Content("~/MemberCentre")'" class="w3-bar-item w3-button">會員中心</a>

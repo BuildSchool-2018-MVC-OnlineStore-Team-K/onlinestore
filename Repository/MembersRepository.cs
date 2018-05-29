@@ -248,7 +248,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             return list;
         }
 
-        public bool CheckAccountIsNotExist(string Account)
+        public bool CheckAccountIsExist(string Account)
         {
             SqlConnection connection = new SqlConnection(source.connect);
             var result = connection.Query<Members>("SELECT account From Members where Account = @Account ", new
@@ -257,11 +257,11 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             });
             if (result.Count() == 0)
             {
-                return true;
+                return false;
             }
             else
             {
-                return false;
+                return true;
             }
 
         }
@@ -298,14 +298,32 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             }
         }
 
-        public IEnumerable<LoginViewModel> AccountLogin(string Account, string Password)
+        public string AccountLogin(string Account, string Password)
         {
             SqlConnection connection = new SqlConnection(source.connect);
-            var result = connection.Query<LoginViewModel>("SELECT Name FROM Member WHERE Account = @Account AND Password = @Password",new {
+            var result = connection.Query<LoginViewModel>("SELECT Name FROM Members WHERE Account = @Account AND Password = @Password",new {
                 Account,
                 Password
             });
-            return result;
+            return result.ToList()[0].Name;
+        }
+
+        public bool CheckFbIdExist(string id)
+        {
+            SqlConnection connection = new SqlConnection(source.connect);
+
+            var result = connection.Query("SELECT FbId From Members Where FbId = @id", new
+            {
+                id
+            });
+            if (result.Count() > 0)
+            {
+                return true;//存在
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
