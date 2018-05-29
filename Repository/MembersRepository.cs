@@ -173,38 +173,6 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             }
         }
 
-        public Boolean AccountLogin(string Account, string Password)
-        {
-            SqlConnection connection = new SqlConnection(source.connect);
-            var sql = "SELECT Account,Password FROM Members WHERE @Account=Account,@Password=Password ";
-            SqlCommand command = new SqlCommand(sql, connection);
-
-            connection.Open();
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            var list = new List<Members>();
-            //var mreader = new Members();
-            Boolean YN;
-            if (!reader.Read())
-            {
-                YN = false;
-            }
-            else
-            {
-                YN = true;
-            }
-            //while (reader.Read())
-            //{
-            //    mreader.Account = reader.GetValue(reader.GetOrdinal("Account")).ToString();
-            //    mreader.Password = reader.GetValue(reader.GetOrdinal("Password")).ToString();
-            //     list.Add(mreader);
-            //command.Parameters.AddWithValue("@Account", Account);
-            // command.Parameters.AddWithValue("@Password", Password);
-            //}
-            reader.Close();
-            return YN;
-            //return Convert.ToInt32(list);
-        }
-
         //不要亂命名r
         public void UpdateMemberInformation(int MemberID)
         {
@@ -259,8 +227,8 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             reader.Close();
             connection.Close();
         }
-      
-        public IEnumerable <Members> GetAll() //NEWPassword
+
+        public IEnumerable<Members> GetAll() //NEWPassword
         {
             SqlConnection connection = new SqlConnection(source.connect);
             var sql = "SELECT Password FROM  Members  WHERE MemberID=@MemberID,@Password=Password";
@@ -269,7 +237,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
             var list = new List<Members>();
             var mreader = new Members();
-                while (reader.Read())
+            while (reader.Read())
             {
                 mreader.Password = reader.GetValue(reader.GetOrdinal("Password")).ToString();
                 list.Add(mreader);
@@ -287,7 +255,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             {
                 Account
             });
-            if(result.Count()==0 )
+            if (result.Count() == 0)
             {
                 return true;
             }
@@ -295,16 +263,17 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             {
                 return false;
             }
-            
+
         }
 
-        
+
 
         public bool CreateAccount(RegisterModel member)
         {
             SqlConnection connection = new SqlConnection(source.connect);
             connection.Execute("INSERT INTO Members([Name], [Address],Birthday,Phone,Email,Account,[Password],Career,[Block]) Values(@Name , @Address , @Birthday ,@Phone , @Email , @Account , @Password , @Career ,0)",
-                new {
+                new
+                {
                     member.Name,
                     member.Address,
                     member.Birthday,
@@ -314,11 +283,12 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
                     member.Password,
                     member.Career
                 });
-            var result = connection.Query<RegisterModel>("SELECT * FROM Members Where Account = @Account and Name = @Name", new {
+            var result = connection.Query<RegisterModel>("SELECT * FROM Members Where Account = @Account and Name = @Name", new
+            {
                 member.Account,
                 member.Name
             });
-            if(result.Count() >0)
+            if (result.Count() > 0)
             {
                 return true;
             }
@@ -328,5 +298,14 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             }
         }
 
+        public IEnumerable<LoginViewModel> AccountLogin(string Account, string Password)
+        {
+            SqlConnection connection = new SqlConnection(source.connect);
+            var result = connection.Query<LoginViewModel>("SELECT Name FROM Member WHERE Account = @Account AND Password = @Password",new {
+                Account,
+                Password
+            });
+            return result;
+        }
     }
-    }
+}
