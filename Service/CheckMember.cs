@@ -46,7 +46,6 @@ namespace Service
             }
             return true;
         }
-
         public bool CheckCreateAccount(RegisterModel members)
         {
             var repository = new MembersRepository();
