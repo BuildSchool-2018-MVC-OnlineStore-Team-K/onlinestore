@@ -12,7 +12,7 @@ using System.Configuration;
 
 namespace BuildSchool.MVCSolution.OnlineStore.Repository
 {
-    public class OrdersRepository
+    public class OrdersRepository 
     {
          MyConnectionString source = new MyConnectionString();
         //private string connect = "Server=192.168.40.35,1433;Database=E-Commerce;User ID =smallhandsomehandsome; Password =123;";
