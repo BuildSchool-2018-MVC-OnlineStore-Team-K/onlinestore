@@ -27,7 +27,7 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public ActionResult Index(RegisterModel registerModel)
         {
-            var service = new MemberRegister();
+            var service = new CheckMember();
             if (!service.CheckAccountRegister(registerModel.Account))
             {
                 ModelState.AddModelError("registerModel", "此帳號已註冊過");
@@ -47,12 +47,11 @@ namespace WebApplication1.Controllers
             {
                 ModelState.AddModelError("registerModel", "建立錯誤!請聯絡客服人員");
             }
-            else
-            {
-                
-            }
 
-            return View();
+
+            var url = "~/Home";
+
+            return Redirect(url);
         }
 
 

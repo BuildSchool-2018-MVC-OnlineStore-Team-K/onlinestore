@@ -9,7 +9,7 @@ using ViewModels;
 
 namespace Service
 {
-    public class MemberRegister
+    public class CheckMember
     {
         public bool CheckAccountRegister(string Account)
         {
@@ -46,6 +46,7 @@ namespace Service
             }
             return true;
         }
+
         public bool CheckCreateAccount(RegisterModel members)
         {
             var repository = new MembersRepository();
