@@ -15,7 +15,7 @@ namespace WebApplication1.Controllers
         public ActionResult SimpleProduct(int id)
         {
             var controller = new ProductsService();
-            var product = controller.GetProductDetail(id);
+            var product = controller.GetProductDetailById(id);
             ViewBag.result = product;
             return View();
         }

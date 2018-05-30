@@ -259,5 +259,131 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
                 return connection.Query<Products>(query, parameters);
             }
         }
+
+        public IEnumerable<ProductsViewModel> GetAllProductsDetail()
+        {
+            SqlConnection connection = new SqlConnection(source.connect);
+            return connection.Query<ProductsViewModel>("SELECT * FROM Products p INNER JOIN Size s ON p.ProductID = s.ProductID INNER JOIN StockColor sk ON sk.SizeID = s.SizeID ");
+        }
+
+        public bool UpdateProductName(int ProductId , string ProductName)
+        {
+            SqlConnection connection = new SqlConnection(source.connect);
+            connection.Execute("Update Products SET ProductName = @productname Where ProductID = @ProductId ", new
+            {
+                ProductId,
+                ProductName
+            });
+            var result =connection.Query("SELECT ProductName = @ProductName From Products Where ProductID = @ProductId ", new
+            {
+                ProductName,
+                ProductId
+            });
+            if(result.Count()>0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+                
+        }
+
+        public bool UpdateProductCategory(string Category , int ProductID)
+        {
+            SqlConnection connection = new SqlConnection(source.connect);
+            connection.Execute("Update Products SET Category = @Category Where ProductID = @ProductId ", new
+            {
+                Category,
+                ProductID
+            });
+            var result = connection.Query("SELECT ProductName = @ Category From Products Where ProductID = @ProductId ", new
+            {
+                Category,
+                ProductID
+            });
+            if (result.Count() > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool UpdateProductSizeBySizeID(string SizeType , int SizeID)
+        {
+            SqlConnection connection = new SqlConnection(source.connect);
+            connection.Execute("Update Size Set SizeType = @SizeType Where SizeID = @SizeID ", new
+            {
+                SizeID,
+                SizeType
+            });
+
+            var result = connection.Query("SELECT SizeType = @ SizeType From Size Where SizeID = @SizeID ", new
+            {
+                SizeID,
+                SizeType
+            });
+            if (result.Count() > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+        public bool UpdateProductColorByColorID(int ColorID , string Color)
+        {
+            SqlConnection connection = new SqlConnection(source.connect);
+            connection.Execute("Update StockColor Set Color = @Color Where ColorID = @ColorID ", new
+            {
+                ColorID,
+                Color
+            });
+            var result = connection.Query("SELECT Color = @Color From StockColor Where ColorID = @ColorID ", new
+            {
+                ColorID,
+                Color
+            });
+            if (result.Count() > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool UpdateProductStockByColorID(int ColorID, int Stock)
+        {
+            SqlConnection connection = new SqlConnection(source.connect);
+            connection.Execute("Update StockColor Set Stock = @Stock Where ColorID = @ColorID ", new
+            {
+                ColorID,
+                Stock
+            });
+
+            var result = connection.Query("SELECT Stock = @Stock From StockColor Where ColorID = @ColorID ", new
+            {
+                ColorID,
+                Stock
+            });
+            if (result.Count() > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
     }
 }

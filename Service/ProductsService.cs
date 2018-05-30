@@ -10,10 +10,22 @@ namespace Service
 {
     public class ProductsService
     {
-        public IEnumerable<ProductsViewModel> GetProductDetail(int ProductID)
+        public IEnumerable<ProductsViewModel> GetProductDetailById(int ProductID)
         {
-            var result = new ProductsRepository();
-            return result.GetProductDetail(ProductID);
+            var repository = new ProductsRepository();
+            return repository.GetProductDetail(ProductID);
+        }
+
+        public IEnumerable<ProductsViewModel> GetAllProductDetail()
+        {
+            var repository = new ProductsRepository();
+            return repository.GetAllProductsDetail();
+        }
+
+        public bool UpdateProductInfo(int ProductId)
+        {
+            var repository = new ProductsRepository();
+
         }
     }
 }
