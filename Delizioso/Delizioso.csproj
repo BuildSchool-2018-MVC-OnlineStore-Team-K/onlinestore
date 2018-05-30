@@ -222,6 +222,7 @@
     <Content Include="Views\GoogleAuthentication\Google.cshtml" />
     <Content Include="Views\FacebookAuthentication\Facebook.cshtml" />
     <Content Include="Views\Products\SimpleProduct.cshtml" />
+    <Content Include="Views\Login\Status.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

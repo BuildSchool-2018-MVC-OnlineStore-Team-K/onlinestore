@@ -28,12 +28,12 @@ namespace WebApplication1.Controllers
         public ActionResult Index(RegisterModel registerModel)
         {
             var service = new CheckMember();
-            if (!service.CheckAccountRegister(registerModel.Account))
+            if (!service.CheckAccountExist(registerModel.Account))
             {
                 ModelState.AddModelError("registerModel", "此帳號已註冊過");
             }
 
-            if (!service.CheckPasswordRegister(registerModel.Password))
+            if (!service.CheckAccountAndPasswordRegister(registerModel.Account,registerModel.Password))
             {
                 ModelState.AddModelError("registerModel", "密碼長度請介於6~16個字元");
             }
