@@ -70,5 +70,11 @@ namespace Service
             var repository = new MembersRepository();
             return repository.AccountLogin(Account, Password);
         }
+
+        public bool FbRegist(string Fbid , string FBName )
+        {
+            var repository = new MembersRepository();
+            return repository.CreateAccountByFBId(Fbid, FBName); //true = 成功
+        }
     }
 }

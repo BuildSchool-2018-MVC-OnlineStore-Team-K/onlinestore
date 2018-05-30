@@ -325,5 +325,25 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
                 return false;
             }
         }
+
+        public bool CreateAccountByFBId(string FBId , string FBName)
+        {
+            SqlConnection connection = new SqlConnection(source.connect);
+            connection.Execute("INSERT INTO Members(Name , FbId) Values(@FBId , @FBName)", new
+            {
+                FBId,
+                FBName
+            });
+
+            if(CheckFbIdExist(FBId))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
     }
 }
