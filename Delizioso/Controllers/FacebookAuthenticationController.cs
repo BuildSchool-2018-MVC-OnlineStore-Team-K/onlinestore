@@ -18,6 +18,7 @@ namespace WebApplication1.Controllers
         [Route("")]
         public ActionResult Index()
         {
+
             var redirectUrl = "https://www.facebook.com/v3.0/dialog/oauth?" +
                 "client_id=616223568711883" +
                 "&redirect_uri="+ HttpUtility.UrlEncode("https://delizioso.azurewebsites.net/facebookauth/facebook") +
@@ -52,23 +53,29 @@ namespace WebApplication1.Controllers
 
             var Info = JObject.Parse(profile);
             var id = Info.Property("id").Value.ToString();
-            
+            var name = Info.Property("name").Value.ToString();
+
             ViewBag.Facebook = (id);
 
 
-            /*
+
+            
             //檢查是否已經用fb註冊過
             var service = new CheckMember();
             if (service.CheckFbRegistered(id)) //true是註冊過
             {
                 //給予cookie 已登入的狀態
-
                 var url = "~/Home";
                 return Redirect(url);
             }
-            */
+            else //透過FB ID註冊到資料庫
+            {
+                service.FbRegist(id, name);
 
-                return View();
+            }
+
+            return View();
+
         }
 
 
