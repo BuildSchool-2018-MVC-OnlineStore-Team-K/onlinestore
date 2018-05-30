@@ -15,27 +15,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
     public class ProductsRepository
     {
         MyConnectionString source = new MyConnectionString();
-        public void Create(Products model)
-        {
-            //using (SqlConnection connection = new SqlConnection(source.connect))
-            //{
-            //    var exec = connection.Execute("INSERT INTO Products VALUES (@productid, @category, @productname, @unitprice,@shelftime)");
-            //}            
-            SqlConnection connection = new SqlConnection(source.connect);
-            var sql = "INSERT INTO Products VALUES (@productid, @category, @productname, @unitprice,@shelftime,@picture)";
-            SqlCommand command = new SqlCommand(sql, connection);
-
-            command.Parameters.AddWithValue("@productid", model.ProductID);
-            command.Parameters.AddWithValue("@category", model.Category);
-            command.Parameters.AddWithValue("@productname", model.ProductName);
-            command.Parameters.AddWithValue("@unitprice", model.UnitPrice);
-            command.Parameters.AddWithValue("@shelftime", model.ShelfTime);
-            command.Parameters.AddWithValue("@picture", model.Picture);
-
-            connection.Open();
-            command.ExecuteNonQuery();
-            connection.Close();
-        }
+        //Create已改成CreateProductDetail
 
         public void Update(Products model)
         {
@@ -266,6 +246,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             return connection.Query<ProductsViewModel>("SELECT * FROM Products p INNER JOIN Size s ON p.ProductID = s.ProductID INNER JOIN StockColor sk ON sk.SizeID = s.SizeID ");
         }
 
+        //更改產品名稱
         public bool UpdateProductName(int ProductId , string ProductName)
         {
             SqlConnection connection = new SqlConnection(source.connect);
@@ -290,6 +271,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
                 
         }
 
+        //更改產品種類
         public bool UpdateProductCategory(string Category , int ProductID)
         {
             SqlConnection connection = new SqlConnection(source.connect);
@@ -313,6 +295,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             }
         }
 
+        //更改產品Size
         public bool UpdateProductSizeBySizeID(string SizeType , int SizeID)
         {
             SqlConnection connection = new SqlConnection(source.connect);
@@ -338,6 +321,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         }
 
+        //更改產品顏色
         public bool UpdateProductColorByColorID(int ColorID , string Color)
         {
             SqlConnection connection = new SqlConnection(source.connect);
@@ -361,6 +345,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             }
         }
 
+        //更改產品庫存
         public bool UpdateProductStockByColorID(int ColorID, int Stock)
         {
             SqlConnection connection = new SqlConnection(source.connect);
@@ -385,7 +370,87 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             }
         }
 
+        //新增產品
+        public bool CreateProductDetail(Products model)
+        {
+            SqlConnection connection = new SqlConnection(source.connect);
+            connection.Execute("Insert Into Products(Category , ProductName , UnitPrice , ShelfTime , Picture) Values (@Category,@ProductName,@UnitPrice,@ShelfTime,@Picture)", new
+            {
+                model.Category,
+                model.ProductName,
+                model.UnitPrice,
+                model.ShelfTime,
+                model.Picture
+            });
 
+            var result = connection.Query("SELECT ProductName ,ShelfTime From Products Where ProductName = @ProductName  and ShelfTime = @ShelfTime", new
+            {
+                model.ProductName,
+                model.ShelfTime
+            });
+            if (result.Count() > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+        //新增Size
+        public bool CreateProductSize(Size model)
+        {
+            SqlConnection connection = new SqlConnection(source.connect);
+            connection.Execute("INSERT INTO Size(ProductID , SizeType) Values(@ProductID , @SizeType)", new
+            {
+                model.ProductID,
+                model.SizeType
+            });
+            var result = connection.Query("SELECT ProductID ,SizeType From Size Where ProductID = @ProductID  and SizeType = @SizeType", new
+            {
+                model.ProductID,
+                model.SizeType
+            });
+            if (result.Count() > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        //新增顏色、存貨
+        public bool CreateStockColor(StockColor model)
+        {
+            SqlConnection connection = new SqlConnection(source.connect);
+            connection.Execute("INSERT INTO StockColor(SizeID , Color , Stock) Values(@SizeID , @Color , @Stock)", new {
+                model.SizeID,
+                model.Color,
+                model.Stock
+            });
+
+            var result = connection.Query("SELECT SizeID ,Color ,Stock From StockColor Where SizeID = @SizeID  and Color = @Color and Stock = @Stock ", new
+            {
+                model.SizeID,
+                model.Color,
+                model.Stock
+            });
+            if (result.Count() > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
+        
 
     }
 }
