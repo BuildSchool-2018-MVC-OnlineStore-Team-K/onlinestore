@@ -162,7 +162,6 @@
     <Compile Include="Controllers\DisclaimerController.cs" />
     <Compile Include="Controllers\FacebookAuthenticationController.cs" />
     <Compile Include="Controllers\GoogleAuthenticationController.cs" />
-    <Compile Include="Controllers\IntroductionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MemberCentreController.cs" />
@@ -176,30 +175,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
-    <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="ApplicationInsights.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <None Include="Properties\PublishProfiles\Delizioso - Web Deploy.pubxml" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\js.cookie.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\respond.min.js" />
     <Content Include="Content\assets\css\animate.css" />
     <Content Include="Content\assets\css\bootstrap-select.css" />
     <Content Include="Content\assets\css\bootstrap.css" />
@@ -305,6 +280,8 @@
     <Content Include="Content\assets\scss\style.css" />
     <Content Include="Content\assets\scss\variables.css" />
     <Content Include="Content\assets\scss\widgets.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\images\admin.jpg" />
     <Content Include="Content\images\avatar\1.jpg" />
     <Content Include="Content\images\avatar\2.jpg" />
@@ -1083,32 +1060,15 @@
     <Content Include="Content\images\placeholder.png" />
     <Content Include="Content\images\twitter_corner_black.png" />
     <Content Include="Content\images\twitter_corner_blue.png" />
-    <Content Include="Web.config" />
-    <Content Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Cart\Index.cshtml" />
-    <Content Include="Views\Cart\modeltest.cshtml" />
-    <Content Include="Views\OrderDetails\OrderDetails.cshtml" />
-    <Content Include="Views\Introduction\Introduction.cshtml" />
-    <Content Include="Views\Home\Home.cshtml" />
-    <Content Include="Views\Login\Index.cshtml" />
-    <Content Include="Views\MemberCentre\MemberCentre.cshtml" />
-    <Content Include="Views\Disclaimer\Disclaimer.cshtml" />
-    <Content Include="Views\Register\Index.cshtml" />
-    <Content Include="Views\GoogleAuthentication\Google.cshtml" />
-    <Content Include="Views\FacebookAuthentication\Facebook.cshtml" />
-    <Content Include="Views\Products\SimpleProduct.cshtml" />
-    <Content Include="Views\Login\Status.cshtml" />
-    <Content Include="Views\Shared\BackEnd_Layout.cshtml" />
-    <Content Include="Views\BackEnd\ProductsManage.cshtml" />
     <Content Include="Content\assets\css\bootstrap.css.map" />
     <Content Include="Content\assets\css\bootstrap.min.css.map" />
     <Content Include="Content\assets\css\style.css.map" />
@@ -1395,6 +1355,112 @@
     <Content Include="Content\assets\scss\_gauge.scss" />
     <Content Include="Content\assets\scss\_switches.scss" />
     <Content Include="Content\assets\scss\_widgets.scss" />
+    <None Include="Properties\PublishProfiles\Delizioso - Web Deploy.pubxml" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\js.cookie.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Views\Shared\Delizioso_files\colorbox.css" />
+    <Content Include="Views\Shared\Delizioso_files\default.css" />
+    <Content Include="Views\Shared\Delizioso_files\Images\0402E-1.gif" />
+    <Content Include="Views\Shared\Delizioso_files\Images\0514E-2.png" />
+    <Content Include="Views\Shared\Delizioso_files\Images\0514E-3.png" />
+    <Content Include="Views\Shared\Delizioso_files\Images\0514E-4.gif" />
+    <Content Include="Views\Shared\Delizioso_files\Images\180521_01.gif" />
+    <Content Include="Views\Shared\Delizioso_files\Images\180521_02.jpg" />
+    <Content Include="Views\Shared\Delizioso_files\Images\180521_03.jpg" />
+    <Content Include="Views\Shared\Delizioso_files\Images\180521_04.gif" />
+    <Content Include="Views\Shared\Delizioso_files\Images\180521_05.jpg" />
+    <Content Include="Views\Shared\Delizioso_files\Images\camera.png" />
+    <Content Include="Views\Shared\Delizioso_files\Images\Carousel-1.jpg" />
+    <Content Include="Views\Shared\Delizioso_files\Images\Carousel-10.jpg" />
+    <Content Include="Views\Shared\Delizioso_files\Images\Carousel-11.jpg" />
+    <Content Include="Views\Shared\Delizioso_files\Images\Carousel-12.jpg" />
+    <Content Include="Views\Shared\Delizioso_files\Images\Carousel-2.jpg" />
+    <Content Include="Views\Shared\Delizioso_files\Images\Carousel-3.jpg" />
+    <Content Include="Views\Shared\Delizioso_files\Images\Carousel-4.jpg" />
+    <Content Include="Views\Shared\Delizioso_files\Images\Carousel-5.jpg" />
+    <Content Include="Views\Shared\Delizioso_files\Images\Carousel-6.gif" />
+    <Content Include="Views\Shared\Delizioso_files\Images\Carousel-7.jpg" />
+    <Content Include="Views\Shared\Delizioso_files\Images\Carousel-8.jpg" />
+    <Content Include="Views\Shared\Delizioso_files\Images\Carousel-9.jpg" />
+    <Content Include="Views\Shared\Delizioso_files\Images\e171030-250.jpg" />
+    <Content Include="Views\Shared\Delizioso_files\Images\facebook.png" />
+    <Content Include="Views\Shared\Delizioso_files\Images\fb.png" />
+    <Content Include="Views\Shared\Delizioso_files\Images\Hot-1.jpg" />
+    <Content Include="Views\Shared\Delizioso_files\Images\Hot-2.jpg" />
+    <Content Include="Views\Shared\Delizioso_files\Images\Hot-3.jpg" />
+    <Content Include="Views\Shared\Delizioso_files\Images\Hot-4.jpg" />
+    <Content Include="Views\Shared\Delizioso_files\Images\Hot-5.jpg" />
+    <Content Include="Views\Shared\Delizioso_files\Images\location.png" />
+    <Content Include="Views\Shared\Delizioso_files\Images\logo_w.png" />
+    <Content Include="Views\Shared\Delizioso_files\Images\logo_w_s.JPG" />
+    <Content Include="Views\Shared\Delizioso_files\Images\M116529_01b8.jpg" />
+    <Content Include="Views\Shared\Delizioso_files\Images\MenuBanner02.jpg" />
+    <Content Include="Views\Shared\Delizioso_files\Images\MenuBanner04.jpg" />
+    <Content Include="Views\Shared\Delizioso_files\Images\MenuBanner05.jpg" />
+    <Content Include="Views\Shared\Delizioso_files\Images\MenuBanner08.jpg" />
+    <Content Include="Views\Shared\Delizioso_files\Images\MenuBanner09.jpg" />
+    <Content Include="Views\Shared\Delizioso_files\Images\MenuBannerSale.jpg" />
+    <Content Include="Views\Shared\Delizioso_files\Images\my.png" />
+    <Content Include="Views\Shared\Delizioso_files\Images\order.jpg" />
+    <Content Include="Views\Shared\Delizioso_files\Images\s-2.jpg" />
+    <Content Include="Views\Shared\Delizioso_files\Images\sale-1.jpg" />
+    <Content Include="Views\Shared\Delizioso_files\Images\sale-3.jpg" />
+    <Content Include="Views\Shared\Delizioso_files\Images\sale-4.jpeg" />
+    <Content Include="Views\Shared\Delizioso_files\Images\sale-5.jpeg" />
+    <Content Include="Views\Shared\Delizioso_files\Images\video.png" />
+    <Content Include="Views\Shared\Delizioso_files\Images\vn.png" />
+    <Content Include="Views\Shared\Delizioso_files\jquery-ui.css" />
+    <Content Include="Views\Shared\Delizioso_files\jquery.bxslider.css" />
+    <Content Include="Views\Shared\Delizioso_files\jquery.cycle2.css" />
+    <Content Include="Views\Shared\Delizioso_files\main.css" />
+    <Content Include="Views\Shared\Delizioso_files\menu.css" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Cart\modeltest.cshtml" />
+    <Content Include="Views\OrderDetails\OrderDetails.cshtml" />
+    <Content Include="Views\Home\Home.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\MemberCentre\MemberCentre.cshtml" />
+    <Content Include="Views\Disclaimer\Disclaimer.cshtml" />
+    <Content Include="Views\Register\Index.cshtml" />
+    <Content Include="Views\GoogleAuthentication\Google.cshtml" />
+    <Content Include="Views\FacebookAuthentication\Facebook.cshtml" />
+    <Content Include="Views\Products\SimpleProduct.cshtml" />
+    <Content Include="Views\Login\Status.cshtml" />
+    <Content Include="Views\Shared\Delizioso_files\jquery-1.11.2.min.js.下載" />
+    <Content Include="Views\Shared\Delizioso_files\jquery-ui.min.js.下載" />
+    <Content Include="Views\Shared\Delizioso_files\jquery.bxslider.min.js.下載" />
+    <Content Include="Views\Shared\Delizioso_files\jquery.colorbox.js.下載" />
+    <Content Include="Views\Shared\Delizioso_files\jquery.colorbox.min.js.下載" />
+    <Content Include="Views\Shared\Delizioso_files\jquery.cycle2.min.js.下載" />
+    <Content Include="Views\Shared\Delizioso_files\jquery.placeholder.min.js.下載" />
+    <Content Include="Views\Shared\Delizioso_files\polyfiller.min.js.下載" />
+    <Content Include="Views\Shared\BackEnd_Layout.cshtml" />
+    <Content Include="Views\BackEnd\ProductsManage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1431,6 +1497,9 @@
       <Project>{0f648a53-edbb-4b09-8395-52a1015dba95}</Project>
       <Name>ViewModels</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
