@@ -34,13 +34,18 @@ namespace BuildSchool.MVCSolution.OnlineStore.ProductsRepositoryTests
         }
 
         [TestMethod()]
-        public void GetTop8Product()
+        public void GetTop8ProductTest()
         {
             var list = repo.GetTop8Product();
             Assert.IsTrue(list.Count() > 0);
         }
 
-
+        [TestMethod()]
+        public void GetProductDetailTest()
+        {
+            var list = repo.GetProductDetail(1);
+            Assert.IsTrue(list.Count() > 0);
+        }
 
         [TestMethod()]
         public void OrderByShelfTimeDESCTest()
