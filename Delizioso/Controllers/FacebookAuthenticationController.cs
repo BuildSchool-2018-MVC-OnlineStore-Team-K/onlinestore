@@ -62,13 +62,14 @@ namespace WebApplication1.Controllers
             
             //檢查是否已經用fb註冊過
             var service = new CheckMember();
-            if (!service.CheckFbRegistered(id)) //true是註冊過  ! 
+            if (!service.CheckFbRegistered(id)) //CheckFbRegistered  true是註冊過  ! 
             {
                 service.FbRegist(id, name);//透過FB ID註冊到資料庫
             }
+            
 
             //給予cookie 已登入的狀態
-            FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, id, DateTime.Now, DateTime.Now.AddMinutes(30), false, "abcdefg");
+            FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, name, DateTime.Now, DateTime.Now.AddMinutes(30), false, "fblogin");
             var ticketData = FormsAuthentication.Encrypt(ticket);
             var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, ticketData);
             cookie.Expires = ticket.Expiration;

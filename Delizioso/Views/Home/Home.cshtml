@@ -7,6 +7,15 @@
 
 <!--輪播區-->
 <a class="cbAnnouncement" href="http://www.airspace.com.tw/images/BONUS.jpg"></a>
+@if (ViewBag.IsAuthenticated == true)
+{
+    <h2>Hi , @ViewBag.Username</h2>
+    <p><a href="@Url.Action("Logout", "Login")" class="btn">登出</a></p>
+}
+else
+{
+    <h2>點此登入</h2>
+}
 <div id="main_index" style="margin-top: 153px;">
     <script type="text/javascript">
         $(function () {
