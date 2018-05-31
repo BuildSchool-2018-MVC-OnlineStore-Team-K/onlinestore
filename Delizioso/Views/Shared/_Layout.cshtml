@@ -1,219 +1,892 @@
-﻿<!DOCTYPE html>
-<html>
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>@ViewBag.Title - Delizioso </title>
+    <link rel="SHORTCUT ICON" type="image/x-icon" href="https://upload.cc/i1/2018/05/25/nHuoSy.jpg" sizes="16x16 24x24 32x32 48x48 64x64 128x128" />
+    <!-- Bootstrap CSS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-          crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
-    <title>@ViewBag.Title - Delizioso </title>
+          crossorigin="anonymous" />
 </head>
 
-<body>
-    <!-- Side Navigation -->
-    <nav class="w3-sidebar w3-black w3-animate-right w3-xxlarge" style="display:none;padding-top:150px;right:0;z-index:2" id="mySidebar">
-        <div class="w3-bar-block w3-center">
-            <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
-            <h3 class="w3-wide">
-                <img src="https://upload.cc/i1/2018/05/17/ZAjghF.jpg" style="height:100px; width:300px;" class="img-fluid" alt="Responsive image">
-            </h3>
-        </div>
-        <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
 
-            <button class="w3-btn w3-xlarge " onclick="location.href='@Url.Content("~/Login")'" style="font-weight:900;">登入</button>
-            <button class="w3-btn w3-xlarge " onclick="location.href='@Url.Content("~/register")'" style="font-weight:900;">註冊</button>
+<body cz-shortcut-listen="true">
+    @Styles.Render("~/Content/Delizioso_files/css");
+    @Scripts.Render("~/Content/Delizioso_files/js");
 
-            <div class="w3-button w3-block w3-white w3-left-align">
-                <a onclick="location.href='@Url.Content("~/Home")'" class="w3-bar-item w3-button">首頁</a>
-                <a onclick="location.href='@Url.Content("~/MemberCentre")'" class="w3-bar-item w3-button">會員中心</a>
-                <a onclick="location.href='@Url.Content("~/orders")'" class="w3-bar-item w3-button">購物車</a>
-                <a onclick="location.href='@Url.Content("~/OrderDetails")'" class="w3-bar-item w3-button">訂單明細/紀錄</a>
-                <a onclick="location.href='@Url.Content("~/Disclaimer")'" class="w3-bar-item w3-button">免責聲明</a>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            webshim.polyfill('es5 mediaelement forms');
+
+            $('input, textarea').placeholder({
+                customClass: 'my-placeholder'
+            });
+            var isProc = false;
+
+            $("#logoimg").load(function () {
+                isProc = true;
+            });
+            if (isProc == false) {
+                $('#main_index').css("margin-top", $('#headerBlock').outerHeight() + 12);
+                $('#main').css("margin-top", $('#headerBlock').outerHeight() + 12);
+            }
+
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 0) {
+                    $('#logoimg_s').show();
+                    $('#logoimg_b').hide();
+                } else {
+                    $('#logoimg_b').show();
+                    $('#logoimg_s').hide();
+                    $('#main_index').css("margin-top", $('#headerBlock').outerHeight() + 12);
+                    $('#main').css("margin-top", $('#headerBlock').outerHeight() + 12);
+                }
+            })
+
+            if ($(this).scrollTop() > 0) {
+                $('#logoimg_s').show();
+                $('#logoimg_b').hide();
+            } else {
+                $('#logoimg_b').show();
+                $('#logoimg_s').hide();
+                $('#main_index').css("margin-top", $('#headerBlock').outerHeight() + 12);
+                $('#main').css("margin-top", $('#headerBlock').outerHeight() + 12);
+            }
+
+            //$(".cbLoginJoin").colorbox({ width: "630px", height: "420px", scrolling: false });
+            $(".cbEpaper").colorbox({
+                width: "400px",
+                height: "200px",
+                scrolling: false
+            });
+        });
+
+
+        $(function () {
+            loadfloatcart();
+            //關鍵字查詢
+            $("#frmSearch").submit(function () {
+                var q = $.trim($("#tbxKeyword").val());
+                if (q.length == 0) {
+                    alert('請輸入商品名稱或編號!');
+                } else {
+                    location.href = "PDList.asp?Keyword=" + encodeURIComponent(q);
+                }
+                return false;
+            });
+
+            $("#tbxKeyword").keyup(function (event) {
+                if (event.keyCode == 13) {
+                    $("#frmSearch").submit();
+                }
+            });
+
+
+            $('.main-menu > li').mouseenter(function () {
+                $(this).children(".sub-menu").css("display", "block");
+            })
+            $('.main-menu > li').mouseleave(function () {
+                $(this).children(".sub-menu").css("display", "none");
+            })
+        });
+
+        function mouseover(x) {
+            var $this = $(x);
+            $this.append($this.html($this.attr('data-over')));
+        }
+
+        function mouseout(x) {
+            var $this = $(x);
+            $this.append($this.html($this.attr('data-out')));
+        }
+
+        function loadfloatcart() {
+            $.ajax({
+                type: 'post',
+                url: "function/GetFloatCartInfo.asp",
+                data: "",
+                dataType: "text",
+                async: true,
+                success: function (data) {
+                    //alert(data);
+                    $('.mini-bag-wrapper').html(data);
+                    //$('.float-script').html(data);
+                },
+                //error: function (xhr, ajaxOptions, thrownError) { alert("getloadfloatcart error:" + xhr.responseText); }
+            })
+        }
+    </script>
+    <div id="headerBlock">
+        <div id="header">
+            <div id="tool">
+                <table align="right">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <button type="button" class="btn" data-toggle="modal" data-target="#loginModel" style="background-color: transparent;color: white;">
+                                    <span onmouseover="mouseover(this)" onmouseout="mouseout(this)" data-over="會員登入" data-out="LOGIN">LOGIN</span>
+                                </button>
+                            </td>
+                            <td style="width:0px">/</td>
+                            <td>
+                                <button type="button" class="btn" data-toggle="modal" data-target="#" style="background-color: transparent; color: white;">
+                                    <span onmouseover="mouseover(this)" onmouseout="mouseout(this)" data-over="會員中心" data-out="MEMBERS">MEMBERS</span>
+                                </button>
+                            </td>
+                            <td style="width:0px">/</td>
+                            <td>
+                                <button type="button" class="btn" data-toggle="modal" data-target="#" style="background-color: transparent;color: white;">
+                                    <span onmouseover="mouseover(this)" onmouseout="mouseout(this)" data-over="願望清單" data-out="WISH LIST">WISH LIST</span>
+                                </button>
+                            </td>
+                            <td style="width:0px">/</td>
+                            <td>
+                                <button type="button" class="btn" data-toggle="modal" data-target="#" style="background-color: transparent;color: white;">
+                                    <span onmouseover="mouseover(this)" onmouseout="mouseout(this)" data-over="購物車" data-out="BAG" style="background:url(images/bag.png) no-repeat 90% 100%;width:60px;display:inline-block;line-height:17px;">BAG</span>
+                                </button>
+                                <div class="mini-bag-wrapper">
+                                </div>
+                            </td>
+                            <td>
+                                <span class="cartCount">0</span>&nbsp
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-        </div>
-    </nav>
+            <div class="float-script"></div>
 
-    
-
-    <!-- Header -->
-    <header class="w3-container w3-theme w3-padding" id="myHeader">
-        <i onclick="w3_open()" class="fa fa-bars w3-xlarge w3-button w3-theme"></i>
-        <h1 class="w3-xxxlarge w3-animate-bottom">
-            <img src="https://upload.cc/i1/2018/05/17/ZAjghF.jpg" style="height:100px; width:300px;" class="img-fluid" alt="Responsive image">
-        </h1>
-    </header>
-
-    <!-- Modal -->
-    <div id="id01" class="w3-modal">
-        <div class="w3-modal-content w3-card-4 w3-animate-top">
-            <header class="w3-container w3-theme-l1">
-                <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">×</span>
-                <h3>Delizioso</h3>
-                <h5>關於我們</h5>
-            </header>
-            <div class="w3-padding">
-                <h3>重新認識 什麼是「購物」。</h3>
-                <p>Eu exercitation aute anim consequat magna aute incididunt adipisicing et anim nostrud.</p>
-            </div>
-            <footer class="w3-container w3-theme-l1">
-                <p>
-                    祝您購物愉快
-                    <i class="fa fa-smile-o"></i>
-                </p>
-            </footer>
         </div>
     </div>
-    <br>
+    <div class="clear"></div>
+    <div style="height:50px;"></div>
+    <table id="logo" class="rounded float-left">
+        <tbody>
+            <tr>
+                <td>
+                    <a href="">
+                        <div>
+                            <img id="logoimg_b" src="~/Content/Delizioso_files/Images/logo_w.png" style="display: inline;" height="100px" width="300px" />
+                            <img id="logoimg_s" src="~/Content/Delizioso_files/Images/logo_w.png" style="display: none;" height="50px" width="200px" />
+                        </div>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br/>
+    <div id="menu-area">
+        <div id="menu">
+            <ul class="main-menu">
+                <li>
+                    <a class="menulist" href="" data-over="新品上市" data-out="NEW IN" onmouseover="mouseover(this)" onmouseout="mouseout(this)">NEW IN</a>
+                    <ul class="sub-menu" style="display: none;">
+                        <li>
+                            <a href="">
+                                <span class="item-title">新品上市</span>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="">服飾</a>
+                                </li>
+                                <li>
+                                    <a href="">鞋款</a>
+                                </li>
+                                <li>
+                                    <a href="">手錶</a>
+                                </li>
+                                <li>
+                                    <a href="">飾品配件</a>
+                                </li>
+                                <li>
+                                    <a href="">男士護理</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="item-title">熱門品牌</span>
+                            <ul>
+                                <li>
+                                    <a href="">G2000</a>
+                                </li>
+                                <li>
+                                    <a href="">Calvin Klein</a>
+                                </li>
+                                <li>
+                                    <a href="">A|X Armani Exchange</a>
+                                </li>
+                                <li>
+                                    <a href="">SST&C</a>
+                                </li>
+                                <li>
+                                    <a href="">HUGO BOSS</a>
+                                </li>
+                            </ul>
+                        </li>
 
-        <!-- Rendor Body start-->
-        <div class="container ">
-            @RenderBody()
+                        <li class="sub-menu-img">
+                            <img src="~/Content/Delizioso_files/Images/MenuBanner09.jpg" alt="" class="brand-img" />
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="menulist" href="" data-over="服飾" data-out="CLOTHING" onmouseover="mouseover(this)" onmouseout="mouseout(this)">CLOTHING</a>
+                    <ul class="sub-menu" style="display: none;">
+                        <li>
+                            <span class="item-title">
+                                <a href="">貼身內著</a>
+                            </span>
+                            <ul>
+                                <li>
+                                    <a href="" data-item="0209" data-item1="02" class="item-link">三角褲</a>
+                                </li>
+                                <li>
+                                    <a href="" data-item="0209" data-item1="02" class="item-link">四角褲</a>
+                                </li>
+                                <li>
+                                    <a href="" data-item="0209" data-item1="02" class="item-link">平口褲</a>
+                                </li>
+                                <li>
+                                    <a href="" data-item="0209" data-item1="02" class="item-link">睡衣</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="item-title">
+                                <a href="">上身</a>
+                            </span>
+                            <ul>
+                                <li>
+                                    <a href="" data-item="0201" data-item1="02" class="item-link">POLO SHIRTS</a>
+                                </li>
+                                <li>
+                                    <a href="" data-item="0201" data-item1="02" class="item-link">T-SHIRTS</a>
+                                </li>
+                                <li>
+                                    <a href="" data-item="0201" data-item1="02" class="item-link">排汗衫</a>
+                                </li>
+                                <li>
+                                    <a href="" data-item="0201" data-item1="02" class="item-link">襯衫</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="item-title">
+                                <a href="">下著</a>
+                            </span>
+                            <ul>
+                                <li>
+                                    <a href="" data-item="0202" data-item1="02" class="item-link">丹寧褲</a>
+                                </li>
+                                <li>
+                                    <a href="" data-item="0202" data-item1="02" class="item-link">西裝褲</a>
+                                </li>
+                                <li>
+                                    <a href="" data-item="0202" data-item1="02" class="item-link">休閒褲</a>
+                                </li>
+                                <li>
+                                    <a href="" data-item="0202" data-item1="02" class="item-link">運動褲</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <span class="item-title">
+                                <a href="">外套</a>
+                            </span>
+                            <ul>
+                                <li>
+                                    <a href="" data-item="0208" data-item1="02" class="item-link">西裝外套</a>
+                                </li>
+                                <li>
+                                    <a href="" data-item="0208" data-item1="02" class="item-link">羽絨外套</a>
+                                </li>
+                                <li>
+                                    <a href="" data-item="0208" data-item1="02" class="item-link">大衣</a>
+                                </li>
+                                <li>
+                                    <a href="" data-item="0208" data-item1="02" class="item-link">運動外套</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sub-menu-img">
+                            <img src="~/Content/Delizioso_files/Images/MenuBanner02.jpg" alt="" class="brand-img" />
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="menulist" href="" data-over="鞋款" data-out="SHOES" onmouseover="mouseover(this)" onmouseout="mouseout(this)">SHOES</a>
+                    <ul class="sub-menu" style="display: none;">
+                        <li>
+                            <span class="item-title">
+                                <a href="">鞋款</a>
+                            </span>
+                            <ul>
+                                <li>
+                                    <a href="">皮鞋</a>
+                                </li>
+                                <li>
+                                    <a href="">運動鞋</a>
+                                </li>
+                                <li>
+                                    <a href="">拖鞋</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="item-title">
+                                <a href="">襪子</a>
+                            </span>
+                            <ul>
+                                <li>
+                                    <a href="">無痕肌棉襪</a>
+                                </li>
+                                <li>
+                                    <a href="">短襪/隱形襪</a>
+                                </li>
+                                <li>
+                                    <a href="">紳士休閒襪</a>
+                                </li>
+                                <li>
+                                    <a href="">運動機能襪</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sub-menu-img">
+                            <img src="~/Content/Delizioso_files/Images/MenuBanner05.jpg" alt="" class="brand-img" />
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="menulist" href="" data-over="飾品配件" data-out="Passy Eiffel" onmouseover="mouseover(this)" onmouseout="mouseout(this)">Passy Eiffel</a>
+                    <ul class="sub-menu" style="display: none;">
+                        <li>
+                            <span class="item-title">
+                                <a href="">包包</a>
+                            </span>
+                            <ul>
+                                <li>
+                                    <a href="">單肩包</a>
+                                </li>
+                                <li>
+                                    <a href="">公事包</a>
+                                </li>
+                                <li>
+                                    <a href="">後背包</a>
+                                </li>
+                                <li>
+                                    <a href="">皮夾</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="item-title">
+                                <a href="">墨鏡</a>
+                            </span>
+                            <ul>
+                                <li>
+                                    <a href="" data-item="0407" data-item1="04" class="item-link">經典飛行員式</a>
+                                </li>
+                                <li>
+                                    <a href="" data-item="0407" data-item1="04" class="item-link">低調質感靛藍玳瑁</a>
+                                </li>
+                                <li>
+                                    <a href="" data-item="0407" data-item1="04" class="item-link">特殊夾式方框</a>
+                                </li>
+                                <li>
+                                    <a href="" data-item="0407" data-item1="04" class="item-link">簡約俐落方框</a>
+                                </li>
+                                <li>
+                                    <a href="" data-item="0407" data-item1="04" class="item-link">雙横鼻樑式飛行員</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="item-title">
+                                <a href="">領帶</a>
+                            </span>
+                            <ul>
+                                <li>
+                                    <a href="" data-item="0402" data-item1="04" class="item-link">寬領帶</a>
+                                </li>
+                                <li>
+                                    <a href="" data-item="0402" data-item1="04" class="item-link">窄領帶</a>
+                                </li>
+                                <li>
+                                    <a href="" data-item="0402" data-item1="04" class="item-link">領結</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="item-title">
+                                <a href="">皮帶</a>
+                            </span>
+                            <ul>
+                                <li>
+                                    <a href="">正式皮帶</a>
+                                </li>
+                                <li>
+                                    <a href="">帆布皮帶</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sub-menu-img">
+                            <img src="~/Content/Delizioso_files/Images/MenuBanner04.jpg" alt="" class="brand-img" />
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="menulist" href="" data-over="男士護理" data-out="PLUS SIZE" onmouseover="mouseover(this)" onmouseout="mouseout(this)">Men's Care</a>
+                    <ul class="sub-menu" style="display: none;">
+                        <li>
+                            <span class="item-title">
+                                <a href="">臉部護理</a>
+                            </span>
+                            <ul>
+                                <li>
+                                    <a href="" data-item="0801" data-item1="08" class="item-link">清潔保養</a>
+                                </li>
+                                <li>
+                                    <a href="" data-item="0801" data-item1="08" class="item-link">去角質</a>
+                                </li>
+                                <li>
+                                    <a href="" data-item="0801" data-item1="08" class="item-link">眼部保養</a>
+                                </li>
+                                <li>
+                                    <a href="" data-item="0802" data-item1="08" class="item-link">保濕護理</a>
+                                </li>
+                                <li>
+                                    <a href="" data-item="0802" data-item1="08" class="item-link">鬍後紓緩</a>
+                                </li>
+                                <li>
+                                    <a href="" data-item="0802" data-item1="08" class="item-link">淨膚護理</a>
+                                </li>
+                                <li>
+                                    <a href="" data-item="0802" data-item1="08" class="item-link">抗老護理</a>
+                                </li>
+                                <li>
+                                    <a href="" data-item="0802" data-item1="08" class="item-link">亮澤美白</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <span class="item-title">
+                                <a href="">防曬</a>
+                            </span>
+                            <ul>
+                                <li>
+                                    <a href="" data-item="0803" data-item1="08" class="item-link">臉部護理</a>
+                                </li>
+                                <li>
+                                    <a href="" data-item="0803" data-item1="08" class="item-link">曬後護理</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="item-title">
+                                <a href="">男仕香氛</a>
+                            </span>
+                            <ul>
+                                <li>
+                                    <a href="" data-item="0804" data-item1="08" class="item-link">王者之躍</a>
+                                </li>
+                                <li>
+                                    <a href="" data-item="0804" data-item1="08" class="item-link">Eau de Campagne</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sub-menu-img">
+                            <img src="~/Content/Delizioso_files/Images/MenuBanner08.jpg" alt="" class="brand-img" />
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="menulist" href="" data-over="限時優惠" data-out="SALE" onmouseover="mouseover(this)" onmouseout="mouseout(this)" style="color:red;">SALE</a>
+                    <ul class="sub-menu" style="display: none;">
+                        <li>
+                            <span class="item-title">
+                                <a href="">優惠活動</a>
+                            </span>
+                            <ul>
+                                <li style="margin-right:15px;">
+                                    <a href="">顯瘦穿搭 ‧ 二件$698</a>
+                                </li>
+                                <li style="margin-right:15px;">
+                                    <a href="">曲線針織 ‧ 二件$598</a>
+                                </li>
+                                <li style="margin-right:15px;">
+                                    <a href="">春日穿搭 ‧ 二件$498</a>
+                                </li>
+                                <li style="margin-right:15px;">
+                                    <a href="">百搭衣著 ‧ 二件$368</a>
+                                </li>
+                                <li style="margin-right:15px;">
+                                    <a href="">貼身內著 ‧ 二件$268</a>
+                                </li>
+                                <li style="margin-right:15px;">
+                                    <a href="">最終折扣 ‧ 任選49折</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sub-menu-img">
+                            <img src="~/Content/Delizioso_files/Images/MenuBannerSale.jpg" alt="" class="brand-img" />
+                        </li>
+                    </ul>
+                </li>
+            </ul>
         </div>
-        <!-- Rendor Body end-->
-
-       
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-            crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-            crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossorigin="anonymous"></script>
+        <div id="search">
+            <form action="" method="get" id="frmSearch" name="frmSearch">
+                <img src="https://upload.cc/i1/2018/05/25/N8gox5.png" />
+                <input id="tbxKeyword" type="text" placeholder="SEARCH" />
+            </form>
+        </div>
+    </div>
+    </div>
 
 
-    <!-- Footer -->
-    <footer class="w3-container w3-theme-dark w3-padding-16 mt-5">
-        <div class="row">
-            <div class="col-4">
-                <h3>Delizioso</h3>
-                <p>
-                    TEL:
-                    <a href="" style="text-decoration:none;" target="_blank">0988-7766554</a>
-                </p>
-                <p>
-                    MAIL:
-                    <a href="" style="text-decoration:none;" target="_blank">Delizioso@gmail.com</a>
-                </p>
-                <p>國家和地區| 新加坡| 印尼| 台灣| 泰國| 馬來西亞| 越南| 菲律賓</p>
-            </div>
-            <div class="col-4">
-                <div class="container-fluid  mt-5">
-                    <center>
-                        <p>常見問題||條款和條件||運費＆配送資訊||隱私政策</p>
-                    </center>
-                    <center>
-                        <p> © 2018 | - The Hut.com Ltd</p>
-                    </center>
+    <!--LoginModel-->
+    <div class="modal fade" id="loginModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <table border="0" cellspacing="0" cellpadding="4" align="center">
+                        <tbody>
+                            <tr>
+                                <div id="login">
+                                    <div class="form-title-area">
+                                        <h5 class="form-title" style="size: 40px">會員登入/SIGN IN</h5>
+                                    </div>
+                                    <form name="login" id="form-login" onsubmit="return false">
+                                        <div id="login-form">
+                                            <div>
+                                                <input id="UserId" type="email" name="UserId" placeholder="電子郵件 E-mail" maxlength="40" required="" />
+                                            </div>
+                                            <br />
+                                            <div>
+                                                <input id="UserPw" type="password" name="UserPw" placeholder="密碼 Password" maxlength="16" required="" />
+                                            </div>
+                                            <br />
+                                            <button type="button" class="btn btn-secondary" style="size: 10px">登入</button>
+                                            <button type="button" class="btn" style="background-color: transparent;color: white;"><img src="~/Content/Delizioso_files/Images/facebook.png" /></button>
+                                            <br />
+                                            <div style="margin-top:25px;">
+                                                <div style="display:inline;vertical-align:bottom;">
+                                                    <a href="">忘記密碼? Forgot Password</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <input type="hidden" name="btn" value="login" />
+                                        <input type="hidden" name="backurl" value="" />
+                                    </form>
+                                </div>
+                                <hr />
+                                <div id="join">
+                                    <div class="form-title-area">
+                                        <h5 class="form-title">加入會員/JOIN US</h5>
+                                        <p class="form-text">成為會員不定時享有會員活動與優惠</p>
+                                    </div>
+                                    <form name="join" id="form-join" onsubmit="return false">
+                                        <div id="join-form">
+                                            <div>
+                                                <input id="UserName" type="text" name="UserName" placeholder="姓名 Name" maxlength="30" required="" />
+                                            </div>
+                                            <br />
+                                            <div>
+                                                <input id="UserId" type="email" name="UserId" placeholder="電子郵件 E-mail" maxlength="40" autocomplete="off" required="" />
+                                            </div>
+                                            <br />
+                                            <div>
+                                                <input id="UserPwd1" type="password" name="UserPwd1" placeholder="密碼 Password" maxlength="16" pattern="[A-Za-z0-9]{4,16}"
+                                                       title="由英文或數字所組成的4~16字元" required="" onchange="$('#UserPwd2').attr('pattern',$(this).val())" /> 由英文或數字所組成的4~16字元
+                                            </div>
+                                            <br />
+                                            <div>
+                                                <input id="UserPwd2" type="password" name="UserPwd2" placeholder="確認密碼 ConfirmPassword" maxlength="16" title="與密碼不符" required="" />
+                                            </div>
+                                            <br />
+                                            <div>
+                                                生日 Birthday
+                                                <input id="UserBirthdayY" type="text" name="UserBirthdayY" placeholder="西元年" maxlength="4" pattern="[0-9]{4}" title="生日西元年"
+                                                       required="" />
+                                                <input id="UserBirthdayM" type="number" name="UserBirthdayM" placeholder="月" maxlength="2" pattern="[0-9]" title="生日月" required=""
+                                                       max="12" min="1" step="1" />
+                                                <input id="UserBirthdayD" type="number" name="UserBirthdayD" placeholder="日" maxlength="2" pattern="[0-9]" title="生日西元日"
+                                                       required="" max="31" min="1" step="1" />
+                                            </div>
+                                            <br />
+                                            <div>
+                                                <input id="UserPhone" type="text" name="UserPhone" placeholder="手機 Cell Phone Number" maxlength="20" pattern="^.{6,20}$"
+                                                       title="由數字組成，如：0911222333" required="" />
+                                            </div>
+                                            <div align="right">
+                                                <button type="button" class="btn btn-secondary">加入會員</button>
+                                            </div>
+                                            <div style="display:inline;">
+                                                <input id="epaper" type="checkbox" name="epaper" value="Y" />
+                                            </div>
+                                            <div style="display:inline;">訂閱 Delizioso電子報，接收最新優惠及活動訊息!</div>
+                                        </div>
+                                        <input type="hidden" name="btn" value="join" />
+                                    </form>
+                                </div>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    歡迎加入Delizioso！
                 </div>
             </div>
-            <div class="col-4">
-                <div style="position:relative;bottom:55px;" class="w3-tooltip w3-right mt-5">
-                    <span class="w3-text w3-theme-light w3-padding">Go To Top</span>
-                    <a class="w3-text-white" href="#myHeader">
-                        <span class="w3-xlarge">
-                            <i class="fa fa-chevron-circle-up"></i>
-                        </span>
+        </div>
+    </div>
+
+
+
+
+    <script type="text/javascript">
+        $(function () {
+            $('.contact').mouseenter(function () {
+                $('.contact-area').delay(10).fadeIn(500);
+            });
+
+            $('.contact').mouseleave(function () {
+                $('.contact-area').delay(10).hide();
+            });
+
+            $(".cbLoginJoin").colorbox({
+                width: "630px",
+                height: "420px",
+                scrolling: false
+            });
+        });
+    </script>
+
+    <!-- Rendor Body start-->
+    <div class="center">
+        @RenderBody()
+    </div>
+    <!-- Rendor Body end-->
+
+
+    <div class="clear"></div>
+    <div id="footer">
+        <div class="footer-content">
+            <div class="footer-link">
+                <br/>
+                <p class="footer_title">NEWSLETTER /</p>
+                <form name="epaper" id="form-epaper" onsubmit="return false">
+                    <table class="footer-table" border="0" style="padding-bottom:10px;margin-top:-10px;">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div id="epaper-form">
+                                        <input id="email" type="email" name="email" placeholder="電子郵件 E-mail" maxlength="40" style="width:200px;height:20px;" required="" />
+                                        <input type="hidden" name="btn" value="epaper" />
+                                        <input type="submit" value="" id="submit-epaper" style="background:url(images/btn-ok.jpg);border: 0;height: 23px;width: 37px;vertical-align:middle;" />
+                                    </div>
+                                </td>
+                                <td>
+                                    <a href="" target="_blank">
+                                        <img src="~/Content/Delizioso_files/Images/video.png" />
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="">
+                                        <img src="~/Content/Delizioso_files/Images/location.png" />
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="" target="_blank">
+                                        <img src="~/Content/Delizioso_files/Images/camera.png" />
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="" target="_blank">
+                                        <img src="~/Content/Delizioso_files/Images/fb.png" />
+                                    </a>
+                                </td>
+                                <td width="70">&nbsp;</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+                <script language="javascript">
+                    $(document).ready(function () {
+                        $("#submit-epaper").click(function () {
+                            if ($("#form-epaper").callProp('checkValidity')) {
+                                $.post("epaper_check.asp", $("#form-epaper").serialize(),
+                                    function (data, status) {
+                                        if (status == "success") {
+                                            var arrData = data.split("|");
+                                            for (i = 0; i < arrData.length; i++) {
+                                                if (arrData[i] != "") {
+                                                    switch (i) {
+                                                        case 0:
+                                                            //alert(arrData[i]);
+                                                            break;
+                                                        case 1:
+                                                            location.href = arrData[i];
+                                                            break;
+                                                        default:
+                                                            // alert(arrData[i]);
+                                                            break;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    });
+                            }
+                        });
+                    });
+                </script>
+
+
+                <div>10:00~12:00 13:00~19:00 / Mon - Fri (例假日除外)</div>
+                <div>台灣客服專線 + 886-3-537-4281</div>
+                <div>香港免付費專線 800-537-425｜澳門免付費專線 853-4281-1662</div>
+                <div>(限普通話客服)</div>
+                <div>
+                    <a href="">service@Delizioso.com.tw</a>
+                </div>
+                <div>
+                    OVERSEAS WEBSITE
+                    <a href="">
+                        <img src="~/Content/Delizioso_files/Images/my.png" style="vertical-align : middle;padding:3px;" />
+                    </a>
+                    <a href="">
+                        <img src="~/Content/Delizioso_files/Images/vn.png" style="vertical-align : middle;padding:3px;" />
+                    </a>
+                </div>
+            </div>
+            <div class="footer-link">
+                <br />
+                <p class="footer_title">CUSTOMER CARE</p>
+                <div>
+                    <a href="">
+                        <span class="chtxt">會員常見問題</span>
+                    </a>
+                </div>
+                <div>
+                    <a href="">
+                        <span class="chtxt">線上帳戶</span>
+                    </a>
+                </div>
+                <div>
+                    <a href="">
+                        <span class="chtxt">VIP優惠資格</span>
+                    </a>
+                </div>
+                <div>
+                    <a href="">
+                        <span class="chtxt">聯絡我們</span>
+                    </a>
+                </div>
+                <div>
+                    <a href="">
+                        <span class="chtxt">門市會員通知</span>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-link">
+                <br />
+                <p class="footer_title">ORDER &amp; SHIPPING</p>
+                <div>
+                    <a href="">
+                        <span class="chtxt">購物流程</span>
+                    </a>
+                </div>
+                <div>
+                    <a href="">
+                        <span class="chtxt">付款與配送方式</span>
+                    </a>
+                </div>
+                <div>
+                    <a href="">
+                        <span class="chtxt">售後服務</span>
+                    </a>
+                </div>
+                <div>
+                    <a href="">
+                        <span class="chtxt">國外買家服務</span>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-link">
+                <br />
+                <p class="footer_title">Precautions</p>
+                <div>
+                    <a href="">
+                        <span class="chtxt">最新消息</span>
+                    </a>
+                </div>
+                <div>
+                    <a href="">
+                        <span class="chtxt">免責聲明</span>
+                    </a>
+                </div>
+                <div>
+                    <a href="">
+                        <span class="chtxt">隱私權保護</span>
+                    </a>
+                </div>
+                <div>
+                    <a href="">
+                        <span class="chtxt">網站使用條款</span>
+                    </a>
+                </div>
+                <div>
+                    <a href="">
+                        <span class="chtxt">防詐騙聲明</span>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-link">
+                <br />
+                <p class="footer_title">ABOUT US</p>
+                <div>
+                    <a href="">
+                        <span class="chtxt">公司簡介</span>
+                    </a>
+                </div>
+                <div>
+                    <a href="" target="_blank">
+                        <span class="chtxt">人才招募</span>
+                    </a>
+                </div>
+                <div>
+                    <a href="">
+                        <span class="chtxt">廠商合作</span>
+                    </a>
+                </div>
+                <div>
+                    <a href="">
+                        <span class="chtxt">門市資訊</span>
+                    </a>
+                </div>
+                <div>
+                    <a href="">
+                        <span class="chtxt">行動版</span>
                     </a>
                 </div>
             </div>
         </div>
-    </footer>
+    </div>
 
-    <!-- Script for Sidebar, Tabs, Accordions, Progress bars and slideshows -->
-    <script>
-        // Side navigation
-        function w3_open() {
-            var x = document.getElementById("mySidebar");
-            x.style.width = "100%";
-            x.style.fontSize = "40px";
-            x.style.paddingTop = "10%";
-            x.style.display = "block";
-        }
-
-        function w3_close() {
-            document.getElementById("mySidebar").style.display = "none";
-        }
-
-        // Tabs
-        function openCity(evt, cityName) {
-            var i;
-            var x = document.getElementsByClassName("city");
-            for (i = 0; i < x.length; i++) {
-                x[i].style.display = "none";
-            }
-            var activebtn = document.getElementsByClassName("testbtn");
-            for (i = 0; i < x.length; i++) {
-                activebtn[i].className = activebtn[i].className.replace(" w3-dark-grey", "");
-            }
-            document.getElementById(cityName).style.display = "block";
-            evt.currentTarget.className += " w3-dark-grey";
-        }
-
-        var mybtn = document.getElementsByClassName("testbtn")[0];
-        mybtn.click();
-
-        // Accordions
-        function myAccFunc(id) {
-            var x = document.getElementById(id);
-            if (x.className.indexOf("w3-show") == -1) {
-                x.className += " w3-show";
-            } else {
-                x.className = x.className.replace(" w3-show", "");
-            }
-        }
-
-        // Slideshows
-        var slideIndex = 1;
-
-        function plusDivs(n) {
-            slideIndex = slideIndex + n;
-            showDivs(slideIndex);
-        }
-
-        function showDivs(n) {
-            var x = document.getElementsByClassName("mySlides");
-            if (n > x.length) {
-                slideIndex = 1
-            }
-            if (n < 1) {
-                slideIndex = x.length
-            };
-            for (i = 0; i < x.length; i++) {
-                x[i].style.display = "none";
-            }
-            x[slideIndex - 1].style.display = "block";
-        }
-
-        showDivs(1);
-
-        // Progress Bars
-        function move() {
-            var elem = document.getElementById("myBar");
-            var width = 5;
-            var id = setInterval(frame, 10);
-
-            function frame() {
-                if (width == 100) {
-                    clearInterval(id);
-                } else {
-                    width++;
-                    elem.style.width = width + '%';
-                    elem.innerHTML = width * 1 + '%';
-                }
-            }
-        }
-    </script>
-
-
-
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
+
 </html>

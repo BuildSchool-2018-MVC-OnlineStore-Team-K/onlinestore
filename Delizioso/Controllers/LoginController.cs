@@ -1,5 +1,6 @@
 ﻿using BuildSchool.MVCSolution.OnlineStore.Models;
 using BuildSchool.MVCSolution.OnlineStore.Repository;
+using Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,9 +44,10 @@ namespace WebApplication1.Controllers
         public ActionResult Index(LoginModel loginModel)
         {
             //從資料庫找到該帳密
-            if(loginModel.Username == "admin" && loginModel.Password =="adminpwd")
+            var service = new CheckMember();
+            if(service.CheckAccountExist(loginModel.Username))
             {
-                FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1,"admin",DateTime.Now, DateTime.Now.AddMinutes(30) ,false ,"abcdefg");
+                FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1,service.GetAccountName(loginModel.Username,loginModel.Password),DateTime.Now,DateTime.Now.AddMinutes(30),false, "abcdefg");
                 var ticketData = FormsAuthentication.Encrypt(ticket);
                 var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, ticketData);
                 cookie.Expires = ticket.Expiration;
@@ -68,6 +70,12 @@ namespace WebApplication1.Controllers
             Response.Cookies.Add(cookie);
 
             return RedirectToAction("Index");
+        }
+
+
+        public ActionResult Status()
+        {
+            return PartialView();
         }
 
     }

@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using Service;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -7,6 +8,7 @@ using System.Net;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace WebApplication1.Controllers
 {
@@ -17,6 +19,7 @@ namespace WebApplication1.Controllers
         [Route("")]
         public ActionResult Index()
         {
+
             var redirectUrl = "https://www.facebook.com/v3.0/dialog/oauth?" +
                 "client_id=616223568711883" +
                 "&redirect_uri="+ HttpUtility.UrlEncode("https://delizioso.azurewebsites.net/facebookauth/facebook") +
@@ -45,15 +48,37 @@ namespace WebApplication1.Controllers
             var o = JObject.Parse(response);
             var accessToken = o.Property("access_token").Value.ToString();
 
+            ViewBag.accessToken = (accessToken);
 
             var profile = client.DownloadString("https://graph.facebook.com/me?access_token=" + accessToken);
 
             var Info = JObject.Parse(profile);
             var id = Info.Property("id").Value.ToString();
+            var name = Info.Property("name").Value.ToString();
 
             ViewBag.Facebook = (id);
 
-            return View();
+            
+            
+            //檢查是否已經用fb註冊過
+            var service = new CheckMember();
+            if (!service.CheckFbRegistered(id)) //CheckFbRegistered  true是註冊過  ! 
+            {
+                service.FbRegist(id, name);//透過FB ID註冊到資料庫
+            }
+            
+
+
+            //給予cookie 已登入的狀態
+            FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, name, DateTime.Now, DateTime.Now.AddMinutes(30), false, "fblogin");
+            var ticketData = FormsAuthentication.Encrypt(ticket);
+            var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, ticketData);
+            cookie.Expires = ticket.Expiration;
+            Response.Cookies.Add(cookie);
+
+            var url = "~/Home";
+            return Redirect(url);
+
         }
 
 
