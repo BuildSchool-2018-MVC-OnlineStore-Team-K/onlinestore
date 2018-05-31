@@ -36,6 +36,12 @@ namespace WebApplication1.Controllers
             return View();
         }
 
+
+        [Route("all")]
+        public ActionResult AllProducts()
+        {
+            return View();
+        }
         //public ActionResult DisplayProductColor(IEnumerable<ProductsViewModel> list, int productid, string sizetype)
         //{
         //    var db = new ProductsService();
