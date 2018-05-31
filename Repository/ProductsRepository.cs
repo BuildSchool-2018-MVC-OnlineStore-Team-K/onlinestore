@@ -164,7 +164,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public IEnumerable<ProductsViewModel> GetProductDetail(int ProductID)  //產品頁面需要(詳細資料)
         {            
-            var query = "SELECT p.ProductID,p.ProductName,p.Category,s.SizeType,cs.Color,cs.Stock FROM Products p INNER JOIN Size s ON p.ProductID = s.ProductID INNER JOIN ColorStock cs ON s.SizeID = cs.SizeID Where ProductID = @ProductID";
+            var query = "SELECT p.ProductID,p.ProductName,p.Category,p.UnitPrice,s.SizeType,cs.Color,cs.Stock,p.Picture FROM Products p INNER JOIN Size s ON p.ProductID = s.ProductID INNER JOIN StockColor cs ON s.SizeID = cs.SizeID Where p.ProductID = @productid";
             var parameters = new DynamicParameters();
             parameters.Add("@productid", ProductID);
             using (SqlConnection connection = new SqlConnection(source.connect))

@@ -12,9 +12,33 @@ namespace ViewModels
         public string ProductName { get; set; }
         public string Category { get; set; }
         public int? UnitPrice { get; set; }
-        public string Size { get; set; }
+        public string SizeType { get; set; }
         public string Color { get; set; }
         public int? Stock { get; set; }
         public string Picture { get; set; }
+    }
+
+    public class ProductsDetailViewModel
+    {
+        public int ProductID { get; set; }
+        public string ProductName { get; set; }
+        public string Category { get; set; }
+        public int? UnitPrice { get; set; }
+        public string Picture { get; set; }
+    }
+
+    public class ProductSize
+    {
+        public string SizeType { get; set; }
+    }
+
+    public class ProductColor
+    {
+        public string Color { get; set; }
+    }
+
+    public class ProductColorStock
+    {
+        public int? Stock { get; set; }
     }
 }
