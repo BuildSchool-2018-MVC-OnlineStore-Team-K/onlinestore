@@ -15,9 +15,18 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository.Tests
         public void CheckAccountIsNotExistTest()
         {
             var repository = new BuildSchool.MVCSolution.OnlineStore.Repository.MembersRepository();
-            var booool = repository.CheckAccountIsNotExist("1233");
+            var booool = repository.CheckAccountIsExist("1233");
             Assert.IsTrue(booool);
-            
+
+        }
+
+        [TestMethod()]
+        public void CheckFbIdExistTest()
+        {
+            string id = "1255852617878731";
+            var repository = new BuildSchool.MVCSolution.OnlineStore.Repository.MembersRepository();
+            var result =  repository.CheckFbIdExist(id);
+            Assert.IsTrue(result);
         }
     }
 }

@@ -8,6 +8,7 @@ using System.Net;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace WebApplication1.Controllers
 {
@@ -57,24 +58,24 @@ namespace WebApplication1.Controllers
 
             ViewBag.Facebook = (id);
 
-
-
+          
             
             //檢查是否已經用fb註冊過
             var service = new CheckMember();
-            if (service.CheckFbRegistered(id)) //true是註冊過
+            if (!service.CheckFbRegistered(id)) //true是註冊過  ! 
             {
-                //給予cookie 已登入的狀態
-                var url = "~/Home";
-                return Redirect(url);
-            }
-            else //透過FB ID註冊到資料庫
-            {
-                service.FbRegist(id, name);
-
+                service.FbRegist(id, name);//透過FB ID註冊到資料庫
             }
 
-            return View();
+            //給予cookie 已登入的狀態
+            FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, id, DateTime.Now, DateTime.Now.AddMinutes(30), false, "abcdefg");
+            var ticketData = FormsAuthentication.Encrypt(ticket);
+            var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, ticketData);
+            cookie.Expires = ticket.Expiration;
+            Response.Cookies.Add(cookie);
+
+            var url = "~/Home";
+            return Redirect(url);
 
         }
 

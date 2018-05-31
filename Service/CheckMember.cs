@@ -71,10 +71,10 @@ namespace Service
             return repository.AccountLogin(Account, Password);
         }
 
-        public bool FbRegist(string Fbid , string FBName )
+        public bool FbRegist(string id , string name )
         {
             var repository = new MembersRepository();
-            return repository.CreateAccountByFBId(Fbid, FBName); //true = 成功
+            return repository.CreateAccountByFBId(id, name); //true = 成功
         }
     }
 }
