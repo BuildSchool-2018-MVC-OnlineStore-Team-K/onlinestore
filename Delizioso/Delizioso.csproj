@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="..\packages\Microsoft.Net.Compilers.2.4.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.4.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -26,6 +26,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -46,33 +47,56 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Dapper, Version=1.50.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dapper.1.50.4\lib\net451\Dapper.dll</HintPath>
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
-      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+    <Reference Include="Dapper">
+      <HintPath>..\packages\Dapper.1.50.4\lib\net451\Dapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.2.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.2.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.2.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.2.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.2.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.2.0\lib\net46\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="NPOI, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
-      <HintPath>..\packages\NPOI.2.3.0\lib\net40\NPOI.dll</HintPath>
-    </Reference>
-    <Reference Include="NPOI.OOXML, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
-      <HintPath>..\packages\NPOI.2.3.0\lib\net40\NPOI.OOXML.dll</HintPath>
-    </Reference>
-    <Reference Include="NPOI.OpenXml4Net, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
-      <HintPath>..\packages\NPOI.2.3.0\lib\net40\NPOI.OpenXml4Net.dll</HintPath>
-    </Reference>
-    <Reference Include="NPOI.OpenXmlFormats, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
-      <HintPath>..\packages\NPOI.2.3.0\lib\net40\NPOI.OpenXmlFormats.dll</HintPath>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    <Reference Include="System.Net.Http.Formatting">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -80,11 +104,37 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    <Reference Include="System.Web.Http">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
@@ -103,66 +153,12 @@
     </Reference>
     <Reference Include="System.Net.Http.WebRequest">
     </Reference>
-    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
-    </Reference>
     <Reference Include="System.Web.Optimization">
       <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
-    </Reference>
     <Reference Include="WebGrease">
-      <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
-    </Reference>
-    <Reference Include="Antlr3.Runtime">
       <Private>True</Private>
-      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.ApplicationInsights">
-      <HintPath>..\packages\Microsoft.ApplicationInsights.2.2.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AI.Agent.Intercept">
-      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AI.DependencyCollector">
-      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.2.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AI.PerfCounterCollector">
-      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.2.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AI.ServerTelemetryChannel">
-      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.2.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AI.WindowsServer">
-      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.2.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AI.Web">
-      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.2.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -295,6 +291,8 @@
     <Content Include="Content\assets\scss\style.css" />
     <Content Include="Content\assets\scss\variables.css" />
     <Content Include="Content\assets\scss\widgets.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\images\admin.jpg" />
@@ -1080,7 +1078,6 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1199,10 +1196,21 @@
     <Content Include="Content\assets\scss\_gauge.scss" />
     <Content Include="Content\assets\scss\_switches.scss" />
     <Content Include="Content\assets\scss\_widgets.scss" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="Properties\PublishProfiles\Delizioso - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <None Include="Scripts\jquery-1.10.2-vsdoc.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -1210,64 +1218,64 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\js.cookie.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Content\Delizioso_files\colorbox.css" />
+    <Content Include="Content\Delizioso_files\default.css" />
+    <Content Include="Content\Delizioso_files\Images\0402E-1.gif" />
+    <Content Include="Content\Delizioso_files\Images\0514E-2.png" />
+    <Content Include="Content\Delizioso_files\Images\0514E-3.png" />
+    <Content Include="Content\Delizioso_files\Images\0514E-4.gif" />
+    <Content Include="Content\Delizioso_files\Images\180521_01.gif" />
+    <Content Include="Content\Delizioso_files\Images\180521_02.jpg" />
+    <Content Include="Content\Delizioso_files\Images\180521_03.jpg" />
+    <Content Include="Content\Delizioso_files\Images\180521_04.gif" />
+    <Content Include="Content\Delizioso_files\Images\180521_05.jpg" />
+    <Content Include="Content\Delizioso_files\Images\camera.png" />
+    <Content Include="Content\Delizioso_files\Images\Carousel-1.jpg" />
+    <Content Include="Content\Delizioso_files\Images\Carousel-10.jpg" />
+    <Content Include="Content\Delizioso_files\Images\Carousel-11.jpg" />
+    <Content Include="Content\Delizioso_files\Images\Carousel-12.jpg" />
+    <Content Include="Content\Delizioso_files\Images\Carousel-2.jpg" />
+    <Content Include="Content\Delizioso_files\Images\Carousel-3.jpg" />
+    <Content Include="Content\Delizioso_files\Images\Carousel-4.jpg" />
+    <Content Include="Content\Delizioso_files\Images\Carousel-5.jpg" />
+    <Content Include="Content\Delizioso_files\Images\Carousel-6.gif" />
+    <Content Include="Content\Delizioso_files\Images\Carousel-7.jpg" />
+    <Content Include="Content\Delizioso_files\Images\Carousel-8.jpg" />
+    <Content Include="Content\Delizioso_files\Images\Carousel-9.jpg" />
+    <Content Include="Content\Delizioso_files\Images\e171030-250.jpg" />
+    <Content Include="Content\Delizioso_files\Images\facebook.png" />
+    <Content Include="Content\Delizioso_files\Images\fb.png" />
+    <Content Include="Content\Delizioso_files\Images\Hot-1.jpg" />
+    <Content Include="Content\Delizioso_files\Images\Hot-2.jpg" />
+    <Content Include="Content\Delizioso_files\Images\Hot-3.jpg" />
+    <Content Include="Content\Delizioso_files\Images\Hot-4.jpg" />
+    <Content Include="Content\Delizioso_files\Images\Hot-5.jpg" />
+    <Content Include="Content\Delizioso_files\Images\location.png" />
+    <Content Include="Content\Delizioso_files\Images\logo_w.png" />
+    <Content Include="Content\Delizioso_files\Images\logo_w_s.JPG" />
+    <Content Include="Content\Delizioso_files\Images\M116529_01b8.jpg" />
+    <Content Include="Content\Delizioso_files\Images\MenuBanner02.jpg" />
+    <Content Include="Content\Delizioso_files\Images\MenuBanner04.jpg" />
+    <Content Include="Content\Delizioso_files\Images\MenuBanner05.jpg" />
+    <Content Include="Content\Delizioso_files\Images\MenuBanner08.jpg" />
+    <Content Include="Content\Delizioso_files\Images\MenuBanner09.jpg" />
+    <Content Include="Content\Delizioso_files\Images\MenuBannerSale.jpg" />
+    <Content Include="Content\Delizioso_files\Images\my.png" />
+    <Content Include="Content\Delizioso_files\Images\order.jpg" />
+    <Content Include="Content\Delizioso_files\Images\s-2.jpg" />
+    <Content Include="Content\Delizioso_files\Images\sale-1.jpg" />
+    <Content Include="Content\Delizioso_files\Images\sale-3.jpg" />
+    <Content Include="Content\Delizioso_files\Images\sale-4.jpeg" />
+    <Content Include="Content\Delizioso_files\Images\sale-5.jpeg" />
+    <Content Include="Content\Delizioso_files\Images\video.png" />
+    <Content Include="Content\Delizioso_files\Images\vn.png" />
+    <Content Include="Content\Delizioso_files\jquery-ui.css" />
+    <Content Include="Content\Delizioso_files\jquery.bxslider.css" />
+    <Content Include="Content\Delizioso_files\jquery.cycle2.css" />
+    <Content Include="Content\Delizioso_files\main.css" />
+    <Content Include="Content\Delizioso_files\menu.css" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Views\Shared\Delizioso_files\colorbox.css" />
-    <Content Include="Views\Shared\Delizioso_files\default.css" />
-    <Content Include="Views\Shared\Delizioso_files\Images\0402E-1.gif" />
-    <Content Include="Views\Shared\Delizioso_files\Images\0514E-2.png" />
-    <Content Include="Views\Shared\Delizioso_files\Images\0514E-3.png" />
-    <Content Include="Views\Shared\Delizioso_files\Images\0514E-4.gif" />
-    <Content Include="Views\Shared\Delizioso_files\Images\180521_01.gif" />
-    <Content Include="Views\Shared\Delizioso_files\Images\180521_02.jpg" />
-    <Content Include="Views\Shared\Delizioso_files\Images\180521_03.jpg" />
-    <Content Include="Views\Shared\Delizioso_files\Images\180521_04.gif" />
-    <Content Include="Views\Shared\Delizioso_files\Images\180521_05.jpg" />
-    <Content Include="Views\Shared\Delizioso_files\Images\camera.png" />
-    <Content Include="Views\Shared\Delizioso_files\Images\Carousel-1.jpg" />
-    <Content Include="Views\Shared\Delizioso_files\Images\Carousel-10.jpg" />
-    <Content Include="Views\Shared\Delizioso_files\Images\Carousel-11.jpg" />
-    <Content Include="Views\Shared\Delizioso_files\Images\Carousel-12.jpg" />
-    <Content Include="Views\Shared\Delizioso_files\Images\Carousel-2.jpg" />
-    <Content Include="Views\Shared\Delizioso_files\Images\Carousel-3.jpg" />
-    <Content Include="Views\Shared\Delizioso_files\Images\Carousel-4.jpg" />
-    <Content Include="Views\Shared\Delizioso_files\Images\Carousel-5.jpg" />
-    <Content Include="Views\Shared\Delizioso_files\Images\Carousel-6.gif" />
-    <Content Include="Views\Shared\Delizioso_files\Images\Carousel-7.jpg" />
-    <Content Include="Views\Shared\Delizioso_files\Images\Carousel-8.jpg" />
-    <Content Include="Views\Shared\Delizioso_files\Images\Carousel-9.jpg" />
-    <Content Include="Views\Shared\Delizioso_files\Images\e171030-250.jpg" />
-    <Content Include="Views\Shared\Delizioso_files\Images\facebook.png" />
-    <Content Include="Views\Shared\Delizioso_files\Images\fb.png" />
-    <Content Include="Views\Shared\Delizioso_files\Images\Hot-1.jpg" />
-    <Content Include="Views\Shared\Delizioso_files\Images\Hot-2.jpg" />
-    <Content Include="Views\Shared\Delizioso_files\Images\Hot-3.jpg" />
-    <Content Include="Views\Shared\Delizioso_files\Images\Hot-4.jpg" />
-    <Content Include="Views\Shared\Delizioso_files\Images\Hot-5.jpg" />
-    <Content Include="Views\Shared\Delizioso_files\Images\location.png" />
-    <Content Include="Views\Shared\Delizioso_files\Images\logo_w.png" />
-    <Content Include="Views\Shared\Delizioso_files\Images\logo_w_s.JPG" />
-    <Content Include="Views\Shared\Delizioso_files\Images\M116529_01b8.jpg" />
-    <Content Include="Views\Shared\Delizioso_files\Images\MenuBanner02.jpg" />
-    <Content Include="Views\Shared\Delizioso_files\Images\MenuBanner04.jpg" />
-    <Content Include="Views\Shared\Delizioso_files\Images\MenuBanner05.jpg" />
-    <Content Include="Views\Shared\Delizioso_files\Images\MenuBanner08.jpg" />
-    <Content Include="Views\Shared\Delizioso_files\Images\MenuBanner09.jpg" />
-    <Content Include="Views\Shared\Delizioso_files\Images\MenuBannerSale.jpg" />
-    <Content Include="Views\Shared\Delizioso_files\Images\my.png" />
-    <Content Include="Views\Shared\Delizioso_files\Images\order.jpg" />
-    <Content Include="Views\Shared\Delizioso_files\Images\s-2.jpg" />
-    <Content Include="Views\Shared\Delizioso_files\Images\sale-1.jpg" />
-    <Content Include="Views\Shared\Delizioso_files\Images\sale-3.jpg" />
-    <Content Include="Views\Shared\Delizioso_files\Images\sale-4.jpeg" />
-    <Content Include="Views\Shared\Delizioso_files\Images\sale-5.jpeg" />
-    <Content Include="Views\Shared\Delizioso_files\Images\video.png" />
-    <Content Include="Views\Shared\Delizioso_files\Images\vn.png" />
-    <Content Include="Views\Shared\Delizioso_files\jquery-ui.css" />
-    <Content Include="Views\Shared\Delizioso_files\jquery.bxslider.css" />
-    <Content Include="Views\Shared\Delizioso_files\jquery.cycle2.css" />
-    <Content Include="Views\Shared\Delizioso_files\main.css" />
-    <Content Include="Views\Shared\Delizioso_files\menu.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1295,16 +1303,18 @@
     <Content Include="Views\FacebookAuthentication\Facebook.cshtml" />
     <Content Include="Views\Products\SimpleProduct.cshtml" />
     <Content Include="Views\Login\Status.cshtml" />
-    <Content Include="Views\Shared\Delizioso_files\jquery-1.11.2.min.js.下載" />
-    <Content Include="Views\Shared\Delizioso_files\jquery-ui.min.js.下載" />
-    <Content Include="Views\Shared\Delizioso_files\jquery.bxslider.min.js.下載" />
-    <Content Include="Views\Shared\Delizioso_files\jquery.colorbox.js.下載" />
-    <Content Include="Views\Shared\Delizioso_files\jquery.colorbox.min.js.下載" />
-    <Content Include="Views\Shared\Delizioso_files\jquery.cycle2.min.js.下載" />
-    <Content Include="Views\Shared\Delizioso_files\jquery.placeholder.min.js.下載" />
-    <Content Include="Views\Shared\Delizioso_files\polyfiller.min.js.下載" />
+    <Content Include="Content\Delizioso_files\jquery-1.11.2.min.js.下載" />
+    <Content Include="Content\Delizioso_files\jquery-ui.min.js.下載" />
+    <Content Include="Content\Delizioso_files\jquery.bxslider.min.js.下載" />
+    <Content Include="Content\Delizioso_files\jquery.colorbox.js.下載" />
+    <Content Include="Content\Delizioso_files\jquery.colorbox.min.js.下載" />
+    <Content Include="Content\Delizioso_files\jquery.cycle2.min.js.下載" />
+    <Content Include="Content\Delizioso_files\jquery.placeholder.min.js.下載" />
+    <Content Include="Content\Delizioso_files\polyfiller.min.js.下載" />
     <Content Include="Views\Shared\BackEnd_Layout.cshtml" />
     <Content Include="Views\BackEnd\ProductsManage.cshtml" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1312,17 +1322,7 @@
     <Folder Include="Views\Authentication\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Models\Models.csproj">
@@ -1377,8 +1377,8 @@
     <PropertyGroup>
       <ErrorText>此專案參考這部電腦上所缺少的 NuGet 封裝。請啟用 NuGet 封裝還原，以下載該封裝。如需詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的檔案是 {0}。</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.2.4.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.4.0\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.2.4.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.4.0\build\Microsoft.Net.Compilers.props'))" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

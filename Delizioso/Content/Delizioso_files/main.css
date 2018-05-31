@@ -5,10 +5,11 @@
     min-height: 680px;
 }
 #main {
-    width:1255px;
+    width: 1255px;
     min-height: 680px;
-    margin:0 auto;
-	clear:both;
+    margin: 0 auto;
+    clear: both;
+
 }
 /*header start*/
 #headerBlock {

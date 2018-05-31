@@ -38,6 +38,18 @@ namespace WebApplication1
             bundles.Add(new StyleBundle("~/Content/assets/scss/css").Include(
                       "~/Content/assets/scss/widgets.css",
                       "~/Content/assets/scss/style.css"));
+
+            bundles.Add(new StyleBundle("~/Content/Delizioso_files/css").Include(
+                "~/Content/Delizioso_files/default.css",
+                "~/Content/Delizioso_files/main.css",
+                "~/Content/Delizioso_files/menu.css",
+                "~/Content/Delizioso_files/jquery.cycle2.css"));
+
+            bundles.Add(new ScriptBundle("~/Content/Delizioso_files/js").Include(
+                "~/Content/Delizioso_files/jquery-1.11.2.min.js.下載" ,
+                "~/Content/Delizioso_files/polyfiller.min.js.下載" ,
+                "~/Content/Delizioso_files/jquery.placeholder.min.js.下載" ,
+                "~/Content/Delizioso_files/jquery.cycle2.min.js.下載"));
         }
     }
 }
