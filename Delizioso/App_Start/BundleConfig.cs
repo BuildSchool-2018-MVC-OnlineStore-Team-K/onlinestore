@@ -26,6 +26,7 @@ namespace WebApplication1
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
             bundles.Add(new StyleBundle("~/Content/assets/css/css").Include(
                       "~/Content/assets/css/normalize.css",
                       "~/Content/assets/css/bootstrap.min.css",
@@ -33,7 +34,7 @@ namespace WebApplication1
                       "~/Content/assets/css/themify-icons.css",
                       "~/Content/assets/css/flag-icon.min.css",
                       "~/Content/assets/css/cs-skin-elastic.css"));
-                      
+
             bundles.Add(new StyleBundle("~/Content/assets/scss/css").Include(
                       "~/Content/assets/scss/widgets.css",
                       "~/Content/assets/scss/style.css"));
