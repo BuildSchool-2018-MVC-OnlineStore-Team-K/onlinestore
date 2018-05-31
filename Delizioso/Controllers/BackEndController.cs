@@ -25,8 +25,8 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public ActionResult Upload(HttpPostedFileBase file)
         {
-            string fileLocation="";
-            var model =new CreateProductsModel();
+            string fileLocation = "";
+            var model = new CreateProductsModel();
             if (Request.Files["file"].ContentLength > 0)
             {
                 string extension =
@@ -47,7 +47,7 @@ namespace WebApplication1.Controllers
 
             // 建立一個工作簿
             XSSFWorkbook excel;
-           
+
             // 檔案讀取
             using (FileStream files = new FileStream(fileLocation, FileMode.Open, FileAccess.Read))
             {
@@ -64,24 +64,24 @@ namespace WebApplication1.Controllers
             {
                 if (sheet.GetRow(row) != null) // 驗證是不是空白列
                 {
-                   // for (int c = 0; c <= sheet.GetRow(row).LastCellNum; c++) // 使用For 走訪資料欄
-                   // {
-                        
-                        model.Category = sheet.GetRow(row).GetCell(0).StringCellValue;
-                        model.ProductName = sheet.GetRow(row).GetCell(1).StringCellValue;
-                        model.Price = (int)sheet.GetRow(row).GetCell(2).NumericCellValue;
-                        model.Size = sheet.GetRow(row).GetCell(3).StringCellValue;
-                        model.Color = sheet.GetRow(row).GetCell(4).StringCellValue;
-                        model.Stock = (int)sheet.GetRow(row).GetCell(5).NumericCellValue;
-                        //sheet.GetRow(row).GetCell(c).NumericCellValue; // 數值
-                        //sheet.GetRow(row).GetCell(c).StringCellValue; // 字串
-                        //sheet.GetRow(row).GetCell(c).BooleanCellValue; // 布林
-                        //sheet.GetRow(row).GetCell(c).DateCellValue; // 日期
-                   // }
+                    // for (int c = 0; c <= sheet.GetRow(row).LastCellNum; c++) // 使用For 走訪資料欄
+                    // {
+
+                    model.Category = sheet.GetRow(row).GetCell(0).StringCellValue;
+                    model.ProductName = sheet.GetRow(row).GetCell(1).StringCellValue;
+                    model.Price = (int)sheet.GetRow(row).GetCell(2).NumericCellValue;
+                    model.Size = sheet.GetRow(row).GetCell(3).StringCellValue;
+                    model.Color = sheet.GetRow(row).GetCell(4).StringCellValue;
+                    model.Stock = (int)sheet.GetRow(row).GetCell(5).NumericCellValue;
+                    //sheet.GetRow(row).GetCell(c).NumericCellValue; // 數值
+                    //sheet.GetRow(row).GetCell(c).StringCellValue; // 字串
+                    //sheet.GetRow(row).GetCell(c).BooleanCellValue; // 布林
+                    //sheet.GetRow(row).GetCell(c).DateCellValue; // 日期
+                    // }
                 }
             }
 
-            
+
 
 
             return RedirectToAction("Index");
