@@ -1,0 +1,82 @@
+ul li{
+    list-style-type:none;
+    margin: 10px 0px;
+}
+
+body{
+    font-family: '微軟正黑體';
+}
+
+a{
+    color: #545050;
+    text-decoration: none;
+}
+
+ul{
+    font-size: 14px;
+    margin-bottom: 35px;
+}
+
+b.now{
+    color:#DD0000; 
+    font-weight: bold;
+}
+
+.photo-list {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.pdinfo {
+    width: 310px;
+    margin-top: 25px;
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.pd-title {
+    font-weight: bold;
+    margin-bottom: 3px;
+    font-size: 14px;
+}
+
+.pd-subtitle {
+    font-size: 11px;
+    font-weight: bold;
+    margin: 0px;
+    margin-bottom: 20px;
+}
+
+.price{
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 3px;
+}
+
+.select{
+    margin-bottom: 3px;
+}
+
+.item-tree{
+    margin-top: 10px;
+    font-size: 13px;
+}
+
+.pdtext{
+    text-align: center;
+}
+
+.pdsize {
+    margin: 0px 2%;
+}
+
+.pdprice {
+    line-height: 20px;
+    font-weight: bold;
+}
+
+.pdtext p{
+    font-size: 13px;
+}
+
