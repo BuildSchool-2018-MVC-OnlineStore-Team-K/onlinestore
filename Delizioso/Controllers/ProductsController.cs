@@ -7,7 +7,7 @@ using Service;
 
 namespace WebApplication1.Controllers
 {
-    [RoutePrefix("Product")]
+    [RoutePrefix("product")]
     public class ProductsController : Controller
     {
         // GET: Products
@@ -17,6 +17,12 @@ namespace WebApplication1.Controllers
             var controller = new ProductsService();
             var product = controller.GetProductDetailById(id);
             ViewBag.result = product;
+            return View();
+        }
+
+        [Route("all")]
+        public ActionResult AllProducts()
+        {
             return View();
         }
     }

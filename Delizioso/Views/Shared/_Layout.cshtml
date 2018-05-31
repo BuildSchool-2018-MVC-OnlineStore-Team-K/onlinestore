@@ -11,12 +11,14 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
           crossorigin="anonymous" />
+    @Styles.Render("~/Content/styles/css");
+    @Styles.Render("~/Content/Delizioso_files/css");
+    @Scripts.Render("~/Content/Delizioso_files/js");
 </head>
 
 
 <body cz-shortcut-listen="true">
-    @Styles.Render("~/Content/Delizioso_files/css");
-    @Scripts.Render("~/Content/Delizioso_files/js");
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript">
@@ -179,7 +181,7 @@
             </tr>
         </tbody>
     </table>
-    <br/>
+    <br />
     <div id="menu-area">
         <div id="menu">
             <ul class="main-menu">
@@ -548,7 +550,6 @@
             </form>
         </div>
     </div>
-    </div>
 
 
     <!--LoginModel-->
@@ -680,7 +681,7 @@
     <div id="footer">
         <div class="footer-content">
             <div class="footer-link">
-                <br/>
+                <br />
                 <p class="footer_title">NEWSLETTER /</p>
                 <form name="epaper" id="form-epaper" onsubmit="return false">
                     <table class="footer-table" border="0" style="padding-bottom:10px;margin-top:-10px;">
