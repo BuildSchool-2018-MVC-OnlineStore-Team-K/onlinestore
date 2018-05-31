@@ -6,12 +6,12 @@ using System.Web.Mvc;
 
 namespace WebApplication1.Controllers
 {
-    [RoutePrefix("MemberCentre")]
-    public class MemberCentreController : Controller
+    [RoutePrefix("MemberCenter")]
+    public class MemberCenterController : Controller
     {
         [Route("")]
         // GET: MemberCentre
-        public ActionResult MemberCentre()
+        public ActionResult MemberCenter()
         {
             return View();
         }

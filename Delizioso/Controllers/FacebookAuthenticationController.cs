@@ -58,7 +58,7 @@ namespace WebApplication1.Controllers
 
             ViewBag.Facebook = (id);
 
-          
+            
             
             //檢查是否已經用fb註冊過
             var service = new CheckMember();
@@ -67,6 +67,7 @@ namespace WebApplication1.Controllers
                 service.FbRegist(id, name);//透過FB ID註冊到資料庫
             }
             
+
 
             //給予cookie 已登入的狀態
             FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, name, DateTime.Now, DateTime.Now.AddMinutes(30), false, "fblogin");
