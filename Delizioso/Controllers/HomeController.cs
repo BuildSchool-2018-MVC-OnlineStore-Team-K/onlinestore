@@ -42,5 +42,11 @@ namespace WebApplication1.Controllers
 
             return View(list);
         }
+
+        //[HttpPost]
+        //public ActionResult Member()
+        //{
+        //    return Redirect("Login");
+        //}
     }
 }

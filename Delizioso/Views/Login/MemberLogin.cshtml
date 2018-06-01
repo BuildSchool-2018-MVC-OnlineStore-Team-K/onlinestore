@@ -3,7 +3,7 @@
 
 }
 
-@using(Html.BeginForm())
+@using (Html.BeginForm())
 {
 
 }
@@ -12,9 +12,9 @@
     <div class="form-title-area">
         <h5 class="form-title" style="size: 40px">會員登入/SIGN IN</h5>
     </div>
-    <form name="login" id="form-login" onsubmit="return false">
+    <form name="login" id="form-login" >
         <div id="login-form">
-            @using (Html.BeginForm("MemberLogin", "Login"))
+            @using (Html.BeginForm(new {Controller="Login",Action="MemberLogin" }))
             {
                 <div>
                     <input id="UserId" type="text" name="UserId" placeholder="帳號 Account" maxlength="40" required="" />
@@ -24,9 +24,10 @@
                     <input id="UserPw" type="password" name="UserPw" placeholder="密碼 Password" maxlength="16" required="" />
                 </div>
                 <br />
-                <input type="submit" class="btn btn-secondary" style=size: 10px value="登入"/>
+                <input type="submit" class="btn btn-secondary" style=size: 10px value="登入" />
             }
             <button type="button" class="btn" style="background-color: transparent;color: white;"><img src="~/Content/Delizioso_files/Images/facebook.png" /></button>
+            <button type="button" class="btn" style="background-color: transparent;color: white;"><img src="~/Content/Delizioso_files/Images/google.png" /></button>
             <br />
             <div style="margin-top:25px;">
                 <div style="display:inline;vertical-align:bottom;">
@@ -35,8 +36,6 @@
             </div>
         </div>
         <input type="hidden" name="btn" value="login" />
-        <input type="hidden" name="backurl" value="" />
     </form>
 </div>
-<hr />
 
