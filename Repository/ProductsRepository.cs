@@ -62,7 +62,6 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             
         }
 
-       
         public IEnumerable<Products> GetAll()
         {
             var query = "SELECT p.ProductID, (SELECT Category FROM Products WHERE ProductID = p.ProductID) AS Category,(SELECT ProductName FROM Products WHERE ProductID = p.ProductID) AS ProductName, (SELECT UnitPrice FROM Products WHERE ProductID = p.ProductID) AS UnitPrice,(SELECT ShelfTime FROM Products WHERE ProductID = p.ProductID) AS ShelfTime,(SELECT TOP 1 Discount FROM Discounts WHERE ProductID = p.ProductID AND EndTime >= GETDATE() ORDER BY StartTime DESC) AS Discount FROM Products p LEFT JOIN Discounts d ON d.ProductID = p.ProductID GROUP BY p.ProductID";
@@ -73,7 +72,19 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             }            
         }
 
-   
+        public IEnumerable<ProductHomeViewModel> GetTop5Products()
+        {
+            var query = "SELECT TOP 5 o.ProductID, p.ProductName,p.UnitPrice, SUM(Quantity) AS Sum " +
+                "FROM OrderDetail o " +
+                "INNER JOIN Products p ON p.ProductID = o.ProductID " +
+                "GROUP BY o.ProductID, p.ProductName, p.UnitPrice ";
+            using (SqlConnection connection = new SqlConnection(source.connect))
+            {
+                var result = connection.Query<ProductHomeViewModel>(query);
+                return result;
+            }
+        }
+
         public IEnumerable<Products> OrderByUnitprice()
         {
             using (SqlConnection connection = new SqlConnection(source.connect))
