@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div id="join">
+    <div class="form-title-area">
+        <h5 class="form-title">加入會員/JOIN US</h5>
+        <p class="form-text">成為會員不定時享有會員活動與優惠</p>
+    </div>
+    <form name="join" id="form-join" onsubmit="return false">
+        <div id="join-form">
+            <div>
+                <input id="UserName" type="text" name="UserName" placeholder="姓名 Name" maxlength="30" required="" />
+            </div>
+            <br />
+            <div>
+                <input id="UserId" type="email" name="UserId" placeholder="電子郵件 E-mail" maxlength="40" autocomplete="off" required="" />
+            </div>
+            <br />
+            <div>
+                <input id="UserPwd1" type="password" name="UserPwd1" placeholder="密碼 Password" maxlength="16" pattern="[A-Za-z0-9]{4,16}"
+                       title="由英文或數字所組成的4~16字元" required="" onchange="$('#UserPwd2').attr('pattern',$(this).val())" /> 由英文或數字所組成的4~16字元
+            </div>
+            <br />
+            <div>
+                <input id="UserPwd2" type="password" name="UserPwd2" placeholder="確認密碼 ConfirmPassword" maxlength="16" title="與密碼不符" required="" />
+            </div>
+            <br />
+            <div>
+                生日 Birthday
+                <input id="UserBirthdayY" type="text" name="UserBirthdayY" placeholder="西元年" maxlength="4" pattern="[0-9]{4}" title="生日西元年"
+                       required="" />
+                <input id="UserBirthdayM" type="number" name="UserBirthdayM" placeholder="月" maxlength="2" pattern="[0-9]" title="生日月" required=""
+                       max="12" min="1" step="1" />
+                <input id="UserBirthdayD" type="number" name="UserBirthdayD" placeholder="日" maxlength="2" pattern="[0-9]" title="生日西元日"
+                       required="" max="31" min="1" step="1" />
+            </div>
+            <br />
+            <div>
+                <input id="UserPhone" type="text" name="UserPhone" placeholder="手機 Cell Phone Number" maxlength="20" pattern="^.{6,20}$"
+                       title="由數字組成，如：0911222333" required="" />
+            </div>
+            <div align="right">
+                <button type="button" class="btn btn-secondary">加入會員</button>
+            </div>
+            <div style="display:inline;">
+                <input id="epaper" type="checkbox" name="epaper" value="Y" />
+            </div>
+            <div style="display:inline;">訂閱 Delizioso電子報，接收最新優惠及活動訊息!</div>
+        </div>
+        <input type="hidden" name="btn" value="join" />
+    </form>
+</div>

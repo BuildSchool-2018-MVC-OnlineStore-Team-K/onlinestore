@@ -12,7 +12,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public string connectcloud = Environment.GetEnvironmentVariable("SQLAZURECONNSTR_cloud");
         
         //public string connect2 = ConfigurationManager.ConnectionStrings["db"].ConnectionString;
-        public string connect2 = "Server=192.168.40.35,1433;Database=E-Commerce;User ID =smallhandsomehandsome; Password =123;";
+        public string connect2 = "Server=192.168.0.26,1433;Database=E-Commerce;User ID =smallhandsomehandsome; Password =123;";
         public string connect = "Server=buildschool.database.windows.net;Database=bs-team2;User ID=bsteam2;Password=@bsTp22B#;";
     }
 }

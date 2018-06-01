@@ -16,7 +16,7 @@ namespace WebApplication1.Controllers
         
 
         [Route("")]
-        public ActionResult Index()
+        public ActionResult MemberRegister()
         {
 
             return PartialView();
@@ -25,7 +25,7 @@ namespace WebApplication1.Controllers
 
         [Route("")]
         [HttpPost]
-        public ActionResult Index(RegisterModel registerModel)
+        public ActionResult MemberRegister(RegisterModel registerModel)
         {
             var service = new CheckMember();
             if (!service.CheckAccountExist(registerModel.Account))
