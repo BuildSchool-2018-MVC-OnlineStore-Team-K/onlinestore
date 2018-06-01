@@ -41,4 +41,12 @@ namespace ViewModels
     {
         public int? Stock { get; set; }
     }
+
+    public class ProductHomeViewModel
+    {
+        public int ProductID { get; set; }
+        public string ProductName { get; set; }
+        public int UnitPrice { get; set; }
+        public int Sum { get; set; }
+    }
 }
