@@ -3,172 +3,171 @@
     ViewBag.Title = "SimpleProduct";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <title>Delizioso-購物</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <style>
-        .productpic {
-            width: 90%;
-            margin-left: 20px;
-        }
-
-        .fas.fa-star {
-            color: yellow;
-        }
-
-        .trans {
-            margin-left: 48px;
-            font-size: 13px;
-        }
-
-        .dis {
-            font-size: 20px;
-        }
-
-        .col-md {
-            margin-left: 40px;
-        }
-    </style>
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-          crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
-          crossorigin="anonymous">
-</head>
-
-<body style="font-family:微軟正黑體;">
-    
-        <div class="container mt-5">
+<br />
+<br />
+<br />
+<br /><br /><br /><br />
+<div class="container-fluid">
+    <div class="row">
+        <!-- left list -->
+        <div class="col-3 mt-5">
+            <div class="col offset-sm-1">
+                <ul>
+                    <u>
+                        <b>優惠活動</b>
+                    </u>
+                    <li>
+                        <a href="">顯瘦穿搭</a>
+                    </li>
+                    <li>
+                        <a href="">曲線針織</a>
+                    </li>
+                    <li>
+                        <a href="">春日穿搭</a>
+                    </li>
+                    <li>
+                        <a href="">百搭衣著</a>
+                    </li>
+                    <li>
+                        <a href="">貼身內著</a>
+                    </li>
+                    <li>
+                        <a href="">最終折扣</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <a href="">
+                            <b>本週服飾</b>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <b>暢銷服飾</b>
+                        </a>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <a href="">
+                            <b>貼身內著</b>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <b>內著</b>
+                        </a>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <a href="">
+                            <b class="now">裙類</b>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-9">
             <div class="row">
-                <div class="col-md-5">
-                    <img class="productpic" src="https://s9.postimg.cc/fd3rfy0jj/jeans3.jpg">@ViewBag.picture
-                </div>
-                <div class="col-md-6">
-                    <h2>@ViewBag.productName</h2>
-                    <hr>
-                    <h5>產品類別:@ViewBag.category</h5>
-                    <p>
-                        建議售價&nbsp;
-                        <span style="font-size: 30px;color: rgb(253, 32, 32); font-weight: bold;"><span style="font-size: 18px">$</span>@ViewBag.unitprice</span>元
-                    </p>
-                    <div class="row">
-                        <div class="col">
-                            <p style="font-size: 14px">
-                                <span style="font-weight: bold;">付款方式</span>
-                                <img src="http://img.pcstore.com.tw/web_img/icon_visa.gif">
-                                <img src="http://img.pcstore.com.tw/web_img/icon_ms.gif">
-                                <img src="http://img.pcstore.com.tw/web_img/icon_jcb.gif">
-                                <img src="http://img.pcstore.com.tw/web_img/icon_ae.gif">
-                                <img src="http://img.pcstore.com.tw/web_img/icon_atm.gif">
-                                <img src="http://img.pcstore.com.tw/web_img/cup.gif">
-                                <br />
-                                <img src="http://img.pcstore.com.tw/web_img/search_icon_payment_711.gif" style="margin-left: 60px">
-                                <img src="http://img.pcstore.com.tw/web_img/search_icon_payment_fa.gif">&nbsp;超商付款
-                                <br />
-                                <img src="http://img.pcstore.com.tw/web_img/search_icon_payment_711.gif" style="margin-left: 60px">
-                                <img src="http://img.pcstore.com.tw/web_img/search_icon_payment_fa.gif">&nbsp;取貨付款
-                                <br />
-                            </p>
-                        </div>
+                <div class="col-7">
+                    <div class="photo-list">
+                        <img id="bigPic" src="http://photo.airspace.com.tw/photo/1822009/1822009-08-01.jpg" alt="MainImage" width="500" height="640">
                     </div>
-                    <div class="row">
-                        <div class="col">
-                            <p style="font-size: 14px">
-                                <span style="font-weight: bold;">運&nbsp;&nbsp;&nbsp;費</span>
-                                <br />
-                                <span class="trans">單店購物車滿 480 元(含)以上免運費，未滿者自付運費</span>
-                                <br />
-                                <span class="trans">宅配 70 元</span>
-                                <br />
-                                <span class="trans">郵局 65 元***</span>
-                                <br />
-                                <span class="trans">商品如需寄送至台灣本島以外，請先行與店家聯繫運費金額</span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label for="Size">Size:</label>
-                            <select id="Size" name="Size">
-                                @foreach (var item in ViewBag.distinctsize)
-                                {
-                                <option>@item.SizeType</option>
-                                }
-                            </select>
-                        </div>
-                        <div class="col-md-4">
-                            <label for="Color">Color:</label>
-                            <select id="Color" name="Color">
-                                @*@Html.DropDownList("color", (string)ViewBag.distinctcolor)*@
-                                @*@foreach (var item in ViewBag.distinctcolor)
-                                {
-                                    <option>@item.Color</option>
-                                }*@
-                                <option>Black</option>
-                                <option>White</option>
-                                <option>Gray</option>
-                            </select>
-                        </div>
-                        <div class="col-md-5">
-                            <label for="Quantity">Quantity:</label>
-                            <select id="Quantity" name="Quantity">
-                                @*@for(var i =ViewBag.productColorStock-1; i = 0; i--)
-                                {
-                                <option>ViewBag.productColorStock-i</option>
-                                }*@
-                                <option>1</option>
-                                <option>2</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-md-2">
-                            <button id="addcar" type="button" class="btn btn-secondary">加入購物車</button>
-                        </div>
+                    <div id="smPic" class="photo-list">
+                        <a href="http://photo.airspace.com.tw/photo/1822009/1822009-08-01b.JPG">
+                            <img src="http://photo.airspace.com.tw/photo/1822009/1822009-08-01b.JPG" alt="littleImg" width="80" height="102">
+                        </a>
+                        <a href="http://photo.airspace.com.tw/photo/1822009/1822009-08-02b.JPG">
+                            <img src="http://photo.airspace.com.tw/photo/1822009/1822009-08-02b.JPG" alt="littleImg" width="80" height="102">
+                        </a>
+                        <a href="http://photo.airspace.com.tw/photo/1822009/1822009-08-03b.JPG">
+                            <img src="http://photo.airspace.com.tw/photo/1822009/1822009-08-03b.JPG" alt="littleImg" width="80" height="102">
+                        </a>
                     </div>
                 </div>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                <script>
+                    $(document).ready(function () {
+                        var smpics = $("#smPic").children("a").children("img");
+                        for (var i = 0; i < smpics.length; i++) {
+                            var smpic = smpics[i];
+                            // smpic.onmouseover(function () {
+                            //     console.log(smpic);
+                            // });
+                            $(smpics[i]).mouseover(function () {
+                                console.log(this);
+                                $("#bigPic").attr("src", $(this).attr("src"));
+                                console.log(smpics[i]);
+                            });
+                            //滑鼠華上去抓不到每一個
+                        }
+                    });
+                </script>
+                <div class="col">
+                    <div class="pdinfo">
+                        <p class="pd-title">簡約格紋包臀短裙</p>
+                        <p class="pd-subtitle">1822009</p>
+                        <p class="price">NT$290</p>
+                        <p class="select">SELECT COLOR: </p>
+
+                        <div id="colorSelect">
+                            <a href="#">
+                                <img class="color-select img-border" style="background: #CC0000;">
+                            </a>
+                            <a href="#">
+                                <img class="color-select" style="background: rgb(38, 57, 226);">
+                            </a>
+                            <a href="#">
+                                <img class="color-select" style="background: rgb(90, 7, 7);">
+                            </a>
+                        </div>
+
+                        <script>
+                            $(document).ready(function () {
+                                $("a").mouseup(function () {
+                                    $("#colorSelect").children("a").children(".color-select").removeClass(
+                                        "img-border");
+                                    $(this).children(".color-select").addClass("img-border");
+                                })
+                            });
+                        </script>
+
+                        <div class="size-area">
+                            <p class="select">SELECT SIZE: </p>
+                            <div>
+                                <span class="current" mysize="S">S</span>
+                                <span mysize="M">M</span>
+                                <span mysize="L">L</span>
+                            </div>
+                            <script>
+                                $(document).ready(function () {
+                                    $("span").mouseup(function () {
+                                        $(".size-area").children("div").children('span').removeClass(
+                                            "current");
+                                        $(this).addClass("current");
+                                    })
+                                });
+                            </script>
+                        </div>
+                        <hr>
+                        <div class="qty">
+                            數量：
+                            <select id="selectQTY" size="1" name="qty">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                        <p>
+                            <img class="cursor" src="http://www.airspace.com.tw/images/add1.png" alt="加入購物車">
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
-    
-    <br />
-    <br />
-    @*<div class="container">
-        <div class="row">
-            <div class="col">
-                <h5 style="color:gray">你可能會喜歡</h5>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md">
-                <img src="http://via.placeholder.com/150x150">
-                <h6>商品名稱</h6>
-            </div>
-            <div class="col-md">
-                <img src="http://via.placeholder.com/150x150">
-                <h6>商品名稱</h6>
-            </div>
-            <div class="col-md">
-                <img src="http://via.placeholder.com/150x150">
-                <h6>商品名稱</h6>
-            </div>
-            <div class="col-md">
-                <img src="http://via.placeholder.com/150x150">
-                <h6>商品名稱</h6>
-            </div>
-            <div class="col-md">
-                <img src="http://via.placeholder.com/150x150">
-                <h6>商品名稱</h6>
-            </div>
-        </div>
-    </div>*@
-</body>
-</html>
+    </div>
+</div>
 

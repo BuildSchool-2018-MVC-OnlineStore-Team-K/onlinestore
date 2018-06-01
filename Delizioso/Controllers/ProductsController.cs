@@ -8,7 +8,7 @@ using ViewModels;
 
 namespace WebApplication1.Controllers
 {
-    [RoutePrefix("Product")]  //Product/1
+    [RoutePrefix("product")]  //Product/1
     public class ProductsController : Controller
     {
         // GET: Products
