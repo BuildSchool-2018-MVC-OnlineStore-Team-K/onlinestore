@@ -8,14 +8,16 @@
         <h5 class="form-title">加入會員/JOIN US</h5>
         <p class="form-text">成為會員不定時享有會員活動與優惠</p>
     </div>
-    <form name="join" id="form-join" onsubmit="return false">
+    <form name="join" id="form-join" >
         <div id="join-form">
+            @using (Html.BeginForm("MemberRegister", "Register"))
+            {
             <div>
                 <input id="UserName" type="text" name="UserName" placeholder="姓名 Name" maxlength="30" required="" />
             </div>
             <br />
             <div>
-                <input id="UserId" type="email" name="UserId" placeholder="電子郵件 E-mail" maxlength="40" autocomplete="off" required="" />
+                <input id="UserId" type="email" name="UserId" placeholder="帳號 Account" maxlength="40" autocomplete="off" required="" />
             </div>
             <br />
             <div>
@@ -42,8 +44,9 @@
                        title="由數字組成，如：0911222333" required="" />
             </div>
             <div align="right">
-                <button type="button" class="btn btn-secondary">加入會員</button>
+                <button type="submit" class="btn btn-secondary">加入會員</button>
             </div>
+            }
             <div style="display:inline;">
                 <input id="epaper" type="checkbox" name="epaper" value="Y" />
             </div>
