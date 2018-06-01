@@ -136,14 +136,14 @@
                             </td>
                             <td style="width:0px">/</td>
                             <td>
-                                <button type="button" class="btn" style="background-color: transparent; color: white;" onclick="location.href='http://localhost:57010/MemberCenter'">
-                                    <span onmouseover="mouseover(this)" onmouseout="mouseout(this)" data-over="會員中心" data-out="MEMBERS">MEMBERS</span>
+                                <button type="button" class="btn" data-toggle="modal" data-target="#joinusModel" style="background-color: transparent;color: white;">
+                                    <span onmouseover="mouseover(this)" onmouseout="mouseout(this)" data-over="會員註冊" data-out="JOINUS">JOINUS</span>
                                 </button>
                             </td>
                             <td style="width:0px">/</td>
                             <td>
-                                <button type="button" class="btn" data-toggle="modal" data-target="#" style="background-color: transparent;color: white;">
-                                    <span onmouseover="mouseover(this)" onmouseout="mouseout(this)" data-over="願望清單" data-out="WISH LIST">WISH LIST</span>
+                                <button type="button" class="btn" style="background-color: transparent; color: white;" onclick="location.href='http://localhost:57010/MemberCenter'">
+                                    <span onmouseover="mouseover(this)" onmouseout="mouseout(this)" data-over="會員中心" data-out="MEMBERS">MEMBERS</span>
                                 </button>
                             </td>
                             <td style="width:0px">/</td>
@@ -161,17 +161,18 @@
                     </tbody>
                 </table>
             </div>
+            <br />
             <div class="float-script"></div>
-
         </div>
     </div>
+
     <div class="clear"></div>
     <div style="height:50px;"></div>
     <table id="logo" class="rounded float-left">
         <tbody>
             <tr>
                 <td>
-                    <a href="">
+                    <a onclick="location.href='http://localhost:57010/Home'">
                         <div>
                             <img id="logoimg_b" src="~/Content/Delizioso_files/Images/logo_w.png" style="display: inline;" height="100px" width="300px" />
                             <img id="logoimg_s" src="~/Content/Delizioso_files/Images/logo_w.png" style="display: none;" height="50px" width="200px" />
@@ -181,6 +182,14 @@
             </tr>
         </tbody>
     </table>
+
+    <div id="search">
+        <form action="" method="get" id="frmSearch" name="frmSearch">
+            <img src="https://upload.cc/i1/2018/05/25/N8gox5.png" />
+            <input id="tbxKeyword" type="text" placeholder="SEARCH" />
+        </form>
+    </div>
+    <br />
     <br />
     <div id="menu-area">
         <div id="menu">
@@ -457,22 +466,10 @@
                                     <a href="" data-item="0801" data-item1="08" class="item-link">去角質</a>
                                 </li>
                                 <li>
-                                    <a href="" data-item="0801" data-item1="08" class="item-link">眼部保養</a>
-                                </li>
-                                <li>
-                                    <a href="" data-item="0802" data-item1="08" class="item-link">保濕護理</a>
-                                </li>
-                                <li>
                                     <a href="" data-item="0802" data-item1="08" class="item-link">鬍後紓緩</a>
                                 </li>
                                 <li>
                                     <a href="" data-item="0802" data-item1="08" class="item-link">淨膚護理</a>
-                                </li>
-                                <li>
-                                    <a href="" data-item="0802" data-item1="08" class="item-link">抗老護理</a>
-                                </li>
-                                <li>
-                                    <a href="" data-item="0802" data-item1="08" class="item-link">亮澤美白</a>
                                 </li>
                             </ul>
                         </li>
@@ -520,12 +517,6 @@
                                     <a href="">顯瘦穿搭 ‧ 二件$698</a>
                                 </li>
                                 <li style="margin-right:15px;">
-                                    <a href="">曲線針織 ‧ 二件$598</a>
-                                </li>
-                                <li style="margin-right:15px;">
-                                    <a href="">春日穿搭 ‧ 二件$498</a>
-                                </li>
-                                <li style="margin-right:15px;">
                                     <a href="">百搭衣著 ‧ 二件$368</a>
                                 </li>
                                 <li style="margin-right:15px;">
@@ -543,12 +534,6 @@
                 </li>
             </ul>
         </div>
-        <div id="search">
-            <form action="" method="get" id="frmSearch" name="frmSearch">
-                <img src="https://upload.cc/i1/2018/05/25/N8gox5.png" />
-                <input id="tbxKeyword" type="text" placeholder="SEARCH" />
-            </form>
-        </div>
     </div>
 
 
@@ -561,7 +546,6 @@
                         <tbody>
                             <tr>
                                 @Html.Partial("~/Views/Login/MemberLogin.cshtml")
-                                @Html.Partial("~/Views/Register/MemberRegister.cshtml")
                             </tr>
                         </tbody>
                     </table>
@@ -573,6 +557,26 @@
         </div>
     </div>
 
+
+    <!--JoinusModel-->
+    <div class="modal fade" id="joinusModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <table border="0" cellspacing="0" cellpadding="4" align="center">
+                        <tbody>
+                            <tr>
+                                @Html.Partial("~/Views/Register/MemberRegister.cshtml")
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    歡迎加入Delizioso！
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
