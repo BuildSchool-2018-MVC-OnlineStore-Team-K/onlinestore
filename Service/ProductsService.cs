@@ -69,5 +69,34 @@ namespace Service
             };
             return productstock;
         }
+
+        public string GetCountyDDL(IEnumerable<ProductsViewModel> list, int productid, string sizetype)
+        {
+            using (TestDBEntities db = new TestDBEntities())
+            {
+                var newlist = new List<ProductColor>();
+                var color = list.Where((x) => x.ProductID == productid && x.SizeType == sizetype);
+
+                Dictionary<string, string> optionData = new Dictionary<string, string>();
+                string keyText = string.Empty;
+
+                foreach (var item in color)
+                {
+                    keyText = string.Concat(item.POSTAL_CODE.ToString(), " ", item.NAME.Trim());
+                    if (optionData.Keys.Where(x => x == keyText).Count().Equals(0))
+                    {
+                        optionData.Add(keyText, item.POSTAL_CODE.ToString());
+                    }
+                }
+
+                var pid = productid.ToString();
+                if (string.IsNullOrWhiteSpace(pid))
+                {
+                    pid = "Color";
+                }
+                string _html = DropDownListHelper.GetDropdownList(pid, pid, optionData, null, sizetype, true, null);
+                return _html;
+            }
+        }
     }
 }
