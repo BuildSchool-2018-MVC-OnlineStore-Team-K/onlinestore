@@ -15,7 +15,7 @@ namespace ViewModels
         public string Phone { get; set; }
         public string Email { get; set; }
         public string UserAccount { get; set; }
-        public string UserPwd1 { get; set; }
+        public string UserPwd { get; set; }
         public int Block { get; set; }
         public string Career { get; set; }
     }
