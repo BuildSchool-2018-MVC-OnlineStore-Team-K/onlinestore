@@ -274,19 +274,19 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             connection.Execute("INSERT INTO Members([Name], [Address],Birthday,Phone,Email,Account,[Password],Career,[Block]) Values(@Name , @Address , @Birthday ,@Phone , @Email , @Account , @Password , @Career ,0)",
                 new
                 {
-                    member.Name,
+                    member.UserName,
                     member.Address,
                     member.Birthday,
                     member.Phone,
                     member.Email,
-                    member.Account,
-                    member.Password,
+                    member.UserAccount,
+                    member.UserPwd,
                     member.Career
                 });
             var result = connection.Query<RegisterModel>("SELECT * FROM Members Where Account = @Account and Name = @Name", new
             {
-                member.Account,
-                member.Name
+                member.UserAccount,
+                member.UserName
             });
             if (result.Count() > 0)
             {

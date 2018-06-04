@@ -4,7 +4,6 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-using BuildSchool.MVCSolution.OnlineStore.Repository;
 using BuildSchool.PasswordValidationTool.Abstracts;
 using BuildSchool.PasswordValidationTool.Client;
 using BuildSchool.PasswordValidationTool.Implementation.HashingProvider;
@@ -18,13 +17,6 @@ namespace BuildSchoolPassword.ValidationToolClient.Client
     {
         static void Main(string[] args)
         {
-            var repo = new ProductsRepository();
-            var list = repo.GetTop5Products().OrderByDescending
-            foreach (var i in list)
-
-
-                  
-
             //register dependency
             var container = new Container();
                                //  這個介面     ,      由誰實作
@@ -38,27 +30,20 @@ namespace BuildSchoolPassword.ValidationToolClient.Client
                 container.GetInstance<IPasswordValidationService>();
 
             //var pwd = service.GeneratePassword();
-            var userInputPwd = "6qn84tNe";
-            var storedPwd = "6qn84tNe";
-            
+            var userInputPwd = "x2n84tNe";
+            var storedPwd = "x2n84tNe";
 
             var randomGenerator = new RNGCryptoServiceProvider();
-            //16位元的加料
             var salt = new byte[16];
-            //讓salt更隨機
             randomGenerator.GetBytes(salt);
 
-            //emulate stored password 
-            //資料庫的密碼轉為byte
+            //emulate stored password
             byte[] storedPwdData = Encoding.UTF8.GetBytes(storedPwd);
-            //將byte的資料庫的密碼雜湊
             byte[] storedPwdHashed = service.HashPassword(storedPwdData, salt);
 
             //valid user input
-            //將user輸入ㄉ密碼轉為byte
             byte[] userPwdData = Encoding.UTF8.GetBytes(userInputPwd);
 
-            //呼叫 ValidatePassword       傳入資料庫的密碼, 使用者輸入的, 加料
             if (service.ValidatePassword(storedPwdHashed, userPwdData, salt))
             {
                 Console.WriteLine("Correct");

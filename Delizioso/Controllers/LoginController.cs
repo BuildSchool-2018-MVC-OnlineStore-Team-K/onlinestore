@@ -18,6 +18,7 @@ namespace WebApplication1.Controllers
         [Route("")]
         public ActionResult MemberLogin()
         {
+            ViewBag.test = "123";
             var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
             if (cookie == null)
             {
