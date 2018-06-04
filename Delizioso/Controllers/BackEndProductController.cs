@@ -11,10 +11,10 @@ using ViewModels;
 
 namespace WebApplication1.Controllers
 {
-    [RoutePrefix("backend")]
-    public class BackEndController : Controller
+    [RoutePrefix("backendproduct")]
+    public class BackEndProductController : Controller
     {
-        [Route("")]
+        [Route("Create")]
         // GET: BackEnd
         public ActionResult ProductsManage()
         {
@@ -22,7 +22,7 @@ namespace WebApplication1.Controllers
         }
 
 
-        [Route("")]
+        [Route("Create")]
         [HttpPost]
         public ActionResult ProductsManage(HttpPostedFileBase file)
         {
@@ -97,6 +97,38 @@ namespace WebApplication1.Controllers
             ViewBag.IsAuthenticated = true;
 
             return View(productsModels);
+        }
+
+        [Route("CreatePicture")]
+        public ActionResult PictureManage()
+        {
+
+            return View();
+        }
+
+
+        [Route("CreatePicture")]
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult PictureManage(IEnumerable<HttpPostedFileBase> upfiles)
+        {
+            //檢查是否有選擇檔案
+            if (upfiles != null)
+            {
+                var i = 0;
+                foreach (var file in upfiles)
+                {
+                    //檢查檔案大小要限制也可以在這裡做
+                    if (file.ContentLength > 0)
+                    {
+                        string fileType = file.FileName.Split('.').Last().ToUpper();
+                        var NewFileName = DateTime.Now.ToString("yyyyMMddhhmmss") + "_" + i+"."+fileType;
+                        string savedName = Path.Combine(Server.MapPath("~/Images/"), NewFileName);
+                        file.SaveAs(savedName);
+                        i++;
+                    }
+                }
+            }
+            return RedirectToAction("CreatePicture");
         }
 
     }

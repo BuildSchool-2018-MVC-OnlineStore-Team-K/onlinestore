@@ -40,7 +40,7 @@
     </div>
 
 
-    @using (Html.BeginForm("ProductsManage", "BackEnd", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("ProductsManage", "BackEndProducts", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         <input type="file" class="form-control" name="file" />
         <button type="submit" class="btn btn-primary" id="pushData">Upload!</button>

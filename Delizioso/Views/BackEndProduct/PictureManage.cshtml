@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "PictureManage";
+    Layout = "~/Views/Shared/BackEnd_Layout.cshtml";
+}
+
+<h2>PictureManage</h2>
+
+
+@using (Html.BeginForm("CreatePicture", "backendproduct", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <input type="file" name="upfiles" multiple />
+    <input type="submit" name="upload" value="上傳" />
+}
+
+
+
+
+
+
+
+
