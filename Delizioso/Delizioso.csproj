@@ -178,7 +178,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\BackEndController.cs" />
+    <Compile Include="Controllers\BackEndProductController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\Container.cs" />
     <Compile Include="Controllers\ContainerManager.cs" />
@@ -1325,11 +1325,11 @@
     <Content Include="Content\Delizioso_files\jquery.placeholder.min.js.下載" />
     <Content Include="Content\Delizioso_files\polyfiller.min.js.下載" />
     <Content Include="Views\Shared\BackEnd_Layout.cshtml" />
-    <Content Include="Views\BackEnd\ProductsManage.cshtml" />
+    <Content Include="Views\BackEndProduct\ProductsManage.cshtml" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
     <Content Include="Views\Products\AllProducts.cshtml" />
-    <Content Include="Views\Home\MemberLogin.cshtml" />
+    <Content Include="Views\BackEndProduct\PictureManage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
