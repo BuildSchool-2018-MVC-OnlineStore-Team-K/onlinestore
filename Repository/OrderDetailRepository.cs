@@ -6,16 +6,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BuildSchool.MVCSolution.OnlineStore.Utilities;
-
+using ViewModels;
+using Dapper;
+using BuildSchool.MVCSolution.OnlineStore.Repository;
 
 namespace BuildSchool.MVCSolution.OnlineStore.OrderDetailRepository
 {
     public class OrderDetailRepository
     {
-        private string connect = "Server=192.168.40.35,1433;Database=E-Commerce;User ID =smallhandsomehandsome ; Password =123;";
+        MyConnectionString source = new MyConnectionString();
+
         public void Create(OrderDetail model)
         {
-            SqlConnection connection = new SqlConnection(connect);
+            SqlConnection connection = new SqlConnection(source.connect);
 
             var sql = "INSERT INTO OrderDetail Values(@OrderID , @ProductID, @UnitPrice, @Quantity , @Discount)";
             SqlCommand command = new SqlCommand(sql, connection);
@@ -36,7 +39,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.OrderDetailRepository
 
         public void Update(OrderDetail model)
         {
-            SqlConnection connection = new SqlConnection(connect);
+            SqlConnection connection = new SqlConnection(source.connect);
 
             var sql = "UPDATE OrderDetail SET(OrderID=@OrderID,ProductID=@ProductID,UnitPrice=@UnitPrice,Quantity=@Quantity,Discount=@Discount)";
             SqlCommand command = new SqlCommand(sql, connection);
@@ -56,7 +59,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.OrderDetailRepository
         public void Delete(OrderDetail model)
         {
 
-            SqlConnection connection = new SqlConnection(connect);
+            SqlConnection connection = new SqlConnection(source.connect);
 
             var sql = "Delete FROM OrderDetail WHERE OrderID=@OrderID AND ProductID=@ProductID";
             SqlCommand command = new SqlCommand(sql, connection);
@@ -72,7 +75,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.OrderDetailRepository
 
         public IEnumerable<OrderDetail> GetAll() //()內不用給直 因為傳整個表格
         {
-            SqlConnection connection = new SqlConnection(connect);
+            SqlConnection connection = new SqlConnection(source.connect);
 
             var sql = "SELECT * FROM  OrderDetail";
             SqlCommand command = new SqlCommand(sql, connection);
@@ -97,7 +100,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.OrderDetailRepository
 
         public int GetTotalQuantiyByProductID(int ProductID)
         {
-            SqlConnection connection = new SqlConnection(connect);
+            SqlConnection connection = new SqlConnection(source.connect);
 
             var sql = "SELECT SUM(Quantity) FROM OrderDetail WHERE ProductID = @ProductID GROUP BY ProductID";
             SqlCommand command = new SqlCommand(sql, connection);
@@ -116,7 +119,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.OrderDetailRepository
 
         public decimal GetTotalPriceByOrderID(int OrderID)
         {
-            SqlConnection connection = new SqlConnection(connect);
+            SqlConnection connection = new SqlConnection(source.connect);
 
             var sql = "SELECT SUM(UnitPrice * Quantity * (1-Discount)) FROM OrderDetail WHERE OrderID = @OrderID GROUP BY OrderID";
             SqlCommand command = new SqlCommand(sql, connection);
@@ -133,5 +136,22 @@ namespace BuildSchool.MVCSolution.OnlineStore.OrderDetailRepository
             return result;
         }
 
+        public IEnumerable<OrdersViewModel> GetMemberOrderDetail(int MemberID)
+        {
+            SqlConnection connection = new SqlConnection(source.connect);
+            return connection.Query<OrdersViewModel>("SELECT o.Time,o.OrderID,o.Payway,od.UnitPrice,od.Quantity,od.Discount ,p.ProductID FROM Members m INNER JOIN Orders o ON o.MemberID = m.MemberID INNER JOIN OrderDetail od ON od.OrderID = o.OrderID INNER JOIN Products p ON p.ProductID = od.ProductID WHERE m.MemberID = 1 AND o.Cart = 0", new
+            {
+                MemberID
+            });
+        }
+
+        public IEnumerable<OrderDetailsViewModel> GetOrdersOrderDetails(int OrderID)
+        {
+            SqlConnection connection = new SqlConnection(source.connect);
+            return connection.Query<OrderDetailsViewModel>("SELECT p.ProductID,p.ProductName,sc.Color,s.SizeType,od.Quantity,od.UnitPrice FROM OrderDetail od INNER JOIN Products p ON p.ProductID = od.ProductID INNER JOIN Size s ON s.ProductID = p.ProductID INNER JOIN StockColor sc ON sc.SizeID = s.SizeID WHERE od.OrderID = @OrderID", new
+            {
+                OrderID
+            });
+        }
     }
 }

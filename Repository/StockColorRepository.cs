@@ -11,11 +11,11 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 {
     public class StockColorRepository
     {
-        private string connect = "Server=192.168.40.36,1433;Database=E-Commerce;User ID =smallhandsomehandsome ; Password =123;";
-        //
+        MyConnectionString source = new MyConnectionString();
+
         public void Create(StockColor model)
         {
-            SqlConnection connection = new SqlConnection(connect);
+            SqlConnection connection = new SqlConnection(source.connect);
             var sql = "INSERT INTO StockColor VALUES (@colorid, @sizeid,@color,@stock)";
             SqlCommand command = new SqlCommand(sql, connection);
 
@@ -31,7 +31,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public void Update(StockColor model)
         {           
-            SqlConnection connection = new SqlConnection(connect);
+            SqlConnection connection = new SqlConnection(source.connect);
             var sql = "UPDATE StockColor SET ColorID = @colorid, SizeID=@sizeid, Color=@color,Stock=@stock";
             SqlCommand command = new SqlCommand(sql, connection);
 
@@ -47,7 +47,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public void Delete(StockColor model)
         {
-            SqlConnection connection = new SqlConnection(connect);
+            SqlConnection connection = new SqlConnection(source.connect);
             var sql = "Delete FROM Products WHERE ColorID = @colorid";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -61,7 +61,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public IEnumerable<StockColor> FindById(int ProductID)
         {
-            using (SqlConnection connection = new SqlConnection(connect))
+            using (SqlConnection connection = new SqlConnection(source.connect))
             {
                 var result = connection.Query<StockColor>("SELECT * FROM StockColor WHERE ColorID = @colorid");
                 return result;
@@ -71,7 +71,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public IEnumerable<StockColor> GetAll()
         {
-            using (SqlConnection connection = new SqlConnection(connect))
+            using (SqlConnection connection = new SqlConnection(source.connect))
             {
                 var result = connection.Query<StockColor>("SELECT * FROM StockColor");
                 return result;
@@ -80,7 +80,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public int GetSizeColorStock(int ColorID)  //依產品尺寸、顏色查詢庫存
         {            
-                SqlConnection connection = new SqlConnection(connect);
+                SqlConnection connection = new SqlConnection(source.connect);
                 var sql = "SELECT Stock FROM StockColor WHERE ColorID = @colorid";
                 SqlCommand command = new SqlCommand(sql, connection);
                 command.Parameters.AddWithValue("@colorid", ColorID);

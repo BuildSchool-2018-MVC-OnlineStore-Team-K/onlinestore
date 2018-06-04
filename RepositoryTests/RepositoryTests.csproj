@@ -53,6 +53,7 @@
       <HintPath>..\packages\SimpleInjector.4.2.2\lib\net45\SimpleInjector.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
@@ -68,6 +69,7 @@
   <ItemGroup>
     <Compile Include="DiscountsRepositoryTests.cs" />
     <Compile Include="MembersRepositoryTest.cs" />
+    <Compile Include="MembersRepositoryTests.cs" />
     <Compile Include="OrderDetailRepositoryTests.cs" />
     <Compile Include="OrdersRepositoryTests.cs" />
     <Compile Include="ProductsRepositoryTests.cs" />
@@ -86,6 +88,10 @@
     <ProjectReference Include="..\Models\Models.csproj">
       <Project>{56D5E1BB-46AA-42D8-8E75-096955EEC0B8}</Project>
       <Name>Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ViewModels\ViewModels.csproj">
+      <Project>{0F648A53-EDBB-4B09-8395-52A1015DBA95}</Project>
+      <Name>ViewModels</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

@@ -1,0 +1,39 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+@functions{
+    private bool IsExist()
+    {
+        var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+        if (cookie == null)
+        {
+            return false;
+        }
+        var ticket = FormsAuthentication.Decrypt(cookie.Value);
+
+        if (ticket.UserData == "abcdefg")
+        {
+            ViewBag.Username = ticket.Name;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+}
+
+
+@if (IsExist())
+{
+    <h2>Hi , @ViewBag.Username</h2>
+    <h2><a href="@Url.Action("Logout","Login")" class="btn">登出</a></h2>
+}
+else
+{
+    <button class="w3-btn w3-xlarge " onclick="location.href='@Url.Content("~/Login")'" style="font-weight:900;">登入</button>
+    <button class="w3-btn w3-xlarge " onclick="location.href='@Url.Content("~/register")'" style="font-weight:900;">註冊</button>
+}

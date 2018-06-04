@@ -1,4 +1,7 @@
-﻿using System;
+﻿using BuildSchool.MVCSolution.OnlineStore.Models;
+using BuildSchool.MVCSolution.OnlineStore.Repository;
+using Service;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,18 +16,18 @@ namespace WebApplication1.Controllers
     {
         // GET: Login
         [Route("")]
-        public ActionResult Index()
+        public ActionResult MemberLogin()
         {
             ViewBag.test = "123";
             var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
-            if(cookie == null)
+            if (cookie == null)
             {
                 ViewBag.Authenticated = false;
-                return View();
+                return PartialView();
             }
             var ticket = FormsAuthentication.Decrypt(cookie.Value);
 
-            if(ticket.UserData == "abcdefg")
+            if (ticket.UserData == "abcdefg")
             {
                 ViewBag.IsAuthenticated = true;
                 ViewBag.Username = ticket.Name;
@@ -33,28 +36,30 @@ namespace WebApplication1.Controllers
             {
                 ViewBag.IsAuthenticated = false;
             }
-            return View();
-        }
 
+            return PartialView();
+        }
 
         [Route("")]
         [HttpPost]
-        public ActionResult Index(LoginModel loginModel)
+        public ActionResult MemberLogin(LoginModel loginModel)
         {
-            if(loginModel.Username == "admin" && loginModel.Password =="adminpwd")
+            //從資料庫找到該帳密
+            var service = new CheckMember();
+            if(service.CheckAccountExist(loginModel.UserId))
             {
-                FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1,"admin",DateTime.Now, DateTime.Now.AddMinutes(30) ,false ,"abcdefg");
+                FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1,service.GetAccountName(loginModel.UserId, loginModel.UserPw),DateTime.Now,DateTime.Now.AddMinutes(30),false, "abcdefg");
                 var ticketData = FormsAuthentication.Encrypt(ticket);
                 var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, ticketData);
                 cookie.Expires = ticket.Expiration;
                 Response.Cookies.Add(cookie);
-                return RedirectToAction("Index");
+                return RedirectToAction("MemberLogin");
             }
             else
             {
                 ModelState.AddModelError("loginModel", "使用者名稱或密碼不正確");
             }
-            return View();
+            return PartialView();
         }
 
         [Route("logout")]
@@ -66,6 +71,12 @@ namespace WebApplication1.Controllers
             Response.Cookies.Add(cookie);
 
             return RedirectToAction("Index");
+        }
+
+
+        public ActionResult Status()
+        {
+            return PartialView();
         }
 
     }

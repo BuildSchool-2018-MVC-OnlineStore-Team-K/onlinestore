@@ -36,8 +36,8 @@
     <Reference Include="Dapper, Version=1.50.4.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dapper.1.50.4\lib\net451\Dapper.dll</HintPath>
     </Reference>
-    <Reference Include="SimpleInjector, Version=4.2.2.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
-      <HintPath>..\packages\SimpleInjector.4.2.2\lib\net45\SimpleInjector.dll</HintPath>
+    <Reference Include="SimpleInjector, Version=4.3.0.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <HintPath>..\packages\SimpleInjector.4.3.0\lib\net45\SimpleInjector.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -66,6 +66,10 @@
     <ProjectReference Include="..\Implementation\Implementation.csproj">
       <Project>{36c00de1-1106-40e8-a4c1-083a9482fdd9}</Project>
       <Name>Implementation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Repository\Repository.csproj">
+      <Project>{9c52b350-b2db-4525-96c2-f51f7e3b56ba}</Project>
+      <Name>Repository</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

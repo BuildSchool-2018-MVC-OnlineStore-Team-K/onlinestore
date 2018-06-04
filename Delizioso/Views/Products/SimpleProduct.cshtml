@@ -1,0 +1,173 @@
+﻿@model IEnumerable<ViewModels.ProductsViewModel>
+@{
+    ViewBag.Title = "SimpleProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<br />
+<br />
+<br /><br /><br /><br />
+<div class="container-fluid">
+    <div class="row">
+        <!-- left list -->
+        <div class="col-3 mt-5">
+            <div class="col offset-sm-1">
+                <ul>
+                    <u>
+                        <b>優惠活動</b>
+                    </u>
+                    <li>
+                        <a href="">顯瘦穿搭</a>
+                    </li>
+                    <li>
+                        <a href="">曲線針織</a>
+                    </li>
+                    <li>
+                        <a href="">春日穿搭</a>
+                    </li>
+                    <li>
+                        <a href="">百搭衣著</a>
+                    </li>
+                    <li>
+                        <a href="">貼身內著</a>
+                    </li>
+                    <li>
+                        <a href="">最終折扣</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <a href="">
+                            <b>本週服飾</b>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <b>暢銷服飾</b>
+                        </a>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <a href="">
+                            <b>貼身內著</b>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <b>內著</b>
+                        </a>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <a href="">
+                            <b class="now">裙類</b>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-9">
+            <div class="row">
+                <div class="col-7">
+                    <div class="photo-list">
+                        <img id="bigPic" src="http://photo.airspace.com.tw/photo/1822009/1822009-08-01.jpg" alt="MainImage" width="500" height="640">
+                    </div>
+                    <div id="smPic" class="photo-list">
+                        <a href="http://photo.airspace.com.tw/photo/1822009/1822009-08-01b.JPG">
+                            <img src="http://photo.airspace.com.tw/photo/1822009/1822009-08-01b.JPG" alt="littleImg" width="80" height="102">
+                        </a>
+                        <a href="http://photo.airspace.com.tw/photo/1822009/1822009-08-02b.JPG">
+                            <img src="http://photo.airspace.com.tw/photo/1822009/1822009-08-02b.JPG" alt="littleImg" width="80" height="102">
+                        </a>
+                        <a href="http://photo.airspace.com.tw/photo/1822009/1822009-08-03b.JPG">
+                            <img src="http://photo.airspace.com.tw/photo/1822009/1822009-08-03b.JPG" alt="littleImg" width="80" height="102">
+                        </a>
+                    </div>
+                </div>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                <script>
+                    $(document).ready(function () {
+                        var smpics = $("#smPic").children("a").children("img");
+                        for (var i = 0; i < smpics.length; i++) {
+                            var smpic = smpics[i];
+                            // smpic.onmouseover(function () {
+                            //     console.log(smpic);
+                            // });
+                            $(smpics[i]).mouseover(function () {
+                                console.log(this);
+                                $("#bigPic").attr("src", $(this).attr("src"));
+                                console.log(smpics[i]);
+                            });
+                            //滑鼠華上去抓不到每一個
+                        }
+                    });
+                </script>
+                <div class="col">
+                    <div class="pdinfo">
+                        <p class="pd-title">簡約格紋包臀短裙</p>
+                        <p class="pd-subtitle">1822009</p>
+                        <p class="price">NT$290</p>
+                        <p class="select">SELECT COLOR: </p>
+
+                        <div id="colorSelect">
+                            <a href="#">
+                                <img class="color-select img-border" style="background: #CC0000;">
+                            </a>
+                            <a href="#">
+                                <img class="color-select" style="background: rgb(38, 57, 226);">
+                            </a>
+                            <a href="#">
+                                <img class="color-select" style="background: rgb(90, 7, 7);">
+                            </a>
+                        </div>
+
+                        <script>
+                            $(document).ready(function () {
+                                $("a").mouseup(function () {
+                                    $("#colorSelect").children("a").children(".color-select").removeClass(
+                                        "img-border");
+                                    $(this).children(".color-select").addClass("img-border");
+                                })
+                            });
+                        </script>
+
+                        <div class="size-area">
+                            <p class="select">SELECT SIZE: </p>
+                            <div>
+                                <span class="current" mysize="S">S</span>
+                                <span mysize="M">M</span>
+                                <span mysize="L">L</span>
+                            </div>
+                            <script>
+                                $(document).ready(function () {
+                                    $("span").mouseup(function () {
+                                        $(".size-area").children("div").children('span').removeClass(
+                                            "current");
+                                        $(this).addClass("current");
+                                    })
+                                });
+                            </script>
+                        </div>
+                        <hr>
+                        <div class="qty">
+                            數量：
+                            <select id="selectQTY" size="1" name="qty">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                        <p>
+                            <img class="cursor" src="http://www.airspace.com.tw/images/add1.png" alt="加入購物車">
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -23,6 +23,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewModels", "ViewModels\ViewModels.csproj", "{0F648A53-EDBB-4B09-8395-52A1015DBA95}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceTests", "ServiceTests\ServiceTests.csproj", "{9CB01886-7944-4F5B-B7CB-0CA4C6A1E916}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeliziosoTests", "DeliziosoTests\DeliziosoTests.csproj", "{FC9E9835-A645-4EAB-A67C-F6BD771A2CCC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +73,14 @@ Global
 		{0F648A53-EDBB-4B09-8395-52A1015DBA95}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F648A53-EDBB-4B09-8395-52A1015DBA95}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F648A53-EDBB-4B09-8395-52A1015DBA95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CB01886-7944-4F5B-B7CB-0CA4C6A1E916}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CB01886-7944-4F5B-B7CB-0CA4C6A1E916}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CB01886-7944-4F5B-B7CB-0CA4C6A1E916}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CB01886-7944-4F5B-B7CB-0CA4C6A1E916}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC9E9835-A645-4EAB-A67C-F6BD771A2CCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC9E9835-A645-4EAB-A67C-F6BD771A2CCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC9E9835-A645-4EAB-A67C-F6BD771A2CCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC9E9835-A645-4EAB-A67C-F6BD771A2CCC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
