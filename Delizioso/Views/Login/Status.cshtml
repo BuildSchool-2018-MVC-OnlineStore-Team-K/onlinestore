@@ -29,11 +29,29 @@
 
 @if (IsExist())
 {
-    <h2>Hi , @ViewBag.Username</h2>
-    <h2><a href="@Url.Action("Logout","Login")" class="btn">登出</a></h2>
+    <td>
+        <button type="button" class="btn" data-toggle="modal" data-target="#loginModel" style="background-color: transparent;color: white;">
+            <span onmouseover="mouseover(this)" onmouseout="mouseout(this)" data-over="嗨, @ViewBag.Username" data-out="Hi, @ViewBag.Username">Hi, @ViewBag.Username</span>
+        </button>
+    </td>
+    <td style="width:0px">/</td>
+    <td>
+        <button type="button" class="btn" data-toggle="modal" data-target="#joinusModel" style="background-color: transparent;color: white;">
+            <span onmouseover="mouseover(this)" onmouseout="mouseout(this)" data-over="會員登出" data-out="LOGOUT"> <a href="@Url.Action("Logout","Login")" > LOGOUT</a> </span>
+        </button>
+    </td>
 }
 else
 {
-    <button class="w3-btn w3-xlarge " onclick="location.href='@Url.Content("~/Login")'" style="font-weight:900;">登入</button>
-    <button class="w3-btn w3-xlarge " onclick="location.href='@Url.Content("~/register")'" style="font-weight:900;">註冊</button>
+    <td>
+        <button type="button" class="btn" data-toggle="modal" data-target="#loginModel" style="background-color: transparent;color: white;">
+            <span onmouseover="mouseover(this)" onmouseout="mouseout(this)" data-over="會員登入" data-out="LOGIN">LOGIN</span>
+        </button>
+    </td>
+    <td style="width:0px">/</td>
+    <td>
+        <button type="button" class="btn" data-toggle="modal" data-target="#joinusModel" style="background-color: transparent;color: white;">
+            <span onmouseover="mouseover(this)" onmouseout="mouseout(this)" data-over="會員註冊" data-out="JOINUS">JOINUS</span>
+        </button>
+    </td>
 }

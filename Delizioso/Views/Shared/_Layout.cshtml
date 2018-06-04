@@ -129,17 +129,7 @@
                 <table align="right">
                     <tbody>
                         <tr>
-                            <td>
-                                <button type="button" class="btn" data-toggle="modal" data-target="#loginModel" style="background-color: transparent;color: white;">
-                                    <span onmouseover="mouseover(this)" onmouseout="mouseout(this)" data-over="會員登入" data-out="LOGIN">LOGIN</span>
-                                </button>
-                            </td>
-                            <td style="width:0px">/</td>
-                            <td>
-                                <button type="button" class="btn" data-toggle="modal" data-target="#joinusModel" style="background-color: transparent;color: white;">
-                                    <span onmouseover="mouseover(this)" onmouseout="mouseout(this)" data-over="會員註冊" data-out="JOINUS">JOINUS</span>
-                                </button>
-                            </td>
+                            @Html.Partial("~/Views/Login/Status.cshtml")
                             <td style="width:0px">/</td>
                             <td>
                                 <button type="button" class="btn" style="background-color: transparent; color: white;" onclick="location.href='http://localhost:57010/MemberCenter'">
@@ -545,7 +535,7 @@
                     <table border="0" cellspacing="0" cellpadding="4" align="center">
                         <tbody>
                             <tr>
-                                @Html.Partial("~/Views/Login/MemberLogin.cshtml")
+                                @Html.Partial("~/Views/Home/MemberLogin.cshtml")
                             </tr>
                         </tbody>
                     </table>

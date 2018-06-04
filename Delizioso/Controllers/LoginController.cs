@@ -18,7 +18,6 @@ namespace WebApplication1.Controllers
         [Route("")]
         public ActionResult MemberLogin()
         {
-            ViewBag.test = "123";
             var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
             if (cookie == null)
             {
@@ -59,7 +58,7 @@ namespace WebApplication1.Controllers
             {
                 ModelState.AddModelError("loginModel", "使用者名稱或密碼不正確");
             }
-            return PartialView();
+            return View();
         }
 
         [Route("logout")]
