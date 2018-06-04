@@ -15,11 +15,6 @@ namespace WebApplication1.Controllers
     public class LoginController : Controller
     {
         // GET: Login
-        [Route("")]
-        public ActionResult MemberLogin()
-        {
-            return PartialView();
-        }
 
         [Route("")]
         [HttpPost]
