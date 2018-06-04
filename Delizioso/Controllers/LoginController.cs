@@ -18,24 +18,6 @@ namespace WebApplication1.Controllers
         [Route("")]
         public ActionResult MemberLogin()
         {
-            var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
-            if (cookie == null)
-            {
-                ViewBag.Authenticated = false;
-                return PartialView();
-            }
-            var ticket = FormsAuthentication.Decrypt(cookie.Value);
-
-            if (ticket.UserData == "abcdefg")
-            {
-                ViewBag.IsAuthenticated = true;
-                ViewBag.Username = ticket.Name;
-            }
-            else
-            {
-                ViewBag.IsAuthenticated = false;
-            }
-
             return PartialView();
         }
 
@@ -52,7 +34,7 @@ namespace WebApplication1.Controllers
                 var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, ticketData);
                 cookie.Expires = ticket.Expiration;
                 Response.Cookies.Add(cookie);
-                return RedirectToAction("MemberLogin");
+                return Redirect("Home");
             }
             else
             {
@@ -69,12 +51,13 @@ namespace WebApplication1.Controllers
             cookie.Expires = DateTime.Now;
             Response.Cookies.Add(cookie);
 
-            return RedirectToAction("Index");
+            return Redirect("~/Home");
         }
 
 
         public ActionResult Status()
         {
+
             return PartialView();
         }
 
