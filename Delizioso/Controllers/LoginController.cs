@@ -15,6 +15,7 @@ namespace WebApplication1.Controllers
         [Route("")]
         public ActionResult Index()
         {
+            ViewBag.test = "123";
             var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
             if(cookie == null)
             {

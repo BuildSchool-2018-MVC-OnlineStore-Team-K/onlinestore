@@ -6,12 +6,12 @@ using System.Web.Mvc;
 
 namespace WebApplication1.Controllers
 {
-    [RoutePrefix("Introduction")]
+    //[RoutePrefix("Introduction")]
     public class IntroductionController : Controller
     {
-        [Route("")]
+        //[Route("")]
         // GET: Introduction
-        public ActionResult Introduction()
+        public ActionResult Index()
         {
             return View();
         }
