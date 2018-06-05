@@ -37,7 +37,7 @@
     <td style="width:0px">/</td>
     <td>
         <button type="button" class="btn" style="background-color: transparent;color: white;">
-            <a onmouseover="mouseover(this)" onmouseout="mouseout(this)" data-over="會員登出" data-out="LOGOUT" href="@Url.Action("Logout","Login")" > LOGOUT</a>
+            <i class="fas fa-user-lock"></i><span onmouseover="mouseover(this)" onmouseout="mouseout(this)" data-over="會員登出" data-out="LOGOUT" href="@Url.Action("Logout","Login")"> LOGOUT</span>
         </button>
     </td>
 }
@@ -45,13 +45,13 @@ else
 {
     <td>
         <button type="button" class="btn" data-toggle="modal" data-target="#loginModel" style="background-color: transparent;color: white;">
-            <span onmouseover="mouseover(this)" onmouseout="mouseout(this)" data-over="會員登入" data-out="LOGIN">LOGIN</span>
+            <i class="fas fa-user-check"></i><span onmouseover="mouseover(this)" onmouseout="mouseout(this)" data-over="會員登入" data-out="LOGIN">LOGIN</span>
         </button>
     </td>
     <td style="width:0px">/</td>
     <td>
         <button type="button" class="btn" data-toggle="modal" data-target="#joinusModel" style="background-color: transparent;color: white;">
-            <span onmouseover="mouseover(this)" onmouseout="mouseout(this)" data-over="會員註冊" data-out="JOINUS">JOINUS</span>
+            <i class="fas fa-user-plus"></i><span onmouseover="mouseover(this)" onmouseout="mouseout(this)" data-over="會員註冊" data-out="JOINUS">JOINUS</span>
         </button>
     </td>
 }
