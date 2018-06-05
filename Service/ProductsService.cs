@@ -34,9 +34,9 @@ namespace Service
         {
             //var result = new ProductsRepository();
             var newlist = new List<ProductSize>();
-            foreach(var item in list)
+            foreach (var item in list)
             {
-                if (newlist.Any((x)=>x.SizeType == item.SizeType))
+                if (newlist.Any((x) => x.SizeType == item.SizeType))
                 {
                     continue;
                 }
@@ -48,55 +48,32 @@ namespace Service
             return newlist;
         }
 
-        public List<ProductColor> DistinctColor(IEnumerable<ProductsViewModel> list, int productid,string sizetype)
+        public List<ProductColor> DistinctColor(IEnumerable<ProductsViewModel> list, int productid, string sizetype)
         {
-            var newlist = new List<ProductColor>();            
+            var newlist = new List<ProductColor>();
             var color = list.Where((x) => x.ProductID == productid && x.SizeType == sizetype);
-            foreach(var item in color)
+            foreach (var item in color)
             {
                 newlist.Add(new ProductColor { Color = item.Color });
             }
             return newlist;
         }
 
-        public int? ProductColorStock(IEnumerable<ProductsViewModel> list, int productid, string sizetype,string color)
+        public int? ProductColorStock(IEnumerable<ProductsViewModel> list, int productid, string sizetype, string color)
         {
             int? productstock = 0;
             var stock = list.Where((x) => x.ProductID == productid && x.SizeType == sizetype && x.Color == color);
-            foreach(var item in stock)
+            foreach (var item in stock)
             {
                 productstock += item.Stock;
             };
             return productstock;
         }
 
-        public string GetCountyDDL(IEnumerable<ProductsViewModel> list, int productid, string sizetype)
+        public IEnumerable<ProductHomeViewModel> ProductHome()
         {
-            using (TestDBEntities db = new TestDBEntities())
-            {
-                var newlist = new List<ProductColor>();
-                var color = list.Where((x) => x.ProductID == productid && x.SizeType == sizetype);
-
-                Dictionary<string, string> optionData = new Dictionary<string, string>();
-                string keyText = string.Empty;
-
-                foreach (var item in color)
-                {
-                    keyText = string.Concat(item.POSTAL_CODE.ToString(), " ", item.NAME.Trim());
-                    if (optionData.Keys.Where(x => x == keyText).Count().Equals(0))
-                    {
-                        optionData.Add(keyText, item.POSTAL_CODE.ToString());
-                    }
-                }
-
-                var pid = productid.ToString();
-                if (string.IsNullOrWhiteSpace(pid))
-                {
-                    pid = "Color";
-                }
-                string _html = DropDownListHelper.GetDropdownList(pid, pid, optionData, null, sizetype, true, null);
-                return _html;
-            }
+            var repo = new ProductsRepository();
+            return repo.GetTop5Products();
         }
     }
 }

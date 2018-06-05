@@ -16,7 +16,7 @@ namespace WebApplication1.Controllers
         
 
         [Route("")]
-        public ActionResult Index()
+        public ActionResult MemberRegister()
         {
             return PartialView();
         }
@@ -24,15 +24,15 @@ namespace WebApplication1.Controllers
 
         [Route("")]
         [HttpPost]
-        public ActionResult Index(RegisterModel registerModel)
+        public ActionResult MemberRegister(RegisterModel registerModel)
         {
             var service = new CheckMember();
-            if (!service.CheckAccountExist(registerModel.Account))
+            if (!service.CheckAccountExist(registerModel.UserAccount))
             {
                 ModelState.AddModelError("registerModel", "此帳號已註冊過");
             }
 
-            if (!service.CheckAccountAndPasswordRegister(registerModel.Account,registerModel.Password))
+            if (!service.CheckAccountAndPasswordRegister(registerModel.UserAccount, registerModel.UserPwd))
             {
                 ModelState.AddModelError("registerModel", "密碼長度請介於6~16個字元");
             }
@@ -47,10 +47,7 @@ namespace WebApplication1.Controllers
                 ModelState.AddModelError("registerModel", "建立錯誤!請聯絡客服人員");
             }
 
-
-            var url = "~/Home";
-
-            return Redirect(url);
+            return Redirect("~/Home");
         }
 
 

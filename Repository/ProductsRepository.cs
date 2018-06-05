@@ -62,7 +62,6 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             
         }
 
-       
         public IEnumerable<Products> GetAll()
         {
             var query = "SELECT p.ProductID, (SELECT Category FROM Products WHERE ProductID = p.ProductID) AS Category,(SELECT ProductName FROM Products WHERE ProductID = p.ProductID) AS ProductName, (SELECT UnitPrice FROM Products WHERE ProductID = p.ProductID) AS UnitPrice,(SELECT ShelfTime FROM Products WHERE ProductID = p.ProductID) AS ShelfTime,(SELECT TOP 1 Discount FROM Discounts WHERE ProductID = p.ProductID AND EndTime >= GETDATE() ORDER BY StartTime DESC) AS Discount FROM Products p LEFT JOIN Discounts d ON d.ProductID = p.ProductID GROUP BY p.ProductID";
@@ -73,7 +72,19 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             }            
         }
 
-   
+        public IEnumerable<ProductHomeViewModel> GetTop5Products()
+        {
+            var query = "SELECT TOP 5 o.ProductID, p.ProductName,p.UnitPrice, SUM(Quantity) AS Sum " +
+                "FROM OrderDetail o " +
+                "INNER JOIN Products p ON p.ProductID = o.ProductID " +
+                "GROUP BY o.ProductID, p.ProductName, p.UnitPrice ";
+            using (SqlConnection connection = new SqlConnection(source.connect))
+            {
+                var result = connection.Query<ProductHomeViewModel>(query);
+                return result;
+            }
+        }
+
         public IEnumerable<Products> OrderByUnitprice()
         {
             using (SqlConnection connection = new SqlConnection(source.connect))
@@ -311,37 +322,39 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             }
         }
 
-        //新增產品
-        public bool CreateProductDetail(Products model)
+        //新增產品 , 回傳產品ID
+        public int CreateProductDetail(Products model)
         {
+            var ShelfTime = DateTime.Now.ToShortDateString();
             SqlConnection connection = new SqlConnection(source.connect);
             connection.Execute("Insert Into Products(Category , ProductName , UnitPrice , ShelfTime , Picture) Values (@Category,@ProductName,@UnitPrice,@ShelfTime,@Picture)", new
             {
                 model.Category,
                 model.ProductName,
                 model.UnitPrice,
-                model.ShelfTime,
+                ShelfTime,
                 model.Picture
             });
 
-            var result = connection.Query("SELECT ProductName ,ShelfTime From Products Where ProductName = @ProductName  and ShelfTime = @ShelfTime", new
+            var result = connection.Query<int>("SELECT ProductID From Products Where ProductName = @ProductName and ShelfTime = @ShelfTime", new
             {
                 model.ProductName,
-                model.ShelfTime
+                ShelfTime
             });
-            if (result.Count() > 0)
+
+         
+
+            foreach (var item in result)
             {
-                return true;
-            }
-            else
-            {
-                return false;
+                return item;
             }
 
+            var no = 0;
+            return no;
         }
 
-        //新增Size
-        public bool CreateProductSize(Size model)
+        //新增Size , 回傳 sizeID
+        public int CreateProductSize(Size model)
         {
             SqlConnection connection = new SqlConnection(source.connect);
             connection.Execute("INSERT INTO Size(ProductID , SizeType) Values(@ProductID , @SizeType)", new
@@ -349,19 +362,19 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
                 model.ProductID,
                 model.SizeType
             });
-            var result = connection.Query("SELECT ProductID ,SizeType From Size Where ProductID = @ProductID  and SizeType = @SizeType", new
+            var result = connection.Query<int>("SELECT SizeID From Size Where ProductID = @ProductID  and SizeType = @SizeType", new
             {
                 model.ProductID,
                 model.SizeType
             });
-            if (result.Count() > 0)
+
+            foreach (var item in result)
             {
-                return true;
+                return (int)item;
             }
-            else
-            {
-                return false;
-            }
+
+            var no = 0;
+            return no;
         }
 
         //新增顏色、存貨

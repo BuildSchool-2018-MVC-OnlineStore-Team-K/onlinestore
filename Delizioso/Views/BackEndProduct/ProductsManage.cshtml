@@ -40,11 +40,63 @@
     </div>
 
 
-    @using (Html.BeginForm("Upload", "BackEnd", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("ProductsManage", "BackEndProducts", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         <input type="file" class="form-control" name="file" />
-        <button type="submit" class="btn btn-primary">Upload!</button>
+        <button type="submit" class="btn btn-primary" id="pushData">Upload!</button>
+
     }
+    @if (ViewBag.IsAuthenticated == true)
+    {
+        @model List<ViewModels.CreateProductsModel>
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4">
+                <a>以下資料已新增至資料庫:</a>
+            </div>
+            <div class="col-4"></div>
+        </div>
+        foreach (var item in @Model)
+        {
+            <div class="row">
+                <div class="col-2">
+                    <a>
+                        @item.Category
+                    </a>
+                </div>
+                <div class="col-2">
+                    <a>
+                        @item.ProductName
+                    </a>
+                </div>
+                <div class="col-2">
+                    <a>
+                        @item.Price
+                    </a>
+                </div>
+                <div class="col-2">
+                    <a>
+                        @item.Color
+                    </a>
+                </div>
+                <div class="col-2">
+                    <a>
+                        @item.Size
+                    </a>
+                </div>
+                <div class="col-2">
+                    <a>
+                        @item.Stock
+                    </a>
+                </div>
+
+
+            </div>
+        }
+    }
+
+
+
 
     <!--
 
@@ -114,6 +166,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
+
+
+
             var i = 0;
             $("#plus").click(function () {
                 $("#category").append("<div class=\"input-group mb-2\">"+

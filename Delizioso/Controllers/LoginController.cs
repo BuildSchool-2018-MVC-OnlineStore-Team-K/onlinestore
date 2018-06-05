@@ -15,44 +15,21 @@ namespace WebApplication1.Controllers
     public class LoginController : Controller
     {
         // GET: Login
-        [Route("")]
-        public ActionResult Index()
-        {
-            
-            var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
-            if(cookie == null)
-            {
-                ViewBag.Authenticated = false;
-                return View();
-            }
-            var ticket = FormsAuthentication.Decrypt(cookie.Value);
-
-            if(ticket.UserData == "abcdefg")
-            {
-                ViewBag.IsAuthenticated = true;
-                ViewBag.Username = ticket.Name;
-            }
-            else
-            {
-                ViewBag.IsAuthenticated = false;
-            }
-            return View();
-        }
 
         [Route("")]
         [HttpPost]
-        public ActionResult Index(LoginModel loginModel)
+        public ActionResult MemberLogin(LoginModel loginModel)
         {
             //從資料庫找到該帳密
             var service = new CheckMember();
-            if(service.CheckAccountExist(loginModel.Username))
+            if(service.CheckAccountExist(loginModel.UserId))
             {
-                FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1,service.GetAccountName(loginModel.Username,loginModel.Password),DateTime.Now,DateTime.Now.AddMinutes(30),false, "abcdefg");
+                FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1,service.GetAccountName(loginModel.UserId, loginModel.UserPw),DateTime.Now,DateTime.Now.AddMinutes(30),false, "abcdefg");
                 var ticketData = FormsAuthentication.Encrypt(ticket);
                 var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, ticketData);
                 cookie.Expires = ticket.Expiration;
                 Response.Cookies.Add(cookie);
-                return RedirectToAction("Index");
+                return Redirect("Home");
             }
             else
             {
@@ -69,12 +46,13 @@ namespace WebApplication1.Controllers
             cookie.Expires = DateTime.Now;
             Response.Cookies.Add(cookie);
 
-            return RedirectToAction("Index");
+            return Redirect("~/Home");
         }
 
 
         public ActionResult Status()
         {
+
             return PartialView();
         }
 

@@ -50,6 +50,9 @@ namespace WebApplication1
                 "~/Content/Delizioso_files/polyfiller.min.js.下載" ,
                 "~/Content/Delizioso_files/jquery.placeholder.min.js.下載" ,
                 "~/Content/Delizioso_files/jquery.cycle2.min.js.下載"));
+
+            bundles.Add(new StyleBundle("~/Content/styles/css").Include(
+                "~/Content/styles/style.css"));
         }
     }
 }

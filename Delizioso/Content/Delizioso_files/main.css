@@ -9,7 +9,6 @@
     min-height: 680px;
     margin: 0 auto;
     clear: both;
-
 }
 /*header start*/
 #headerBlock {
@@ -22,8 +21,9 @@
     /*min-width:1300px;*/
 }
 #header {
-    background-color:#545152;
-    width:100%;
+    background-color: #545152;
+    width: 100%;
+    height: 50px;
 }
 #tool {
     margin:0px auto;
