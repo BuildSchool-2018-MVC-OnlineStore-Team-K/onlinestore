@@ -18,7 +18,6 @@ namespace WebApplication1.Controllers
         [Route("")]
         public ActionResult MemberRegister()
         {
-
             return PartialView();
         }
 
