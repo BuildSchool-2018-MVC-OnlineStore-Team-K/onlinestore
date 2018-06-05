@@ -15,17 +15,17 @@ namespace WebApplication1.Controllers
         [Route("{id}")]
         public ActionResult SimpleProduct(int id)
         {
-            var controller = new ProductsService();
-            var product = controller.GetProductDetailAll(id);
+            //var controller = new ProductsService();
+            //var product = controller.GetProductDetailAll(id);
 
-            var productdetail = controller.GetProductDetail(product, id);
-            ViewBag.productname = productdetail.ProductName;
-            ViewBag.Category = productdetail.Category;
-            ViewBag.unitprice = productdetail.UnitPrice;
-            ViewBag.picture = productdetail.Picture;
+            //var productdetail = controller.GetProductDetail(product, id);
+            //ViewBag.productname = productdetail.ProductName;
+            //ViewBag.Category = productdetail.Category;
+            //ViewBag.unitprice = productdetail.UnitPrice;
+            //ViewBag.picture = productdetail.Picture;
 
-            var distinctsize = controller.DistinctSize(product);
-            ViewBag.distinctsize = distinctsize;
+            //var distinctsize = controller.DistinctSize(product);
+            //ViewBag.distinctsize = distinctsize;
             
             //var distinctcolor = DisplayProductColor(product,id,);
             //ViewBag.distinctcolor = distinctcolor;
@@ -55,5 +55,7 @@ namespace WebApplication1.Controllers
         //    var stock = db.ProductColorStock(list, productid,,);
         //    return PartialView(stock);  //部分顯示
         //}
+
+       
     }
 }

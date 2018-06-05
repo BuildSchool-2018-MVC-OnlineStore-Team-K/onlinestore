@@ -43,7 +43,8 @@ namespace WebApplication1
                 "~/Content/Delizioso_files/default.css",
                 "~/Content/Delizioso_files/main.css",
                 "~/Content/Delizioso_files/menu.css",
-                "~/Content/Delizioso_files/jquery.cycle2.css"));
+                "~/Content/Delizioso_files/jquery.cycle2.css",
+                "~/Content/Delizioso_files/cart.css"));
 
             bundles.Add(new ScriptBundle("~/Content/Delizioso_files/js").Include(
                 "~/Content/Delizioso_files/jquery-1.11.2.min.js.下載" ,

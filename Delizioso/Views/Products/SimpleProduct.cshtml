@@ -14,75 +14,193 @@
             <div class="col offset-sm-1">
                 <ul>
                     <u>
-                        <b>優惠活動</b>
+                        <h4><b>優惠活動</b></h4>
                     </u>
+                    <hr />
                     <li>
-                        <a href="">顯瘦穿搭</a>
+                        <a href="">顯瘦穿搭 ‧ 二件$698</a>
                     </li>
                     <li>
-                        <a href="">曲線針織</a>
+                        <a href="">百搭衣著 ‧ 二件$368</a>
                     </li>
                     <li>
-                        <a href="">春日穿搭</a>
+                        <a href="">貼身內著 ‧ 二件$268</a>
                     </li>
                     <li>
-                        <a href="">百搭衣著</a>
-                    </li>
-                    <li>
-                        <a href="">貼身內著</a>
-                    </li>
-                    <li>
-                        <a href="">最終折扣</a>
+                        <a href="">最終折扣 ‧ 任選49折</a>
                     </li>
                 </ul>
-                <ul>
+
+                <ul id='menus'>
+                    <u>
+                        <h4><b>服飾</b></h4>
+                    </u>
+                    <hr />
                     <li>
-                        <a href="">
-                            <b>本週服飾</b>
-                        </a>
-                    </li>
+                        <span onclick='toggleMenu("m1")'>貼身內著</span>
+                        <ul id=m1>
+                            <li><a href=''>三角褲</a>
+                            <li><a href=''>四角褲</a>
+                            <li><a href=''>平口褲</a>
+                            <li><a href=''>睡衣</a>
+                        </ul>
                     <li>
-                        <a href="">
-                            <b>暢銷服飾</b>
-                        </a>
-                    </li>
+                        <span onclick='toggleMenu("m2")'>上身</span>
+                        <ul id=m2>
+                            <li><a href=''>POLO SHIRTS</a>
+                            <li><a href=''>T-SHIRTS</a>
+                            <li><a href=''>排汗衫</a>
+                            <li><a href=''>襯衫</a>
+                        </ul>
+                    <li>
+                        <span onclick='toggleMenu("m3")'>下著</span>
+                        <ul id=m3>
+                            <li><a href=''>丹寧褲</a>
+                            <li><a href=''>西裝褲</a>
+                            <li><a href=''>休閒褲</a>
+                            <li><a href=''>運動褲</a>
+                        </ul>
+
+                        <br />
+                        <br />
+                        <!--鞋類-->
+                        <u>
+                            <h4><b>鞋類</b></h4>
+                        </u>
+                        <hr />
+                    <li>
+                        <span onclick='toggleMenu("m4")'>鞋款</span>
+                        <ul id=m4>
+                            <li>
+                                <a href=''>皮鞋</a>
+                            <li>
+                                <a href=''>運動鞋</a>
+                            <li>
+                                <a href=''>拖鞋</a>
+                        </ul>
+                    <li>
+                        <span onclick='toggleMenu("m5")'>襪子</span>
+                        <ul id=m5>
+                            <li><a href=''>無痕肌棉襪</a>
+                            <li><a href=''>短襪/隱形襪</a>
+                            <li><a href=''>紳士休閒襪</a>
+                            <li><a href=''>運動機能襪</a>
+                        </ul>
+
+
+                        <!--飾品配件-->
+                        <br />
+                        <br />
+                        <u>
+                            <h4><b>飾品配件</b></h4>
+                        </u>
+                        <hr />
+                    <li>
+                        <span onclick='toggleMenu("m6")'>包包</span>
+                        <ul id=m6>
+                            <li><a href=''>單肩包</a>
+                            <li><a href=''>公事包</a>
+                            <li><a href=''>後背包</a>
+                            <li><a href=''>皮夾</a>
+                        </ul>
+
+                    <li>
+                        <span onclick='toggleMenu("m7")'>墨鏡</span>
+                        <ul id=m7>
+                            <li><a href=''>經典飛行員式</a>
+                            <li><a href=''>低調質感靛藍玳瑁</a>
+                            <li><a href=''>特殊夾式方框</a>
+                            <li><a href=''>簡約俐落方框</a>
+                            <li><a href=''>雙横鼻樑式飛行員</a>
+                        </ul>
+
+                    <li>
+                        <span onclick='toggleMenu("m8")'>領帶</span>
+                        <ul id=m8>
+                            <li><a href=''>寬領帶</a>
+                            <li><a href=''>窄領帶</a>
+                            <li><a href=''>領結</a>
+                        </ul>
+                    <li>
+                        <span onclick='toggleMenu("m9")'>皮帶</span>
+                        <ul id=m9>
+                            <li><a href=''>正式皮帶</a>
+                            <li><a href=''>帆布皮帶</a>
+                        </ul>
+
+
+                        <!--男士護理-->
+                        <br />
+                        <br />
+                        <u>
+                            <h4><b>男士護理</b></h4>
+                        </u>
+                        <hr />
+                    <li>
+                        <span onclick='toggleMenu("m10")'>臉部護理</span>
+                        <ul id=m10>
+                            <li><a href=''>清潔保養</a>
+                            <li><a href=''>去角質</a>
+                            <li><a href=''>鬍後紓緩</a>
+                            <li><a href=''>淨膚護理</a>
+                        </ul>
+                    <li>
+                        <span onclick='toggleMenu("m11")'>臉部護理</span>
+                        <ul id=m11>
+                            <li><a href=''>清潔保養</a>
+                            <li><a href=''>去角質</a>
+                            <li><a href=''>鬍後紓緩</a>
+                            <li><a href=''>淨膚護理</a>
+                        </ul>
+                    <li>
+                        <span onclick='toggleMenu("m12")'>防曬</span>
+                        <ul id=m12>
+                            <li><a href=''>臉部護理</a>
+                            <li><a href=''>曬後護理</a>
+                        </ul>
+                    <li>
+                        <span onclick='toggleMenu("m13")'>男仕香氛</span>
+                        <ul id=m13>
+                            <li><a href=''>王者之躍</a>
+                            <li><a href=''> Eau de Campagne</a>
+                        </ul>
                 </ul>
-                <ul>
-                    <li>
-                        <a href="">
-                            <b>貼身內著</b>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <b>內著</b>
-                        </a>
-                    </li>
-                </ul>
-                <ul>
-                    <li>
-                        <a href="">
-                            <b class="now">裙類</b>
-                        </a>
-                    </li>
-                </ul>
+
+                <script type='text/javascript'>
+                    function toggleMenu(id) {
+                        var o = document.getElementById(id);
+                        o.style.display =
+                            (o.style.display == 'none') ? '' : 'none';
+                    }
+                    function hideMenu(id) {
+                        var o = document.getElementById(id).getElementsByTagName('ul');
+                        for (var i = 0; i < o.length; i++)
+                            o[i].style.display = 'none';
+                    }
+                    hideMenu('menus');
+                </script>
+
             </div>
         </div>
+
         <div class="col-9">
             <div class="row">
                 <div class="col-7">
                     <div class="photo-list">
-                        <img id="bigPic" src="http://photo.airspace.com.tw/photo/1822009/1822009-08-01.jpg" alt="MainImage" width="500" height="640">
+                        <img id="bigPic" src="~/Content/Delizioso_files/Images/shirt-1.jpeg" alt="MainImage" width="500" height="640">
                     </div>
                     <div id="smPic" class="photo-list">
-                        <a href="http://photo.airspace.com.tw/photo/1822009/1822009-08-01b.JPG">
-                            <img src="http://photo.airspace.com.tw/photo/1822009/1822009-08-01b.JPG" alt="littleImg" width="80" height="102">
+                        <a href="#">
+                            <img src="~/Content/Delizioso_files/Images/shirt-1-2.jpeg" alt="littleImg" width="80" height="102">
                         </a>
-                        <a href="http://photo.airspace.com.tw/photo/1822009/1822009-08-02b.JPG">
-                            <img src="http://photo.airspace.com.tw/photo/1822009/1822009-08-02b.JPG" alt="littleImg" width="80" height="102">
+                        <a href="#">
+                            <img src="~/Content/Delizioso_files/Images/shirt-1-3.jpeg" alt="littleImg" width="80" height="102">
                         </a>
-                        <a href="http://photo.airspace.com.tw/photo/1822009/1822009-08-03b.JPG">
-                            <img src="http://photo.airspace.com.tw/photo/1822009/1822009-08-03b.JPG" alt="littleImg" width="80" height="102">
+                        <a href="#">
+                            <img src="~/Content/Delizioso_files/Images/shirt-1-4.jpeg" alt="littleImg" width="80" height="102">
+                        </a>
+                        <a href="#">
+                            <img src="~/Content/Delizioso_files/Images/shirt-1-5.jpeg" alt="littleImg" width="80" height="102">
                         </a>
                     </div>
                 </div>
@@ -106,9 +224,9 @@
                 </script>
                 <div class="col">
                     <div class="pdinfo">
-                        <p class="pd-title">簡約格紋包臀短裙</p>
-                        <p class="pd-subtitle">1822009</p>
-                        <p class="price">NT$290</p>
+                        <p class="pd-title">貼身晚禮服襯衫</p>
+                        <p class="pd-subtitle">商品編號 0632528001</p>
+                        <p class="price">NT$ 1,699</p>
                         <p class="select">SELECT COLOR: </p>
 
                         <div id="colorSelect">
@@ -161,9 +279,9 @@
                                 <option value="5">5</option>
                             </select>
                         </div>
-                        <p>
-                            <img class="cursor" src="http://www.airspace.com.tw/images/add1.png" alt="加入購物車">
-                        </p>
+                        <a href="http://localhost:57010/orders/checkorder">
+                            <img class="cursor" src="~/Content/Delizioso_files/Images/addcart.png" alt="加入購物車">
+                        </a>
                     </div>
                 </div>
             </div>

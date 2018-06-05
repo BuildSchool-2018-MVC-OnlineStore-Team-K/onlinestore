@@ -12,7 +12,7 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
-    [RoutePrefix("Home")]
+    [RoutePrefix("home")]
     public class HomeController : Controller
     {
         [Route("")]

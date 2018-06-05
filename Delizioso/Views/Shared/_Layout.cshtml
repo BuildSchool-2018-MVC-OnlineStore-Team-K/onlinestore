@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
           crossorigin="anonymous" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous" />
+
     @Styles.Render("~/Content/styles/css");
     @Styles.Render("~/Content/Delizioso_files/css");
     @Scripts.Render("~/Content/Delizioso_files/js");
@@ -140,7 +141,7 @@
                             <td style="width:0px">/</td>
                             <td>
                                
-                                <button type="button" class="btn" data-toggle="modal" data-target="#" style="background-color: transparent;color: white;">
+                                <button type="button" class="btn" data-toggle="modal" data-target="#" style="background-color: transparent;color: white;"onclick="location.href='http://localhost:57010/orders/checkorder'">
                                     <i class="fas fa-cart-plus"></i><span onmouseover="mouseover(this)" onmouseout="mouseout(this)" data-over="購物車" data-out="BAG" style="background:url(images/bag.png) no-repeat 90% 100%;width:60px;display:inline-block;line-height:17px;">BAG</span>
                                 </button>
                                 <div class="mini-bag-wrapper">

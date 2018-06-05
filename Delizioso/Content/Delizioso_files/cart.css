@@ -1,0 +1,269 @@
+﻿@charset "utf-8";
+
+#extra-items .item div {
+    min-height: 25px;
+    word-wrap: break-word;
+    word-break: normal;
+    /* word-break:break-all; */
+}
+
+#extra-items li {
+    float: left;
+    width: 180px;
+    height: 380px;
+    padding: 5px 20px;
+}
+
+.mixture {
+    font-size: 100%;
+    color: #6c6a68;
+    font-weight: bold;
+    height: 25px;
+}
+
+    .mixture span {
+        color: #c33742;
+    }
+
+.border-order {
+    border: 1px solid #e4e4e4;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    padding: 25px;
+}
+
+.table-order th, .table-order td, .order-count, .table-returngoods th, .table-returngoods-d th {
+    color: #6c6a68;
+    font-size: 100%;
+}
+
+.table-order {
+    width: 100%;
+    /*border-collapse:collapse;*/
+    border-spacing: 0;
+    margin: 0px auto;
+}
+
+.table-returngoods {
+    width: 75%;
+    /*border-collapse:collapse;*/
+    border-spacing: 0;
+    margin: 0px auto;
+}
+
+.table-returngoods-d {
+    width: 100%;
+    /*border-collapse:collapse;*/
+    border-spacing: 0;
+}
+
+    .table-order td, .table-returngoods td, .table-returngoods-d td {
+        padding: 10px 5px;
+        overflow: hidden;
+        word-break: normal;
+        border-top: 1px solid #e4e4e4;
+    }
+
+.table-input-item td {
+    padding: 15px 5px;
+    overflow: hidden;
+    word-break: normal;
+    border-top: 0px;
+    border-bottom: 1px dashed #e4e4e4;
+}
+
+.table-order th, .th-border td, .table-returngoods th, .table-returngoods-d th {
+    padding: 10px 5px;
+    overflow: hidden;
+    word-break: normal;
+    border-top: 1px solid #000000;
+}
+
+.table-order .caption, .table-returngoods .caption, .table-returngoods-d .caption {
+    font-size: 110%;
+    text-align: left;
+    height: 30px;
+    color: #6c6a68;
+    border-top: 0px;
+    border-bottom: 1px solid #000000;
+}
+
+.table-order .noborder, .table-returngoods .noborder, .table-returngoods-d .noborder {
+    border-top: 0px;
+    border-bottom: 0px;
+}
+
+.noborder1 td {
+    border: 0;
+}
+
+.text-ac {
+    text-align: center;
+}
+
+.text-al {
+    text-align: left;
+}
+
+.text-ar {
+    text-align: right;
+}
+
+.pdimg {
+    float: left;
+    margin: 0 20px 0 0;
+    width: 12%;
+}
+
+.order-count {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.order-amount {
+    color: #000000;
+    font-size: 110%;
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid #6c6a68;
+    width: 20%;
+}
+
+.order-count, .order-amount {
+    padding: 6px;
+}
+
+.btn3 {
+    font-size: 110%;
+    margin-top: 20px;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #e7e7e7), color-stop(1, #d0d0d0));
+    background: -moz-linear-gradient(top, #e7e7e7 5%, #d0d0d0 100%);
+    background: -webkit-linear-gradient(top, #e7e7e7 5%, #d0d0d0 100%);
+    background: -o-linear-gradient(top, #e7e7e7 5%, #d0d0d0 100%);
+    background: -ms-linear-gradient(top, #e7e7e7 5%, #d0d0d0 100%);
+    background: linear-gradient(to bottom, #e7e7e7 5%, #d0d0d0 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e7e7e7', endColorstr='#d0d0d0',GradientType=0);
+    background-color: #e7e7e7;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    border: 1px solid #cdcccc;
+    display: inline-block;
+    cursor: pointer;
+    color: #000000;
+    font-weight: bold;
+    padding: 8px 18px;
+    text-decoration: none;
+}
+
+.order-action {
+    margin-bottom: 15px;
+}
+
+.order-step-area {
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.order-step, .order-step-on {
+    font-size: 110%;
+    color: #6c6a68;
+    text-align: center;
+    border: 1px solid #6c6a68;
+    width: 22%;
+    display: inline;
+    float: left;
+    padding: 30px 15px;
+    margin: 10px 10px 30px 20px;
+    position: relative;
+}
+
+    .order-step img, .order-step-on img {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+    }
+
+.order-step-on {
+    background-color: #e5e4e4;
+}
+
+.icon {
+    /*float:left;*/
+    margin: 0 10px 0 0;
+    display: inline;
+    vertical-align: middle;
+}
+
+.icon-title {
+    display: inline;
+    vertical-align: middle;
+}
+
+.extra-img {
+    width: 180px;
+    padding: 5px 0;
+}
+
+.btn2 {
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #5b5b5b), color-stop(1, #000000));
+    background: -moz-linear-gradient(top, #5b5b5b 5%, #000000 100%);
+    background: -webkit-linear-gradient(top, #5b5b5b 5%, #000000 100%);
+    background: -o-linear-gradient(top, #5b5b5b 5%, #000000 100%);
+    background: -ms-linear-gradient(top, #5b5b5b 5%, #000000 100%);
+    background: linear-gradient(to bottom, #5b5b5b 5%, #000000 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5b5b5b', endColorstr='#000000',GradientType=0);
+    background-color: #5b5b5b;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    padding: 6px 47px;
+    text-decoration: none;
+    border: 0px;
+}
+
+    .btn2:hover {
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #000000), color-stop(1, #5b5b5b));
+        background: -moz-linear-gradient(top, #000000 5%, #5b5b5b 100%);
+        background: -webkit-linear-gradient(top, #000000 5%, #5b5b5b 100%);
+        background: -o-linear-gradient(top, #000000 5%, #5b5b5b 100%);
+        background: -ms-linear-gradient(top, #000000 5%, #5b5b5b 100%);
+        background: linear-gradient(to bottom, #000000 5%, #5b5b5b 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#5b5b5b',GradientType=0);
+        background-color: #000000;
+    }
+
+    .btn2:active {
+        position: relative;
+        top: 1px;
+    }
+
+.item select {
+    width: 180px;
+}
+
+.items-info {
+    font-weight: bold;
+}
+
+    .items-info span {
+        color: #B9B9B9;
+        text-decoration: line-through;
+    }
+
+.items-color {
+    background-color: #f7f7f7;
+}
+
+.no-data {
+    text-align: center;
+    line-height: 150px;
+    font-size: 105%
+}
