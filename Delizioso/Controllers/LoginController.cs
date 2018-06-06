@@ -24,7 +24,9 @@ namespace WebApplication1.Controllers
             var service = new CheckMember();
             if(service.CheckAccountExist(loginModel.UserId))
             {
-                FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1,service.GetAccountName(loginModel.UserId, loginModel.UserPw),DateTime.Now,DateTime.Now.AddMinutes(30),false, "abcdefg");
+                var data = service.GetAccountName(loginModel.UserId, loginModel.UserPw);
+                data += "," + loginModel.UserId;
+                FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1,data,DateTime.Now,DateTime.Now.AddMinutes(30),false, "abcdefg");
                 var ticketData = FormsAuthentication.Encrypt(ticket);
                 var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, ticketData);
                 cookie.Expires = ticket.Expiration;

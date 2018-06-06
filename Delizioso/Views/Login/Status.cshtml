@@ -16,7 +16,7 @@
 
         if (ticket.UserData == "abcdefg")
         {
-            ViewBag.Username = ticket.Name;
+            ViewBag.Username = ticket.Name.Split(',')[0];
             return true;
         }
         else

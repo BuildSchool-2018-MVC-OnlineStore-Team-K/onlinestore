@@ -196,14 +196,13 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         }
 
 
-        public IEnumerable<CartViewModel> GetCartProductsInformation(int MemberID , int OrderID)
+        public IEnumerable<CartViewModel> GetCartProductsInformation(string Account)
         {
             SqlConnection connection = new SqlConnection(source.connect);
             //取得該會員得購物車 詳細資訊 購買了ooxx的oo尺寸oo個oo顏色ooxx
 
-            return  connection.Query<CartViewModel>("SELECT p.ProductName, od.UnitPrice , Quantity , sc.Color , sz.SizeType FROM Orders  o INNER JOIN OrderDetail od ON o.OrderID = od.OrderID INNER JOIN Products p ON p.ProductID = od.ProductID INNER JOIN Size sz ON p.ProductID = sz.ProductID INNER JOIN StockColor sc ON sc.ColorID = sz.SizeID INNER JOIN Dicounts dic ON p. WHERE MemberID = @MemberID and o.OrderID = @OrderID and Cart = 1 Group By p.ProductName, Quantity , sc.Color , sz.SizeType, od.UnitPrice", new {
-                OrderID ,
-                MemberID
+            return  connection.Query<CartViewModel>("SELECT  p.ProductName, od.UnitPrice , Quantity, sc.Color, sz.SizeType, od.Discount FROM Members m INNER JOIN Orders o ON o.MemberID = m.MemberID INNER JOIN OrderDetail od ON o.OrderID = od.OrderID INNER JOIN Products p ON p.ProductID = od.ProductID INNER JOIN Size sz ON p.ProductID = sz.ProductID INNER JOIN StockColor sc ON sc.SizeID = sz.SizeID WHERE m.Account = @Account and Cart = 1", new {
+                Account
             });
 
         }
