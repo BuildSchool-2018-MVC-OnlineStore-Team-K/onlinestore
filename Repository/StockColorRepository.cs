@@ -13,6 +13,17 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
     {
         MyConnectionString source = new MyConnectionString();
 
+        public IEnumerable<StockColor> GetStockColorTable(int ProductID)
+        {
+            var sql = "SELECT * FROM StockColor WHERE SizeID = (SELECT SizeID FROM Size WHERE ProductID = @ProductID)";
+            var parameters = new DynamicParameters();
+            parameters.Add("ProductID", ProductID);
+            using(SqlConnection connection = new SqlConnection(source.connect))
+            {
+                return connection.Query<StockColor>(sql, parameters);
+            }
+        }
+        
         public void Create(StockColor model)
         {
             SqlConnection connection = new SqlConnection(source.connect);

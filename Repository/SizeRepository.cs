@@ -13,6 +13,16 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
     public class SizeRepository
     {
         MyConnectionString source = new MyConnectionString();
+
+        public IEnumerable<Size> GetSizesTable()
+        {
+            var sql = "SELECT * FROM Size";
+            using(SqlConnection connection = new SqlConnection(source.connect))
+            {
+                return connection.Query<Size>(sql);
+            }
+        }
+
         public void Create(Size model)
         {
             SqlConnection connection = new SqlConnection(source.connect);

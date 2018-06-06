@@ -130,17 +130,6 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             }
         }
 
-        public IEnumerable<ProductsViewModel> GetProductDetail(int ProductID)  //產品頁面需要(詳細資料)
-        {            
-            var query = "SELECT p.ProductID,p.ProductName,p.Category,p.UnitPrice,s.SizeType,cs.Color,cs.Stock,p.Picture FROM Products p INNER JOIN Size s ON p.ProductID = s.ProductID INNER JOIN StockColor cs ON s.SizeID = cs.SizeID Where p.ProductID = @productid";
-            var parameters = new DynamicParameters();
-            parameters.Add("@productid", ProductID);
-            using (SqlConnection connection = new SqlConnection(source.connect))
-            {
-                return connection.Query<ProductsViewModel>(query, parameters);
-            }
-        }
-
         public string GetProductName(int ProductID)  //查詢訂單、折扣排名(傳入產品ID，傳回產品名稱)
         {
             SqlConnection connection = new SqlConnection(source.connect);
@@ -409,6 +398,15 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             else
             {
                 return false;
+            }
+        }
+
+        public IEnumerable<Products> GetProductsTable()
+        {
+            var sql = "SELECT * FROM Products";
+            using(SqlConnection connection = new SqlConnection(source.connect))
+            {
+                return connection.Query<Products>(sql);
             }
         }
 
