@@ -1,0 +1,212 @@
+﻿
+@{
+    ViewBag.Title = "ProductsCreate";
+    Layout = "~/Views/Shared/BackEnd_Layout.cshtml";
+}
+
+<!-- Header-->
+<div class="breadcrumbs">
+    <div class="col-sm-4">
+        <div class="page-header float-left">
+            <div class="page-title">
+                <h1>儀表板</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-8">
+        <div class="page-header float-right">
+            <div class="page-title">
+                <ol class="breadcrumb text-right">
+                    <li>
+                        <a href="#">儀表板</a>
+                    </li>
+                    <li class="active">產品管理</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content">
+    <!-- Example single danger button -->
+    <div class="btn-group mb-2">
+        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            新增產品
+        </button>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">新增產品</a>
+            <a class="dropdown-item" href="#">更改產品</a>
+            <a class="dropdown-item" href="#">刪除產品</a>
+        </div>
+    </div>
+
+
+    @using (Html.BeginForm("ProductsCreate", "BackEndProducts", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <input type="file" class="form-control" name="file" />
+        <button type="submit" class="btn btn-primary" id="pushData">Upload!</button>
+
+    }
+    @if (ViewBag.IsAuthenticated == true)
+    {
+        @model List<ViewModels.CreateProductsModel>
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-4">
+                <a>以下資料已新增至資料庫:</a>
+            </div>
+            <div class="col-4"></div>
+        </div>
+        foreach (var item in @Model)
+        {
+            <div class="row">
+                <div class="col-2">
+                    <a>
+                        @item.Category
+                    </a>
+                </div>
+                <div class="col-2">
+                    <a>
+                        @item.ProductName
+                    </a>
+                </div>
+                <div class="col-2">
+                    <a>
+                        @item.Price
+                    </a>
+                </div>
+                <div class="col-2">
+                    <a>
+                        @item.Color
+                    </a>
+                </div>
+                <div class="col-2">
+                    <a>
+                        @item.Size
+                    </a>
+                </div>
+                <div class="col-2">
+                    <a>
+                        @item.Stock
+                    </a>
+                </div>
+
+
+            </div>
+        }
+    }
+
+
+
+
+    <!--
+
+        {
+            <div class="row">
+
+                <div class="col-2" id="category">
+                    <div class="input-group mb-2">
+                        <select class="custom-select" name="category">
+                            <option selected>產品類別</option>
+                            <option value="1">上衣</option>
+                            <option value="2">短褲</option>
+                            <option value="3">長褲</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-2" id="productname">
+                    <div class="input-group mb-2">
+                        <input type="text" class="form-control" placeholder="請輸入產品名稱" aria-label="Recipient's username" aria-describedby="basic-addon2" name="productname">
+                    </div>
+                </div>
+
+                <div class="col-2" id="price">
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">$</span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="請輸入產品價格" aria-label="Amount (to the nearest dollar)" name="price">
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div id="size" class="col-4">
+                        <div class="input-group mb-2">
+                            <select class="custom-select" name="size">
+                                <option selected>產品尺寸</option>
+                                <option value="1">S</option>
+                                <option value="2">M</option>
+                                <option value="3">L</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="color" class="col-4">
+                        <div class="input-group mb-2">
+                            <select class="custom-select" name="color">
+                                <option selected>產品顏色</option>
+                                <option value="1">紅</option>
+                                <option value="2">黃</option>
+                                <option value="3">藍</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="stock" class="col-4">
+                        <div class="input-group mb-2">
+                            <input type="text" class="form-control" placeholder="請輸入產品庫存" aria-label="Recipient's username" aria-describedby="basic-addon2" name="stock">
+                        </div>
+                    </div>
+
+
+                    <button type="button" id="plus" class="btn btn-secondary btn-lg btn-block">+</button>
+                    <button type="submit" id="send" class="btn btn-primary btn-lg btn-block">送出</button>
+                </div>
+            </div>
+        }-->
+</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+
+
+            var i = 0;
+            $("#plus").click(function () {
+                $("#category").append("<div class=\"input-group mb-2\">"+
+                    "<select class=\"custom-select\" name=\"category"+i+"\" >"+
+                    "<option selected>產品類別</option>"+
+                    "<option value=\"1\">上衣</option>"+
+                    "<option value=\"2\">短褲</option>"+
+                    "<option value=\"3\">長褲</option>"+
+                    "</select >"+
+                    "</div>");
+                $("#productname").append("<div class=\"input-group mb-2\">"+
+                    "<input type = \"text\" class=\"form-control\" placeholder=\"請輸入產品名稱\" aria-label=\"Recipient's username\" aria-describedby=\"basic-addon2\"name=\"productname" + i +"\">"+
+                    "</div>");
+                $("#price").append("<div class=\"input-group mb-2\">"+
+                    "<div class=\"input-group-prepend\">"+
+                    "<span class=\"input-group-text\">$</span>"+
+                    "</div >"+
+                    "<input type=\"text\" class=\"form-control\" placeholder=\"請輸入產品價格\" aria-label=\"Amount (to the nearest dollar)\" name=\"price" + i +"\">"+
+                    "</div>");
+                $("#size").append('<div class="input-group mb-2">' +
+                    '<select class="custom-select" name="size'+i+'" >' +
+                    '<option selected>產品尺寸</option>' +
+                    '<option value="1">S</option>' +
+                    '<option value="2">M</option>' +
+                    '<option value="3">L</option>' +
+                    '</select>' +
+                    '</div>');
+                $("#color").append('<div class="input-group mb-2">' +
+                    '<select class="custom-select" name="color' + i +'" >' +
+                    '<option selected>產品顏色</option>' +
+                    '<option value="1">紅</option>' +
+                    '<option value="2">黃</option>' +
+                    '<option value="3">藍</option>' +
+                    '</select>' +
+                    '</div>');
+                $("#stock").append('<div class="input-group mb-2">' +
+                    '<input type="text" class="form-control" placeholder="請輸入產品庫存" aria-label="Recipient\'s username" aria-describedby="basic-addon2" name="stock' + i +'" >' +
+                    '</div>');
+            });
+        })
+    </script>
