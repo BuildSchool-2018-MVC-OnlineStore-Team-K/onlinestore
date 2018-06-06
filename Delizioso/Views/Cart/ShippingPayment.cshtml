@@ -4,5 +4,563 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>ShippingPayment</h2>
+<body>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <div class="order-step-area">
+                    <div class="order-step-on">
+                        <img src="~/Content/Delizioso_files/Images/cartstep1.gif">確認購買明細
+                        <br>CHECK YOUR ORDER
+                    </div>
+
+                    <div class="order-step-on">
+                        <img src="~/Content/Delizioso_files/Images/cartstep2.gif">配送與付款方式
+                        <br>SHIPPING &amp; PAYMENT
+                    </div>
+
+                    <div class="order-step">
+                        <img src="~/Content/Delizioso_files/Images/cartstep3.gif">填寫收件資料
+                        <br>DELIVERY INFORMATION
+                    </div>
+
+                    <div class="order-step">
+                        <img src="~/Content/Delizioso_files/Images/cartstep4.gif">完成訂購
+                        <br>THANK YOU!
+                    </div>
+                </div>
+
+                <table class="table-order">
+                    <tbody>
+                        <tr>
+                            <td colspan="11" class="caption">
+                                <img src="~/Content/Delizioso_files/Images/arrow.gif" class="icon">SHIPPING &amp; PAYMENT 配送與付款方式
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="11" align="center">
+                                <form method="post" action="OrderData.asp" id="form-Delivery" name="formDelivery">
+                                    <table width="90%" cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                            <tr>
+                                                <td style="border-top:0px">
+                                                    運送區域：
+                                                    <select name="DeliveryArea" id="DeliveryArea">
+                                                        <option value="TW">台灣及離島</option>
+                                                        <option value="01"> 澳大利亞 </option>
+                                                        <option value="03"> 加拿大 </option>
+                                                        <option value="15"> 日本 </option>
+                                                        <option value="16"> 韓國 </option>
+                                                        <option value="18"> 馬來西亞 </option>
+                                                        <option value="22"> 紐西蘭 </option>
+                                                        <option value="23"> 菲律賓 </option>
+                                                        <option value="25"> 新加坡 </option>
+                                                        <option value="28"> 泰國 </option>
+                                                        <option value="30"> 美國 </option>
+                                                        <option value="31"> 越南 </option>
+                                                        <option value="09"> 法國 </option>
+                                                        <option value="10"> 德國 </option>
+                                                        <option value="29"> 英國 </option>
+                                                        <option value="14"> 義大利 </option>
+                                                        <option value="27"> 西班牙 </option>
+                                                        <option value="05"> 中國大陸 </option>
+                                                        <option value="12"> 香港 </option>
+                                                        <option value="17"> 澳門 </option>
+                                                    </select>
+                                                    台灣會員消費滿 NT$ 699 up 即享免運配送
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="noborder">
+                                                    <table width="100%" cellspacing="0" cellpadding="0" class="table-input-item">
+                                                        <tbody>
+                                                            <tr class="Area_01" style="display: none;">
+                                                                <td width="15%">購物金全額折抵</td>
+                                                                <td width="5%">
+                                                                    <input type="radio" name="tmpMode" value="FO|310|9999999|0|N|01|001"
+                                                                           class="mode" disabled="disabled">
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr class="Area_03" style="display: none;">
+                                                                <td width="15%">購物金全額折抵</td>
+                                                                <td width="5%">
+                                                                    <input type="radio" name="tmpMode" value="FO|230|9999999|0|N|03|001"
+                                                                           class="mode" disabled="disabled">
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr class="Area_15" style="display: none;">
+                                                                <td width="15%">購物金全額折抵</td>
+                                                                <td width="5%">
+                                                                    <input type="radio" name="tmpMode" value="FO|425|9999999|0|N|15|001"
+                                                                           class="mode" disabled="disabled">
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr class="Area_16" style="display: none;">
+                                                                <td width="15%">購物金全額折抵</td>
+                                                                <td width="5%">
+                                                                    <input type="radio" name="tmpMode" value="FO|220|9999999|0|N|16|001"
+                                                                           class="mode" disabled="disabled">
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr class="Area_18" style="display: none;">
+                                                                <td width="15%">購物金全額折抵</td>
+                                                                <td width="5%">
+                                                                    <input type="radio" name="tmpMode" value="FO|170|9999999|0|N|18|001"
+                                                                           class="mode" disabled="disabled">
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr class="Area_22" style="display: none;">
+                                                                <td width="15%">購物金全額折抵</td>
+                                                                <td width="5%">
+                                                                    <input type="radio" name="tmpMode" value="FO|340|9999999|0|N|22|001"
+                                                                           class="mode" disabled="disabled">
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr class="Area_23" style="display: none;">
+                                                                <td width="15%">購物金全額折抵</td>
+                                                                <td width="5%">
+                                                                    <input type="radio" name="tmpMode" value="FO|230|9999999|0|N|23|001"
+                                                                           class="mode" disabled="disabled">
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr class="Area_25" style="display: none;">
+                                                                <td width="15%">購物金全額折抵</td>
+                                                                <td width="5%">
+                                                                    <input type="radio" name="tmpMode" value="FO|220|9999999|0|N|25|001"
+                                                                           class="mode" disabled="disabled">
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr class="Area_28" style="display: none;">
+                                                                <td width="15%">購物金全額折抵</td>
+                                                                <td width="5%">
+                                                                    <input type="radio" name="tmpMode" value="FO|240|9999999|0|N|28|001"
+                                                                           class="mode" disabled="disabled">
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr class="Area_30" style="display: none;">
+                                                                <td width="15%">購物金全額折抵</td>
+                                                                <td width="5%">
+                                                                    <input type="radio" name="tmpMode" value="FO|220|9999999|0|N|30|001"
+                                                                           class="mode" disabled="disabled">
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr class="Area_31" style="display: none;">
+                                                                <td width="15%">購物金全額折抵</td>
+                                                                <td width="5%">
+                                                                    <input type="radio" name="tmpMode" value="FO|360|9999999|0|N|31|001"
+                                                                           class="mode" disabled="disabled">
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr class="Area_09" style="display: none;">
+                                                                <td width="15%">購物金全額折抵</td>
+                                                                <td width="5%">
+                                                                    <input type="radio" name="tmpMode" value="FO|480|9999999|0|N|09|001"
+                                                                           class="mode" disabled="disabled">
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr class="Area_10" style="display: none;">
+                                                                <td width="15%">購物金全額折抵</td>
+                                                                <td width="5%">
+                                                                    <input type="radio" name="tmpMode" value="FO|300|9999999|0|N|10|001"
+                                                                           class="mode" disabled="disabled">
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr class="Area_29" style="display: none;">
+                                                                <td width="15%">購物金全額折抵</td>
+                                                                <td width="5%">
+                                                                    <input type="radio" name="tmpMode" value="FO|380|9999999|0|N|29|001"
+                                                                           class="mode" disabled="disabled">
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr class="Area_14" style="display: none;">
+                                                                <td width="15%">購物金全額折抵</td>
+                                                                <td width="5%">
+                                                                    <input type="radio" name="tmpMode" value="FO|480|9999999|0|N|14|001"
+                                                                           class="mode" disabled="disabled">
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr class="Area_27" style="display: none;">
+                                                                <td width="15%">購物金全額折抵</td>
+                                                                <td width="5%">
+                                                                    <input type="radio" name="tmpMode" value="FO|320|9999999|0|N|27|001"
+                                                                           class="mode" disabled="disabled">
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr class="Area_05" style="display: none;">
+                                                                <td width="15%">購物金全額折抵</td>
+                                                                <td width="5%">
+                                                                    <input type="radio" name="tmpMode" value="FO|170|9999999|0|N|05|001"
+                                                                           class="mode" disabled="disabled">
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr class="Area_01" style="display: none;">
+                                                                <td width="15%">信用卡線上刷卡</td>
+                                                                <td width="5%">
+                                                                    <input type="radio" name="tmpMode" value="FO|310|9999999|0|N|01|010"
+                                                                           class="mode">
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr class="Area_03" style="display: none;">
+                                                                <td width="15%">信用卡線上刷卡</td>
+                                                                <td width="5%">
+                                                                    <input type="radio" name="tmpMode" value="FO|230|9999999|0|N|03|010"
+                                                                           class="mode">
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr class="Area_15" style="display: none;">
+                                                                <td width="15%">信用卡線上刷卡</td>
+                                                                <td width="5%">
+                                                                    <input type="radio" name="tmpMode" value="FO|425|9999999|0|N|15|010"
+                                                                           class="mode">
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr class="Area_16" style="display: none;">
+                                                                <td width="15%">信用卡線上刷卡</td>
+                                                                <td width="5%">
+                                                                    <input type="radio" name="tmpMode" value="FO|220|9999999|0|N|16|010"
+                                                                           class="mode">
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr class="Area_18" style="display: none;">
+                                                                <td width="15%">信用卡線上刷卡</td>
+                                                                <td width="5%">
+                                                                    <input type="radio" name="tmpMode" value="FO|170|9999999|0|N|18|010"
+                                                                           class="mode">
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr class="Area_22" style="display: none;">
+                                                                <td width="15%">信用卡線上刷卡</td>
+                                                                <td width="5%">
+                                                                    <input type="radio" name="tmpMode" value="FO|340|9999999|0|N|22|010"
+                                                                           class="mode">
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr class="Area_23" style="display: none;">
+                                                                <td width="15%">信用卡線上刷卡</td>
+                                                                <td width="5%">
+                                                                    <input type="radio" name="tmpMode" value="FO|230|9999999|0|N|23|010"
+                                                                           class="mode">
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr class="Area_25" style="display: none;">
+                                                                <td width="15%">信用卡線上刷卡</td>
+                                                                <td width="5%">
+                                                                    <input type="radio" name="tmpMode" value="FO|220|9999999|0|N|25|010"
+                                                                           class="mode">
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr class="Area_28" style="display: none;">
+                                                                <td width="15%">信用卡線上刷卡</td>
+                                                                <td width="5%">
+                                                                    <input type="radio" name="tmpMode" value="FO|240|9999999|0|N|28|010"
+                                                                           class="mode">
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr class="Area_30" style="display: none;">
+                                                                <td width="15%">信用卡線上刷卡</td>
+                                                                <td width="5%">
+                                                                    <input type="radio" name="tmpMode" value="FO|220|9999999|0|N|30|010"
+                                                                           class="mode">
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr class="Area_31" style="display: none;">
+                                                                <td width="15%">信用卡線上刷卡</td>
+                                                                <td width="5%">
+                                                                    <input type="radio" name="tmpMode" value="FO|360|9999999|0|N|31|010"
+                                                                           class="mode">
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr class="Area_09" style="display: none;">
+                                                                <td width="15%">信用卡線上刷卡</td>
+                                                                <td width="5%">
+                                                                    <input type="radio" name="tmpMode" value="FO|480|9999999|0|N|09|010"
+                                                                           class="mode">
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr class="Area_10" style="display: none;">
+                                                                <td width="15%">信用卡線上刷卡</td>
+                                                                <td width="5%">
+                                                                    <input type="radio" name="tmpMode" value="FO|300|9999999|0|N|10|010"
+                                                                           class="mode">
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr class="Area_29" style="display: none;">
+                                                                <td width="15%">信用卡線上刷卡</td>
+                                                                <td width="5%">
+                                                                    <input type="radio" name="tmpMode" value="FO|380|9999999|0|N|29|010"
+                                                                           class="mode">
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr class="Area_14" style="display: none;">
+                                                                <td width="15%">信用卡線上刷卡</td>
+                                                                <td width="5%">
+                                                                    <input type="radio" name="tmpMode" value="FO|480|9999999|0|N|14|010"
+                                                                           class="mode">
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr class="Area_27" style="display: none;">
+                                                                <td width="15%">信用卡線上刷卡</td>
+                                                                <td width="5%">
+                                                                    <input type="radio" name="tmpMode" value="FO|320|9999999|0|N|27|010"
+                                                                           class="mode">
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr class="Area_05" style="display: none;">
+                                                                <td width="15%">信用卡線上刷卡</td>
+                                                                <td width="5%">
+                                                                    <input type="radio" name="tmpMode" value="FO|170|9999999|0|N|05|010"
+                                                                           class="mode">
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr class="Area_12" style="display: none;">
+                                                                <td width="15%">信用卡線上刷卡</td>
+                                                                <td width="5%">
+                                                                    <input type="radio" name="tmpMode" value="FO|105|1380|0|N|12|010"
+                                                                           class="mode">
+                                                                </td>
+                                                                <td>全館消費滿 NT.1380元可享免運。</td>
+                                                            </tr>
+                                                            <tr class="Area_17" style="display: none;">
+                                                                <td width="15%">信用卡線上刷卡</td>
+                                                                <td width="5%">
+                                                                    <input type="radio" name="tmpMode" value="FO|125|1380|0|N|17|010"
+                                                                           class="mode">
+                                                                </td>
+                                                                <td>全館消費滿 NT.1380元可享免運。</td>
+                                                            </tr>
+                                                            <tr class="Area_12" style="display: none;">
+                                                                <td width="15%">購物金全額折抵</td>
+                                                                <td width="5%">
+                                                                    <input type="radio" name="tmpMode" value="FO|105|3000|0|N|12|001"
+                                                                           class="mode" disabled="disabled">
+                                                                </td>
+                                                                <td>全館消費滿 NT.3000元可享免運。</td>
+                                                            </tr>
+                                                            <tr class="Area_17" style="display: none;">
+                                                                <td width="15%">購物金全額折抵</td>
+                                                                <td width="5%">
+                                                                    <input type="radio" name="tmpMode" value="FO|125|3000|0|N|17|001"
+                                                                           class="mode" disabled="disabled">
+                                                                </td>
+                                                                <td>全館消費滿 NT.3000元可享免運。</td>
+                                                            </tr>
+                                                            <tr class="Area_TW" style="display: table-row;">
+                                                                <td width="15%">7-11超商取貨付款</td>
+                                                                <td width="5%">
+                                                                    <input type="radio" name="tmpMode" value="1|60|1000|0|N|TW|009"
+                                                                           class="mode">
+                                                                </td>
+                                                                <td>
+                                                                    全館消費滿 NT.1000元可享免運。
+                                                                    <br>
+                                                                    <font color="#FF0000">
+                                                                        購物金額限制在NT.$50-$2000 並有材積與重量限制
+                                                                        <br>(重量須5KG內、材積需於45*30*30cm 內)，訂單成立時系統會自動判別。
+                                                                        <br>若超過材積限制請選擇其他付款方式。
+                                                                    </font>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="Area_TW" style="display: table-row;">
+                                                                <td width="15%">信用卡線上刷卡</td>
+                                                                <td width="5%">
+                                                                    <input type="radio" name="tmpMode" value="5|60|699|0|N|TW|010"
+                                                                           class="mode">
+                                                                </td>
+                                                                <td>全館消費滿 NT.699元可享免運。</td>
+                                                            </tr>
+                                                            <tr class="Area_TW" style="display: table-row;">
+                                                                <td width="15%">宅配貨到付款</td>
+                                                                <td width="5%">
+                                                                    <input type="radio" name="tmpMode" value="2|60|699|0|N|TW|000"
+                                                                           class="mode">
+                                                                </td>
+                                                                <td>
+                                                                    全館消費滿 NT.699元可享免運。
+                                                                    <font color="#FF0000">(「貨到付款」服務僅限台灣本島)</font>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="Area_TW" style="display: table-row;">
+                                                                <td width="15%">購物金全額折抵</td>
+                                                                <td width="5%">
+                                                                    <input type="radio" name="tmpMode" value="6|60|699|0|N|TW|001"
+                                                                           class="mode">
+                                                                </td>
+                                                                <td>全館消費滿 NT.699元可享免運。</td>
+                                                            </tr>
+
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <input type="hidden" name="od00" value="180606000498">
+                                </form>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="11" class="caption noborder">
+                                <img src="~/Content/Delizioso_files/Images/arrow.gif" class="icon">CHECK YOUR ORDER 確認購買明細
+                            </td>
+                        </tr>
+                        <tr>
+                            <th width="2%"></th>
+                            <th class="text-al">商品名稱</th>
+                            <th width="5%">顏色</th>
+                            <th width="5%">尺寸</th>
+                            <th width="7%" class="text-ar">數量</th>
+                            <th width="7%" class="text-ar">單價</th>
+                            <th width="7%" class="text-ar">折扣價</th>
+                            <th width="7%" class="text-ar">小計</th>
+                            <th width="5%" class="text-ar">刪除</th>
+                        </tr>
+
+                        <tr>
+                            <td style="border-top:0px"></td>
+                            <td>
+                                <img src="~/Content/Delizioso_files/Images/shirt-1.jpeg" class="pdimg">
+                                <div>透膚蕾絲V領綁帶傘襬洋裝</div>
+                                <div></div>
+
+                            </td>
+                            <td class="text-ac">白</td>
+                            <td class="text-ac">2XL</td>
+                            <td class="text-ar">
+                                <select name="qty:1828005:2XL:02" onchange="cmdremoreList('modify', '1828005', '180606000498', '2018060600001869');"
+                                        class="qty2018060600001869">
+                                    <option value="1" selected="">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </td>
+                            <td class="text-ar">890</td>
+                            <td class="text-ar">890</td>
+                            <td class="text-ar">890</td>
+                            <td class="text-ac">
+                                <img src="~/Content/Delizioso_files/Images/remore.jpg" style="cursor:pointer;" onclick="cmdremoreList('remore', '1828005', '180606000498', '2018060600001869');removeToCart('1828005','透膚蕾絲V領綁帶傘襬洋裝','','','02','890','1');">
+                            </td>
+                            <td style="border-top:0px"></td>
+                        </tr>
+
+                        <tr>
+                            <td style="border-top:0px"></td>
+                            <td colspan="10" class="text-al items-color">
+                                我有電子折價券
+                                <input id="couponNo" type="text" name="couponNo" placeholder="折價券編號" value="">
+                                <input id="btnCouponNo" type="button" value="確認">
+                            </td>
+                            <td style="border-top:0px"></td>
+                        </tr>
+                        <tr>
+                            <td style="border-top:0px"></td>
+                            <td colspan="4"></td>
+                            <td colspan="2" class="text-ar" style="padding:2px 5px;">
+                                總金額
+
+                            </td>
+                            <td colspan="2" class="text-ar" style="padding:2px 5px;">
+                                NT.
+                                <span id="count-Pay">1,989</span>
+                            </td>
+                            <td style="border-top:0px"></td>
+                        </tr>
+
+                        <tr>
+                            <td style="border-top:0px"></td>
+                            <td colspan="4" style="border-top:0px"></td>
+                            <td colspan="2" class="text-ar" style="border-top:0px;padding:2px 5px;">
+                                紅利金
+                                <!--(100%)-->
+                            </td>
+                            <td colspan="2" class="text-ar" style="border-top:0px;padding:2px 5px;">
+                                NT.
+                                <span id="count-bonus">0</span>
+                            </td>
+                            <td style="border-top:0px"></td>
+                        </tr>
+                        <tr>
+                            <td style="border-top:0px"></td>
+                            <td colspan="4" style="border-top:0px"></td>
+                            <td colspan="2" class="text-ar" style="border-top:0px;padding:2px 5px;">
+                                運費
+                                <span style="font-size:70%;"></span>
+                            </td>
+                            <td colspan="2" class="text-ar" style="border-top:0px;padding:2px 5px;">
+                                NT.
+                                <span id="count-Move">60</span>
+                            </td>
+                            <td style="border-top:0px"></td>
+                        </tr>
+                        <tr>
+                            <td style="border-top:0px"></td>
+                            <td colspan="4" style="border-top:0px"></td>
+                            <td colspan="2" class="text-ar" style="border-top:0px;padding:2px 5px;">購物金</td>
+                            <td colspan="2" class="text-ar" style="border-top:0px;padding:2px 5px;">
+                                NT.
+                                <span id="count-cash">0</span>
+                            </td>
+                            <td style="border-top:0px"></td>
+                        </tr>
+                        <tr>
+                            <td style="border-top:0px"></td>
+                            <td colspan="4" style="border-top:0px"></td>
+                            <td colspan="2" class="text-ar" style="border-top:1px solid #000000;">應付金額</td>
+                            <td colspan="2" class="text-ar" style="border-top:1px solid #000000;">
+                                NT.
+                                <span id="count-All">989</span>
+                            </td>
+                            <td style="border-top:0px"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div align="center" class="order-action">
+            <input type="button" value="下一步" class="btn3" id="nextPage" onclick="http://localhost:57010/orders/deliveryinformation">
+        </div>
+
+    </div>
+</body>
 

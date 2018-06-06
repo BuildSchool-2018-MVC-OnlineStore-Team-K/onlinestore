@@ -309,6 +309,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Delizioso_files\cart.css" />
     <Content Include="Content\Delizioso_files\Images\addcart.png" />
+    <Content Include="Content\Delizioso_files\Images\arrow.gif" />
     <Content Include="Content\Delizioso_files\Images\cartstep1.gif" />
     <Content Include="Content\Delizioso_files\Images\cartstep2.gif" />
     <Content Include="Content\Delizioso_files\Images\cartstep3.gif" />
@@ -346,6 +347,7 @@
     <Content Include="Content\Delizioso_files\Images\shirt-8.jpeg" />
     <Content Include="Content\Delizioso_files\Images\shirt-9-2.jpeg" />
     <Content Include="Content\Delizioso_files\Images\shirt-9.jpeg" />
+    <Content Include="Content\Delizioso_files\Images\Thank.png" />
     <Content Include="Content\images\admin.jpg" />
     <Content Include="Content\images\avatar\1.jpg" />
     <Content Include="Content\images\avatar\2.jpg" />

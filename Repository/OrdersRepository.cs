@@ -201,7 +201,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             SqlConnection connection = new SqlConnection(source.connect);
             //取得該會員得購物車 詳細資訊 購買了ooxx的oo尺寸oo個oo顏色ooxx
 
-            return  connection.Query<CartViewModel>("SELECT p.ProductName, od.UnitPrice , Quantity , sc.Color , sz.SizeType FROM Orders  o INNER JOIN OrderDetail od ON o.OrderID = od.OrderID INNER JOIN Products p ON p.ProductID = od.ProductID INNER JOIN Size sz ON p.ProductID = sz.ProductID INNER JOIN StockColor sc ON sc.ColorID = sz.SizeID WHERE MemberID = @MemberID and o.OrderID = @OrderID and Cart = 1 Group By p.ProductName, Quantity , sc.Color , sz.SizeType, od.UnitPrice", new {
+            return  connection.Query<CartViewModel>("SELECT p.ProductName, od.UnitPrice , Quantity , sc.Color , sz.SizeType FROM Orders  o INNER JOIN OrderDetail od ON o.OrderID = od.OrderID INNER JOIN Products p ON p.ProductID = od.ProductID INNER JOIN Size sz ON p.ProductID = sz.ProductID INNER JOIN StockColor sc ON sc.ColorID = sz.SizeID INNER JOIN Dicounts dic ON p. WHERE MemberID = @MemberID and o.OrderID = @OrderID and Cart = 1 Group By p.ProductName, Quantity , sc.Color , sz.SizeType, od.UnitPrice", new {
                 OrderID ,
                 MemberID
             });

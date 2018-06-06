@@ -13,7 +13,5 @@ namespace ViewModels
         public int UnitPrice { get; set; }
         public int Quantity { get; set; }
         public string Color { get; set; }
-        public decimal Total { get; set; }
-
     }
 }
