@@ -11,7 +11,7 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
-    [RoutePrefix("Login")]
+    [RoutePrefix("login")]
     public class LoginController : Controller
     {
         // GET: Login
