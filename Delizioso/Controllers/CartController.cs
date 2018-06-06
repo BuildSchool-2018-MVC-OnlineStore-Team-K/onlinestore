@@ -127,7 +127,7 @@ namespace WebApplication1.Controllers
             return View();
         }
 
-        [Route("shipping&payment")]
+        [Route("shippingpayment")]
         public ActionResult ShippingPayment()
         {
             return View();
