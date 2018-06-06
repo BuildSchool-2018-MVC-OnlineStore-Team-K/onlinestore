@@ -14,9 +14,18 @@ namespace WebApplication1.Controllers
     [RoutePrefix("backendproduct")]
     public class BackEndProductController : Controller
     {
+
+        [Route("productview")]
+        public ActionResult ProductsManage()
+        {
+            var service = new BackEndProductService();
+            return View(service.GetAllProductDetail());
+        }
+
+
         [Route("Create")]
         // GET: BackEnd
-        public ActionResult ProductsManage()
+        public ActionResult ProductsCreate()
         {
             return View();
         }
@@ -24,7 +33,7 @@ namespace WebApplication1.Controllers
 
         [Route("Create")]
         [HttpPost]
-        public ActionResult ProductsManage(HttpPostedFileBase file)
+        public ActionResult ProductsCreate(HttpPostedFileBase file)
         {
             string fileLocation = "";
             string extension = "";

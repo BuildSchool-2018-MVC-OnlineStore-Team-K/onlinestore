@@ -72,6 +72,15 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             }            
         }
 
+        public IEnumerable<ProductDetailViewModel> GetAllDetail()
+        {
+            var query = "SELECT p.category , p.productname , sizetype , color , stock  from products p INNER JOIN size s ON s.productid = p.productid INNER JOIN stockcolor sc ON sc.sizeid = s.sizeid ";
+            using (SqlConnection connection = new SqlConnection(source.connect))
+            {
+                return connection.Query<ProductDetailViewModel>(query);
+            }
+        }
+
         public IEnumerable<ProductHomeViewModel> GetTop5Products()
         {
             var query = "SELECT TOP 5 o.ProductID, p.ProductName,p.UnitPrice, SUM(Quantity) AS Sum " +

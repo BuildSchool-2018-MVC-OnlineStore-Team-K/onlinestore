@@ -63,5 +63,11 @@ namespace Service
             
         }
 
+        public IEnumerable<ProductDetailViewModel> GetAllProductDetail()
+        {
+            var repository = new ProductsRepository();
+            return repository.GetAllDetail();
+        }
+
     }
 }
