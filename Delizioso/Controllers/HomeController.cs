@@ -8,10 +8,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
-    [RoutePrefix("Home")]
+    [RoutePrefix("home")]
     public class HomeController : Controller
     {
         [Route("")]

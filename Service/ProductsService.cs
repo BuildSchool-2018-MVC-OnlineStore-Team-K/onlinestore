@@ -16,19 +16,19 @@ namespace Service
             return result.GetProductDetail(ProductID);
         }
 
-        public ProductsDetailViewModel GetProductDetail(IEnumerable<ProductsViewModel> list, int ProductID)
-        {
-            var result = list.FirstOrDefault((x) => x.ProductID == ProductID);
-            var productsdetail = new ProductsDetailViewModel()
-            {
-                ProductID = result.ProductID,
-                ProductName = result.ProductName,
-                Category = result.Category,
-                UnitPrice = result.UnitPrice,
-                Picture = result.Picture
-            };
-            return productsdetail;
-        }
+        //public ProductsDetailViewModel GetProductDetail(IEnumerable<ProductsViewModel> list, int ProductID)
+        //{
+        //    var result = list.FirstOrDefault((x) => x.ProductID == ProductID);
+        //    var productsdetail = new ProductsDetailViewModel()
+        //    {
+        //        ProductID = result.ProductID,
+        //        ProductName = result.ProductName,
+        //        Category = result.Category,
+        //        UnitPrice = result.UnitPrice,
+        //        Picture = result.Picture
+        //    };
+        //    return productsdetail;
+        //}
 
         public List<ProductSize> DistinctSize(IEnumerable<ProductsViewModel> list)
         {

@@ -18,7 +18,6 @@ namespace WebApplication1.Controllers
         [Route("")]
         public ActionResult MemberRegister()
         {
-
             return PartialView();
         }
 
@@ -48,10 +47,7 @@ namespace WebApplication1.Controllers
                 ModelState.AddModelError("registerModel", "建立錯誤!請聯絡客服人員");
             }
 
-
-            var url = "~/Home";
-
-            return Redirect(url);
+            return Redirect("~/Home");
         }
 
 

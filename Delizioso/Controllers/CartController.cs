@@ -120,5 +120,29 @@ namespace WebApplication1.Controllers
         {
             return View();
         }
+
+        [Route("checkorder")]
+        public ActionResult CheckOrder()
+        {
+            return View();
+        }
+
+        [Route("shipping&payment")]
+        public ActionResult ShippingPayment()
+        {
+            return View();
+        }
+
+        [Route("deliveryinformation")]
+        public ActionResult DeliveryInformation()
+        {
+            return View();
+        }
+
+        [Route("completetheorder")]
+        public ActionResult CompleteTheOrder()
+        {
+            return View();
+        }
     }
 }

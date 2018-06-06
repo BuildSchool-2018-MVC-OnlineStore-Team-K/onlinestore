@@ -15,30 +15,6 @@ namespace WebApplication1.Controllers
     public class LoginController : Controller
     {
         // GET: Login
-        [Route("")]
-        public ActionResult MemberLogin()
-        {
-            ViewBag.test = "123";
-            var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
-            if (cookie == null)
-            {
-                ViewBag.Authenticated = false;
-                return PartialView();
-            }
-            var ticket = FormsAuthentication.Decrypt(cookie.Value);
-
-            if (ticket.UserData == "abcdefg")
-            {
-                ViewBag.IsAuthenticated = true;
-                ViewBag.Username = ticket.Name;
-            }
-            else
-            {
-                ViewBag.IsAuthenticated = false;
-            }
-
-            return PartialView();
-        }
 
         [Route("")]
         [HttpPost]
@@ -53,13 +29,13 @@ namespace WebApplication1.Controllers
                 var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, ticketData);
                 cookie.Expires = ticket.Expiration;
                 Response.Cookies.Add(cookie);
-                return RedirectToAction("MemberLogin");
+                return Redirect("Home");
             }
             else
             {
                 ModelState.AddModelError("loginModel", "使用者名稱或密碼不正確");
             }
-            return PartialView();
+            return View();
         }
 
         [Route("logout")]
@@ -70,12 +46,13 @@ namespace WebApplication1.Controllers
             cookie.Expires = DateTime.Now;
             Response.Cookies.Add(cookie);
 
-            return RedirectToAction("Index");
+            return Redirect("~/Home");
         }
 
 
         public ActionResult Status()
         {
+
             return PartialView();
         }
 
