@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BuildSchool.MVCSolution.OnlineStore.Models;
 using Service;
 using ViewModels;
 
@@ -15,25 +16,33 @@ namespace WebApplication1.Controllers
         [Route("{id}")]
         public ActionResult SimpleProduct(int id)
         {
-            //var controller = new ProductsService();
-            //var product = controller.GetProductDetailAll(id);
+            var products_service = new ProductsService();
+            //var discounts_service = new DiscountsService();  目前沒折扣資料 先不抓
+            var size_service = new SizeService();
+            var stockcolor_service = new StockColorService();
+            //var image_service = new ImageService();  沒照片 不抓
 
-            //var productdetail = controller.GetProductDetail(product, id);
-            //ViewBag.productname = productdetail.ProductName;
-            //ViewBag.Category = productdetail.Category;
-            //ViewBag.unitprice = productdetail.UnitPrice;
-            //ViewBag.picture = productdetail.Picture;
+            var list = new List<SizeStockCombineViewModel>();
+            foreach(var i in products_service.GetProductsTable())
+            {
+                if(id == i.ProductID)
+                {
+                    ViewBag.ProductName = i.ProductName;
+                    ViewBag.ProductID = i.ProductID;
+                    ViewBag.UnitPrice = i.UnitPrice;
+                    break;
+                }
+            }
 
-            //var distinctsize = controller.DistinctSize(product);
-            //ViewBag.distinctsize = distinctsize;
-            
-            //var distinctcolor = DisplayProductColor(product,id,);
-            //ViewBag.distinctcolor = distinctcolor;
+            var size = size_service.GetSizeTable().Where(x => x.ProductID == id).ToList();
+            var stockcolor = stockcolor_service.GetStockColorsTable(id).ToList();
+            list.Add(new SizeStockCombineViewModel()
+            {
+                Size = size,
+                StockColor = stockcolor
+            });
 
-
-            //var productColorStock = DisplayProductStock(product, id,,);
-            //ViewBag.productColorStock = productColorStock;
-            return View();
+            return View(list);
         }
 
 

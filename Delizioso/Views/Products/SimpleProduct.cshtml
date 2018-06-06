@@ -1,4 +1,5 @@
-﻿@model IEnumerable<ViewModels.ProductsViewModel>
+﻿@using BuildSchool.MVCSolution.OnlineStore.Models;
+@model IEnumerable<ViewModels.SizeStockCombineViewModel>
 @{
     ViewBag.Title = "SimpleProduct";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -224,21 +225,32 @@
                 </script>
                 <div class="col">
                     <div class="pdinfo">
-                        <p class="pd-title">貼身晚禮服襯衫</p>
-                        <p class="pd-subtitle">商品編號 0632528001</p>
-                        <p class="price">NT$ 1,699</p>
+                        <p class="pd-title">@ViewBag.ProductName</p>
+                        <p class="pd-subtitle">商品編號 @ViewBag.ProductID</p>
+                        <p class="price">NT$ @ViewBag.UnitPrice</p>
                         <p class="select">SELECT COLOR: </p>
 
+                        @{ var size = new List<Size>();
+                           var stockcolor = new List<StockColor>();
+                        }
+                        @foreach(var i in Model)
+                        {
+                            size = i.Size;
+                            stockcolor = i.StockColor;
+                        }
                         <div id="colorSelect">
-                            <a href="#">
-                                <img class="color-select img-border" style="background: #CC0000;">
-                            </a>
-                            <a href="#">
+                            @foreach(var i in stockcolor)
+                            {
+                                <a href="javascript:void(0)">
+                                    <img class="color-select img-border" style="background: @i.Color;">
+                                </a>
+                            }
+                            @*<a href="#">
                                 <img class="color-select" style="background: rgb(38, 57, 226);">
                             </a>
                             <a href="#">
                                 <img class="color-select" style="background: rgb(90, 7, 7);">
-                            </a>
+                            </a>*@
                         </div>
 
                         <script>
@@ -254,9 +266,20 @@
                         <div class="size-area">
                             <p class="select">SELECT SIZE: </p>
                             <div>
-                                <span class="current" mysize="S">S</span>
-                                <span mysize="M">M</span>
-                                <span mysize="L">L</span>
+                                @foreach(var i in size)
+                                {
+                                    var count = 1;
+                                    if(count == 1)
+                                    {
+                                        <span class="current" mysize="@i.SizeType">@i.SizeType</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="current" mysize="@i.SizeType">@i.SizeType</span>
+                                    }
+                                }
+                                @*<span mysize="M">M</span>
+                                <span mysize="L">L</span>*@
                             </div>
                             <script>
                                 $(document).ready(function () {

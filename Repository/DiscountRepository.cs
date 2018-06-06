@@ -14,6 +14,16 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
     public class DiscountRepository
     {
         MyConnectionString source = new MyConnectionString();
+
+        public IEnumerable<Discounts> GetDiscountsTable()
+        {
+            var sql = "SELECT * FROM　Discounts";
+            using(SqlConnection connection = new SqlConnection(source.connect))
+            {
+                return connection.Query<Discounts>(sql);
+            }
+        }
+
         public void Create(Discounts model)
         {
             SqlConnection connection = new SqlConnection(source.connect);
