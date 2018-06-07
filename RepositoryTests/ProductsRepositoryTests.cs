@@ -40,12 +40,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.ProductsRepositoryTests
             Assert.IsTrue(list.Count() > 0);
         }
 
-        [TestMethod()]
-        public void GetProductDetailTest()
-        {
-            var list = repo.GetProductDetail(1);
-            Assert.IsTrue(list.Count() > 0);
-        }
+
 
         [TestMethod()]
         public void OrderByShelfTimeDESCTest()
