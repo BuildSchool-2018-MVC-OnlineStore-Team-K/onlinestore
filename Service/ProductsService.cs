@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BuildSchool.MVCSolution.OnlineStore.Models;
 using BuildSchool.MVCSolution.OnlineStore.Repository;
 using ViewModels;
 
@@ -10,12 +11,12 @@ namespace Service
 {
     public class ProductsService
     {
-        public IEnumerable<ProductsViewModel> GetProductDetailAll(int ProductID)
-        {
-            var result = new ProductsRepository();
-            return result.GetProductDetail(ProductID);
-        }
+        ProductsRepository repo = new ProductsRepository();
 
+        public IEnumerable<Products> GetProductsTable()
+        {
+            return repo.GetProductsTable();
+        }
         //public ProductsDetailViewModel GetProductDetail(IEnumerable<ProductsViewModel> list, int ProductID)
         //{
         //    var result = list.FirstOrDefault((x) => x.ProductID == ProductID);

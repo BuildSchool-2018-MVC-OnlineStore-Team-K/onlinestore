@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 //using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
@@ -80,15 +81,16 @@ namespace WebApplication1.Controllers
         public ActionResult Index()
         {
 
-            var CartService1 = new CartService();
-            var query = CartService1.GetCartProducts(1, 6);
-            decimal TotalPrice = 0;
-            foreach (var item in query)
-            {
-                TotalPrice += item.Total;
-            }
-            ViewBag.Total = TotalPrice;
-            return PartialView(query);
+            //var CartService1 = new CartService();
+            //var query = CartService1.GetCartProducts(1, 6);
+            //decimal TotalPrice = 0;
+            //foreach (var item in query)
+            //{
+            //    TotalPrice += item.Total;
+            //}
+            //ViewBag.Total = TotalPrice;
+            //return PartialView(query);
+            return PartialView();
             
         }
         
@@ -105,7 +107,7 @@ namespace WebApplication1.Controllers
 
             return View();
         }
-        /*
+        /* 需要修改
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CreateCustomer(Customer model)
@@ -124,10 +126,14 @@ namespace WebApplication1.Controllers
         [Route("checkorder")]
         public ActionResult CheckOrder()
         {
-            return View();
+            var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            var ticket = FormsAuthentication.Decrypt(cookie.Value);
+            var service = new CartService();
+            var result = service.GetCartProducts((ticket.Name.Split(',')[1]));
+            return View(result);
         }
 
-        [Route("shipping&payment")]
+        [Route("shippingpayment")]
         public ActionResult ShippingPayment()
         {
             return View();

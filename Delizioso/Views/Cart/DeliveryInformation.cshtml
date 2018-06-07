@@ -4,5 +4,383 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>DeliveryInformation</h2>
+<body>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <div class="order-step-area">
+                    <div class="order-step-on">
+                        <img src="~/Content/Delizioso_files/Images/cartstep1.gif">確認購買明細
+                        <br>CHECK YOUR ORDER
+                    </div>
 
+                    <div class="order-step-on">
+                        <img src="~/Content/Delizioso_files/Images/cartstep2.gif">配送與付款方式
+                        <br>SHIPPING &amp; PAYMENT
+                    </div>
+
+                    <div class="order-step-on">
+                        <img src="~/Content/Delizioso_files/Images/cartstep3.gif">填寫收件資料
+                        <br>DELIVERY INFORMATION
+                    </div>
+
+                    <div class="order-step">
+                        <img src="~/Content/Delizioso_files/Images/cartstep4.gif">完成訂購
+                        <br>THANK YOU!
+                    </div>
+                </div>
+
+                <table class="table-order">
+                    <tbody>
+                        <tr>
+                            <td colspan="9" class="caption">
+                                <img src="~/Content/Delizioso_files/Images/arrow.gif" class="icon">DELIVERY INFORMATION 請填寫收件資料
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="9" style="border-top:0px" align="center">
+                                <table width="90%" cellspacing="0" cellpadding="0" class="noborder1" id="delivery-form">
+                                    <tbody>
+                                        <tr>
+                                            <td width="20%">收件姓名：</td>
+                                            <td>
+                                                <input id="RecName" type="text" name="PickName" maxlength="30" value="" required="">
+                                            </td>
+                                            <td colspan="2" width="70%"></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>手機號碼：</td>
+                                            <td>
+                                                <input id="RecPhone" type="text" name="PickTel" maxlength="10" pattern="09[0-9][0-9]([\-|\s]?)[0-9]{3}\1[0-9]{3}" title="由數字組成，如：0911222333"
+                                                       value="" required="">
+                                            </td>
+                                            <td colspan="2"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>取貨門市：</td>
+                                            <td colspan="3">
+                                                <input type="button" value="選擇 7-11 門市" id="btn-711" onclick="javascript: StoreSelector();">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>備註說明：</td>
+                                            <td colspan="3">
+                                                <textarea rows="3" cols="60" name="memo" id="note"></textarea>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="9" class="caption">
+                                <img src="~/Content/Delizioso_files/Images/arrow.gif" class="icon">RECEIPT 請選擇發票格式
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="9" style="border-top:0px" align="center">
+                                <table width="90%" cellspacing="0" cellpadding="0" class="noborder1" id="receipt-form">
+                                    <tbody>
+                                        <tr id="evatType">
+                                            <td width="10%">發票資訊：</td>
+                                            <td>
+                                                <div>
+                                                    <input type="radio" name="receiptType" class="receiptType" value="1" required="">電子發票
+                                                    <input type="radio" name="receiptType" class="receiptType" value="2" required="">公司索取電子發票證明聯
+                                                </div>
+                                                <script>
+                                                    $(document).ready(function () {
+                                                        $("#evatData").hide();
+                                                        $("#evatTaxID").hide();
+                                                        ClearVal("#evatData");
+                                                        $(".receiptType").change(function () {
+                                                            if ($(this).val() == "1") {
+                                                                $("#evatData").show();
+                                                                $("#evatTaxID").hide();
+                                                                ClearVal("#evatTaxID");
+                                                            } else {
+                                                                $("#evatTaxID").show();
+                                                                Req("#evatTaxID");
+                                                                $("#evatData").hide();
+                                                                ClearVal("#evatData");
+                                                            }
+                                                        });
+
+                                                        $("#submit-data").click(function () {
+                                                            if ($("#form-data").callProp(
+                                                                    'checkValidity')) {
+                                                                if (($("#CompanyTaxID").val() != "") &&
+                                                                    (
+                                                                        idchk($("#CompanyTaxID").val())
+                                                                    ) ==
+                                                                    false) {
+                                                                    alert("公司統編不正確!");
+                                                                    return false;
+                                                                }
+                                                                if (($("#CarrierType").val() == "03") &&
+                                                                    ($(
+                                                                        "#NOPBAN").val() == "")) {
+                                                                    alert("請選擇欲捐贈的愛心碼!");
+                                                                    return false;
+                                                                }
+                                                            }
+                                                        });
+                                                    });
+
+                                                    function ClearVal(selector) {
+                                                        $(selector).find(":text").each(function () {
+                                                            $(this).val("");
+                                                            $(this).prop("required", false);
+                                                        });
+                                                    }
+
+                                                    function Req(selector) {
+                                                        $(selector).find(":text").each(function () {
+                                                            $(this).prop("required", true);
+                                                        });
+                                                    }
+
+                                                    function idchk(idvalue) {
+                                                        var tmp = new String("12121241");
+                                                        var sum = 0;
+                                                        re = /^\d{8}$/;
+                                                        if (!re.test(idvalue)) {
+                                                            return false;
+                                                        }
+                                                        for (i = 0; i < 8; i++) {
+                                                            s1 = parseInt(idvalue.substr(i, 1));
+                                                            s2 = parseInt(tmp.substr(i, 1));
+                                                            sum += cal(s1 * s2);
+                                                        }
+                                                        if (!valid(sum)) {
+                                                            if (idvalue.substr(6, 1) == "7") return (valid(sum + 1));
+                                                        }
+                                                        return (valid(sum));
+                                                    }
+
+                                                    function valid(n) {
+                                                        return (n % 10 == 0) ? true : false;
+                                                    }
+
+                                                    function cal(n) {
+                                                        var sum = 0;
+                                                        while (n != 0) {
+                                                            sum += (n % 10);
+                                                            n = (n - n % 10) / 10; // 取整數
+                                                        }
+                                                        return sum;
+                                                    }
+                                                </script>
+                                            </td>
+                                        </tr>
+                                        <tr id="evatData" valign="top" style="display: none;">
+                                            <td>發票載具：</td>
+                                            <td>
+                                                <select name="CarrierType" id="CarrierType" onchange="setEVATList(this.value)" style="font-size:12px; margin:0px;" class="select">
+                                                    <option value="01">手機條碼</option>
+                                                    <option value="02">自然人憑證</option>
+                                                    <option value="03">愛心捐贈</option>
+                                                    <option value="04" selected="">會員載具</option>
+                                                </select>
+                                                <div>
+                                                    <div id="spanCarrierid1" class="spanEVAT" style="display:none;">
+                                                        &nbsp;&nbsp;&nbsp;輸入載具條碼：
+                                                        <input type="text" name="Carrierid1" id="Carrierid1" class="inputEVAT">
+                                                    </div>
+                                                    <div id="spanCarrierid2" class="spanEVAT" style="display:none;">
+                                                        &nbsp;&nbsp;&nbsp;再打一次條碼：
+                                                        <input type="text" name="Carrierid2" id="Carrierid2" class="inputEVAT">
+                                                    </div>
+                                                    <div id="spanNOPBAN" class="spanEVAT" style="display:none;">
+                                                        愛心碼：
+                                                        <input name="NOPBAN" id="NOPBAN" class="inputEVAT" readonly="" onclick="showNOPBAN()">
+                                                    </div>
+
+                                                    <div id="selNOPBAN" style="display:none;">
+                                                        <input id="NOPBANTxt" type="text" value="">
+                                                        <input type="button" class="btnNOPBAN" value="搜尋" onclick="searchNOPBAN()">
+                                                        <div id="NOPBANResult"></div>
+                                                    </div>
+                                                </div>
+                                                <script>
+                                                    function setEVATList(val) {
+                                                        $(".spanEVAT").hide();
+                                                        $(".inputEVAT").val("");
+                                                        ClearVal("#evatData");
+                                                        switch (val) {
+                                                            case "01":
+                                                                $("#spanCarrierid1,#spanCarrierid2").show();
+                                                                Req("#spanCarrierid1,#spanCarrierid2");
+                                                                $("#selNOPBAN").hide();
+                                                                break;
+                                                            case "02":
+                                                                $("#spanCarrierid1,#spanCarrierid2").show();
+                                                                Req("#spanCarrierid1,#spanCarrierid2");
+                                                                $("#selNOPBAN").hide();
+                                                                break;
+                                                            case "03":
+                                                                $("#spanNOPBAN").show();
+                                                                Req("#spanNOPBAN");
+                                                                break;
+                                                            case "04":
+                                                                $("#Carrierid1,#Carrierid2").val("1608230345");
+                                                                $("#selNOPBAN").hide();
+                                                                break;
+                                                        }
+                                                    }
+
+                                                    function checkEVATVal() {
+                                                        if ($("#Carrierid1").val() != $("#Carrierid2").val()) {
+                                                            alert("兩個輸入的載具條碼必須相符!");
+                                                            return false;
+                                                        }
+                                                        return true;
+                                                    }
+                                                </script>
+
+                                                <style>
+                                                    .resultrow,
+                                                    #NOPBAN {
+                                                        cursor: pointer;
+                                                    }
+
+                                                        .resultrow:hover {
+                                                            color: Red;
+                                                        }
+
+                                                    .btnNOPBAN {
+                                                        cursor: pointer;
+                                                        border: 0px;
+                                                        background-color: #EEE;
+                                                        color: black;
+                                                        font-size: 12px;
+                                                    }
+
+                                                    #NOPBANResult {
+                                                        height: 230px;
+                                                        width: 450px;
+                                                        overflow: auto;
+                                                        margin-left: 50px;
+                                                    }
+                                                </style>
+                                                <!--<script src="inc/inc_OD_EVAT.js" type="text/javascript"></script>-->
+                                                <script>
+                                                    var NPOBAN_JSON = [{
+                                                        name: '中華民國運動神經元疾病病友協會',
+                                                        id: '621',
+                                                        shortname: '漸凍人協會'
+                                                    }, {
+                                                        name: '財團法人創世社會福利基金會',
+                                                        id: '919',
+                                                        shortname: '創世基金會'
+                                                    }, {
+                                                        name: '財團法人台灣兒童暨家庭扶助基金會',
+                                                        id: '8585',
+                                                        shortname: '家扶基金會'
+                                                    }, {
+                                                        name: '財團法人伊甸社會福利基金會',
+                                                        id: '25885',
+                                                        shortname: '伊甸基金會'
+                                                    }, {
+                                                        name: '社團法人新北市照顧生命協會',
+                                                        id: '4987',
+                                                        shortname: '狗捐血中心'
+                                                    }, {
+                                                        name: '財團法人台灣兒童暨家庭扶助基金會台北市北區分事務所',
+                                                        id: '176176',
+                                                        shortname: '北區家扶'
+                                                    }, {
+                                                        name: '財團法人高雄市私立星星兒社會福利基金會',
+                                                        id: '88772',
+                                                        shortname: '星星兒'
+                                                    }, {
+                                                        name: '財團法人台灣兒童暨家庭扶助基金會',
+                                                        id: '8455',
+                                                        shortname: '台中希望'
+                                                    }, {
+                                                        name: '財團法人嘉義市私立修緣育幼院',
+                                                        id: '220225',
+                                                        shortname: '修緣育幼院'
+                                                    }, {
+                                                        name: '財團法人喜憨兒社會福利基金會',
+                                                        id: '88432',
+                                                        shortname: '喜憨兒'
+                                                    }];
+
+                                                    function showNOPBAN() {
+                                                        $("#selNOPBAN").show();
+                                                        $("#selNOPBAN #NOPBANTxt,#selNOPBAN .btnNOPBAN").hide();
+                                                        searchNOPBAN();
+                                                    }
+
+                                                    function selectedNOPBAN(id) {
+                                                        $("#NOPBAN").val(id);
+                                                        $("#selNOPBAN").hide();
+                                                    }
+
+                                                    function searchNOPBAN() {
+                                                        var found = 0;
+                                                        var strResult = "";
+                                                        $("#NOPBANResult").html("");
+                                                        for (i = 0; i < NPOBAN_JSON.length; i++) {
+                                                            if (NPOBAN_JSON[i].name.indexOf($("#NOPBANTxt").val()) >= 0 ||
+                                                                NPOBAN_JSON[i].shortname.indexOf($("#NOPBANTxt").val()) >=
+                                                                0 || NPOBAN_JSON[i].id.indexOf($("#NOPBANTxt").val()) >=
+                                                                0) {
+                                                                strResult +=
+                                                                    "<div class='resultrow' onclick='selectedNOPBAN(\"" +
+                                                                    NPOBAN_JSON[i].id +
+                                                                    "\")'><div style='display:inline-block;'>" +
+                                                                    NPOBAN_JSON[i].id + "</div> - " + NPOBAN_JSON[i].name;
+                                                                if (NPOBAN_JSON[i].shortname != "") {
+                                                                    strResult += "(" + NPOBAN_JSON[i].shortname + ")"
+                                                                }
+                                                                strResult += "</div>"
+                                                                found++;
+                                                            }
+                                                        }
+                                                        if (strResult != "") {
+                                                            $("#NOPBANResult").append(strResult);
+                                                        }
+                                                        if (found == 0) {
+                                                            $("#NOPBANResult").append("查無相符愛心碼");
+                                                        }
+                                                    }
+                                                </script>
+                                            </td>
+                                        </tr>
+                                        <tr id="evatTaxID" valign="top" style="display: none;">
+                                            <td>公司統編：</td>
+                                            <td>
+                                                <div>
+                                                    <input id="CompanyTaxID" type="text" name="od74" maxlength="8" pattern="[0-9]{8}" title="統編為數字8碼" required="">
+                                                    <input type="hidden" value="03" name="od94">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>※&nbsp;依統一發票使用辦法，個人戶(二聯式)發票一經開立，不得任意更改為公司戶</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div align="center" class="order-action">
+            <input type="button" value="重新選擇付款方式" class="btn3" onclick="http://localhost:57010/orders/shippingpayment">
+            <input type="submit" value="確認購買" id="submit-data" class="btn3" onclick="http://localhost:57010/orders/completetheorder">
+        </div>
+
+    </div>
+</body>

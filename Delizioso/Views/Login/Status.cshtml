@@ -16,7 +16,7 @@
 
         if (ticket.UserData == "abcdefg")
         {
-            ViewBag.Username = ticket.Name;
+            ViewBag.Username = ticket.Name.Split(',')[0];
             return true;
         }
         else
@@ -30,14 +30,14 @@
 @if (IsExist())
 {
     <td>
-        <button type="button" class="btn" data-toggle="modal" data-target="#loginModel" style="background-color: transparent;color: white;">
+        <button type="button" class="btn" style="background-color: transparent;color: white;">
             <span onmouseover="mouseover(this)" onmouseout="mouseout(this)" data-over="嗨, @ViewBag.Username" data-out="Hi, @ViewBag.Username">Hi, @ViewBag.Username</span>
         </button>
     </td>
     <td style="width:0px">/</td>
     <td>
         <button type="button" class="btn" style="background-color: transparent;color: white;">
-            <i class="fas fa-user-lock"></i><span onmouseover="mouseover(this)" onmouseout="mouseout(this)" data-over="會員登出" data-out="LOGOUT" href="@Url.Action("Logout","Login")"> LOGOUT</span>
+            <i class="fas fa-user-lock"></i><a style="text-decoration:none" onmouseover="mouseover(this)" onmouseout="mouseout(this)" data-over="會員登出" data-out="LOGOUT" href="@Url.Action("logout","login")"> LOGOUT</a>
         </button>
     </td>
 }
