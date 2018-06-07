@@ -162,9 +162,9 @@ namespace WebApplication1.Controllers
         //var UserAccount = ticket.Name.Split(',')[1];
 
         [Route("shippingpayment")]
-        public ActionResult ShippingPayment()
+        public ActionResult ShippingPayment(string tmdMode)
         {
-
+            Console.Write(tmdMode);
             return View();
         }
 

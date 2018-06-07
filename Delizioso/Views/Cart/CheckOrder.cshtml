@@ -52,9 +52,9 @@
                             <th width="7%" class="text-ar">小計</th>
                             <th width="5%" class="text-ar">刪除</th>
                         </tr>
+                        @foreach (var items in Model)
+                        {
                         <tr>
-                            @foreach (var items in Model)
-                            {
                             <td style="border-top:0px"></td>
                             <td>
                                 <a href="PDContent.asp?pp1=10&amp;pp2=04&amp;pp3=04&amp;yano=18015005&amp;yacolor=01" target="_blank">
@@ -82,9 +82,8 @@
                                 <img src="~/Content/Delizioso_files/Images/remore.jpg" style="cursor:pointer;" onclick="$(this).prev().attr('checked',true); cmdUpd1();">
                             </td>
                             <td style="border-top:0px"></td>
-                            }
                         </tr>
-
+                        }
                     </tbody>
                 </table>
 
