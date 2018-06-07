@@ -1366,6 +1366,7 @@
     <Content Include="Views\Cart\ShippingPayment.cshtml" />
     <Content Include="Views\Cart\DeliveryInformation.cshtml" />
     <Content Include="Views\Cart\CompleteTheOrder.cshtml" />
+    <Content Include="Views\BackEndProduct\UpdateProductInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -115,6 +115,28 @@ namespace WebApplication1.Controllers
             return View();
         }
 
+        [Route("UpdateProductInfo/{ProductID}")]
+        public ActionResult UpdateProductInfo(int ProductID)
+        {
+            var service = new ProductsService();
+            ViewBag.ID = ProductID;
+            var result = service.GetProductDetailByProdycuID(ProductID);
+            var xx = result.First((x) => x.Category != null);
+            
+            return View(result);
+        }
+
+        //更改資料
+        [Route("UpdateProductInfoPost")]
+        [HttpPost]
+        public ActionResult UpdateProductInfo(IEnumerable<ProductDetailViewModel> model)
+        {
+
+            return View();
+        }
+
+
+
 
         [Route("CreatePicture")]
         [AcceptVerbs(HttpVerbs.Post)]
