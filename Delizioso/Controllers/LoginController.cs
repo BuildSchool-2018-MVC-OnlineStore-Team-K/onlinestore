@@ -51,7 +51,6 @@ namespace WebApplication1.Controllers
             return Redirect("~/Home");
         }
 
-
         public ActionResult Status()
         {
 

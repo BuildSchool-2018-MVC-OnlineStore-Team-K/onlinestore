@@ -1348,9 +1348,9 @@
     <Content Include="Views\FacebookAuthentication\Facebook.cshtml" />
     <Content Include="Views\Products\SimpleProduct.cshtml" />
     <Content Include="Views\Login\Status.cshtml" />
-    <Content Include="Content\Delizioso_files\jquery-1.11.2.min.js.下載" />
+    <None Include="Content\Delizioso_files\jquery-1.11.2.min.js.下載" />
     <Content Include="Content\Delizioso_files\jquery-ui.min.js.下載" />
-    <Content Include="Content\Delizioso_files\jquery.bxslider.min.js.下載" />
+    <None Include="Content\Delizioso_files\jquery.bxslider.min.js.下載" />
     <Content Include="Content\Delizioso_files\jquery.colorbox.js.下載" />
     <Content Include="Content\Delizioso_files\jquery.colorbox.min.js.下載" />
     <Content Include="Content\Delizioso_files\jquery.cycle2.min.js.下載" />
