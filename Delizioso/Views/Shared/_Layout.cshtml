@@ -13,14 +13,21 @@
           crossorigin="anonymous" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous" />
 
-    @Styles.Render("~/Content/styles/css");
-    @Styles.Render("~/Content/Delizioso_files/css");
-    @Scripts.Render("~/Content/Delizioso_files/js");
+    
 </head>
 
 
 <body cz-shortcut-listen="true">
-
+    @Styles.Render("~/Content/styles/css");
+    @Styles.Render("~/Content/Delizioso_files/css");
+    <script src="~/Content/Delizioso_files/jquery-1.11.2.min.js.下載"></script>
+    <script src="~/Content/Delizioso_files/jquery-ui.min.js.下載"></script>
+    <script src="~/Content/Delizioso_files/jquery.bxslider.min.js.下載"></script>
+    <script src="~/Content/Delizioso_files/jquery.colorbox.js.下載"></script>
+    <script src="~/Content/Delizioso_files/jquery.colorbox.min.js.下載"></script>
+    <script src="~/Content/Delizioso_files/jquery.cycle2.min.js.下載"></script>
+    <script src="~/Content/Delizioso_files/jquery.placeholder.min.js.下載"></script>
+    <script src="~/Content/Delizioso_files/polyfiller.min.js.下載"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript">
@@ -135,7 +142,7 @@
                     <tbody>
                         <tr>
                             @Html.Partial("~/Views/Login/Status.cshtml")
-                            
+
                         </tr>
                     </tbody>
                 </table>
