@@ -139,11 +139,14 @@ namespace WebApplication1.Controllers
             return View();
         }
 
+
         [Route("deliveryinformation")]
         public ActionResult DeliveryInformation()
         {
             return View();
         }
+
+
 
         [Route("completetheorder")]
         public ActionResult CompleteTheOrder()

@@ -34,17 +34,17 @@
                         <br>THANK YOU!
                     </div>
                 </div>
+                <form method="post" action="deliveryinformation" id="form" name="form">
+                    <table class="table-order">
+                        <tbody>
+                            <tr>
+                                <td colspan="11" class="caption">
+                                    <img src="~/Content/Delizioso_files/Images/arrow.gif" class="icon">SHIPPING &amp; PAYMENT 配送與付款方式
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="11" align="center">
 
-                <table class="table-order">
-                    <tbody>
-                        <tr>
-                            <td colspan="11" class="caption">
-                                <img src="~/Content/Delizioso_files/Images/arrow.gif" class="icon">SHIPPING &amp; PAYMENT 配送與付款方式
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="11" align="center">
-                                <form method="post" action="OrderData.asp" id="form-Delivery" name="formDelivery">
                                     <table width="90%" cellspacing="0" cellpadding="0">
                                         <tbody>
                                             <tr>
@@ -434,133 +434,21 @@
                                         </tbody>
                                     </table>
                                     <input type="hidden" name="od00" value="180606000498">
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="11" class="caption noborder">
-                                <img src="~/Content/Delizioso_files/Images/arrow.gif" class="icon">CHECK YOUR ORDER 確認購買明細
-                            </td>
-                        </tr>
-                        <tr>
-                            <th width="2%"></th>
-                            <th class="text-al">商品名稱</th>
-                            <th width="5%">顏色</th>
-                            <th width="5%">尺寸</th>
-                            <th width="7%" class="text-ar">數量</th>
-                            <th width="7%" class="text-ar">單價</th>
-                            <th width="7%" class="text-ar">折扣價</th>
-                            <th width="7%" class="text-ar">小計</th>
-                            <th width="5%" class="text-ar">刪除</th>
-                        </tr>
 
-                        <tr>
-                            <td style="border-top:0px"></td>
-                            <td>
-                                <img src="~/Content/Delizioso_files/Images/shirt-1.jpeg" class="pdimg">
-                                <div>透膚蕾絲V領綁帶傘襬洋裝</div>
-                                <div></div>
+                                </td>
+                            </tr>
+                        </tbody>
 
-                            </td>
-                            <td class="text-ac">白</td>
-                            <td class="text-ac">2XL</td>
-                            <td class="text-ar">
-                                <select name="qty:1828005:2XL:02" onchange="cmdremoreList('modify', '1828005', '180606000498', '2018060600001869');"
-                                        class="qty2018060600001869">
-                                    <option value="1" selected="">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                </select>
-                            </td>
-                            <td class="text-ar">890</td>
-                            <td class="text-ar">890</td>
-                            <td class="text-ar">890</td>
-                            <td class="text-ac">
-                                <img src="~/Content/Delizioso_files/Images/remore.jpg" style="cursor:pointer;" onclick="cmdremoreList('remore', '1828005', '180606000498', '2018060600001869');removeToCart('1828005','透膚蕾絲V領綁帶傘襬洋裝','','','02','890','1');">
-                            </td>
-                            <td style="border-top:0px"></td>
-                        </tr>
-
-                        <tr>
-                            <td style="border-top:0px"></td>
-                            <td colspan="10" class="text-al items-color">
-                                我有電子折價券
-                                <input id="couponNo" type="text" name="couponNo" placeholder="折價券編號" value="">
-                                <input id="btnCouponNo" type="button" value="確認">
-                            </td>
-                            <td style="border-top:0px"></td>
-                        </tr>
-                        <tr>
-                            <td style="border-top:0px"></td>
-                            <td colspan="4"></td>
-                            <td colspan="2" class="text-ar" style="padding:2px 5px;">
-                                總金額
-
-                            </td>
-                            <td colspan="2" class="text-ar" style="padding:2px 5px;">
-                                NT.
-                                <span id="count-Pay">1,989</span>
-                            </td>
-                            <td style="border-top:0px"></td>
-                        </tr>
-
-                        <tr>
-                            <td style="border-top:0px"></td>
-                            <td colspan="4" style="border-top:0px"></td>
-                            <td colspan="2" class="text-ar" style="border-top:0px;padding:2px 5px;">
-                                紅利金
-                                <!--(100%)-->
-                            </td>
-                            <td colspan="2" class="text-ar" style="border-top:0px;padding:2px 5px;">
-                                NT.
-                                <span id="count-bonus">0</span>
-                            </td>
-                            <td style="border-top:0px"></td>
-                        </tr>
-                        <tr>
-                            <td style="border-top:0px"></td>
-                            <td colspan="4" style="border-top:0px"></td>
-                            <td colspan="2" class="text-ar" style="border-top:0px;padding:2px 5px;">
-                                運費
-                                <span style="font-size:70%;"></span>
-                            </td>
-                            <td colspan="2" class="text-ar" style="border-top:0px;padding:2px 5px;">
-                                NT.
-                                <span id="count-Move">60</span>
-                            </td>
-                            <td style="border-top:0px"></td>
-                        </tr>
-                        <tr>
-                            <td style="border-top:0px"></td>
-                            <td colspan="4" style="border-top:0px"></td>
-                            <td colspan="2" class="text-ar" style="border-top:0px;padding:2px 5px;">購物金</td>
-                            <td colspan="2" class="text-ar" style="border-top:0px;padding:2px 5px;">
-                                NT.
-                                <span id="count-cash">0</span>
-                            </td>
-                            <td style="border-top:0px"></td>
-                        </tr>
-                        <tr>
-                            <td style="border-top:0px"></td>
-                            <td colspan="4" style="border-top:0px"></td>
-                            <td colspan="2" class="text-ar" style="border-top:1px solid #000000;">應付金額</td>
-                            <td colspan="2" class="text-ar" style="border-top:1px solid #000000;">
-                                NT.
-                                <span id="count-All">989</span>
-                            </td>
-                            <td style="border-top:0px"></td>
-                        </tr>
-                    </tbody>
-                </table>
+                    </table>
+                    <div align="center" class="order-action">
+                        <input type="submit" value="下一步" class="btn3" id="nextPage" onclick="~/cart/deliveryinformation">
+                    </div>
+                </form>
             </div>
+            
         </div>
-
-        <div align="center" class="order-action">
-            <input type="button" value="下一步" class="btn3" id="nextPage" onclick="http://localhost:57010/orders/deliveryinformation">
-        </div>
-
+        
+            
     </div>
 </body>
 
