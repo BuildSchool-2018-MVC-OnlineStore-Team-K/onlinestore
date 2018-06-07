@@ -329,10 +329,10 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public bool CreateAccountByFBId(string FBId , string FBName)
         {
             SqlConnection connection = new SqlConnection(source.connect);
-            connection.Execute("INSERT INTO Members([Name] , FbId) Values(@FBId , @FBName) ", new
+            connection.Execute("INSERT INTO Members([Name] , FbId) Values(@FBName , @FBId) ", new
             {
-                FBId,
-                FBName
+                FBName,
+                FBId
             });
 
             if(CheckFbIdExist(FBId))
