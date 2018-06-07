@@ -125,19 +125,26 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             return connection.Query<Orders>("Select * FROM Orders");
         }
 
-
-        public int UpdateCartToOrders(int MemberID , int OrderID) // ok
+        //0是購物車
+        public bool UpdateCartToOrders(int MemberID , int OrderID) 
         {
             SqlConnection connection = new SqlConnection(source.connect);
-            var sql = "Update Orders SET cart = 1 where MemberID = @MemberID and OrderID = @OrderID";
-            SqlCommand command = new SqlCommand(sql, connection);
-            command.Parameters.AddWithValue("@MemberID", MemberID);
-            command.Parameters.AddWithValue("OrderID", OrderID);
-
-            connection.Open();
-            var q = command.ExecuteNonQuery();
-            connection.Close();
-            return q;
+            connection.Query("Update Orders SET cart = 1 where MemberID = @MemberID and OrderID = @OrderID",new {
+                MemberID,
+                OrderID
+            });
+            var result = connection.Query("Select * from orders where MemberID = @MemberID and OrderID = @OrderID and Cart = 1 ",new {
+                MemberID,
+                OrderID
+            });
+            if(result.Count()>0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
 
@@ -206,7 +213,6 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             });
 
         }
-
 
 
     }

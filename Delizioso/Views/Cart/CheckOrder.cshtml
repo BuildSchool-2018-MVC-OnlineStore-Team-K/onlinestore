@@ -95,10 +95,14 @@
             </div>
         </div>
         <div align="center" class="order-action">
-            <form method="post" action="shippingpayment" id="form" name="form">
-                <input type="button" value="繼續購物" class="btn3" onclick="http://localhost:57010/product/all">
-                <input type="submit" value="結帳" class="btn3">
-            </form>
+            @using (Html.BeginForm("checkorder", "orders"))
+            {
+
+             <input type="submit" value="結帳" class="btn3">
+             <a>@ViewBag.StatusFail</a>
+            }
+
+            <input type="button" value="繼續購物" class="btn3">
         </div>
     </div>
 </body>

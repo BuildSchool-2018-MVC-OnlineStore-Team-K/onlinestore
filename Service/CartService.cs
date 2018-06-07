@@ -24,7 +24,25 @@ namespace Service
             return result;
         }
 
-        
+        public bool AlterCartToOrders(int MemberID , int OrderID)
+        {
+            var orders = new OrdersRepository();
+            return  orders.UpdateCartToOrders(MemberID,OrderID);
+        }
+
+
+        public int GetMemberIdByAccount(string Account)
+        {
+            var members = new MembersRepository();
+            return members.GetMemberIDByAccount(Account);
+        }
+
+        public int GetCartOrderIDByMemberID(int MemberId)
+        {
+            var orders = new OrdersRepository();
+            return orders.GetCartOrderID(MemberId);
+        }
+
 
     }
 }
