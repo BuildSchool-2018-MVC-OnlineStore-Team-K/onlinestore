@@ -40,17 +40,26 @@ namespace WebApplication1
                       "~/Content/assets/scss/style.css"));
 
             bundles.Add(new StyleBundle("~/Content/Delizioso_files/css").Include(
+                "~/Content/Delizioso_files/cart.css",
+                "~/Content/Delizioso_files/colorbox.css",
                 "~/Content/Delizioso_files/default.css",
-                "~/Content/Delizioso_files/main.css",
-                "~/Content/Delizioso_files/menu.css",
+                 "~/Content/Delizioso_files/ui.css",
+                  "~/Content/Delizioso_files/jquery.bxslider.css",
                 "~/Content/Delizioso_files/jquery.cycle2.css",
-                "~/Content/Delizioso_files/cart.css"));
+                "~/Content/Delizioso_files/main.css",
+                "~/Content/Delizioso_files/menu.css"
+                ));
 
             bundles.Add(new ScriptBundle("~/Content/Delizioso_files/js").Include(
                 "~/Content/Delizioso_files/jquery-1.11.2.min.js.下載" ,
-                "~/Content/Delizioso_files/polyfiller.min.js.下載" ,
-                "~/Content/Delizioso_files/jquery.placeholder.min.js.下載" ,
-                "~/Content/Delizioso_files/jquery.cycle2.min.js.下載"));
+                "~/Content/Delizioso_files/jquery-ui.min.js.下載",
+               "~/Content/Delizioso_files/jquery.bxslider.min.js.下載",
+               "~/Content/Delizioso_files/jquery.colorbox.js.下載",
+                 "~/Content/Delizioso_files/jquery.colorbox.min.js.下載",
+                  "~/Content/Delizioso_files/jquery.cycle2.min.js.下載",
+                  "~/Content/Delizioso_files/jquery.placeholder.min.js.下載",
+                "~/Content/Delizioso_files/polyfiller.min.js.下載" 
+               ));
 
             bundles.Add(new StyleBundle("~/Content/styles/css").Include(
                 "~/Content/styles/style.css"));

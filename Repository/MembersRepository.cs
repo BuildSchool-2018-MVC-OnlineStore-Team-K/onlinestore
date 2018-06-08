@@ -345,5 +345,23 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             }
 
         }
+
+
+        public int GetMemberIDByAccount(string Account)
+        {
+            SqlConnection connection = new SqlConnection(source.connect);
+            var result =  connection.Query<int>("SELECT MEMBERID FROM MEMBERS WHERE ACCOUNT = @ACCOUNT ", new
+            {
+                Account
+            });
+            foreach(var item in result)
+            {
+                return item;
+            }
+            return 0;
+        }
+
+
+
     }
 }

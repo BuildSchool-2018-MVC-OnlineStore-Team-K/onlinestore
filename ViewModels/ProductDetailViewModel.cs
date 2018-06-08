@@ -8,9 +8,9 @@ namespace ViewModels
 {
     public class ProductDetailViewModel
     {
-        public string ProductID { get; set; }
-        public string ColorID { get; set; }
-        public string SizeID { get; set; }
+        public int ProductID { get; set; }
+        public int ColorID { get; set; }
+        public int SizeID { get; set; }
 
         public string  Category { get; set; }
         public string ProductName { get; set; }

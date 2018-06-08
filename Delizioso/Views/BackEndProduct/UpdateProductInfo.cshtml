@@ -1,0 +1,83 @@
+﻿@model IEnumerable<ViewModels.ProductDetailViewModel>
+@{
+    ViewBag.Title = "UpdateProductInfo";
+    Layout = "~/Views/Shared/BackEnd_Layout.cshtml";
+}
+
+
+
+<div class="row">
+    <div class="col-5">
+
+    </div>
+    <div class="col-1">
+        <h2>修改商品資訊</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-2">產品種類</div>
+    <div class="col-2">產品名稱</div>
+    <div class="col-2">尺寸</div>
+    <div class="col-2">顏色</div>
+    <div class="col-2">存貨</div>
+    <div class="col-2">單價</div>
+</div>
+
+@using (Html.BeginForm("UpdateProductInfoPost", "backendproduct"))
+{
+
+    <div class="row">
+        <div class="col-2">
+            <input type="text" name="Category" placeholder="產品種類" maxlength="30" required value="@Model.First((x) => x.Category != null).Category" />
+        </div>
+        <div class="col-2">
+            <input type="text" name="ProductName" placeholder="產品名稱" maxlength="30" required value="@Model.First((x) => x.ProductName != null).ProductName" />
+        </div>
+        <div class="col-2">
+            <input type="text" name="SizeType" placeholder="尺寸" maxlength="30" required value="@Model.First((x) => x.SizeType != null).SizeType" />
+        </div>
+        <div class="col-2">
+            <input type="text" name="Color" placeholder="顏色" maxlength="30" required value="@Model.First((x) => x.Color != null).Color" />
+        </div>
+        <div class="col-2">
+            <input type="text" name="Stock" placeholder="存貨" maxlength="30" required value="@Model.First((x) => x.Stock > -1).Stock" />
+        </div>
+        <div class="col-2">
+            <input type="text" name="UnitPrice" placeholder="單價" maxlength="30" required value="@Model.First((x) => x.UnitPrice > -1).UnitPrice" />
+        </div>
+
+    </div>
+
+
+    foreach (var item in Model.Skip(1))
+    {<div class="row">
+
+            <div class="col-2">
+                <input name="Category" value=@item.Category type="hidden" />
+            </div>
+            <div class="col-2">
+                <input name="ProductName" value=@item.ProductName type="hidden" />
+            </div>
+            <div class="col-2">
+                <input type="text" name="SizeType" placeholder="尺寸" maxlength="30" required value="@item.SizeType" />
+            </div>
+            <div class="col-2">
+                <input type="text" name="Color" placeholder="顏色" maxlength="30" required value="@item.Color" />
+            </div>
+            <div class="col-2">
+                <input type="text" name="Stock" placeholder="存貨" maxlength="30" required value="@item.Stock" />
+            </div>
+            <div class="col-2">
+                <input type="text" name="UnitPrice" placeholder="單價" maxlength="30" required value="@item.UnitPrice" />
+            </div>
+
+        </div>
+    }
+
+    <button type="submit" class="btn btn-secondary" >儲存</button>
+
+}
+
+
+
+

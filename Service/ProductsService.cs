@@ -79,5 +79,11 @@ namespace Service
             var repo = new ProductsRepository();
             return repo.GetTop5Products();
         }
+
+        public IEnumerable<ProductDetailViewModel> GetProductDetailByProdycuID(int ProductID)
+        {
+            var repo = new ProductsRepository();
+            return repo.GetProductDetailByProdycuID(ProductID);
+        }
     }
 }

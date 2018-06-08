@@ -133,17 +133,49 @@ namespace WebApplication1.Controllers
             return View(result);
         }
 
-        [Route("shippingpayment")]
-        public ActionResult ShippingPayment()
+        [Route("checkorder")]
+        [HttpPost]
+        public ActionResult CheckOrder(string n)
         {
+
+            var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            var ticket = FormsAuthentication.Decrypt(cookie.Value);
+            var UserAccount = ticket.Name.Split(',')[1];
+            var service = new CartService();
+            var MemberId = service.GetMemberIdByAccount(UserAccount);
+            var OrderID = service.GetCartOrderIDByMemberID(MemberId);
+            bool alter = service.AlterCartToOrders(MemberId, OrderID);
+
+            var url = "";
+            if (alter)
+            {
+                url = "~/orders/shippingpayment";
+            }
+            else
+            {
+                ViewBag.StatusFail = "發生錯誤 請重試!";
+            }
+
+            return Redirect(url);
+        }
+
+        //var UserAccount = ticket.Name.Split(',')[1];
+
+        [Route("shippingpayment")]
+        public ActionResult ShippingPayment(string tmdMode)
+        {
+            Console.Write(tmdMode);
             return View();
         }
+
 
         [Route("deliveryinformation")]
         public ActionResult DeliveryInformation()
         {
             return View();
         }
+
+
 
         [Route("completetheorder")]
         public ActionResult CompleteTheOrder()

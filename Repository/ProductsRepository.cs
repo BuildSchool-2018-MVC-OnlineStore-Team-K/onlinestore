@@ -84,7 +84,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public IEnumerable<ProductDetailViewModel> GetAllDetail()
         {
-            var query = "SELECT p.category , p.productname , sizetype , color , stock  from products p INNER JOIN size s ON s.productid = p.productid INNER JOIN stockcolor sc ON sc.sizeid = s.sizeid ";
+            var query = "SELECT p.productid , p.category , p.productname , sizetype , color , stock  from products p INNER JOIN size s ON s.productid = p.productid INNER JOIN stockcolor sc ON sc.sizeid = s.sizeid ";
             using (SqlConnection connection = new SqlConnection(source.connect))
             {
                 return connection.Query<ProductDetailViewModel>(query);
@@ -421,7 +421,21 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         }
 
 
-        
+
+        public IEnumerable<ProductDetailViewModel> GetProductDetailByProdycuID(int ProductID)
+        {
+            using (SqlConnection connection = new SqlConnection(source.connect))
+            {
+                return connection.Query<ProductDetailViewModel>("select UnitPrice , productName , category ,SizeType , Stock , Color from products p INNER JOIN size s ON p.productID = s.PRoductID INNER JOIN StockColor sc on s.sizeID = sc.sizeID where p.ProductID = @ProductID", new
+                {
+                    ProductID
+                });
+            }
+
+        }
+
+
+
 
     }
 }
