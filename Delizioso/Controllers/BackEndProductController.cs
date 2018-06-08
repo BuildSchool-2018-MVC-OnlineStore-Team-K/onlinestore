@@ -117,30 +117,29 @@ namespace WebApplication1.Controllers
 
 
         
-        [Route("UpdateProductInfo/{ProductID}")]
+        //[Route("UpdateProductInfo/{ProductID}")]
         [HttpPost]
+        public ActionResult UpdateProductInfoResult(int? productID , ProductDetailViewModel ProductDetailmodel)
+        {
+            var x = ProductDetailmodel;
+
+            return View(x);
+        }
+
+
+        
+        //更改資料
+        [Route("UpdateProductInfo/{ProductID}")]
         public ActionResult UpdateProductInfo(ProductDetailViewModel ProductDetailmodel)
         {
+            
             var service = new ProductsService();
             ViewBag.ID = ProductDetailmodel.ProductID;  //透過ViewBag.ID 儲存資廖
             var result = service.GetProductDetailByProdycuID(ProductDetailmodel.ProductID);
             var xx = result.First((x) => x.Category != null);
-
             return View(result);
-        }
-
-
-        /*
-        //更改資料
-        [Route("UpdateProductInfo/{ProductID}")]
-        
-        public ActionResult UpdateProductInfo(ProductDetailViewModel ProductDetailmodel)
-        {
-            var x = ProductDetailmodel;
-
-            return View();
            
-        }*/
+        }
 
 
 
