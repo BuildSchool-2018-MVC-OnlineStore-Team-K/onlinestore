@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<BuildSchool.MVCSolution.OnlineStore.Models.Products>
 @{
     ViewBag.Title = "AllProducts";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -40,26 +40,31 @@
                 <li>
                     <span onclick='toggleMenu("m1")'>貼身內著</span>
                     <ul id=m1>
-                        <li><a href=''>三角褲</a>
-                        <li><a href=''>四角褲</a>
-                        <li><a href=''>平口褲</a>
-                        <li><a href=''>睡衣</a>
+                        <li><a href='javascript:void(0)'>三角褲</a></li>
+                        <li><a href='javascript:void(0)'>四角褲</a></li>
+                        <li><a href='javascript:void(0)'>平口褲</a></li>
+                        <li><a href='javascript:void(0)'>睡衣</a></li>
                     </ul>
                 <li>
                     <span onclick='toggleMenu("m2")'>上身</span>
                     <ul id=m2>
-                        <li><a href=''>POLO SHIRTS</a>
-                        <li><a href=''>T-SHIRTS</a>
-                        <li><a href=''>排汗衫</a>
-                        <li><a href=''>襯衫</a>
+                        <li><a href='javascript:void(0)'>帽T</a></li>
+                        <li><a href='javascript:void(0)'>T-SHIRTS</a></li>
+                        <li><a href='javascript:void(0)'>西裝</a></li>
+                        <li><a href='javascript:void(0)'>外套</a></li>
+                        <li><a href='javascript:void(0)'>運動上衣</a></li>
                     </ul>
                 <li>
                     <span onclick='toggleMenu("m3")'>下著</span>
                     <ul id=m3>
-                        <li><a href=''>丹寧褲</a>
-                        <li><a href=''>西裝褲</a>
-                        <li><a href=''>休閒褲</a>
-                        <li><a href=''>運動褲</a>
+                        <li>
+                            <a href='javascript:void(0)'>西裝褲</a>
+                        </li>
+                        <li><a href='javascript:void(0)'>西裝褲</a></li>
+                        <li><a href='javascript:void(0)'>休閒褲</a></li>
+                        <li><a href='javascript:void(0)'>牛仔褲</a></li>
+                        <li><a href='javascript:void(0)'>運動褲</a></li>
+                        <li><a href='javascript:void(0)'>束褲</a></li>
                     </ul>
 
                     <br />
@@ -73,21 +78,35 @@
                     <span onclick='toggleMenu("m4")'>鞋款</span>
                     <ul id=m4>
                         <li>
-                            <a href=''>皮鞋</a>
+                            <a href='javascript:void(0)'>鞋子</a>
+                        </li>
                         <li>
-                            <a href=''>運動鞋</a>
+                            <a href='javascript:void(0)'>皮鞋</a>
+                        </li>   
                         <li>
-                            <a href=''>拖鞋</a>
+                            <a href='javascript:void(0)'>拖鞋</a>
+                        </li>
                     </ul>
                 <li>
                     <span onclick='toggleMenu("m5")'>襪子</span>
                     <ul id=m5>
-                        <li><a href=''>無痕肌棉襪</a>
-                        <li><a href=''>短襪/隱形襪</a>
-                        <li><a href=''>紳士休閒襪</a>
-                        <li><a href=''>運動機能襪</a>
-                    </ul>
+                        <li>
 
+                            @*@using (Html.BeginForm("AllProducts", "Products"))
+                            {
+                                <form id="form">*@
+                                    <a name="category" @*onclick="document.getElementById('form').submit()"*@ href='javascript:void(0)'>襪子</a>
+                                @*</form> 
+                            }*@   
+                            <script>
+                            </script>
+                        </li>
+                        <li><a href='javascript:void(0)'>無痕肌棉襪</a></li>
+                        <li><a href='javascript:void(0)'>短襪/隱形襪</a></li>
+                        <li><a href='javascript:void(0)'>紳士休閒襪</a></li>
+                        <li><a href='javascript:void(0)'>運動機能襪</a></li>
+                    </ul>
+                    
 
                     <!--飾品配件-->
                     <br />
@@ -96,37 +115,41 @@
                         <h4><b>飾品配件</b></h4>
                     </u>
                     <hr />
-                <li>
+<li>
                     <span onclick='toggleMenu("m6")'>包包</span>
                     <ul id=m6>
-                        <li><a href=''>單肩包</a>
-                        <li><a href=''>公事包</a>
-                        <li><a href=''>後背包</a>
-                        <li><a href=''>皮夾</a>
+                        <li><a href='javascript:void(0)'>背包</a></li>
+                        <li><a href='javascript:void(0)'>單肩包</a></li>
+                        <li><a href='javascript:void(0)'>公事包</a></li>
+                        <li><a href='javascript:void(0)'>後背包</a></li>
+                        <li><a href='javascript:void(0)'>皮夾</a></li>
                     </ul>
 
                 <li>
                     <span onclick='toggleMenu("m7")'>墨鏡</span>
                     <ul id=m7>
-                        <li><a href=''>經典飛行員式</a>
-                        <li><a href=''>低調質感靛藍玳瑁</a>
-                        <li><a href=''>特殊夾式方框</a>
-                        <li><a href=''>簡約俐落方框</a>
-                        <li><a href=''>雙横鼻樑式飛行員</a>
+                        <li><a href='javascript:void(0)'>眼鏡</a></li>
+                        <li><a href='javascript:void(0)'>經典飛行員式</a></li>
+                        <li><a href='javascript:void(0)'>低調質感靛藍玳瑁</a></li>
+                        <li><a href='javascript:void(0)'>特殊夾式方框</a></li>
+                        <li><a href='javascript:void(0)'>簡約俐落方框</a></li>
+                        <li><a href='javascript:void(0)'>雙横鼻樑式飛行員</a></li>
                     </ul>
 
                 <li>
                     <span onclick='toggleMenu("m8")'>領帶</span>
                     <ul id=m8>
-                        <li><a href=''>寬領帶</a>
-                        <li><a href=''>窄領帶</a>
-                        <li><a href=''>領結</a>
+                        <li><a href='javascript:void(0)'>寬領帶</a></li>
+                        <li><a href='javascript:void(0)'>窄領帶</a></li>
+                        <li><a href='javascript:void(0)'>領結</a></li>
                     </ul>
                 <li>
                     <span onclick='toggleMenu("m9")'>皮帶</span>
                     <ul id=m9>
-                        <li><a href=''>正式皮帶</a>
-                        <li><a href=''>帆布皮帶</a>
+                        <li><a href='javascript:void(0)'>皮帶</a></li>
+                        <li><a href='javascript:void(0)'>皮夾</a></li>
+                        <li><a href='javascript:void(0)'>正式皮帶</a></li>
+                        <li><a href='javascript:void(0)'>帆布皮帶</a></li>
                     </ul>
 
 
@@ -140,30 +163,30 @@
                 <li>
                     <span onclick='toggleMenu("m10")'>臉部護理</span>
                     <ul id=m10>
-                        <li><a href=''>清潔保養</a>
-                        <li><a href=''>去角質</a>
-                        <li><a href=''>鬍後紓緩</a>
-                        <li><a href=''>淨膚護理</a>
+                        <li><a href='javascript:void(0)'>清潔保養</a></li>
+                        <li><a href='javascript:void(0)'>去角質</a></li>
+                        <li><a href='javascript:void(0)'>鬍後紓緩</a></li>
+                        <li><a href='javascript:void(0)'>淨膚護理</a></li>
                     </ul>
                 <li>
                     <span onclick='toggleMenu("m11")'>臉部護理</span>
                     <ul id=m11>
-                        <li><a href=''>清潔保養</a>
-                        <li><a href=''>去角質</a>
-                        <li><a href=''>鬍後紓緩</a>
-                        <li><a href=''>淨膚護理</a>
+                        <li><a href='javascript:void(0)'>清潔保養</a></li>
+                        <li><a href='javascript:void(0)'>去角質</a></li>
+                        <li><a href='javascript:void(0)'>鬍後紓緩</a></li>
+                        <li><a href='javascript:void(0)'>淨膚護理</a></li>
                     </ul>
                 <li>
                     <span onclick='toggleMenu("m12")'>防曬</span>
                     <ul id=m12>
-                        <li><a href=''>臉部護理</a>
-                        <li><a href=''>曬後護理</a>
+                        <li><a href='javascript:void(0)'>臉部護理</a></li>
+                        <li><a href='javascript:void(0)'>曬後護理</a></li>
                     </ul>
                 <li>
                     <span onclick='toggleMenu("m13")'>男仕香氛</span>
                     <ul id=m13>
-                        <li><a href=''>王者之躍</a>
-                        <li><a href=''> Eau de Campagne</a>
+                        <li><a href='javascript:void(0)'>王者之躍</a></li>
+                        <li><a href='javascript:void(0)'> Eau de Campagne</a></li>
                     </ul>
             </ul>
 
