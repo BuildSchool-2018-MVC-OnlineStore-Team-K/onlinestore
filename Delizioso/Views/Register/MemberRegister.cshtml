@@ -17,11 +17,15 @@
                 </div>
                 <br />
                 <div>
-                    <input id="UserId" type="email" name="UserId" placeholder="帳號 Account" maxlength="40" autocomplete="off" required="" />
+                    <input id="UserId" type="email" name="Email" placeholder="Email" maxlength="40" autocomplete="off" required="" />
+                </div>
+
+                <div>
+                    <input id="UserId" type="text" name="UserAccount" placeholder="帳號 Account" maxlength="40" autocomplete="off" required="" />
                 </div>
                 <br />
                 <div>
-                    <input id="UserPwd1" type="password" name="UserPwd1" placeholder="密碼 Password" maxlength="16" pattern="[A-Za-z0-9]{4,16}"
+                    <input id="UserPwd1" type="password" name="UserPwd" placeholder="密碼 Password" maxlength="16" pattern="[A-Za-z0-9]{4,16}"
                            title="由英文或數字所組成的4~16字元" required="" onchange="$('#UserPwd2').attr('pattern',$(this).val())" /> 由英文或數字所組成的4~16字元
                 </div>
                 <br />
@@ -40,7 +44,7 @@
                 </div>
                 <br />
                 <div>
-                    <input id="UserPhone" type="text" name="UserPhone" placeholder="手機 Cell Phone Number" maxlength="20" pattern="^.{6,20}$"
+                    <input id="UserPhone" type="text" name="Phone" placeholder="手機 Cell Phone Number" maxlength="20" pattern="^.{6,20}$"
                            title="由數字組成，如：0911222333" required="" />
                 </div>
                 <div align="right">

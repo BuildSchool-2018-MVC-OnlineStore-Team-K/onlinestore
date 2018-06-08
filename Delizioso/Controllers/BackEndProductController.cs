@@ -115,25 +115,32 @@ namespace WebApplication1.Controllers
             return View();
         }
 
+
+        
         [Route("UpdateProductInfo/{ProductID}")]
-        public ActionResult UpdateProductInfo(int ProductID)
+        [HttpPost]
+        public ActionResult UpdateProductInfo(ProductDetailViewModel ProductDetailmodel)
         {
             var service = new ProductsService();
-            ViewBag.ID = ProductID;
-            var result = service.GetProductDetailByProdycuID(ProductID);
+            ViewBag.ID = ProductDetailmodel.ProductID;  //透過ViewBag.ID 儲存資廖
+            var result = service.GetProductDetailByProdycuID(ProductDetailmodel.ProductID);
             var xx = result.First((x) => x.Category != null);
-            
+
             return View(result);
         }
 
+
+        /*
         //更改資料
-        [Route("UpdateProductInfoPost")]
-        [HttpPost]
-        public ActionResult UpdateProductInfo(IEnumerable<ProductDetailViewModel> model)
+        [Route("UpdateProductInfo/{ProductID}")]
+        
+        public ActionResult UpdateProductInfo(ProductDetailViewModel ProductDetailmodel)
         {
+            var x = ProductDetailmodel;
 
             return View();
-        }
+           
+        }*/
 
 
 

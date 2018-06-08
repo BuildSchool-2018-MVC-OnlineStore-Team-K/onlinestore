@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<ViewModels.ProductDetailViewModel>
 @{
-    ViewBag.Title = "UpdateProductInfo";
+    ViewBag.Title = "UpdateProductInfo/{ProductID}";
     Layout = "~/Views/Shared/BackEnd_Layout.cshtml";
 }
 
@@ -23,8 +23,11 @@
     <div class="col-2">單價</div>
 </div>
 
-@using (Html.BeginForm("UpdateProductInfoPost", "backendproduct"))
+
+@using (Html.BeginForm("UpdateProductInfo/{ProductID}", "backendproduct"))
 {
+<form name="product" action="UpdateProductInfo">
+
 
     <div class="row">
         <div class="col-2">
@@ -49,35 +52,34 @@
     </div>
 
 
-    foreach (var item in Model.Skip(1))
+    @foreach (var item in Model.Skip(1))
     {<div class="row">
 
-            <div class="col-2">
-                <input name="Category" value=@item.Category type="hidden" />
-            </div>
-            <div class="col-2">
-                <input name="ProductName" value=@item.ProductName type="hidden" />
-            </div>
-            <div class="col-2">
-                <input type="text" name="SizeType" placeholder="尺寸" maxlength="30" required value="@item.SizeType" />
-            </div>
-            <div class="col-2">
-                <input type="text" name="Color" placeholder="顏色" maxlength="30" required value="@item.Color" />
-            </div>
-            <div class="col-2">
-                <input type="text" name="Stock" placeholder="存貨" maxlength="30" required value="@item.Stock" />
-            </div>
-            <div class="col-2">
-                <input type="text" name="UnitPrice" placeholder="單價" maxlength="30" required value="@item.UnitPrice" />
-            </div>
-
+        <div class="col-2">
+            <input name="Category" value=@item.Category type="hidden" />
         </div>
+        <div class="col-2">
+            <input name="ProductName" value=@item.ProductName type="hidden" />
+        </div>
+        <div class="col-2">
+            <input type="text" name="SizeType" placeholder="尺寸" maxlength="30" required value="@item.SizeType" />
+        </div>
+        <div class="col-2">
+            <input type="text" name="Color" placeholder="顏色" maxlength="30" required value="@item.Color" />
+        </div>
+        <div class="col-2">
+            <input type="text" name="Stock" placeholder="存貨" maxlength="30" required value="@item.Stock" />
+        </div>
+        <div class="col-2">
+            <input type="text" name="UnitPrice" placeholder="單價" maxlength="30" required value="@item.UnitPrice" />
+        </div>
+
+    </div>
     }
 
-    <button type="submit" class="btn btn-secondary" >儲存</button>
+    <button type="submit" class="btn btn-secondary">儲存</button>
+</form>
 
 }
-
-
 
 
