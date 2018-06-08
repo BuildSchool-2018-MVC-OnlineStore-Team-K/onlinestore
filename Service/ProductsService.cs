@@ -14,14 +14,14 @@ namespace Service
     {
         ProductsRepository repo = new ProductsRepository();
 
-        public void AddToCart(AddToCartViewModel viewmodel)
+        public void AddToCart(AddToCartViewModel viewmodel, string account)
         {
             var orderrepo = new OrdersRepository();
             var orderdetailrepo = new OrderDetailRepository();
+            var members = new MembersRepository();
+            var memberid = members.GetMemberIDByAccount(account);
 
-            //加入判斷cart ==0
-            orderrepo.AddToCartOrders(viewmodel);
-            orderdetailrepo.AddToCartOrderDetail(viewmodel, orderrepo.AddToCartOrders(viewmodel));
+            orderdetailrepo.AddToCartOrderDetail(viewmodel, orderrepo.GetCartOrderID(memberid));
         }
 
         public IEnumerable<Products> GetProductsTable()

@@ -54,12 +54,14 @@ namespace WebApplication1.Controllers
         {
             var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
             var ticket = FormsAuthentication.Decrypt(cookie.Value);
+            var UserAccount = ticket.Name.Split(',')[1];
+
             var product_service = new ProductsService();
-            product_service.AddToCart(viewmodel);
+            product_service.AddToCart(viewmodel, UserAccount);
 
             var tmp = viewmodel;
 
-            return Redirect("orders");
+            return Redirect("~/orders/checkorder");
         }
 
         [Route("all")]

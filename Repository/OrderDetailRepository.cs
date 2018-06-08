@@ -16,17 +16,12 @@ namespace BuildSchool.MVCSolution.OnlineStore.OrderDetailRepository
     {
         MyConnectionString source = new MyConnectionString();
 
-        public void AddToCartOrderDetail(AddToCartViewModel viewmodel, IEnumerable<Orders> number)
+        public void AddToCartOrderDetail(AddToCartViewModel viewmodel, int orderid)
         {
             var sql = "INSERT INTO OrderDetail(OrderID, ProductID, UnitPrice, Quantity, SizeType, Color) VALUES(@OrderID, @ProductID, @Quantity , @UnitPrice, @SizeType, @Color)";
 
-            int tmpnumber;
             var parameters = new DynamicParameters();
-            foreach (var i in number)
-            {
-                tmpnumber = i.OrderID;
-                parameters.Add("@OrderID", tmpnumber);
-            }
+            parameters.Add("@OrderID", orderid);
             parameters.Add("@ProductID", viewmodel.ProductID);
             parameters.Add("@UnitPrice", viewmodel.UnitPrice);
             parameters.Add("@Quantity", viewmodel.Quantity);
