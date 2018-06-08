@@ -26,6 +26,7 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public ActionResult MemberRegister(RegisterModel registerModel)
         {
+            registerModel.Birthday = Convert.ToDateTime("1996-08-24");
             var service = new CheckMember();
             if (!service.CheckAccountExist(registerModel.UserAccount))
             {

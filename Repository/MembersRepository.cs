@@ -271,22 +271,22 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public bool CreateAccount(RegisterModel member)
         {
             SqlConnection connection = new SqlConnection(source.connect);
-            connection.Execute("INSERT INTO Members([Name], [Address],Birthday,Phone,Email,Account,[Password],Career,[Block]) Values(@Name , @Address , @Birthday ,@Phone , @Email , @Account , @Password , @Career ,0)",
+            connection.Execute("INSERT INTO Members([Name], [Address],Birthday,Phone,Email,Account,[Password],Career) Values(@Name , @Address , @Birthday ,@Phone , @Email , @Account , @Password , @Career)",
                 new
                 {
-                    member.UserName,
+                    Name = member.UserName,
                     member.Address,
                     member.Birthday,
                     member.Phone,
                     member.Email,
-                    member.UserAccount,
-                    member.UserPwd,
+                    Account = member.UserAccount,
+                    Password = member.UserPwd,
                     member.Career
                 });
             var result = connection.Query<RegisterModel>("SELECT * FROM Members Where Account = @Account and Name = @Name", new
             {
-                member.UserAccount,
-                member.UserName
+                Account = member.UserAccount,
+                Name = member.UserName
             });
             if (result.Count() > 0)
             {
