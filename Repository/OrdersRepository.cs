@@ -15,15 +15,15 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
     public class OrdersRepository 
     {
          MyConnectionString source = new MyConnectionString();
-        //private string connect = "Server=192.168.40.35,1433;Database=E-Commerce;User ID =smallhandsomehandsome; Password =123;";
+        //private string connect = "Server=192.168.40.35,1433;Database=E-Commerce;User ID =smallhandsomehandsome; Password =123;";]
+              
+
         public void Create(Orders model)
         {
 
             SqlConnection connection = new SqlConnection(source.connect);
             var sql = "INSERT INTO Orders Values(@MemberID , @OrderID , @Pay , @Payway , @ShipPlace , @Time , @Cart)";
             SqlCommand command = new SqlCommand(sql, connection);
-            
-           
 
             command.Parameters.AddWithValue("@MemberID", model.MemberID);
             command.Parameters.AddWithValue("@OrderID", model.OrderID);

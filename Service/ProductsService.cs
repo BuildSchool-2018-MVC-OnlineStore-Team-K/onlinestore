@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BuildSchool.MVCSolution.OnlineStore.Models;
+using BuildSchool.MVCSolution.OnlineStore.OrderDetailRepository;
 using BuildSchool.MVCSolution.OnlineStore.Repository;
 using ViewModels;
 
@@ -13,23 +14,25 @@ namespace Service
     {
         ProductsRepository repo = new ProductsRepository();
 
+        public void AddToCart(AddToCartViewModel viewmodel, string account)
+        {
+            var orderrepo = new OrdersRepository();
+            var orderdetailrepo = new OrderDetailRepository();
+            var members = new MembersRepository();
+            var memberid = members.GetMemberIDByAccount(account);
+
+            orderdetailrepo.AddToCartOrderDetail(viewmodel, orderrepo.GetCartOrderID(memberid));
+        }
+
         public IEnumerable<Products> GetProductsTable()
         {
             return repo.GetProductsTable();
         }
-        //public ProductsDetailViewModel GetProductDetail(IEnumerable<ProductsViewModel> list, int ProductID)
-        //{
-        //    var result = list.FirstOrDefault((x) => x.ProductID == ProductID);
-        //    var productsdetail = new ProductsDetailViewModel()
-        //    {
-        //        ProductID = result.ProductID,
-        //        ProductName = result.ProductName,
-        //        Category = result.Category,
-        //        UnitPrice = result.UnitPrice,
-        //        Picture = result.Picture
-        //    };
-        //    return productsdetail;
-        //}
+
+        public IEnumerable<Products> GetProductsByCategory(string category)
+        {
+            return repo.GetProductsByCategory(category);
+        }
 
         public List<ProductSize> DistinctSize(IEnumerable<ProductsViewModel> list)
         {

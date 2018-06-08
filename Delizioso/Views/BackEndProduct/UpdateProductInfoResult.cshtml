@@ -1,0 +1,33 @@
+﻿@model IEnumerable<ViewModels.ProductDetailViewModel>
+
+@{
+    ViewBag.Title = "UpdateProductInfoResult";
+    Layout = "~/Views/Shared/BackEnd_Layout.cshtml";
+}
+
+<h2>修改完成,修改後的結果:</h2>
+@foreach( var item in Model)
+{
+<div class="row">
+    <div class="col-2">
+        @item.Category
+    </div>
+    <div class="col-2">
+        @item.ProductName
+    </div>
+    <div class="col-2">
+        @item.SizeType
+    </div>
+    <div class="col-2">
+        @item.Color
+    </div>
+    <div class="col-2">
+        @item.UnitPrice
+    </div>
+    <div class="col-2">
+        
+    </div>
+</div>
+}
+
+

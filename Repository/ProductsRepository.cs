@@ -17,6 +17,16 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         MyConnectionString source = new MyConnectionString();
         //Create已改成CreateProductDetail
 
+        public IEnumerable<Products> GetProductsByCategory(string category)
+        {
+            var sql = "SELECT * FROM Products WHERE Category = @Category";
+            var parameters = new DynamicParameters();
+            parameters.Add("Category", category);
+            using (var connection = new SqlConnection(source.connect))
+            {
+                return connection.Query<Products>(sql, parameters);
+            }
+        }
         public void Update(Products model)
         {
             SqlConnection connection = new SqlConnection(source.connect);

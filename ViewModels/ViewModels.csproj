@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddToCartViewModel.cs" />
     <Compile Include="CartViewModel.cs" />
     <Compile Include="CreateProductsModel.cs" />
     <Compile Include="LoginViewModel.cs" />
