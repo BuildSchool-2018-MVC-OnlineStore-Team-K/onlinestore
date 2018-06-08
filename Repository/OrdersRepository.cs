@@ -15,15 +15,35 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
     public class OrdersRepository 
     {
          MyConnectionString source = new MyConnectionString();
-        //private string connect = "Server=192.168.40.35,1433;Database=E-Commerce;User ID =smallhandsomehandsome; Password =123;";
+        //private string connect = "Server=192.168.40.35,1433;Database=E-Commerce;User ID =smallhandsomehandsome; Password =123;";]
+
+        public IEnumerable<Orders> AddToCartOrders(AddToCartViewModel viewmodel)
+        {
+            var sql = "INSERT INTO Orders(MemberID, Cart, Pay, Time) VALUES (@MemberID, 0, 1, @Time)";
+            var parameters = new DynamicParameters();
+            parameters.Add("@MemberID", 1);
+            parameters.Add("@Time", DateTime.Now);
+            using (var connection = new SqlConnection(source.connect))
+            {
+                connection.Query<Orders>(sql, parameters);
+            }
+            var sql1 = "SELECT * FROM Orders WHERE MemberID = @MemberID AND Cart = 0";
+            var parameters1 = new DynamicParameters();
+            parameters1.Add("@MemberID", 1);
+            using (var connection = new SqlConnection(source.connect))
+            {
+                return connection.Query<Orders>(sql1, parameters1);
+            }
+        }
+
+        
+
         public void Create(Orders model)
         {
 
             SqlConnection connection = new SqlConnection(source.connect);
             var sql = "INSERT INTO Orders Values(@MemberID , @OrderID , @Pay , @Payway , @ShipPlace , @Time , @Cart)";
             SqlCommand command = new SqlCommand(sql, connection);
-            
-           
 
             command.Parameters.AddWithValue("@MemberID", model.MemberID);
             command.Parameters.AddWithValue("@OrderID", model.OrderID);

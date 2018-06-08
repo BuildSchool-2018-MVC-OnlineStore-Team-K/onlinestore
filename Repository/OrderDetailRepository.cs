@@ -16,6 +16,28 @@ namespace BuildSchool.MVCSolution.OnlineStore.OrderDetailRepository
     {
         MyConnectionString source = new MyConnectionString();
 
+        public void AddToCartOrderDetail(AddToCartViewModel viewmodel, IEnumerable<Orders> number)
+        {
+            var sql = "INSERT INTO OrderDetail(OrderID, ProductID, UnitPrice, Quantity, SizeType, Color) VALUES(@OrderID, @ProductID, @Quantity , @UnitPrice, @SizeType, @Color)";
+
+            int tmpnumber;
+            var parameters = new DynamicParameters();
+            foreach (var i in number)
+            {
+                tmpnumber = i.OrderID;
+                parameters.Add("@OrderID", tmpnumber);
+            }
+            parameters.Add("@ProductID", viewmodel.ProductID);
+            parameters.Add("@UnitPrice", viewmodel.UnitPrice);
+            parameters.Add("@Quantity", viewmodel.Quantity);
+            parameters.Add("@SizeType", viewmodel.Size);
+            parameters.Add("@Color", viewmodel.Color);
+            using(var connection = new SqlConnection(source.connect))
+            {
+                connection.Query<AddToCartViewModel>(sql, parameters);
+            }
+        }
+
         public void Create(OrderDetail model)
         {
             SqlConnection connection = new SqlConnection(source.connect);

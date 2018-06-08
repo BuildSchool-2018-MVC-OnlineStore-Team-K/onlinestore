@@ -178,7 +178,7 @@
                         for (var i = 0; i < o.length; i++)
                             o[i].style.display = 'none';
                     }
-                    hideMenu('menus');
+                    hideMenu('menus'); 
                 </script>
 
             </div>
@@ -241,9 +241,19 @@
                         <div id="colorSelect">
                             @foreach(var i in stockcolor)
                             {
-                                <a href="javascript:void(0)">
-                                    <img class="color-select img-border" style="background: @i.Color;">
-                                </a>
+                                var count = 1;
+                                if(count == 1)
+                                {
+                                    <a href="javascript:void(0)">
+                                        <img class="color-select img-border" style="background: @i.Color;">
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a href="javascript:void(0)">
+                                        <img class="img-border" style="background: @i.Color;">
+                                    </a>
+                                }
                             }
                             @*<a href="#">
                                 <img class="color-select" style="background: rgb(38, 57, 226);">
@@ -275,7 +285,7 @@
                                     }
                                     else
                                     {
-                                        <span class="current" mysize="@i.SizeType">@i.SizeType</span>
+                                        <span mysize="@i.SizeType">@i.SizeType</span>
                                     }
                                 }
                                 @*<span mysize="M">M</span>
@@ -302,9 +312,31 @@
                                 <option value="5">5</option>
                             </select>
                         </div>
-                        <a href="http://localhost:57010/orders/checkorder">
-                            <img class="cursor" src="~/Content/Delizioso_files/Images/addcart.png" alt="加入購物車">
-                        </a>
+                        @using (Html.BeginForm("SimpleProduct", "Products"))
+                        { 
+                        <form id="form">
+                            <input type="hidden" name="productid" value="@ViewBag.ProductID" />
+                            <input id="test" type="hidden" name="unitprice" value="@ViewBag.UnitPrice" />
+                            <input id="color" type="hidden" name="color" />
+                            <input id="size" type="hidden" name="size" />
+                            <input id="quantity" type="hidden" name="quantity" />
+                            
+                            <button type="submit" id="submit" href="#">
+                                <img class="cursor" src="~/Content/Delizioso_files/Images/addcart.png" alt="加入購物車">
+                            </button>
+                            <script>
+                                $(document).ready(function () {
+                                    console.log($("#test").val());
+                                    $("#color").val($(".color-select").css("background").split(")")[0] + ")");
+                                    $("#size").val($(".current").text());
+
+                                    $("#submit").click(function () {
+                                        $("#quantity").val($("#selectQTY").find(":selected").text());
+                                    });
+                                });
+                            </script>
+                        </form>
+                        }
                     </div>
                 </div>
             </div>
