@@ -117,9 +117,9 @@ namespace WebApplication1.Controllers
 
 
         
-        //[Route("UpdateProductInfo/{ProductID}")]
+        [Route("UpdateProductInfoResult/{ProductID}")]
         [HttpPost]
-        public ActionResult UpdateProductInfoResult(int? productID , ProductDetailViewModel ProductDetailmodel)
+        public ActionResult UpdateProductInfoResult(int productID , List<ProductDetailViewModel> ProductDetailmodel)
         {
             var x = ProductDetailmodel;
 
@@ -128,15 +128,13 @@ namespace WebApplication1.Controllers
 
 
         
-        //更改資料
+        //預設
         [Route("UpdateProductInfo/{ProductID}")]
-        public ActionResult UpdateProductInfo(ProductDetailViewModel ProductDetailmodel)
+        public ActionResult UpdateProductInfo(int productID)
         {
             
             var service = new ProductsService();
-            ViewBag.ID = ProductDetailmodel.ProductID;  //透過ViewBag.ID 儲存資廖
-            var result = service.GetProductDetailByProdycuID(ProductDetailmodel.ProductID);
-            var xx = result.First((x) => x.Category != null);
+            var result = service.GetProductDetailByProdycuID(productID);
             return View(result);
            
         }
