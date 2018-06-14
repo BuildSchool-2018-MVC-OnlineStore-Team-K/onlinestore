@@ -34,7 +34,7 @@
                         <br>THANK YOU!
                     </div>
                 </div>
-                @*<form method="post" action="ShippingPayment" id="form" name="form" onsubmit="var value = $('input[name=tmpMode]:checked').val().toString(); return true;">*@
+                <form method="post" action="ShippingPayment" id="form" name="form" onsubmit="var value = $('input[name=tmpMode]:checked').val().toString(); return true;">
                     <table class="table-order">
                         <tbody>
                             <tr>
@@ -440,10 +440,10 @@
 
                     </table>
                     <div align="center" class="order-action">
-                        <button id="nextPage" class="btn3" onclick="SelectRadioValue()">下一步</button>
-                        @*<input type="submit" value="下一步" class="btn3" id="nextPage" onclick="~/cart/deliveryinformation">*@
+                        @*<button id="nextPage" class="btn3" onclick="SelectRadioValue()">下一步</button>*@
+                        <input type="submit" value="下一步" class="btn3" id="nextPage" onclick="~/cart/deliveryinformation">
                     </div>
-                @*</form>*@
+                </form>
             </div>
         </div>
     </div>
@@ -452,8 +452,13 @@
     function SelectRadioValue() {
         $.ajax({
             url: "@Url.Action("ShippingPayment","Cart")",
-            method: "post",
+            method: "Post",
             data: { value: $('input[name=tmpMode]:checked').val()}
+        })
+
+        $.ajax({
+            url: "@Url.Action("DeliveryInformation", "Cart")",
+            method: "GET"
         })
     }
 </script>
