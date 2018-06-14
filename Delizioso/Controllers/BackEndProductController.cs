@@ -134,8 +134,17 @@ namespace WebApplication1.Controllers
         [Route("UpdateProductInfo/{ProductID}")]
         public ActionResult UpdateProductInfo(int productID)
         {
-            
             var service = new ProductsService();
+
+            //這我沒辦法 他不能寫在service裡面 抓不到SelectListItem這東西
+            var items = new List<SelectListItem>();
+            items.Add(new SelectListItem() { Text = "XS", Value = "XS", Selected = false });
+            items.Add(new SelectListItem() { Text = "S", Value = "S", Selected = false });
+            items.Add(new SelectListItem() { Text = "M", Value = "M", Selected = true });
+            items.Add(new SelectListItem() { Text = "L", Value = "L", Selected = false });
+            items.Add(new SelectListItem() { Text = "XL", Value = "XL", Selected = false });
+            ViewBag.SelectedItems = items;
+
             var result = service.GetProductDetailByProdycuID(productID);
             return View(result);
            

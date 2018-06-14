@@ -91,6 +91,7 @@ namespace Service
             var repo = new ProductsRepository();
             repo.UpdateProductInfoByProductID_SizeID_ColorID(model);
         }
+        
 
     }
 }

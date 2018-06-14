@@ -18,7 +18,7 @@
     <div class="col-2">產品種類</div>
     <div class="col-2">產品名稱</div>
     <div class="col-2">單價</div>
-    <div class="col-2">尺寸</div>
+    <div class="col-1">尺寸</div>
     <div class="col-2">顏色</div>
     <div class="col-2">存貨</div>
 </div>
@@ -36,22 +36,22 @@
         @Html.HiddenFor(x => x[0].SizeID)
 
         <div class="col-2">
-            @Html.TextBoxFor(x => x[0].Category)
+            @Html.TextBoxFor(x => x[0].Category , new { @type = "text"})
         </div>
         <div class="col-2">
-            @Html.TextBoxFor(x => x[0].ProductName)
+            @Html.TextBoxFor(x => x[0].ProductName, new { @type = "text" })
         </div>
         <div class="col-2">
-            @Html.TextBoxFor(x => x[0].UnitPrice)
+            @Html.TextBoxFor(x => x[0].UnitPrice , new { @type = "number", @min = "0" })
+        </div>
+        <div class="col-1">
+            @Html.DropDownListFor(x => x[0].SizeType, (IEnumerable<SelectListItem>)ViewBag.SelectedItems)
         </div>
         <div class="col-2">
-            @Html.TextBoxFor(x => x[0].SizeType)
+            @Html.TextBoxFor(x => x[0].Color, new { @type = "text" })
         </div>
         <div class="col-2">
-            @Html.TextBoxFor(x => x[0].Color)
-        </div>
-        <div class="col-2">
-            @Html.TextBoxFor(x => x[0].Stock)
+            @Html.TextBoxFor(x => x[0].Stock, new { @type = "number" , @min="0" })
         </div>
 
 }
@@ -74,14 +74,14 @@
         <div class="col-2">
             
         </div>
-        <div class="col-2">
-            @Html.TextBoxFor(x => x[i].SizeType)
+        <div class="col-1">
+            @Html.DropDownListFor(x => x[i].SizeType , (IEnumerable<SelectListItem>)ViewBag.SelectedItems)
         </div>
         <div class="col-2">
-            @Html.TextBoxFor(x => x[i].Color)
+            @Html.TextBoxFor(x => x[i].Color, new { @type = "text" })
         </div>
         <div class="col-2">
-            @Html.TextBoxFor(x => x[i].Stock)
+            @Html.TextBoxFor(x => x[i].Stock, new { @type = "number" , @min="0" })
         </div>
 
 
