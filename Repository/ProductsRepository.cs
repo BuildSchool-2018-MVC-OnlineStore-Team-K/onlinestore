@@ -439,26 +439,26 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             using (SqlConnection connection = new SqlConnection(source.connectcloud))
             {
                 //更新產品資料表Products
-                connection.Query<ProductDetailViewModel>("Update Products(Category , ProductName) Values(@Category , @ProductName) Where ProductID = @ProductID", new
+                connection.Query<ProductDetailViewModel>("Update Products SET Category = @Category , ProductName = @ProductName , UnitPrice = @UnitPrice Where ProductID = @ProductID", new
                 {
                     model[0].Category,
                     model[0].ProductName,
+                    model[0].UnitPrice,
                     model[0].ProductID
                 });
                 foreach (var item in model)
                 {
                     //更新Size資料表
-                    connection.Query<ProductDetailViewModel>("Update Size( SizeType ) Values(@SizeType) where SizeID = @SizeID", new
+                    connection.Query<ProductDetailViewModel>("Update Size SET SizeType = @SizeType  where SizeID = @SizeID", new
                     {
                         item.SizeType,
                         item.SizeID
                     });
                     //更新StockColor資料表
-                    connection.Query<ProductDetailViewModel>("Update StockColor( Color , Stock , UnitPrice ) Values(@Color , @Stock , @UnitPrice ) where ColorID = @ColorID ", new
+                    connection.Query<ProductDetailViewModel>("Update StockColor SET Color = @Color , Stock = @Stock  where ColorID = @ColorID ", new
                     {
                         item.Color , 
                         item.Stock ,
-                        item.UnitPrice ,
                         item.ColorID
                     });
 
