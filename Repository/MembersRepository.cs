@@ -18,7 +18,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public void Create(Members model)
         {
-            SqlConnection connection = new SqlConnection(source.connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
             var sql = "INSERT INTO Members VALUES " +
                 "(@MemberID, " +
                 "@Name," +
@@ -53,7 +53,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public void Update(Members model)
         {
-            SqlConnection connection = new SqlConnection(source.connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
             var sql = "UPDATE OrderDetail SET(MemberID=@MemberID, " +
                  "Name=@Name," +
                  "Address=@Address," +
@@ -87,7 +87,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public void Delete(Members model)
         {
-            SqlConnection connection = new SqlConnection(source.connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
             var sql = "Delete FROM OrderDetail WHERE MemberID=@MemberID";
 
 
@@ -102,7 +102,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public Members FindById(string MemberID)
         {
-            SqlConnection connection = new SqlConnection(source.connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
             var sql = "SELECT * FROM Members WHERE MemberID = @MemberID";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -138,7 +138,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         {
             get
             {
-                SqlConnection connection = new SqlConnection(source.connect);
+                SqlConnection connection = new SqlConnection(source.connectcloud);
                 var sql = "SELECT * FROM Members";
 
                 SqlCommand command = new SqlCommand(sql, connection);
@@ -176,7 +176,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         //不要亂命名r
         public void UpdateMemberInformation(int MemberID)
         {
-            SqlConnection connection = new SqlConnection(source.connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
             var sql = "SELECT MemberID FROM Members WHERE @MemberID=MemberID";
             SqlCommand command = new SqlCommand(sql, connection);
             connection.Open();
@@ -195,7 +195,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public void UpdateAccountAndPassword(Members model)
         {
-            SqlConnection connection = new SqlConnection(source.connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
             var sql = "UPDATE Members SET(MemberID=@MemberID, " +
                  "Name=@Name," +
                  "Address=@Address," +
@@ -230,7 +230,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public IEnumerable<Members> GetAll() //NEWPassword
         {
-            SqlConnection connection = new SqlConnection(source.connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
             var sql = "SELECT Password FROM  Members  WHERE MemberID=@MemberID,@Password=Password";
             SqlCommand command = new SqlCommand(sql, connection);
             connection.Open();
@@ -250,7 +250,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public bool CheckAccountIsExist(string Account)
         {
-            SqlConnection connection = new SqlConnection(source.connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
             var result = connection.Query<Members>("SELECT account From Members where Account = @Account ", new
             {
                 Account
@@ -270,7 +270,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public bool CreateAccount(RegisterModel member)
         {
-            SqlConnection connection = new SqlConnection(source.connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
             connection.Execute("INSERT INTO Members([Name], [Address],Birthday,Phone,Email,Account,[Password],Career) Values(@Name , @Address , @Birthday ,@Phone , @Email , @Account , @Password , @Career)",
                 new
                 {
@@ -300,7 +300,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public string AccountLogin(string Account, string Password)
         {
-            SqlConnection connection = new SqlConnection(source.connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
             var result = connection.Query<LoginViewModel>("SELECT Name FROM Members WHERE Account = @Account AND Password = @Password",new {
                 Account,
                 Password
@@ -310,7 +310,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public bool CheckFbIdExist(string id)
         {
-            SqlConnection connection = new SqlConnection(source.connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
 
             var result = connection.Query("SELECT FbId From Members Where FbId = @id", new
             {
@@ -328,7 +328,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public bool CreateAccountByFBId(string FBId , string FBName)
         {
-            SqlConnection connection = new SqlConnection(source.connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
             connection.Execute("INSERT INTO Members([Name] , FbId) Values(@FBName , @FBId) ", new
             {
                 FBName,
@@ -349,7 +349,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public int GetMemberIDByAccount(string Account)
         {
-            SqlConnection connection = new SqlConnection(source.connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
             var result =  connection.Query<int>("SELECT MEMBERID FROM MEMBERS WHERE ACCOUNT = @ACCOUNT ", new
             {
                 Account

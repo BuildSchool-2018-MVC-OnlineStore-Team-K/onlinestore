@@ -50,6 +50,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository.Tests
             var orders = repository._GetAll();
             Assert.IsTrue(orders.Count() > 0);
         }
+        
     }
 }
 

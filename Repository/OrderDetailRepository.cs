@@ -27,7 +27,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.OrderDetailRepository
             parameters.Add("@Quantity", viewmodel.Quantity);
             parameters.Add("@SizeType", viewmodel.Size);
             parameters.Add("@Color", viewmodel.Color);
-            using(var connection = new SqlConnection(source.connect))
+            using(var connection = new SqlConnection(source.connectcloud))
             {
                 connection.Query<AddToCartViewModel>(sql, parameters);
             }
@@ -35,7 +35,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.OrderDetailRepository
 
         public void Create(OrderDetail model)
         {
-            SqlConnection connection = new SqlConnection(source.connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
 
             var sql = "INSERT INTO OrderDetail Values(@OrderID , @ProductID, @UnitPrice, @Quantity , @Discount)";
             SqlCommand command = new SqlCommand(sql, connection);
@@ -56,7 +56,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.OrderDetailRepository
 
         public void Update(OrderDetail model)
         {
-            SqlConnection connection = new SqlConnection(source.connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
 
             var sql = "UPDATE OrderDetail SET(OrderID=@OrderID,ProductID=@ProductID,UnitPrice=@UnitPrice,Quantity=@Quantity,Discount=@Discount)";
             SqlCommand command = new SqlCommand(sql, connection);
@@ -76,7 +76,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.OrderDetailRepository
         public void Delete(OrderDetail model)
         {
 
-            SqlConnection connection = new SqlConnection(source.connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
 
             var sql = "Delete FROM OrderDetail WHERE OrderID=@OrderID AND ProductID=@ProductID";
             SqlCommand command = new SqlCommand(sql, connection);
@@ -92,7 +92,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.OrderDetailRepository
 
         public IEnumerable<OrderDetail> GetAll() //()內不用給直 因為傳整個表格
         {
-            SqlConnection connection = new SqlConnection(source.connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
 
             var sql = "SELECT * FROM  OrderDetail";
             SqlCommand command = new SqlCommand(sql, connection);
@@ -117,7 +117,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.OrderDetailRepository
 
         public int GetTotalQuantiyByProductID(int ProductID)
         {
-            SqlConnection connection = new SqlConnection(source.connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
 
             var sql = "SELECT SUM(Quantity) FROM OrderDetail WHERE ProductID = @ProductID GROUP BY ProductID";
             SqlCommand command = new SqlCommand(sql, connection);
@@ -136,7 +136,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.OrderDetailRepository
 
         public decimal GetTotalPriceByOrderID(int OrderID)
         {
-            SqlConnection connection = new SqlConnection(source.connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
 
             var sql = "SELECT SUM(UnitPrice * Quantity * (1-Discount)) FROM OrderDetail WHERE OrderID = @OrderID GROUP BY OrderID";
             SqlCommand command = new SqlCommand(sql, connection);
@@ -155,7 +155,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.OrderDetailRepository
 
         public IEnumerable<OrdersViewModel> GetMemberOrderDetail(int MemberID)
         {
-            SqlConnection connection = new SqlConnection(source.connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
             return connection.Query<OrdersViewModel>("SELECT o.Time,o.OrderID,o.Payway,od.UnitPrice,od.Quantity,od.Discount ,p.ProductID FROM Members m INNER JOIN Orders o ON o.MemberID = m.MemberID INNER JOIN OrderDetail od ON od.OrderID = o.OrderID INNER JOIN Products p ON p.ProductID = od.ProductID WHERE m.MemberID = 1 AND o.Cart = 0", new
             {
                 MemberID
@@ -164,7 +164,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.OrderDetailRepository
 
         public IEnumerable<OrderDetailsViewModel> GetOrdersOrderDetails(int OrderID)
         {
-            SqlConnection connection = new SqlConnection(source.connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
             return connection.Query<OrderDetailsViewModel>("SELECT p.ProductID,p.ProductName,sc.Color,s.SizeType,od.Quantity,od.UnitPrice FROM OrderDetail od INNER JOIN Products p ON p.ProductID = od.ProductID INNER JOIN Size s ON s.ProductID = p.ProductID INNER JOIN StockColor sc ON sc.SizeID = s.SizeID WHERE od.OrderID = @OrderID", new
             {
                 OrderID

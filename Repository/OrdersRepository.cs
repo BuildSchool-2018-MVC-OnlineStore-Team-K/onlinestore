@@ -21,7 +21,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public void Create(Orders model)
         {
 
-            SqlConnection connection = new SqlConnection(source.connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
             var sql = "INSERT INTO Orders Values(@MemberID , @OrderID , @Pay , @Payway , @ShipPlace , @Time , @Cart)";
             SqlCommand command = new SqlCommand(sql, connection);
 
@@ -42,7 +42,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public void Update(Orders model)
         {
-            SqlConnection connection = new SqlConnection(source.connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
 
             var sql = "UPDATE Orders SET( MemberID = @MemberID  , OrderDetailID = @OrderDetailID  , OrderID = @OrderID , Pay = @Pay , Payway = @Payway , ShipPlace = @ShipPlace , Time = @Time , Cart = @Cart )";
             SqlCommand command = new SqlCommand(sql, connection);
@@ -63,7 +63,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public IEnumerable<Orders> GetByOrderID(int OrderID) //ok
         {
-            SqlConnection connection = new SqlConnection(source.connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
             var sql = "SELECT * FROM Orders Where OrderID = @OrderID";
             var list = new List<Orders>();
             SqlCommand command = new SqlCommand(sql, connection);
@@ -87,7 +87,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public void Delete(Orders model)
         {
 
-            SqlConnection connection = new SqlConnection(source.connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
             var sql = "DELETE FROM Orders where OrderID = @OrderID";
             SqlCommand command = new SqlCommand(sql, connection);
 
@@ -100,7 +100,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public IEnumerable<Orders> GetAll() //ok
                                        //()內不用給直 因為傳整個表格  
         {
-            SqlConnection connection = new SqlConnection(source.connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
             var sql = "SELECT * FROM  Orders";
             SqlCommand command = new SqlCommand(sql, connection);
             var list = new List<Orders>();
@@ -121,14 +121,14 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public IEnumerable<Orders> _GetAll()
         {
-            SqlConnection connection = new SqlConnection(source.connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
             return connection.Query<Orders>("Select * FROM Orders");
         }
 
         //0是購物車
         public bool UpdateCartToOrders(int MemberID , int OrderID) 
         {
-            SqlConnection connection = new SqlConnection(source.connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
             connection.Query("Update Orders SET cart = 1 where MemberID = @MemberID and OrderID = @OrderID",new {
                 MemberID,
                 OrderID
@@ -150,7 +150,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public int GetCartOrderID(int MemberID)
         {
-            SqlConnection connection = new SqlConnection(source.connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
             var sql = "SELECT OrderID FROM Orders  WHERE MemberID = @MemberID and Cart = 0";
             SqlCommand command = new SqlCommand(sql, connection);
             command.Parameters.AddWithValue("@MemberID", MemberID);
@@ -205,7 +205,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public IEnumerable<CartViewModel> GetCartProductsInformation(string Account)
         {
-            SqlConnection connection = new SqlConnection(source.connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
             //取得該會員得購物車 詳細資訊 購買了ooxx的oo尺寸oo個oo顏色ooxx
 
             return  connection.Query<CartViewModel>("SELECT  p.ProductName, od.UnitPrice , Quantity, sc.Color, sz.SizeType, od.Discount FROM Members m INNER JOIN Orders o ON o.MemberID = m.MemberID INNER JOIN OrderDetail od ON o.OrderID = od.OrderID INNER JOIN Products p ON p.ProductID = od.ProductID INNER JOIN Size sz ON p.ProductID = sz.ProductID INNER JOIN StockColor sc ON sc.SizeID = sz.SizeID WHERE m.Account = @Account and Cart = 0", new {

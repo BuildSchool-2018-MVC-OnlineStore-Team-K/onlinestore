@@ -22,14 +22,14 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             var sql = "SELECT * FROM Products WHERE Category = @Category";
             var parameters = new DynamicParameters();
             parameters.Add("Category", category);
-            using (var connection = new SqlConnection(source.connect))
+            using (var connection = new SqlConnection(source.connectcloud))
             {
                 return connection.Query<Products>(sql, parameters);
             }
         }
         public void Update(Products model)
         {
-            SqlConnection connection = new SqlConnection(source.connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
             var sql = "UPDATE Products SET Category=@category, ProductName=@productname, UnitPrice=@unitprice, ShelfTime=@shelftime,Picture=@picture WHERE ProductID = @productid";
             SqlCommand command = new SqlCommand(sql, connection);
 
@@ -47,7 +47,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public void Delete(Products model)
         {
-            SqlConnection connection = new SqlConnection(source.connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
             var sql = "Delete FROM Products WHERE ProductID=@productID";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -64,7 +64,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             var query = "SELECT * FROM Products Where ProductID = @ProductID";
             var Parameters = new DynamicParameters();
             Parameters.Add("ProductID", ProductID);
-            using (SqlConnection connection = new SqlConnection(source.connect))
+            using (SqlConnection connection = new SqlConnection(source.connectcloud))
             {
                 var result = connection.Query<Products>(query, Parameters);
                 return result;
@@ -75,7 +75,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public IEnumerable<Products> GetAll()
         {
             var query = "SELECT p.ProductID, (SELECT Category FROM Products WHERE ProductID = p.ProductID) AS Category,(SELECT ProductName FROM Products WHERE ProductID = p.ProductID) AS ProductName, (SELECT UnitPrice FROM Products WHERE ProductID = p.ProductID) AS UnitPrice,(SELECT ShelfTime FROM Products WHERE ProductID = p.ProductID) AS ShelfTime,(SELECT TOP 1 Discount FROM Discounts WHERE ProductID = p.ProductID AND EndTime >= GETDATE() ORDER BY StartTime DESC) AS Discount FROM Products p LEFT JOIN Discounts d ON d.ProductID = p.ProductID GROUP BY p.ProductID";
-            using (SqlConnection connection = new SqlConnection(source.connect))
+            using (SqlConnection connection = new SqlConnection(source.connectcloud))
             {
                 var result = connection.Query<Products>(query);
                 return result;
@@ -85,7 +85,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public IEnumerable<ProductDetailViewModel> GetAllDetail()
         {
             var query = "SELECT p.productid , p.category , p.productname , sizetype , color , stock  from products p INNER JOIN size s ON s.productid = p.productid INNER JOIN stockcolor sc ON sc.sizeid = s.sizeid ";
-            using (SqlConnection connection = new SqlConnection(source.connect))
+            using (SqlConnection connection = new SqlConnection(source.connectcloud))
             {
                 return connection.Query<ProductDetailViewModel>(query);
             }
@@ -97,7 +97,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
                 "FROM OrderDetail o " +
                 "INNER JOIN Products p ON p.ProductID = o.ProductID " +
                 "GROUP BY o.ProductID, p.ProductName, p.UnitPrice ";
-            using (SqlConnection connection = new SqlConnection(source.connect))
+            using (SqlConnection connection = new SqlConnection(source.connectcloud))
             {
                 var result = connection.Query<ProductHomeViewModel>(query);
                 return result;
@@ -106,7 +106,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public IEnumerable<Products> OrderByUnitprice()
         {
-            using (SqlConnection connection = new SqlConnection(source.connect))
+            using (SqlConnection connection = new SqlConnection(source.connectcloud))
             {
                 var result = connection.Query<Products>("SELECT ProductID, ProductName, UnitPrice FROM Products GROUP BY ProductID, ProductName, UnitPrice ORDER BY UnitPrice");
                 return result;
@@ -115,7 +115,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public IEnumerable<Products> OrderByUnitpriceDESC()  //價格排序:高->低
         {
-            using (SqlConnection connection = new SqlConnection(source.connect))
+            using (SqlConnection connection = new SqlConnection(source.connectcloud))
             {
                 var result = connection.Query<Products>("SELECT ProductID, ProductName, UnitPrice FROM Products GROUP BY ProductID, ProductName, UnitPrice ORDER BY UnitPrice DESC");
                 return result;
@@ -124,7 +124,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public IEnumerable<Products> OrderByShelfTimeDESC()  //上架時間排序(前十)
         {
-            using (SqlConnection connection = new SqlConnection(source.connect))
+            using (SqlConnection connection = new SqlConnection(source.connectcloud))
             {
                 var result = connection.Query<Products>("SELECT TOP 8 ProductID, ProductName, ShelfTime FROM Products GROUP BY ProductID, ProductName, ShelfTime ORDER BY ShelfTime DESC");
                 return result;
@@ -133,7 +133,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public IEnumerable<Products> GetTop8Product()  //上架時間排序(前八)
         {
-            using (SqlConnection connection = new SqlConnection(source.connect))
+            using (SqlConnection connection = new SqlConnection(source.connectcloud))
             {
                 var result = connection.Query<Products>("SELECT TOP 8 ProductName, UnitPrice, Picture FROM Products GROUP BY ProductName, UnitPrice, Picture,ShelfTime ORDER BY ShelfTime DESC");
                 return result;
@@ -142,7 +142,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public string GetProductName(int ProductID)  //查詢訂單、折扣排名(傳入產品ID，傳回產品名稱)
         {
-            SqlConnection connection = new SqlConnection(source.connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
             var sql = "SELECT ProductName FROM Products WHERE ProductID=@productid";
             SqlCommand command = new SqlCommand(sql, connection);
             command.Parameters.AddWithValue("@productid", ProductID);
@@ -163,7 +163,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public IEnumerable<Products> _GetAll()
         {
-            SqlConnection connection = new SqlConnection(source.connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
             var sql = "SELECT * FROM Products";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -194,7 +194,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             var query = "SELECT p.ProductID, (SELECT Category FROM Products WHERE ProductID = p.ProductID) AS Category,(SELECT ProductName FROM Products WHERE ProductID = p.ProductID AND ProductName LIKE '%@ProductName%') AS ProductName, (SELECT UnitPrice FROM Products WHERE ProductID = p.ProductID) AS UnitPrice,(SELECT ShelfTime FROM Products WHERE ProductID = p.ProductID) AS ShelfTime,(SELECT TOP 1 Discount FROM Discounts WHERE ProductID = p.ProductID AND EndTime >= GETDATE() ORDER BY StartTime DESC) AS Discount FROM Products p LEFT JOIN Discounts d ON d.ProductID = p.ProductID GROUP BY p.ProductID";
             var parameters = new DynamicParameters();
             parameters.Add("@ProductName", name);
-            using(SqlConnection connection = new SqlConnection(source.connect))
+            using(SqlConnection connection = new SqlConnection(source.connectcloud))
             {
                 return connection.Query<Products>(query, parameters);
             }
@@ -202,14 +202,14 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public IEnumerable<ProductsViewModel> GetAllProductsDetail()
         {
-            SqlConnection connection = new SqlConnection(source.connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
             return connection.Query<ProductsViewModel>("SELECT * FROM Products p INNER JOIN Size s ON p.ProductID = s.ProductID INNER JOIN StockColor sk ON sk.SizeID = s.SizeID ");
         }
 
         //更改產品名稱
         public bool UpdateProductName(int ProductId , string ProductName)
         {
-            SqlConnection connection = new SqlConnection(source.connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
             connection.Execute("Update Products SET ProductName = @productname Where ProductID = @ProductId ", new
             {
                 ProductId,
@@ -234,7 +234,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         //更改產品種類
         public bool UpdateProductCategory(string Category , int ProductID)
         {
-            SqlConnection connection = new SqlConnection(source.connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
             connection.Execute("Update Products SET Category = @Category Where ProductID = @ProductId ", new
             {
                 Category,
@@ -258,7 +258,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         //更改產品Size
         public bool UpdateProductSizeBySizeID(string SizeType , int SizeID)
         {
-            SqlConnection connection = new SqlConnection(source.connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
             connection.Execute("Update Size Set SizeType = @SizeType Where SizeID = @SizeID ", new
             {
                 SizeID,
@@ -284,7 +284,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         //更改產品顏色
         public bool UpdateProductColorByColorID(int ColorID , string Color)
         {
-            SqlConnection connection = new SqlConnection(source.connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
             connection.Execute("Update StockColor Set Color = @Color Where ColorID = @ColorID ", new
             {
                 ColorID,
@@ -308,7 +308,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         //更改產品庫存
         public bool UpdateProductStockByColorID(int ColorID, int Stock)
         {
-            SqlConnection connection = new SqlConnection(source.connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
             connection.Execute("Update StockColor Set Stock = @Stock Where ColorID = @ColorID ", new
             {
                 ColorID,
@@ -334,7 +334,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public int CreateProductDetail(Products model)
         {
             var ShelfTime = DateTime.Now.ToShortDateString();
-            SqlConnection connection = new SqlConnection(source.connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
             connection.Execute("Insert Into Products(Category , ProductName , UnitPrice , ShelfTime , Picture) Values (@Category,@ProductName,@UnitPrice,@ShelfTime,@Picture)", new
             {
                 model.Category,
@@ -364,7 +364,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         //新增Size , 回傳 sizeID
         public int CreateProductSize(Size model)
         {
-            SqlConnection connection = new SqlConnection(source.connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
             connection.Execute("INSERT INTO Size(ProductID , SizeType) Values(@ProductID , @SizeType)", new
             {
                 model.ProductID,
@@ -388,7 +388,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         //新增顏色、存貨
         public bool CreateStockColor(StockColor model)
         {
-            SqlConnection connection = new SqlConnection(source.connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
             connection.Execute("INSERT INTO StockColor(SizeID , Color , Stock) Values(@SizeID , @Color , @Stock)", new {
                 model.SizeID,
                 model.Color,
@@ -414,7 +414,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public IEnumerable<Products> GetProductsTable()
         {
             var sql = "SELECT * FROM Products";
-            using(SqlConnection connection = new SqlConnection(source.connect))
+            using(SqlConnection connection = new SqlConnection(source.connectcloud))
             {
                 return connection.Query<Products>(sql);
             }
@@ -424,9 +424,9 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public IEnumerable<ProductDetailViewModel> GetProductDetailByProdycuID(int ProductID)
         {
-            using (SqlConnection connection = new SqlConnection(source.connect))
+            using (SqlConnection connection = new SqlConnection(source.connectcloud))
             {
-                return connection.Query<ProductDetailViewModel>("select UnitPrice , productName , category ,SizeType , Stock , Color from products p INNER JOIN size s ON p.productID = s.PRoductID INNER JOIN StockColor sc on s.sizeID = sc.sizeID where p.ProductID = @ProductID", new
+                return connection.Query<ProductDetailViewModel>("select sc.ColorID , s.SizeID ,UnitPrice , productName , category ,SizeType , Stock , Color from products p INNER JOIN size s ON p.productID = s.PRoductID INNER JOIN StockColor sc on s.sizeID = sc.sizeID where p.ProductID = @ProductID", new
                 {
                     ProductID
                 });
