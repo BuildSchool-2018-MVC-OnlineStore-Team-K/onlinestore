@@ -122,8 +122,10 @@ namespace WebApplication1.Controllers
         public ActionResult UpdateProductInfoResult(int productID , List<ProductDetailViewModel> ProductDetailmodel)
         {
             var x = ProductDetailmodel;
-
-            return View(x);
+            var service = new ProductsService();
+            service.UpdateProductInfoByProductID_SizeID_ColorID(ProductDetailmodel);
+            var result = service.GetProductDetailByProdycuID(productID);
+            return View(result);
         }
 
 

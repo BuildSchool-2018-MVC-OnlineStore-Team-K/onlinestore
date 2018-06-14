@@ -85,5 +85,12 @@ namespace Service
             var repo = new ProductsRepository();
             return repo.GetProductDetailByProdycuID(ProductID);
         }
+
+        public void UpdateProductInfoByProductID_SizeID_ColorID(List<ProductDetailViewModel> model)
+        {
+            var repo = new ProductsRepository();
+            repo.UpdateProductInfoByProductID_SizeID_ColorID(model);
+        }
+
     }
 }
