@@ -13,10 +13,10 @@ namespace Service
     public class CartService
     {
 
-        public IEnumerable<CartViewModel> GetCartProducts(int MemberID , int OrderID)
+        public IEnumerable<CartViewModel> GetCartProducts(string Account)
         {
             var orders = new OrdersRepository();
-            var result = orders.GetCartProductsInformation(MemberID, OrderID);
+            var result = orders.GetCartProductsInformation(Account);
             foreach(var item in result)
             {
                 item.Total = item.UnitPrice * item.Quantity;
@@ -24,7 +24,25 @@ namespace Service
             return result;
         }
 
-  
+        public bool AlterCartToOrders(int MemberID , int OrderID)
+        {
+            var orders = new OrdersRepository();
+            return  orders.UpdateCartToOrders(MemberID,OrderID);
+        }
+
+
+        public int GetMemberIdByAccount(string Account)
+        {
+            var members = new MembersRepository();
+            return members.GetMemberIDByAccount(Account);
+        }
+
+        public int GetCartOrderIDByMemberID(int MemberId)
+        {
+            var orders = new OrdersRepository();
+            return orders.GetCartOrderID(MemberId);
+        }
+
 
     }
 }

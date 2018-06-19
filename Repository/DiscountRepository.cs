@@ -13,14 +13,20 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 {
     public class DiscountRepository
     {
-        /// <summary>
-        /// Create Discounts
-        /// </summary>
-        /// <param name="model"></param>
-        private string connect = "Server=192.168.40.36,1433;Database=E-Commerce;User ID =smallhandsomehandsome ; Password =123;";
+        MyConnectionString source = new MyConnectionString();
+
+        public IEnumerable<Discounts> GetDiscountsTable()
+        {
+            var sql = "SELECT * FROM　Discounts";
+            using(SqlConnection connection = new SqlConnection(source.connectcloud))
+            {
+                return connection.Query<Discounts>(sql);
+            }
+        }
+
         public void Create(Discounts model)
         {
-            SqlConnection connection = new SqlConnection(connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
             var sql = "INSERT INTO Discounts VALUES (@did, @pid, @discount, @start, @end";
 
             connection.Open();
@@ -50,7 +56,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         /// <param name="model"></param>
         public void Update(Discounts model)
         {
-            SqlConnection connection = new SqlConnection(connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
             var sql = "UPDATE Discounts SET Discount = @discount, StartTime = @start, EndTime = @end WHERE DiscountID = @did AND ProductID = @pid";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -74,7 +80,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         /// <returns></returns>
         public SqlCommand AddWithAllDiscountValue(Discounts model)
         {
-            SqlCommand command = new SqlCommand(connect);
+            SqlCommand command = new SqlCommand(source.connectcloud);
             command.Parameters.AddWithValue("@did", model.DiscountID);
             command.Parameters.AddWithValue("@pid", model.ProductID);
             command.Parameters.AddWithValue("@discount", model.Discount);
@@ -89,7 +95,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         /// <param name="model"></param>
         public void Delete(Discounts model)
         {
-            SqlConnection connection = new SqlConnection(connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
             var sql = "DELETE FROM Discounts WHERE DiscountID = @id";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -108,7 +114,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         /// <returns></returns>
         public Discounts FindById(string discountId)
         {
-            SqlConnection connection = new SqlConnection(connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
             var sql = "SELECT * FROM Discounts WHERE DiscountID = @did";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -139,7 +145,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         /// <returns></returns>
         public IEnumerable<Discounts> GetAll()
         {
-            SqlConnection connection = new SqlConnection(connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
             var sql = "SELECT * FROM Discounts";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -166,7 +172,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         /// <returns></returns>
         public IEnumerable<Discounts> _GetAll()
         {
-            SqlConnection connection = new SqlConnection(connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
             var result = connection.Query<Discounts>("SELECT * FROM Discounts");
             return result;
         }
@@ -178,7 +184,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public IEnumerable<Discounts> OrderByDiscount()
         {
             //找到所有產品，並用折扣排序
-            SqlConnection connection = new SqlConnection(connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
             var sql = "SELECT p.ProductID, p.Category, p.ProductName, p.UnitPrice FROM Products p INNER JOIN Discounts d ON d.ProductID = p.ProductID WHERE d.ProductID = p.ProductID ORDER BY d.Discount";
             SqlCommand command = new SqlCommand(sql, connection);
             connection.Open();
@@ -201,7 +207,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         public IEnumerable<Discounts> OrderByDiscountDESC()
         {
             //找到所有產品，並用折扣排序
-            SqlConnection connection = new SqlConnection(connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
             var sql = "SELECT p.ProductID, p.Category, p.Name, p.UnitPrice FROM Products p INNER JOIN Discounts d ON d.ProductID = p.ProductID WHERE d.ProductID = p.ProductID ORDER BY d.Discount DESC";
             SqlCommand command = new SqlCommand(sql, connection);
             connection.Open();

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
 
 namespace BuildSchool.MVCSolution.OnlineStore.Repository.Tests
 {
@@ -49,6 +50,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository.Tests
             var orders = repository._GetAll();
             Assert.IsTrue(orders.Count() > 0);
         }
+        
     }
 }
 
@@ -60,6 +62,8 @@ namespace BuildSchool.MVCSolution.OnlineStore.OrdersRepositoryTests
         [TestMethod()]
         public void OrdersRepository_GetAll()
         {
+
+           
             var repository = new BuildSchool.MVCSolution.OnlineStore.Repository.OrdersRepository();
             var orders = repository.GetAll();
             Assert.IsTrue(orders.Count() > 0);

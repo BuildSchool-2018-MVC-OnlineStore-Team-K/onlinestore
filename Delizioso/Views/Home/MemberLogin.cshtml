@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "MemberLogin";
+}
+
+<div id="login">
+    <div class="form-title-area">
+        <h5 class="form-title" style="size: 40px">會員登入/SIGN IN</h5>
+    </div>
+    <form name="login" id="form-login" method="post" action="Home">
+        <div id="login-form">
+            <div>
+                <input  type="text" name="UserId" placeholder="帳號 Account" maxlength="40" required="" />
+            </div>
+            <br />
+            <div>
+                <input  type="password" name="UserPw" placeholder="密碼 Password" maxlength="16" required="" />
+            </div>
+            <br />
+            <input type="submit" class="btn btn-secondary" style=size: 10px value="登入" />
+            <button type="button" class="btn" style="background-color: transparent;color: white;"><img src="~/Content/Delizioso_files/Images/facebook.png" /></button>
+            <button type="button" class="btn" style="background-color: transparent;color: white;"><img src="~/Content/Delizioso_files/Images/google.png" /></button>
+            <br />
+            <div style="margin-top:25px;">
+                <div style="display:inline;vertical-align:bottom;">
+                    <a href="">忘記密碼? Forgot Password</a>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" name="btn" value="login" />
+    </form>
+</div>
+

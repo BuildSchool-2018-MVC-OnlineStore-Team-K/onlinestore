@@ -40,10 +40,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddToCartViewModel.cs" />
     <Compile Include="CartViewModel.cs" />
+    <Compile Include="CreateProductsModel.cs" />
+    <Compile Include="LoginViewModel.cs" />
     <Compile Include="OrderDetailsViewModel.cs" />
     <Compile Include="OrdersViewModel.cs" />
+    <Compile Include="ProductDetailViewModel.cs" />
+    <Compile Include="ProductDetail_ID_Temp.cs" />
+    <Compile Include="ProductsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegisterModel.cs" />
+    <Compile Include="SizeStockCombineViewModel.cs" />
+    <Compile Include="SizeTypeSelectItems.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{56D5E1BB-46AA-42D8-8E75-096955EEC0B8}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

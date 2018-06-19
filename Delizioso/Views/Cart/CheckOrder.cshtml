@@ -1,0 +1,107 @@
+﻿@model IEnumerable<ViewModels.CartViewModel>
+@{
+    ViewBag.Title = "CheckOrder";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<body>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <div class="order-step-area">
+                    <div class="order-step-on">
+                        <img src="~/Content/Delizioso_files/Images/cartstep1.gif">確認購買明細
+                        <br>CHECK YOUR ORDER
+                    </div>
+
+                    <div class="order-step">
+                        <img src="~/Content/Delizioso_files/Images/cartstep2.gif">配送與付款方式
+                        <br>SHIPPING &amp; PAYMENT
+                    </div>
+
+                    <div class="order-step">
+                        <img src="~/Content/Delizioso_files/Images/cartstep3.gif">填寫收件資料
+                        <br>DELIVERY INFORMATION
+                    </div>
+
+                    <div class="order-step">
+                        <img src="~/Content/Delizioso_files/Images/cartstep4.gif">完成訂購
+                        <br>THANK YOU!
+                    </div>
+                </div>
+
+                <table class="table-order">
+
+                    <tbody>
+                        <tr>
+                            <td colspan="12" class="caption noborder">CHECK YOUR ORDER 確認購買明細</td>
+                        </tr>
+                        <tr>
+                            <th width="2%"></th>
+                            <th class="text-al">商品名稱</th>
+                            <th width="5%">顏色</th>
+                            <th width="5%">尺寸</th>
+                            <th width="7%" class="text-ar">數量</th>
+                            <th width="7%" class="text-ar">單價</th>
+                            <th width="7%" class="text-ar">折扣價</th>
+                            <th width="7%" class="text-ar">小計</th>
+                            <th width="5%" class="text-ar">刪除</th>
+                        </tr>
+                        @foreach (var items in Model)
+                        {
+                        <tr>
+                            <td style="border-top:0px"></td>
+                            <td>
+                                <a href="PDContent.asp?pp1=10&amp;pp2=04&amp;pp3=04&amp;yano=18015005&amp;yacolor=01" target="_blank">
+                                    <img src="~/Content/Delizioso_files/Images/shirt-1.jpeg" class="pdimg">
+                                </a>
+                                <div>@items.ProductName</div>
+                            </td>
+                            <td class="text-ac">@items.Color</td>
+                            <td class="text-ac">@items.SizeType</td>
+                            <td class="text-ar">
+                                <select name="qty:18015005:F:01" onchange="javascript:cmdUpd2();">
+                                    <option value="1" selected>1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+
+                                </select>
+                            </td>
+                            <td class="text-ar">@items.UnitPrice</td>
+                            <td class="text-ar">@items.Discount</td>
+                            <td class="text-ar">@items.Total</td>
+                            <td class="text-ac">
+                                <input type="checkbox" name="prod:18015005:F:01" value="1" style="display:none;">
+                                <img src="~/Content/Delizioso_files/Images/remore.jpg" style="cursor:pointer;" onclick="$(this).prev().attr('checked',true); cmdUpd1();">
+                            </td>
+                            <td style="border-top:0px"></td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <div align="center">
+                    <div class="order-count">小計金額(共1件)</div>
+                    <div class="order-amount">NT$&nbsp; 1,699</div>
+                </div>
+            </div>
+        </div>
+        <div align="center" class="order-action">
+            @using (Html.BeginForm("checkorder", "orders"))
+            {
+
+             <input type="submit" value="結帳" class="btn3">
+             <a>@ViewBag.StatusFail</a>
+            }
+
+            <input type="button" value="繼續購物" class="btn3">
+        </div>
+    </div>
+</body>

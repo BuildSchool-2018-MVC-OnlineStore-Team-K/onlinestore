@@ -11,11 +11,22 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 {
     public class StockColorRepository
     {
-        private string connect = "Server=192.168.40.36,1433;Database=E-Commerce;User ID =smallhandsomehandsome ; Password =123;";
-        //
+        MyConnectionString source = new MyConnectionString();
+
+        public IEnumerable<StockColor> GetStockColorTable(int ProductID)
+        {
+            var sql = "SELECT * FROM StockColor WHERE SizeID = (SELECT SizeID FROM Size WHERE ProductID = @ProductID)";
+            var parameters = new DynamicParameters();
+            parameters.Add("ProductID", ProductID);
+            using(SqlConnection connection = new SqlConnection(source.connectcloud))
+            {
+                return connection.Query<StockColor>(sql, parameters);
+            }
+        }
+        
         public void Create(StockColor model)
         {
-            SqlConnection connection = new SqlConnection(connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
             var sql = "INSERT INTO StockColor VALUES (@colorid, @sizeid,@color,@stock)";
             SqlCommand command = new SqlCommand(sql, connection);
 
@@ -31,7 +42,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public void Update(StockColor model)
         {           
-            SqlConnection connection = new SqlConnection(connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
             var sql = "UPDATE StockColor SET ColorID = @colorid, SizeID=@sizeid, Color=@color,Stock=@stock";
             SqlCommand command = new SqlCommand(sql, connection);
 
@@ -47,7 +58,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public void Delete(StockColor model)
         {
-            SqlConnection connection = new SqlConnection(connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
             var sql = "Delete FROM Products WHERE ColorID = @colorid";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -61,7 +72,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public IEnumerable<StockColor> FindById(int ProductID)
         {
-            using (SqlConnection connection = new SqlConnection(connect))
+            using (SqlConnection connection = new SqlConnection(source.connectcloud))
             {
                 var result = connection.Query<StockColor>("SELECT * FROM StockColor WHERE ColorID = @colorid");
                 return result;
@@ -71,7 +82,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public IEnumerable<StockColor> GetAll()
         {
-            using (SqlConnection connection = new SqlConnection(connect))
+            using (SqlConnection connection = new SqlConnection(source.connectcloud))
             {
                 var result = connection.Query<StockColor>("SELECT * FROM StockColor");
                 return result;
@@ -80,7 +91,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public int GetSizeColorStock(int ColorID)  //依產品尺寸、顏色查詢庫存
         {            
-                SqlConnection connection = new SqlConnection(connect);
+                SqlConnection connection = new SqlConnection(source.connectcloud);
                 var sql = "SELECT Stock FROM StockColor WHERE ColorID = @colorid";
                 SqlCommand command = new SqlCommand(sql, connection);
                 command.Parameters.AddWithValue("@colorid", ColorID);

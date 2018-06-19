@@ -1,0 +1,335 @@
+﻿@model IEnumerable<BuildSchool.MVCSolution.OnlineStore.Models.Products>
+@{
+    ViewBag.Title = "AllProducts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<div class="row">
+    <!-- left list -->
+    <div class="col-3 mt-5">
+        <div class="col offset-sm-1">
+            <ul>
+                <u>
+                    <h4><b>優惠活動</b></h4>
+                </u>
+                <hr />
+                <li>
+                    <a href="">顯瘦穿搭 ‧ 二件$698</a>
+                </li>
+                <li>
+                    <a href="">百搭衣著 ‧ 二件$368</a>
+                </li>
+                <li>
+                    <a href="">貼身內著 ‧ 二件$268</a>
+                </li>
+                <li>
+                    <a href="">最終折扣 ‧ 任選49折</a>
+                </li>
+            </ul>
+
+            <ul id='menus'>
+                <u>
+                    <h4><b>服飾</b></h4>
+                </u>
+                <hr />
+                <li>
+                    <span onclick='toggleMenu("m1")'>貼身內著</span>
+                    <ul id=m1>
+                        <li><a href='javascript:void(0)'>三角褲</a></li>
+                        <li><a href='javascript:void(0)'>四角褲</a></li>
+                        <li><a href='javascript:void(0)'>平口褲</a></li>
+                        <li><a href='javascript:void(0)'>睡衣</a></li>
+                    </ul>
+                <li>
+                    <span onclick='toggleMenu("m2")'>上身</span>
+                    <ul id=m2>
+                        <li><a href='javascript:void(0)'>帽T</a></li>
+                        <li><a href='javascript:void(0)'>T-SHIRTS</a></li>
+                        <li><a href='javascript:void(0)'>西裝</a></li>
+                        <li><a href='javascript:void(0)'>外套</a></li>
+                        <li><a href='javascript:void(0)'>運動上衣</a></li>
+                    </ul>
+                <li>
+                    <span onclick='toggleMenu("m3")'>下著</span>
+                    <ul id=m3>
+                        <li>
+                            <a href='javascript:void(0)'>西裝褲</a>
+                        </li>
+                        <li><a href='javascript:void(0)'>西裝褲</a></li>
+                        <li><a href='javascript:void(0)'>休閒褲</a></li>
+                        <li><a href='javascript:void(0)'>牛仔褲</a></li>
+                        <li><a href='javascript:void(0)'>運動褲</a></li>
+                        <li><a href='javascript:void(0)'>束褲</a></li>
+                    </ul>
+
+                    <br />
+                    <br />
+                    <!--鞋類-->
+                    <u>
+                        <h4><b>鞋類</b></h4>
+                    </u>
+                    <hr />
+                <li>
+                    <span onclick='toggleMenu("m4")'>鞋款</span>
+                    <ul id=m4>
+                        <li>
+                            <a href='javascript:void(0)'>鞋子</a>
+                        </li>
+                        <li>
+                            <a href='javascript:void(0)'>皮鞋</a>
+                        </li>   
+                        <li>
+                            <a href='javascript:void(0)'>拖鞋</a>
+                        </li>
+                    </ul>
+                <li>
+                    <span onclick='toggleMenu("m5")'>襪子</span>
+                    <ul id=m5>
+                        <li>
+
+                            @*@using (Html.BeginForm("AllProducts", "Products"))
+                            {
+                                <form id="form">*@
+                                    <a name="category" @*onclick="document.getElementById('form').submit()"*@ href='javascript:void(0)'>襪子</a>
+                                @*</form> 
+                            }*@   
+                            <script>
+                            </script>
+                        </li>
+                        <li><a href='javascript:void(0)'>無痕肌棉襪</a></li>
+                        <li><a href='javascript:void(0)'>短襪/隱形襪</a></li>
+                        <li><a href='javascript:void(0)'>紳士休閒襪</a></li>
+                        <li><a href='javascript:void(0)'>運動機能襪</a></li>
+                    </ul>
+                    
+
+                    <!--飾品配件-->
+                    <br />
+                    <br />
+                    <u>
+                        <h4><b>飾品配件</b></h4>
+                    </u>
+                    <hr />
+<li>
+                    <span onclick='toggleMenu("m6")'>包包</span>
+                    <ul id=m6>
+                        <li><a href='javascript:void(0)'>背包</a></li>
+                        <li><a href='javascript:void(0)'>單肩包</a></li>
+                        <li><a href='javascript:void(0)'>公事包</a></li>
+                        <li><a href='javascript:void(0)'>後背包</a></li>
+                        <li><a href='javascript:void(0)'>皮夾</a></li>
+                    </ul>
+
+                <li>
+                    <span onclick='toggleMenu("m7")'>墨鏡</span>
+                    <ul id=m7>
+                        <li><a href='javascript:void(0)'>眼鏡</a></li>
+                        <li><a href='javascript:void(0)'>經典飛行員式</a></li>
+                        <li><a href='javascript:void(0)'>低調質感靛藍玳瑁</a></li>
+                        <li><a href='javascript:void(0)'>特殊夾式方框</a></li>
+                        <li><a href='javascript:void(0)'>簡約俐落方框</a></li>
+                        <li><a href='javascript:void(0)'>雙横鼻樑式飛行員</a></li>
+                    </ul>
+
+                <li>
+                    <span onclick='toggleMenu("m8")'>領帶</span>
+                    <ul id=m8>
+                        <li><a href='javascript:void(0)'>寬領帶</a></li>
+                        <li><a href='javascript:void(0)'>窄領帶</a></li>
+                        <li><a href='javascript:void(0)'>領結</a></li>
+                    </ul>
+                <li>
+                    <span onclick='toggleMenu("m9")'>皮帶</span>
+                    <ul id=m9>
+                        <li><a href='javascript:void(0)'>皮帶</a></li>
+                        <li><a href='javascript:void(0)'>皮夾</a></li>
+                        <li><a href='javascript:void(0)'>正式皮帶</a></li>
+                        <li><a href='javascript:void(0)'>帆布皮帶</a></li>
+                    </ul>
+
+
+                    <!--男士護理-->
+                    <br />
+                    <br />
+                    <u>
+                        <h4><b>男士護理</b></h4>
+                    </u>
+                    <hr />
+                <li>
+                    <span onclick='toggleMenu("m10")'>臉部護理</span>
+                    <ul id=m10>
+                        <li><a href='javascript:void(0)'>清潔保養</a></li>
+                        <li><a href='javascript:void(0)'>去角質</a></li>
+                        <li><a href='javascript:void(0)'>鬍後紓緩</a></li>
+                        <li><a href='javascript:void(0)'>淨膚護理</a></li>
+                    </ul>
+                <li>
+                    <span onclick='toggleMenu("m11")'>臉部護理</span>
+                    <ul id=m11>
+                        <li><a href='javascript:void(0)'>清潔保養</a></li>
+                        <li><a href='javascript:void(0)'>去角質</a></li>
+                        <li><a href='javascript:void(0)'>鬍後紓緩</a></li>
+                        <li><a href='javascript:void(0)'>淨膚護理</a></li>
+                    </ul>
+                <li>
+                    <span onclick='toggleMenu("m12")'>防曬</span>
+                    <ul id=m12>
+                        <li><a href='javascript:void(0)'>臉部護理</a></li>
+                        <li><a href='javascript:void(0)'>曬後護理</a></li>
+                    </ul>
+                <li>
+                    <span onclick='toggleMenu("m13")'>男仕香氛</span>
+                    <ul id=m13>
+                        <li><a href='javascript:void(0)'>王者之躍</a></li>
+                        <li><a href='javascript:void(0)'> Eau de Campagne</a></li>
+                    </ul>
+            </ul>
+
+            <script type='text/javascript'>
+                function toggleMenu(id) {
+                    var o = document.getElementById(id);
+                    o.style.display =
+                        (o.style.display == 'none') ? '' : 'none';
+                }
+                function hideMenu(id) {
+                    var o = document.getElementById(id).getElementsByTagName('ul');
+                    for (var i = 0; i < o.length; i++)
+                        o[i].style.display = 'none';
+                }
+                hideMenu('menus');
+            </script>
+
+        </div>
+    </div>
+    <div class="col-9">
+        <div class="row">
+            <div class="col-12">
+                <p class="item-tree">HOME > 服飾 > 上身 > 襯衫 </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-11">
+                <div class="row">
+                    <div class="col-4">
+                        <a href="http://localhost:57010/product/1">
+                            <img src="~/Content/Delizioso_files/Images/shirt-1.jpeg" height="384px" width="300px" alt="貼身晚禮服襯衫">
+                        </a>
+                        <div class="pdtext">
+                            <h5>
+                                <a href="#">貼身晚禮服襯衫</a>
+                            </h5>
+                            <p class="pdprice">NT$ 1,699</p>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <a href="#">
+                            <img src="~/Content/Delizioso_files/Images/shirt-2.jpeg" height="384px" width="300px" alt="貼身晚禮服襯衫">
+                        </a>
+                        <div class="pdtext">
+                            <h5>
+                                <a href="#">標準剪裁牛津襯衫</a>
+                            </h5>
+                            <p class="pdprice">NT$ 699</p>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <a href="#">
+                            <img src="~/Content/Delizioso_files/Images/shirt-3.jpeg" height="384px" width="300px" alt="貼身晚禮服襯衫">
+                        </a>
+                        <div class="pdtext">
+                            <h5>
+                                <a href="#">標準剪裁亞麻混紡襯衫</a>
+                            </h5>
+                            <p class="pdprice">NT$ 799</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-11">
+                <div class="row">
+                    <div class="col-4">
+                        <a href="#">
+                            <img src="~/Content/Delizioso_files/Images/shirt-4.jpeg" height="384px" width="300px" alt="貼身晚禮服襯衫">
+                        </a>
+                        <div class="pdtext">
+                            <h5>
+                                <a href="#">標準剪裁牛津襯衫</a>
+                            </h5>
+                            <p class="pdprice">NT$ 1,699</p>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <a href="#">
+                            <img src="~/Content/Delizioso_files/Images/shirt-5.jpeg" height="384px" width="300px" alt="貼身晚禮服襯衫">
+                        </a>
+                        <div class="pdtext">
+                            <h5>
+                                <a href="#">標準剪裁棉質襯衫</a>
+                            </h5>
+                            <p class="pdprice">NT$ 499</p>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <a href="#">
+                            <img src="~/Content/Delizioso_files/Images/shirt-6.jpeg" height="384px" width="300px" alt="貼身晚禮服襯衫">
+                        </a>
+                        <div class="pdtext">
+                            <h5>
+                                <a href="#">貼身短袖襯衫</a>
+                            </h5>
+                            <p class="pdprice">NT$ 999</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-11">
+                <div class="row">
+                    <div class="col-4">
+                        <a href="#">
+                            <img src="~/Content/Delizioso_files/Images/shirt-7.jpeg" height="384px" width="300px" alt="貼身晚禮服襯衫">
+                        </a>
+                        <div class="pdtext">
+                            <h5>
+                                <a href="#">府綢棉襯衫</a>
+                            </h5>
+                            <p class="pdprice">NT$ 2,499</p>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <a href="#">
+                            <img src="~/Content/Delizioso_files/Images/shirt-8.jpeg" height="384px" width="300px" alt="貼身晚禮服襯衫">
+                        </a>
+                        <div class="pdtext">
+                            <h5>
+                                <a href="#">府綢棉襯衫</a>
+                            </h5>
+                            <p class="pdprice">NT$ 2,499</p>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <a href="#">
+                            <img src="~/Content/Delizioso_files/Images/shirt-9.jpeg" height="384px" width="300px" alt="貼身晚禮服襯衫">
+                        </a>
+                        <div class="pdtext">
+                            <h5>
+                                <a href="#">連帽襯衫</a>
+                            </h5>
+                            <p class="pdprice">NT$ 1,999</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

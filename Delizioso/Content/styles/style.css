@@ -1,0 +1,126 @@
+ul li {
+    list-style-type: none;
+    margin: 10px 0px;
+}
+
+body {
+    font-family: '微軟正黑體';
+}
+
+a {
+    color: #545050;
+    text-decoration: none;
+}
+
+ul {
+    font-size: 14px;
+    margin-bottom: 35px;
+}
+
+b.now {
+    color: #DD0000;
+    font-weight: bold
+}
+
+.photo-list {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.pdinfo {
+    width: 310px;
+    margin-top: 25px;
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.pd-title {
+    font-weight: bold;
+    margin-bottom: 3px;
+    font-size: 14px;
+}
+
+.pd-subtitle {
+    font-size: 11px;
+    font-weight: bold;
+    margin: 0px;
+    margin-bottom: 20px;
+}
+
+.price {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 3px;
+}
+
+.select {
+    margin-bottom: 3px;
+}
+
+.item-tree {
+    margin-top: 10px;
+    font-size: 13px;
+}
+
+.pdtext {
+    text-align: center;
+}
+
+.pdsize {
+    margin: 0px 2%;
+}
+
+.pdprice {
+    line-height: 20px;
+    font-weight: bold;
+}
+
+.pdtext p {
+    font-size: 13px;
+}
+
+.color-select {
+    width: 6%;
+    height: 5mm;
+}
+
+.img-border {
+    border: 1px solid #000;
+    padding: 1px;
+}
+
+.size-select {
+    width: 10%;
+    height: 7.5mm;
+    text-align: center;
+}
+
+.size-area span {
+    border: 1px solid #000000;
+    padding: 5px 10px;
+    font-size: 9px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+span.current {
+    border: 1px solid #f00;
+}
+
+.qty {
+    line-height: 30px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+#selectQTY {
+    text-align: center;
+    width: 70px;
+}
+
+.cursor {
+    cursor: pointer;
+}
+
+

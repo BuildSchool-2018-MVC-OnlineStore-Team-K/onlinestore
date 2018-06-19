@@ -1,0 +1,346 @@
+﻿@using BuildSchool.MVCSolution.OnlineStore.Models;
+@model IEnumerable<ViewModels.SizeStockCombineViewModel>
+@{
+    ViewBag.Title = "SimpleProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<br />
+<br />
+<br /><br /><br /><br />
+<div class="container-fluid">
+    <div class="row">
+        <!-- left list -->
+        <div class="col-3 mt-5">
+            <div class="col offset-sm-1">
+                <ul>
+                    <u>
+                        <h4><b>優惠活動</b></h4>
+                    </u>
+                    <hr />
+                    <li>
+                        <a href="">顯瘦穿搭 ‧ 二件$698</a>
+                    </li>
+                    <li>
+                        <a href="">百搭衣著 ‧ 二件$368</a>
+                    </li>
+                    <li>
+                        <a href="">貼身內著 ‧ 二件$268</a>
+                    </li>
+                    <li>
+                        <a href="">最終折扣 ‧ 任選49折</a>
+                    </li>
+                </ul>
+
+                <ul id='menus'>
+                    <u>
+                        <h4><b>服飾</b></h4>
+                    </u>
+                    <hr />
+                    <li>
+                        <span onclick='toggleMenu("m1")'>貼身內著</span>
+                        <ul id=m1>
+                            <li><a href=''>三角褲</a>
+                            <li><a href=''>四角褲</a>
+                            <li><a href=''>平口褲</a>
+                            <li><a href=''>睡衣</a>
+                        </ul>
+                    <li>
+                        <span onclick='toggleMenu("m2")'>上身</span>
+                        <ul id=m2>
+                            <li><a href=''>POLO SHIRTS</a>
+                            <li><a href=''>T-SHIRTS</a>
+                            <li><a href=''>排汗衫</a>
+                            <li><a href=''>襯衫</a>
+                        </ul>
+                    <li>
+                        <span onclick='toggleMenu("m3")'>下著</span>
+                        <ul id=m3>
+                            <li><a href=''>丹寧褲</a>
+                            <li><a href=''>西裝褲</a>
+                            <li><a href=''>休閒褲</a>
+                            <li><a href=''>運動褲</a>
+                        </ul>
+
+                        <br />
+                        <br />
+                        <!--鞋類-->
+                        <u>
+                            <h4><b>鞋類</b></h4>
+                        </u>
+                        <hr />
+                    <li>
+                        <span onclick='toggleMenu("m4")'>鞋款</span>
+                        <ul id=m4>
+                            <li>
+                                <a href=''>皮鞋</a>
+                            <li>
+                                <a href=''>運動鞋</a>
+                            <li>
+                                <a href=''>拖鞋</a>
+                        </ul>
+                    <li>
+                        <span onclick='toggleMenu("m5")'>襪子</span>
+                        <ul id=m5>
+                            <li><a href=''>無痕肌棉襪</a>
+                            <li><a href=''>短襪/隱形襪</a>
+                            <li><a href=''>紳士休閒襪</a>
+                            <li><a href=''>運動機能襪</a>
+                        </ul>
+
+
+                        <!--飾品配件-->
+                        <br />
+                        <br />
+                        <u>
+                            <h4><b>飾品配件</b></h4>
+                        </u>
+                        <hr />
+                    <li>
+                        <span onclick='toggleMenu("m6")'>包包</span>
+                        <ul id=m6>
+                            <li><a href=''>單肩包</a>
+                            <li><a href=''>公事包</a>
+                            <li><a href=''>後背包</a>
+                            <li><a href=''>皮夾</a>
+                        </ul>
+
+                    <li>
+                        <span onclick='toggleMenu("m7")'>墨鏡</span>
+                        <ul id=m7>
+                            <li><a href=''>經典飛行員式</a>
+                            <li><a href=''>低調質感靛藍玳瑁</a>
+                            <li><a href=''>特殊夾式方框</a>
+                            <li><a href=''>簡約俐落方框</a>
+                            <li><a href=''>雙横鼻樑式飛行員</a>
+                        </ul>
+
+                    <li>
+                        <span onclick='toggleMenu("m8")'>領帶</span>
+                        <ul id=m8>
+                            <li><a href=''>寬領帶</a>
+                            <li><a href=''>窄領帶</a>
+                            <li><a href=''>領結</a>
+                        </ul>
+                    <li>
+                        <span onclick='toggleMenu("m9")'>皮帶</span>
+                        <ul id=m9>
+                            <li><a href=''>正式皮帶</a>
+                            <li><a href=''>帆布皮帶</a>
+                        </ul>
+
+
+                        <!--男士護理-->
+                        <br />
+                        <br />
+                        <u>
+                            <h4><b>男士護理</b></h4>
+                        </u>
+                        <hr />
+                    <li>
+                        <span onclick='toggleMenu("m10")'>臉部護理</span>
+                        <ul id=m10>
+                            <li><a href=''>清潔保養</a>
+                            <li><a href=''>去角質</a>
+                            <li><a href=''>鬍後紓緩</a>
+                            <li><a href=''>淨膚護理</a>
+                        </ul>
+                    <li>
+                        <span onclick='toggleMenu("m11")'>臉部護理</span>
+                        <ul id=m11>
+                            <li><a href=''>清潔保養</a>
+                            <li><a href=''>去角質</a>
+                            <li><a href=''>鬍後紓緩</a>
+                            <li><a href=''>淨膚護理</a>
+                        </ul>
+                    <li>
+                        <span onclick='toggleMenu("m12")'>防曬</span>
+                        <ul id=m12>
+                            <li><a href=''>臉部護理</a>
+                            <li><a href=''>曬後護理</a>
+                        </ul>
+                    <li>
+                        <span onclick='toggleMenu("m13")'>男仕香氛</span>
+                        <ul id=m13>
+                            <li><a href=''>王者之躍</a>
+                            <li><a href=''> Eau de Campagne</a>
+                        </ul>
+                </ul>
+
+                <script type='text/javascript'>
+                    function toggleMenu(id) {
+                        var o = document.getElementById(id);
+                        o.style.display =
+                            (o.style.display == 'none') ? '' : 'none';
+                    }
+                    function hideMenu(id) {
+                        var o = document.getElementById(id).getElementsByTagName('ul');
+                        for (var i = 0; i < o.length; i++)
+                            o[i].style.display = 'none';
+                    }
+                    hideMenu('menus'); 
+                </script>
+
+            </div>
+        </div>
+
+        <div class="col-9">
+            <div class="row">
+                <div class="col-7">
+                    <div class="photo-list">
+                        <img id="bigPic" src="~/Content/Delizioso_files/Images/shirt-1.jpeg" alt="MainImage" width="500" height="640">
+                    </div>
+                    <div id="smPic" class="photo-list">
+                        <a href="#">
+                            <img src="~/Content/Delizioso_files/Images/shirt-1-2.jpeg" alt="littleImg" width="80" height="102">
+                        </a>
+                        <a href="#">
+                            <img src="~/Content/Delizioso_files/Images/shirt-1-3.jpeg" alt="littleImg" width="80" height="102">
+                        </a>
+                        <a href="#">
+                            <img src="~/Content/Delizioso_files/Images/shirt-1-4.jpeg" alt="littleImg" width="80" height="102">
+                        </a>
+                        <a href="#">
+                            <img src="~/Content/Delizioso_files/Images/shirt-1-5.jpeg" alt="littleImg" width="80" height="102">
+                        </a>
+                    </div>
+                </div>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                <script>
+                    $(document).ready(function () {
+                        var smpics = $("#smPic").children("a").children("img");
+                        for (var i = 0; i < smpics.length; i++) {
+                            var smpic = smpics[i];
+                            // smpic.onmouseover(function () {
+                            //     console.log(smpic);
+                            // });
+                            $(smpics[i]).mouseover(function () {
+                                console.log(this);
+                                $("#bigPic").attr("src", $(this).attr("src"));
+                                console.log(smpics[i]);
+                            });
+                            //滑鼠華上去抓不到每一個
+                        }
+                    });
+                </script>
+                <div class="col">
+                    <div class="pdinfo">
+                        <p class="pd-title">@ViewBag.ProductName</p>
+                        <p class="pd-subtitle">商品編號 @ViewBag.ProductID</p>
+                        <p class="price">NT$ @ViewBag.UnitPrice</p>
+                        <p class="select">SELECT COLOR: </p>
+
+                        @{ var size = new List<Size>();
+                           var stockcolor = new List<StockColor>();
+                        }
+                        @foreach(var i in Model)
+                        {
+                            size = i.Size;
+                            stockcolor = i.StockColor;
+                        }
+                        <div id="colorSelect">
+                            @foreach(var i in stockcolor)
+                            {
+                                var count = 1;
+                                if(count == 1)
+                                {
+                                    <a href="javascript:void(0)">
+                                        <img class="color-select img-border" style="background: @i.Color;">
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a href="javascript:void(0)">
+                                        <img class="img-border" style="background: @i.Color;">
+                                    </a>
+                                }
+                            }
+                            @*<a href="#">
+                                <img class="color-select" style="background: rgb(38, 57, 226);">
+                            </a>
+                            <a href="#">
+                                <img class="color-select" style="background: rgb(90, 7, 7);">
+                            </a>*@
+                        </div>
+
+                        <script>
+                            $(document).ready(function () {
+                                $("a").mouseup(function () {
+                                    $("#colorSelect").children("a").children(".color-select").removeClass(
+                                        "img-border");
+                                    $(this).children(".color-select").addClass("img-border");
+                                })
+                            });
+                        </script>
+
+                        <div class="size-area">
+                            <p class="select">SELECT SIZE: </p>
+                            <div>
+                                @foreach(var i in size)
+                                {
+                                    var count = 1;
+                                    if(count == 1)
+                                    {
+                                        <span class="current" mysize="@i.SizeType">@i.SizeType</span>
+                                    }
+                                    else
+                                    {
+                                        <span mysize="@i.SizeType">@i.SizeType</span>
+                                    }
+                                }
+                                @*<span mysize="M">M</span>
+                                <span mysize="L">L</span>*@
+                            </div>
+                            <script>
+                                $(document).ready(function () {
+                                    $("span").mouseup(function () {
+                                        $(".size-area").children("div").children('span').removeClass(
+                                            "current");
+                                        $(this).addClass("current");
+                                    })
+                                });
+                            </script>
+                        </div>
+                        <hr>
+                        <div class="qty">
+                            數量：
+                            <select id="selectQTY" size="1" name="qty">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                        @using (Html.BeginForm("SimpleProduct", "Products"))
+                        { 
+                        <form id="form">
+                            <input type="hidden" name="productid" value="@ViewBag.ProductID" />
+                            <input id="test" type="hidden" name="unitprice" value="@ViewBag.UnitPrice" />
+                            <input id="color" type="hidden" name="color" />
+                            <input id="size" type="hidden" name="size" />
+                            <input id="quantity" type="hidden" name="quantity" />
+                            
+                            <button type="submit" id="submit" href="#">
+                                <img class="cursor" src="~/Content/Delizioso_files/Images/addcart.png" alt="加入購物車">
+                            </button>
+                            <script>
+                                $(document).ready(function () {
+                                    console.log($("#test").val());
+                                    $("#color").val($(".color-select").css("background").split(")")[0] + ")");
+                                    $("#size").val($(".current").text());
+
+                                    $("#submit").click(function () {
+                                        $("#quantity").val($("#selectQTY").find(":selected").text());
+                                    });
+                                });
+                            </script>
+                        </form>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

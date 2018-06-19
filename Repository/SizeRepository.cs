@@ -12,10 +12,20 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 {
     public class SizeRepository
     {
-        private string connect = "Server=192.168.40.36,1433;Database=E-Commerce;User ID =smallhandsomehandsome ; Password =123;";
+        MyConnectionString source = new MyConnectionString();
+
+        public IEnumerable<Size> GetSizesTable()
+        {
+            var sql = "SELECT * FROM Size";
+            using(SqlConnection connection = new SqlConnection(source.connectcloud))
+            {
+                return connection.Query<Size>(sql);
+            }
+        }
+
         public void Create(Size model)
         {
-            SqlConnection connection = new SqlConnection(connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
 
             var sql = "INSERT INTO Size VALUES (@SizeID, @ProductID, @SizeType)";
 
@@ -33,7 +43,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public void Update(Size model)
         {
-            SqlConnection connection = new SqlConnection(connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
 
             var sql = "UPDATE Size SET SizeType= @SizeType WHERE SizeID = @SizeID AND ProductID = @ProductID ";
 
@@ -50,7 +60,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public void Delete(Size model)
         {
-            SqlConnection connection = new SqlConnection(connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
 
             var sql = "DELETE FROM Size WHERE SizeID = @SizeID AND ProductID = @ProductID";
 
@@ -66,7 +76,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public Size FindById(string SizeID, string ProductID)
         {
-            SqlConnection connection = new SqlConnection(connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
 
             var sql = "SELECT * FROM Size WHERE SizeID = @SizeID AND ProductID = @ProductID";
 
@@ -95,7 +105,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         public IEnumerable<Size> GetAll() //()內不用給直 因為傳整個表格
         {
-            SqlConnection connection = new SqlConnection(connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
 
             var sql = "SELECT * FROM  Size";
             SqlCommand command = new SqlCommand(sql, connection);
@@ -121,7 +131,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         //擴充套件Dapper
         public IEnumerable<Size> PS_GetAllDapper()
         {
-            SqlConnection connection = new SqlConnection(connect);
+            SqlConnection connection = new SqlConnection(source.connectcloud);
             var result = connection.Query<Size>("SELECT * FROM Size");
             return result;
         }

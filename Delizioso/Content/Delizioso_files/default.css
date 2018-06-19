@@ -1,0 +1,67 @@
+﻿@charset "utf-8";
+ol, ul {
+	list-style: none;
+}
+
+body {
+    color:#545050;
+    margin:0px;
+    padding:0px;
+    font-family: Verdana,微軟正黑體;
+    font-size: 12px;
+}
+
+a , img {
+    border-style:hidden;
+}
+
+input, textarea {
+    font-family: Verdana,微軟正黑體;
+    font-size: 12px;
+}
+
+select {
+    font-family: Verdana,微軟正黑體;
+    font-size: 12px;
+    color:#545050;
+}
+
+.left {float:left;}
+.right {float:right;}
+
+a {
+    color:#545050;
+	text-decoration: none;
+}
+
+.table {
+      display:table;
+  }
+.tr {
+      display: table-row;
+  }
+.td {
+      display: table-cell;
+  }
+/*a:visited {
+	text-decoration: none;
+	color: #000;
+}
+a:hover {
+	text-decoration: none;
+	color: #000;
+}
+a:active {
+	text-decoration: none;
+	color: #000;
+}*/
+
+.clear {
+    clear:both;
+}
+.cl-brown {
+	color:#6D3300;
+}
+.cl-red {
+	color:#c33742;
+}
