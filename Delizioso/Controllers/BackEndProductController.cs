@@ -37,7 +37,7 @@ namespace WebApplication1.Controllers
         {
             string fileLocation = "";
             string extension = "";
-            
+
             if (Request.Files["file"].ContentLength > 0)
             {
                 extension =
@@ -70,7 +70,7 @@ namespace WebApplication1.Controllers
             ISheet sheet = excel.GetSheetAt(0);  // 在第幾個活頁簿，饅頭建議使用，畢竟我們不知道使用者會把活頁部取神麼名字，先抓地一個在說！(從0開始計算)
             ISheet sheetb = excel.GetSheet("Name"); // 利用名稱擷取
 
-             var productsModels = new List<CreateProductsModel>();
+            var productsModels = new List<CreateProductsModel>();
 
             for (int row = 1; row <= sheet.LastRowNum; row++) // 使用For 走訪所有的資料列
             {
@@ -96,7 +96,7 @@ namespace WebApplication1.Controllers
 
             }
 
-            var backendproductservice =new BackEndProductService();
+            var backendproductservice = new BackEndProductService();
             // var OrderByResult  = backendproductservice.OrderByProducts(productsModels);
 
             // var GetDifferentProductName = backendproductservice.GetDifferentProductName(productsModels);
@@ -116,10 +116,10 @@ namespace WebApplication1.Controllers
         }
 
 
-        
+
         [Route("UpdateProductInfoResult/{ProductID}")]
         [HttpPost]
-        public ActionResult UpdateProductInfoResult(int productID , List<ProductDetailViewModel> ProductDetailmodel)
+        public ActionResult UpdateProductInfoResult(int productID, List<ProductDetailViewModel> ProductDetailmodel)
         {
             var x = ProductDetailmodel;
             var service = new ProductsService();
@@ -129,7 +129,7 @@ namespace WebApplication1.Controllers
         }
 
 
-        
+
         //預設
         [Route("UpdateProductInfo/{ProductID}")]
         public ActionResult UpdateProductInfo(int productID)
@@ -147,11 +147,32 @@ namespace WebApplication1.Controllers
 
             var result = service.GetProductDetailByProdycuID(productID);
             return View(result);
-           
+
         }
 
+        [Route("FileUpload")]
+        public ActionResult FileUpload(HttpPostedFileBase file)
+        {
+            if (file != null)
+            {
+                string pic = System.IO.Path.GetFileName(file.FileName);
+                string path = System.IO.Path.Combine(
+                                       Server.MapPath("~/Content/Delizioso_files/Images/"), pic);
+                // file is uploaded
+                file.SaveAs(path);
 
+                // save the image path path to the database or you can send image 
+                // directly to database
+                // in-case if you want to store byte[] ie. for DB
+                //存DB
+                var service = new ProductsService();
+                service.UploadImageUrlToDatabase(path);
 
+            }
+            // after successfully uploading redirect the user
+            return RedirectToAction("actionname", "controller name");
+
+        }
 
         [Route("CreatePicture")]
         [AcceptVerbs(HttpVerbs.Post)]
@@ -167,7 +188,7 @@ namespace WebApplication1.Controllers
                     if (file.ContentLength > 0)
                     {
                         string fileType = file.FileName.Split('.').Last().ToUpper();
-                        var NewFileName = DateTime.Now.ToString("yyyyMMddhhmmss") + "_" + i+"."+fileType;
+                        var NewFileName = DateTime.Now.ToString("yyyyMMddhhmmss") + "_" + i + "." + fileType;
                         string savedName = Path.Combine(Server.MapPath("~/Images/"), NewFileName);
                         file.SaveAs(savedName);
                         i++;
