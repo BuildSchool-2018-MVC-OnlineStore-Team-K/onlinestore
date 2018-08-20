@@ -108,7 +108,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
         {
             using (SqlConnection connection = new SqlConnection(source.connectcloud))
             {
-                var result = connection.Query<Products>("SELECT ProductID, ProductName, UnitPrice FROM Products GROUP BY ProductID, ProductName, UnitPrice ORDER BY UnitPrice");
+                var result = connection.Query<Products>("SELECT ProductID, ProductName, UnitPrice FROM Products  GROUP BY ProductID, ProductName, UnitPrice ORDER BY UnitPrice");
                 return result;
             }
         }
