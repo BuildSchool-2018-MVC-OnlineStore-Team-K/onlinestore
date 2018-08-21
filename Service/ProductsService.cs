@@ -92,6 +92,11 @@ namespace Service
             repo.UpdateProductInfoByProductID_SizeID_ColorID(model);
         }
         
+        public  void UploadImageUrlToDatabase(string url)
+        {
+            var repo = new ProductsRepository();
+            repo.UploadImageUrlToDatabase(url);
+        }
 
     }
 }

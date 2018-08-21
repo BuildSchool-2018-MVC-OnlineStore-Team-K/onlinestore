@@ -15,12 +15,13 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-2">產品種類</div>
+    <div class="col-1">產品種類</div>
     <div class="col-2">產品名稱</div>
     <div class="col-2">單價</div>
     <div class="col-1">尺寸</div>
     <div class="col-2">顏色</div>
-    <div class="col-2">存貨</div>
+    <div class="col-1">存貨</div>
+    <div class="col-2">上傳圖片</div>
 </div>
 
 
@@ -35,7 +36,7 @@
         @Html.HiddenFor(x => x[0].ColorID)
         @Html.HiddenFor(x => x[0].SizeID)
 
-        <div class="col-2">
+        <div class="col-1">
             @Html.TextBoxFor(x => x[0].Category , new { @type = "text"})
         </div>
         <div class="col-2">
@@ -50,10 +51,18 @@
         <div class="col-2">
             @Html.TextBoxFor(x => x[0].Color, new { @type = "text" })
         </div>
-        <div class="col-2">
+        <div class="col-1">
             @Html.TextBoxFor(x => x[0].Stock, new { @type = "number" , @min="0" })
         </div>
-
+        <div class="col-2">
+            @using (Html.BeginForm("FileUpload", "backendproduct", FormMethod.Post,
+                new { enctype = "multipart/form-data" }))
+            {
+                
+                <input type="file" name="file" id="file" style="width: 100%;" />
+                <input type="submit" value="Upload" class="submit" />
+            }
+        </div>
 }
     </div>
 

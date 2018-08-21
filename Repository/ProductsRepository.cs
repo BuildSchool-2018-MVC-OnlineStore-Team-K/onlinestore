@@ -467,6 +467,15 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             }
         }
 
+        public void UploadImageUrlToDatabase(string url)
+        {
+            SqlConnection connection = new SqlConnection(source.connectcloud);
+            connection.Execute("INSERT INTO picture(picture , colorID) Values(@picture , @colorID)", new
+            {
+
+            });
+        }
+            
 
     }
 }
