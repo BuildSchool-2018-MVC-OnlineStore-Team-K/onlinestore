@@ -35,7 +35,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             SqlCommand command = new SqlCommand(sql, connection);
 
             command.Parameters.AddWithValue("@MemberID", model.MemberID);
-            command.Parameters.AddWithValue("@Name", model.MemberName);
+            command.Parameters.AddWithValue("@Name", model.Name);
             command.Parameters.AddWithValue("@Address", model.Address);
             command.Parameters.AddWithValue("@Birthday", model.Birthday);
             command.Parameters.AddWithValue("@CreditCard", model.CreditCard);
@@ -69,7 +69,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             SqlCommand command = new SqlCommand(sql, connection);
 
             command.Parameters.AddWithValue("@MemberID", model.MemberID);
-            command.Parameters.AddWithValue("@Name", model.MemberName);
+            command.Parameters.AddWithValue("@Name", model.Name);
             command.Parameters.AddWithValue("@Address", model.Address);
             command.Parameters.AddWithValue("@Birthday", model.Birthday);
             command.Parameters.AddWithValue("@CreditCard", model.CreditCard);
@@ -117,7 +117,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             while (reader.Read())
             {
                 Member.MemberID = int.Parse(reader.GetValue(reader.GetOrdinal("MemberID")).ToString());
-                Member.MemberName = reader.GetValue(reader.GetOrdinal("MemberName")).ToString();
+                Member.Name = reader.GetValue(reader.GetOrdinal("Name")).ToString();
                 Member.Address = reader.GetValue(reader.GetOrdinal("Address")).ToString();
                 Member.Birthday = Convert.ToDateTime(reader.GetValue(reader.GetOrdinal("Birthday")));
                 Member.CreditCard = int.Parse(reader.GetValue(reader.GetOrdinal("CreditCard")).ToString());
@@ -153,7 +153,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
                 {
 
                     mreader.MemberID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("MemberID")));
-                    mreader.MemberName = reader.GetValue(reader.GetOrdinal("Name")).ToString();
+                    mreader.Name = reader.GetValue(reader.GetOrdinal("Name")).ToString();
                     mreader.Address = reader.GetValue(reader.GetOrdinal("Address")).ToString();
                     mreader.Birthday = Convert.ToDateTime(reader.GetValue(reader.GetOrdinal("Birthday")));
                     mreader.CreditCard = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("CreditCard")));
@@ -213,7 +213,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             {
 
                 mreader.MemberID = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("MemberID")));
-                mreader.MemberName = reader.GetValue(reader.GetOrdinal("Name")).ToString();
+                mreader.Name = reader.GetValue(reader.GetOrdinal("Name")).ToString();
                 mreader.Address = reader.GetValue(reader.GetOrdinal("Address")).ToString();
                 mreader.Birthday = Convert.ToDateTime(reader.GetValue(reader.GetOrdinal("Birthday")));
                 mreader.CreditCard = Convert.ToInt32(reader.GetValue(reader.GetOrdinal("CreditCard")));
@@ -228,24 +228,11 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
             connection.Close();
         }
 
-        public IEnumerable<Members> GetAll() //NEWPassword
+        public IEnumerable<Members> GetAll()
         {
             SqlConnection connection = new SqlConnection(source.connectcloud);
-            var sql = "SELECT Password FROM  Members  WHERE MemberID=@MemberID,@Password=Password";
-            SqlCommand command = new SqlCommand(sql, connection);
-            connection.Open();
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            var list = new List<Members>();
-            var mreader = new Members();
-            while (reader.Read())
-            {
-                mreader.Password = reader.GetValue(reader.GetOrdinal("Password")).ToString();
-                list.Add(mreader);
-            }
-            reader.Close();
-            connection.Close();
-
-            return list;
+            var result = connection.Query<Members>("SELECT * FROM Members");
+            return result;
         }
 
         public bool CheckAccountIsExist(string Account)

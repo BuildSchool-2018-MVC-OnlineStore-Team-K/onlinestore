@@ -9,7 +9,7 @@ using ViewModels;
 
 namespace Service
 {
-    public class CheckMember
+    public class MemberService
     {
         public bool CheckAccountExist(string Account)
         {
@@ -76,5 +76,12 @@ namespace Service
             var repository = new MembersRepository();
             return repository.CreateAccountByFBId(id, name); //true = 成功
         }
+
+        public IEnumerable<Members> GetMembers()
+        {
+            var repository = new MembersRepository();
+            return repository.GetAll();
+        }
+
     }
 }

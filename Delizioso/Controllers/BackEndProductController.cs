@@ -177,5 +177,21 @@ namespace WebApplication1.Controllers
             return RedirectToAction("CreatePicture");
         }
 
+        [Route("searchmember")]
+        public ActionResult SearchAllMember()
+        {
+            var service = new MemberService();
+            ViewBag.Members = service.GetMembers().ToList();
+            return PartialView();
+        }
+
+        [Route("orderstatus")]
+        public ActionResult OrdersStatus()
+        {
+            var service = new OrderService();
+            ViewBag.Orders = service.GetOrders().ToList();
+            return PartialView();
+        }
+
     }
 }

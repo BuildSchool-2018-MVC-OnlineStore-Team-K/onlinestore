@@ -9,7 +9,7 @@ namespace BuildSchool.MVCSolution.OnlineStore.Models
     public class Members
     {
         public int MemberID { get; set; }
-        public string MemberName { get; set; }
+        public string Name { get; set; }
         public string Address { get; set; }
         public DateTime Birthday { get; set; }
         public int? CreditCard { get; set; }

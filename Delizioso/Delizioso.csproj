@@ -1367,6 +1367,8 @@
     <Content Include="Views\Cart\CompleteTheOrder.cshtml" />
     <Content Include="Views\BackEndProduct\UpdateProductInfo.cshtml" />
     <Content Include="Views\BackEndProduct\UpdateProductInfoResult.cshtml" />
+    <Content Include="Views\BackEndProduct\SearchAllMember.cshtml" />
+    <Content Include="Views\BackEndProduct\OrdersStatus.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

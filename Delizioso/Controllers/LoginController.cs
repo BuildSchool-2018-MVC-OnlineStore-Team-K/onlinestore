@@ -21,7 +21,7 @@ namespace WebApplication1.Controllers
         public ActionResult MemberLogin(LoginModel loginModel)
         {
             //從資料庫找到該帳密
-            var service = new CheckMember();
+            var service = new MemberService();
             if(service.CheckAccountExist(loginModel.UserId))
             {
                 var data = service.GetAccountName(loginModel.UserId, loginModel.UserPw);

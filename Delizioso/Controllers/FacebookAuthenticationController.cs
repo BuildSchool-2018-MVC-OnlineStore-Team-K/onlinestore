@@ -61,7 +61,7 @@ namespace WebApplication1.Controllers
             
             
             //檢查是否已經用fb註冊過
-            var service = new CheckMember();
+            var service = new MemberService();
             if (!service.CheckFbRegistered(id)) //CheckFbRegistered  true是註冊過  ! 
             {
                 service.FbRegist(id, name);//透過FB ID註冊到資料庫

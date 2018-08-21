@@ -15,7 +15,7 @@ namespace Service.Tests
         public void CheckFbRegisteredTest()
         {
             string id = "1255852617878731";
-            var service = new CheckMember();
+            var service = new MemberService();
             var result = service.CheckFbRegistered(id);
             Assert.IsTrue(result);
         }

@@ -27,7 +27,7 @@ namespace WebApplication1.Controllers
         public ActionResult MemberRegister(RegisterModel registerModel)
         {
             registerModel.Birthday = Convert.ToDateTime("1996-08-24");
-            var service = new CheckMember();
+            var service = new MemberService();
             if (!service.CheckAccountExist(registerModel.UserAccount))
             {
                 ModelState.AddModelError("registerModel", "此帳號已註冊過");

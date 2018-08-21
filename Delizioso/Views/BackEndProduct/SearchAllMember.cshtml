@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "SearchAllMember";
+    Layout = "~/Views/Shared/BackEnd_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-3">姓名</div>
+    <div class="col-3">電話</div>
+    <div class="col-3">信箱</div>
+    <div class="col-3">地址</div>
+</div>
+<br />
+<div class="row">
+    @foreach (var i in ViewBag.Members)
+    {
+        <div class="col-3">
+            <p>@i.Name</p>
+        </div>
+        <div class="col-3">
+            <p>@i.Phone</p>
+        </div>
+        <div class="col-3">
+            <p>@i.Email</p>
+        </div>
+        <div class="col-3">
+            <p>@i.Address</p>
+        </div>
+    }
+</div>
+
+

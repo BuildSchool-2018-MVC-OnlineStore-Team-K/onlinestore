@@ -214,6 +214,13 @@ namespace BuildSchool.MVCSolution.OnlineStore.Repository
 
         }
 
+        public IEnumerable<Orders> GetOrdersStatus()
+        {
+            SqlConnection connection = new SqlConnection(source.connectcloud);
+            var result = connection.Query<Orders>("SELECT * FROM Orders");
+            return result;
+        }
+
 
     }
 }
